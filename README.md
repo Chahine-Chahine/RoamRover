@@ -5,8 +5,8 @@
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
->  RoamRover is a mobile app designed for group adventures and trip planning. It simplifies the decision-making process by leveraging AI for top recommendations.
-> RoamRover aims to facilitate real-time discussions within groups, allowing users to plan outings effortlessly. It provides access to a comprehensive list of places and recommendations, with the added feature of AI-generated trip suggestions.
+>  Roam Rover is a mobile app designed for group adventures and trip planning. It simplifies the decision-making process by leveraging AI for top recommendations.
+> Roam Rover aims to facilitate real-time discussions within groups, allowing users to plan outings effortlessly. It provides access to a comprehensive list of places and recommendations, with the added feature of AI-generated trip suggestions.
 
 ### User Stories
 - As a user, I want to generate a trip based on my budget without the need to search for places and compare budgets.
@@ -21,14 +21,19 @@
 - As a user, I want the option to make trip media public for others interested in the same destination.
 - As a user, I want the ability to video call all participants to discuss changes or the trip.
 - As a user, I want to receive reminder notifications when the trip date is near.
-
+### Admin Stories
+- As an admin, I want to have comprehensive access to all user operations for efficient monitoring and assistance.
+- As an admin, I want to enhance the app's content by adding new places that users might find interesting.
+- As an admin, I want to effectively communicate with users by adding announcements and sending push notifications.
+- As an admin, I want to have the flexibility to initiate conversations with users when necessary.
+- As an admin, I want to monitor and moderate user-generated content, ensuring it aligns with community guidelines
 <br><br>
 
 
 <!-- Prototyping -->
 <img src="./readme/title3.svg"/>
 
-> We designed RoamRover using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
+> We designed Roam Rover using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
 ### Wireframes
 | Login screen  | Register screen |  Landing screen |
@@ -45,7 +50,7 @@
 <!-- Implementation -->
 <img src="./readme/title4.svg"/>
 
-> Using the wireframes and mockups as a guide, we implemented the RoamRover app with the following features:
+> Using the wireframes and mockups as a guide, we implemented the Roam Rover app with the following features:
 
 ### User Screens (Mobile)
 | Login screen  | Register screen | Landing screen | Loading screen |
@@ -66,7 +71,7 @@
 <!-- Tech stack -->
 <img src="./readme/title5.svg"/>
 
-###  RoamRover is built using the following technologies:
+###  Roam Rover is built using the following technologies:
 
 - This project uses the [ReactNative app development framework](https://reactnative.dev/). ReactNative is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
 - For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package which allows the app to create a custom storage schema and save it to a local database.
@@ -79,7 +84,7 @@
 <!-- How to run -->
 <img src="./readme/title6.svg"/>
 
-> To set up RoamRover locally, follow these steps:
+> To set up Roam Rover locally, follow these steps:
 
 ### Prerequisites
 
@@ -107,4 +112,4 @@ _Below is an example of how you can instruct your audience on installing and set
    const API_KEY = 'ENTER YOUR API';
    ```
 
-Now, you should be able to run RoamRover locally and explore its features.
+Now, you should be able to run Roam Rover locally and explore its features.
