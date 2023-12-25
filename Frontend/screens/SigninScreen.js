@@ -16,10 +16,7 @@ const SignInScreen = () => {
         if (!username.trim() || !password.trim()) {
             setError("Please fill in all fields");
         } else {
-            // Perform sign-in logic here
-            // You can navigate or show success message
-            // For now, just clear the error
-            setError("");
+            navigation.navigate("HomeScreen");
         }
     };
 
