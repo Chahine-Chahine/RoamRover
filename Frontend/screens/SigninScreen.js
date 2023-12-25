@@ -1,7 +1,13 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
 const SignInScreen = () => {
+    const navigation = useNavigation();
+    const navigateSignup = () =>{
+        navigation.navigate("Signup");
+    }
+
     return (
         <View style={styles.container}>
             <View>
@@ -26,7 +32,7 @@ const SignInScreen = () => {
                 <View style={styles.signupContainer}>
                     <Text style={styles.signupText}>Don't have an account? </Text>
                     <TouchableOpacity>
-                        <Text style={styles.signupLink}>Sign Up</Text>
+                        <Text onPress={navigateSignup} style={styles.signupLink}>Sign Up</Text>
                     </TouchableOpacity>
                 </View>
             </View>

@@ -2,7 +2,6 @@ import { View, Text, StyleSheet, Image, Touchable, TouchableOpacity } from "reac
 import React from "react";
 import Onboarding from 'react-native-onboarding-swiper';
 import { useNavigation } from "@react-navigation/native";
-import DoneButton from "react-native-onboarding-swiper/src/buttons/DoneButton";
 
 
 export default OnboardingScreen = () => {
