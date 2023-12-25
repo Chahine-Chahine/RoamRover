@@ -1,5 +1,6 @@
-import { View, Text, StyleSheet, Image } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome5'
+import { View, Text, StyleSheet, Image, TextInput, ScrollView } from "react-native";
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import OutlinedButton from "../components/common/OutlinedButton";
 
 const HomeScreen = () => {
   return (
@@ -8,8 +9,8 @@ const HomeScreen = () => {
         <View>
           <Image
             style={styles.headerImage}
-            source={require("../assets/Custom-trip.png")}
-          />
+            source={require("../assets/img.png")}
+            />
         </View>
         <View>
           <Text>Hello Chahine</Text>
@@ -20,8 +21,29 @@ const HomeScreen = () => {
         </View>
       </View>
       <View style={styles.container}>
-        <View style={styles.search}></View>
-        <View style={styles.cardWrapper}></View>
+        <View style={styles.search}>
+          <View style={styles.searchBar}>
+            <Icon name= "search" size= {15} color= "black" marginRight= {10}/>
+            <TextInput placeholder='Search'/>
+          </View>
+          <View style={styles.filterIcon}>
+            <Icon name= "filter" size={25}/>
+          </View>
+        </View>
+        <View style={styles.cardWrapper}>
+          <View style={styles.cardImage}></View>
+          <View style={styles.contentWrapper}>
+          <View style={styles.leftCard}>
+          <Text>3azme caffe</Text>
+          <Text>coffee shop in Beirut</Text>
+          <Text>20$/individual</Text>
+          </View>
+          <View style={styles.rightCard}>
+            <Icon name= 'bookmark' size={20} marginBottom={15}/>
+            <OutlinedButton label="Add to List" onPress={() => console.log("working")} />
+          </View>
+          </View>
+        </View>
       </View>
     </>
   );
@@ -33,7 +55,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     height: "100%",
-    backgroundColor: "pink",
   },
   header: {
     flexDirection: "row",
@@ -43,14 +64,48 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   search: {
-    width: "100%",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: "85%",
     height: "10%",
-    backgroundColor: "red",
+    marginBottom: 30
+  },
+  searchBar: {
+    padding:10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '85%',
+    height: '90%',
+    borderRadius: 30,
+    backgroundColor: '#D9D9D9'
   },
   cardWrapper: {
-    width: "80%",
+    flexDirection: "column",
+    width: "85%",
     height: "35%",
-    backgroundColor: "teal",
+  },
+  cardImage: {
+    width: '100%',
+    height: '60%',
+    backgroundColor: 'black',
+    borderRadius: 30
+  },
+  contentWrapper: {
+    flexDirection: 'row',
+    width: '100%',
+    height: '80%'
+  },
+  leftCard: {
+    padding: 10,
+    width: '50%',
+    height: '60%',
+  },
+  rightCard: {
+    padding: 10,
+    alignItems: 'flex-end',
+    width: '50%',
+    height: '60%',
   },
   headerImage: {
     width: 60,
