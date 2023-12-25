@@ -9,11 +9,11 @@ const HomeScreen = () => {
         <View>
           <Image
             style={styles.headerImage}
-            source={require("../assets/img.png")}
+            source={require("../assets/nour.jpeg")}
             />
         </View>
         <View>
-          <Text>Hello Chahine</Text>
+          <Text>Hello Nour</Text>
           <Text>Beirut, Lebanon</Text>
         </View>
         <View style={styles.messageIcon}>
@@ -23,7 +23,7 @@ const HomeScreen = () => {
       <View style={styles.container}>
         <View style={styles.search}>
           <View style={styles.searchBar}>
-            <Icon name= "search" size= {15} color= "black" marginRight= {10}/>
+            <Icon name= "search" size= {20} color= "black" marginRight= {10}/>
             <TextInput placeholder='Search'/>
           </View>
           <View style={styles.filterIcon}>
@@ -45,6 +45,11 @@ const HomeScreen = () => {
           </View>
         </View>
       </View>
+        <View style={styles.navigationBar}>
+          <Icon name='home' size= {30}/>
+          <Icon name= 'plus-circle' size={50} style={styles.plusButton} />
+          <Icon name= 'user'solid size={30}/>
+        </View>
     </>
   );
 };
@@ -119,7 +124,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: 'flex-end',
     
-  }
+  },
+  navigationBar: {
+    gap: 80,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '100%',
+    height: 60,
+  },
+  plusButton: {
+    position: 'relative', 
+    top: -15, 
+  },
 });
 
 export default HomeScreen;
