@@ -8,7 +8,7 @@ import DoneButton from "react-native-onboarding-swiper/src/buttons/DoneButton";
 export default OnboardingScreen = () => {
     const navigation = useNavigation();
     const handleDone = () => {
-        navigation.navigate("Home")
+        navigation.navigate("Signin")
     }
     const doneButton = ({...props}) => {
         return(

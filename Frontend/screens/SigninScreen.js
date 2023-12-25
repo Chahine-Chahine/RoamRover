@@ -1,8 +1,7 @@
-import { SafeAreaView } from "react-native";
-import { View, Text, StyleSheet , TextInput, TouchableOpacity} from "react-native";
 import React from "react";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
-const HomeScreen = () => {
+const SignInScreen = () => {
     return (
         <View style={styles.container}>
             <View>
@@ -40,13 +39,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        paddingHorizontal: 20,
         backgroundColor: "#fff",
     },
     header: {
-        fontSize: 24,
+        color: "#A78BFA",
+        fontSize: 34,
         fontWeight: "bold",
-        marginBottom: 20,
+        marginBottom: 40,
     },
     input: {
         height: 40,
@@ -56,15 +55,15 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     forgotPassword: {
-        textAlign: "right",
         color: "#aaaaaa",
         fontSize: 12,
     },
     buttonContainer: {
-        backgroundColor: "blue",
-        paddingVertical: 15,
+        backgroundColor: "#A78BFA",
+        paddingVertical: 12,
+        paddingHorizontal: 120,
         borderRadius: 10,
-        marginTop: 20,
+        marginTop: 50,
     },
     buttonText: {
         color: "#fff",
@@ -82,9 +81,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     signupLink: {
-        color: "blue",
+        color: "#A78BFA",
         fontSize: 16,
         fontWeight: "bold",
     },
 });
-export default HomeScreen;
+
+export default SignInScreen;
