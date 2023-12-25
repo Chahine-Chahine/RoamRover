@@ -8,7 +8,9 @@ import React from "react";
 export default HomeScreen = () => {
     return(
         <SafeAreaView>
-            <Text>HomeScreen</Text>
+            <View>
+                <Text>Sign In</Text>
+            </View>
         </SafeAreaView>
     )
 }
