@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
 const SignInScreen = () => {
     const navigation = useNavigation();
-    const navigateSignup = () =>{
+    const navigateSignup = () => {
         navigation.navigate("Signup");
-    }
+    };
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+    const handleSignIn = () => {
+        if (!username.trim() || !password.trim()) {
+            setError("Please fill in all fields");
+        } else {
+            // Perform sign-in logic here
+            // You can navigate or show success message
+            // For now, just clear the error
+            setError("");
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -16,23 +31,30 @@ const SignInScreen = () => {
                     style={styles.input}
                     placeholder="Username"
                     placeholderTextColor="#aaaaaa"
+                    value={username}
+                    onChangeText={(text) => setUsername(text)}
                 />
                 <TextInput
                     style={styles.input}
                     placeholder="Password"
                     placeholderTextColor="#aaaaaa"
                     secureTextEntry={true}
+                    value={password}
+                    onChangeText={(text) => setPassword(text)}
                 />
-                <TouchableOpacity>
+                <TouchableOpacity >
                     <Text style={styles.forgotPassword}>Forgot Password?</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.buttonContainer} onPress={handleSignIn}>
                     <Text style={styles.buttonText}>Sign In</Text>
                 </TouchableOpacity>
+                {error ? <Text style={styles.errorText}>{error}</Text> : null}
                 <View style={styles.signupContainer}>
                     <Text style={styles.signupText}>Don't have an account? </Text>
                     <TouchableOpacity>
-                        <Text onPress={navigateSignup} style={styles.signupLink}>Sign Up</Text>
+                        <Text onPress={navigateSignup} style={styles.signupLink}>
+                            Sign Up
+                        </Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -90,6 +112,12 @@ const styles = StyleSheet.create({
         color: "#A78BFA",
         fontSize: 16,
         fontWeight: "bold",
+    },
+    errorText: {
+        color: "red",
+        fontSize: 14,
+        marginTop: 10,
+        textAlign: "center",
     },
 });
 
