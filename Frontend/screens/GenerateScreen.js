@@ -4,13 +4,11 @@ import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
 const GenerateTrip = ({ navigation }) => {
 
   const handleAIGeneratePress = () => {
-    // Handle the AI Generate press action
-    // navigation.navigate('AIGenerateScreen');
+    
   };
 
   const handleCreateCustomTripPress = () => {
-    // Handle the Create Custom Trip press action
-    // navigation.navigate('CreateCustomTripScreen');
+   
   };
 
   return (
