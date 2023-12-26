@@ -7,7 +7,8 @@ const Card = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.cardWrapper}>
-        <View style={styles.cardImage}></View>
+        <View style={styles.cardImage}>
+        </View>
         <View style={styles.contentWrapper}>
           <View style={styles.leftCard}>
             <Text>3azme caffe</Text>
