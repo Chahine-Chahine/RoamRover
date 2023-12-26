@@ -1,11 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
+import NavigationBar from '../components/common/NavigationBar';
 
 const ProfileScreen = () => {
   return (
+    <>
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        {/* Insert Back Icon */}
+        {/* Back Icon */}
         <Text style={styles.headerTitle}>Profile</Text>
       </View>
       <View style={styles.profileSection}>
@@ -13,9 +15,13 @@ const ProfileScreen = () => {
           style={styles.profileImage}
           source={require('../assets/dodo.jpeg')} 
         />
+        <View style={styles.profileHeader}>
         <Text style={styles.profileName}>Chahine Chahine</Text>
         <Text style={styles.profileAge}>23 years old</Text>
+        <TouchableOpacity style={styles.tripButton}>
         <Text style={styles.profileTrips}>12 Trips</Text>
+        </TouchableOpacity>
+        </View>
       </View>
       <View style={styles.aboutSection}>
         <Text style={styles.aboutTitle}>About</Text>
@@ -30,6 +36,8 @@ const ProfileScreen = () => {
         <Text style={styles.buttonText}>Change Password</Text>
       </TouchableOpacity>
     </ScrollView>
+    <NavigationBar/>
+    </>
   );
 };
 
@@ -50,13 +58,29 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   profileSection: {
+    flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 40,
+  },
+  profileHeader:{
+    marginTop:15,
+    marginLeft: 20,
+    alignItems: 'center'
+  },
+  tripButton:{
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 20,
+    alignItems: 'center',
+    borderWidth: 3,
+    borderColor: '#A78BFA',
+    marginVertical: 10,
   },
   profileImage: {
     width: 120,
     height: 120,
-    borderRadius: 60,
+    borderRadius: 30,
+    marginLeft: 15,
   },
   profileName: {
     fontSize: 22,
@@ -69,8 +93,8 @@ const styles = StyleSheet.create({
   },
   profileTrips: {
     fontSize: 16,
-    color: 'grey',
-    marginTop: 5,
+    color: '#A78BFA',
+    
   },
   aboutSection: {
     marginTop: 20,
@@ -84,15 +108,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'grey',
     marginTop: 5,
+    marginBottom:10,
+    
   },
   button: {
-    backgroundColor: '#6200EE',
+    backgroundColor: '#A78BFA',
     paddingVertical: 15,
     paddingHorizontal: 40,
     borderRadius: 25,
     alignItems: 'center',
     marginVertical: 10,
-    marginHorizontal: 50,
+    marginHorizontal: 25,
   },
   buttonText: {
     color: 'white',
