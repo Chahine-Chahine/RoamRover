@@ -25,7 +25,8 @@ const styles = {
     alignItems: "center",
     width: "100%",
     height: "20%",
-    paddingHorizontal: 16,
+    paddingHorizontal: 25,
+    
   },
   headerImage: {
     width: 60,
@@ -37,7 +38,8 @@ const styles = {
     width: 140,
     height: 60,
     justifyContent: "center",
-    alignItems: 'flex-end',
+    left: 90
+    
   },
 };
 
