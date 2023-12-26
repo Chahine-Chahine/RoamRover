@@ -7,6 +7,7 @@ import SignUpScreen from '../screens/SignupScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LocationDetailScreen from '../screens/LocationScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import GenerateTrip from '../screens/GenerateScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ export default AppNavigation = () => {
         <Stack.Screen name= 'HomeScreen' options={{headerShown: false}} component={HomeScreen}/>
         <Stack.Screen name= 'LocationDetailScreen' options={{headerShown: false}} component={LocationDetailScreen}/>
         <Stack.Screen name= 'profileScreen' options={{headerShown: false}} component={ProfileScreen}/>
+        <Stack.Screen name= 'GenerateTrip' options={{headerShown: false}} component={GenerateTrip}/>
         </Stack.Navigator>  
     </NavigationContainer>
     );

@@ -15,11 +15,16 @@ const NavigationBar = () => {
     return (
       navigation.navigate('profileScreen')
     )
+  };
+  const navigategenerate = () => {
+    return (
+      navigation.navigate('GenerateTrip')
+    )
   }
   return (
     <View style={styles.navigationBar}>
       <Icon name='home' size={30} onPress={navigatehome} />
-      <Icon name='plus-circle' size={50} style={styles.plusButton} />
+      <Icon name='plus-circle' size={50} style={styles.plusButton} onPress={navigategenerate}/>
       <Icon name='user' solid size={30} onPress={navigateprofile}/>
     </View>
   );
