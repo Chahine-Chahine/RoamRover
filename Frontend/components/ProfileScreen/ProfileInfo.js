@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         marginLeft: 15,
       },
       profileName: {
-        fontSize: 22,
+        fontSize: 18,
         fontWeight: 'bold',
         marginTop: 10,
       },

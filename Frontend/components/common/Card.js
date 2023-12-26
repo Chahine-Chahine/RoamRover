@@ -1,22 +1,23 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity , Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import OutlinedButton from "./OutlinedButton";
 
-const Card = ({ onPress }) => {
+const Card = ({ onPress ,title , description , price , uri}) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} style={styles.fullScreen}>
       <View style={styles.cardWrapper}>
-        <View style={styles.cardImage}>
+        <View >
+          <Image source={uri} style={styles.cardImage}/>
         </View>
         <View style={styles.contentWrapper}>
           <View style={styles.leftCard}>
-            <Text>3azme caffe</Text>
-            <Text>coffee shop in Beirut</Text>
-            <Text>20$/individual</Text>
+            <Text>{title}</Text>
+            <Text>{description}</Text>
+            <Text>{price}</Text>
           </View>
           <View style={styles.rightCard}>
-            <Icon name='bookmark' size={20} marginBottom={15} />
+            <Icon name='bookmark' size={20} style={styles.bookmark} />
             <OutlinedButton label="Add to List" onPress={() => console.log("working")} />
           </View>
         </View>
@@ -26,33 +27,42 @@ const Card = ({ onPress }) => {
 };
 
 const styles = {
+  fullScreen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   cardWrapper: {
     flexDirection: "column",
-    width: "85%",
-    height: "45%",
+    width: 300, 
+    height: 200, 
+    marginBottom: 100, 
   },
   cardImage: {
     width: '100%',
-    height: '60%',
-    backgroundColor: 'black',
+    height: '85%', 
     borderRadius: 30,
   },
   contentWrapper: {
     flexDirection: 'row',
     width: '100%',
-    height: '80%',
+    height: '20%', 
   },
   leftCard: {
     padding: 10,
-    width: '50%',
-    height: '60%',
+    width: '60%',
+    justifyContent: 'center', 
   },
   rightCard: {
     padding: 10,
-    alignItems: 'flex-end',
+    alignItems: 'center',
     width: '50%',
-    height: '60%',
   },
+  bookmark:{
+    position:'absolute',
+    right:40,
+    top: -10,
+  }
 };
 
 export default Card;

@@ -9,7 +9,7 @@ const Header = () => {
         <Image style={styles.headerImage} source={require("../../assets/dodo.jpeg")} />
       </View>
       <View>
-        <Text>Hello Mhammad</Text>
+        <Text>Hello Mohammad</Text>
         <Text>Beirut, Lebanon</Text>
       </View>
       <View style={styles.messageIcon}>
