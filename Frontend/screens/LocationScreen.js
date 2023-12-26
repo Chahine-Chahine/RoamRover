@@ -1,86 +1,62 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, TouchableOpacity, View } from 'react-native';
+import LocationCard from '../components/common/LocationCard';
+import NavigationBar from '../components/common/NavigationBar';
 
 const LocationDetailScreen = () => {
-
   return (
-    <ScrollView style={styles.container}>
-      <TouchableOpacity style={styles.backButton}>
-      </TouchableOpacity>
-      <Image style={styles.image} source={require('../assets/qadisha-valley.jpg')}/>
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>Cedars of God</Text>
-        <Text style={styles.subtitle}>Kadisha Valley, Lebanon</Text>
-        <Text style={styles.description}>
-          UNESCO World Heritage Site and a living testament to the enduring beauty of Lebanon's cedar forests. These ancient trees, some dating over a thousand years
-        </Text>
-        <Text style={styles.price}>Est. Price</Text>
-        <Text style={styles.priceValue}>20$/individual</Text>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Check on Map</Text>
+    <>
+    <View style={styles.screenContainer}>
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <TouchableOpacity style={styles.backButton}>
+          {/* <Icon name= 'arrow'/> */}
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Add</Text>
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
+        <LocationCard
+          title="Cedars of God"
+          subtitle="Kadisha Valley, Lebanon"
+          description="UNESCO World Heritage Site and a living testament to the enduring beauty of Lebanon's cedar forests. These ancient trees, some dating over a thousand years."
+          imageSource={require('../assets/qadisha-valley.jpg')}
+          estPrice="20$/individual"
+          onCheckMap={() => {/* navigation logic for Check on Map */}}
+          onAdd={() => {/* logic to handle Add action */}}
+        />
+      </ScrollView>
+      <NavigationBar/>
+    </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  screenContainer: {
     flex: 1,
-    backgroundColor: '#FFF', 
+    backgroundColor: '#FFF',
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    // alignItems: 'center',
+    paddingVertical: 20,
   },
   backButton: {
-    marginLeft: 10,
-    marginTop: 10,
+    position: 'absolute',
+    top: 40,
+    left: 10,
+    zIndex: 10,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#FFF',
   },
   image: {
     width: '85%',
     height: 200,
-    borderRadius: 30, 
+    borderRadius: 30,
+    marginTop: 20,
   },
   textContainer: {
     padding: 20,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  subtitle: {
-    fontSize: 18,
-    color: 'gray',
-  },
-  description: {
-    fontSize: 16,
-    marginTop: 10,
-  },
-  price: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 10,
-  },
-  priceValue: {
-    fontSize: 16,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 20,
-  },
-  button: {
-    backgroundColor: '#6200EE', 
-    padding: 15,
-    borderRadius: 10,
-   
-  },
-  buttonText: {
-    color: 'white',
-  },
-
 });
 
 export default LocationDetailScreen;
