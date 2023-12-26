@@ -10,16 +10,18 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   const navigateLocationPage = () => {
-    navigation.navigate('LocationScreen');
+    navigation.navigate('LocationDetailScreen');
   };
 
-  return (
+  return ( 
+    <>
     <View style={styles.container}>
       <Header />
       <Search />
       <Card onPress={navigateLocationPage} />
-      <NavigationBar />
     </View>
+    <NavigationBar />
+    </>
   );
 };
 

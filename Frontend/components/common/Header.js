@@ -6,10 +6,10 @@ const Header = () => {
   return (
     <View style={styles.header}>
       <View>
-        <Image style={styles.headerImage} source={require("../assets/nour.jpeg")} />
+        <Image style={styles.headerImage} source={require("../../assets/dodo.jpeg")} />
       </View>
       <View>
-        <Text>Hello Nour</Text>
+        <Text>Hello Mhammad</Text>
         <Text>Beirut, Lebanon</Text>
       </View>
       <View style={styles.messageIcon}>

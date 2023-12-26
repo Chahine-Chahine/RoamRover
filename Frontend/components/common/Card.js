@@ -28,7 +28,7 @@ const styles = {
   cardWrapper: {
     flexDirection: "column",
     width: "85%",
-    height: "35%",
+    height: "45%",
   },
   cardImage: {
     width: '100%',
