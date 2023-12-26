@@ -36,7 +36,7 @@ const styles = {
     flexDirection: "column",
     width: 300, 
     height: 200, 
-    marginBottom: 100, 
+    marginBottom: 90, 
   },
   cardImage: {
     width: '100%',
@@ -55,12 +55,11 @@ const styles = {
   },
   rightCard: {
     padding: 10,
-    alignItems: 'center',
-    width: '50%',
+    width: '60%',
   },
   bookmark:{
     position:'absolute',
-    right:40,
+    right: 70,
     top: -10,
   }
 };
