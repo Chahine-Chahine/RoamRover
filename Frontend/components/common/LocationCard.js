@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     padding: 20,
+    width: '90%'
   },
   title: {
     fontSize: 24,

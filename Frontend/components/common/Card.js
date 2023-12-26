@@ -2,10 +2,11 @@ import React from 'react';
 import { View, Text, TouchableOpacity , Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import OutlinedButton from "./OutlinedButton";
+import navigateLocationPage from '../../screens/HomeScreen'
 
-const Card = ({ onPress ,title , description , price , uri}) => {
+const Card = ({ onPress, title , description , price , uri, place}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.fullScreen}>
+    <TouchableOpacity  onPress={() => onPress(place)} style={styles.fullScreen}>
       <View style={styles.cardWrapper}>
         <View >
           <Image source={uri} style={styles.cardImage}/>

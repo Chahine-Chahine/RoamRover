@@ -1,9 +1,13 @@
 import React from 'react';
-import { StyleSheet, ScrollView, TouchableOpacity, View } from 'react-native';
-import LocationCard from '../components/common/LocationCard';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { useRoute } from '@react-navigation/native';
 import NavigationBar from '../components/common/NavigationBar';
+import LocationCard from '../components/common/LocationCard';
+import { TouchableOpacity } from 'react-native';
 
 const LocationDetailScreen = () => {
+  const route = useRoute();
+  const { place } = route.params;
   return (
     <>
     <View style={styles.screenContainer}>
@@ -12,14 +16,14 @@ const LocationDetailScreen = () => {
           {/* <Icon name= 'arrow'/> */}
         </TouchableOpacity>
         <LocationCard
-          title="Cedars of God"
-          subtitle="Kadisha Valley, Lebanon"
-          description="UNESCO World Heritage Site and a living testament to the enduring beauty of Lebanon's cedar forests. These ancient trees, some dating over a thousand years."
-          imageSource={require('../assets/qadisha-valley.jpg')}
-          estPrice="20$/individual"
-          onCheckMap={() => {/* navigation logic for Check on Map */}}
-          onAdd={() => {/* logic to handle Add action */}}
-        />
+           title={place.name}
+           subtitle={place.description}
+           description={place.description}
+           imageSource={place.image}
+           estPrice={place.price}
+           onCheckMap={() => {/* navigation logic for Check on Map */}}
+           onAdd={() => {/* logic to handle Add action */}}
+           />
       </ScrollView>
       <NavigationBar/>
     </View>
@@ -35,7 +39,6 @@ const styles = StyleSheet.create({
   scrollViewContent: {
     flexGrow: 1,
     justifyContent: 'center',
-    // alignItems: 'center',
     paddingVertical: 20,
   },
   backButton: {
