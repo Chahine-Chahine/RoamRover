@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 const LocationCard = ({ title, subtitle, description, imageSource, estPrice, onCheckMap, onAdd }) => {
   return (
+    <>
     <View style={styles.cardContainer}>
       <Image
         style={styles.image}
@@ -17,6 +18,7 @@ const LocationCard = ({ title, subtitle, description, imageSource, estPrice, onC
         <Text style={styles.price}>Est. Price</Text>
         <Text style={styles.priceValue}>{estPrice}</Text>
       </View>
+      </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={[styles.button, styles.buttonEqual]} onPress={onCheckMap}>
           <Text style={styles.buttonText}>Check on Map</Text>
@@ -24,8 +26,8 @@ const LocationCard = ({ title, subtitle, description, imageSource, estPrice, onC
         <TouchableOpacity style={[styles.button, styles.buttonEqual]} onPress={onAdd}>
           <Text style={styles.buttonText}>Add</Text>
         </TouchableOpacity>
-      </View>
     </View>
+    </>
   );
 };
 
@@ -33,6 +35,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     flex: 1,
     alignItems: 'center',
+    marginTop: 60
   },
   
   contentContainer: {
@@ -62,8 +65,8 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     marginBottom: 18,
-    fontSize: 18,
-    color: 'gray',
+    fontSize: 16,
+    color: '#656262',
   },
   descriptionTitle:{
     fontSize: 16,
@@ -71,13 +74,12 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 16,
-    marginTop: 10,
     color: '#938E8E'
   },
   price: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginTop: 10,
+    marginTop: 20,
 },
 priceValue: {
     fontSize: 16,

@@ -11,6 +11,7 @@ const HomeScreen = () => {
         {
             id: '1',
             name: '3azme Caffe',
+            subtitle: 'Beirut Lebanon',
             description: 'Coffee shop in Beirut',
             price: '20$/individual',
             image: require('../assets/3azme.png'),
@@ -18,6 +19,7 @@ const HomeScreen = () => {
         {
             id: '2',
             name: 'China City',
+            subtitle: 'Ashrafieh Lebanon',
             description: 'New concept for studying in natural environment',
             price: '20$/individual',
             image: require('../assets/chinacity.png'),
@@ -25,6 +27,7 @@ const HomeScreen = () => {
         {
           id: '3',
           name: 'Baalbeck Castle',
+          subtitle: 'Baalbeck Lebanon',
           description: 'Discover Your history who you really are',
           price: '10$/individual',
           image: require('../assets/Baalbeck.webp'),
@@ -32,7 +35,8 @@ const HomeScreen = () => {
       {
         id: '4',
         name: 'Lady of Harisa',
-        description: 'A great place for finding inner peice and relaxation',
+        subtitle: 'Harissa Lebanon',
+        description: 'A great place for finding inner peice and relaxationA great place for finding inner peice and relaxationA great place for finding inner peice and relaxationA great place for finding inner peice and relaxationA great place for finding inner peice and relaxationA great place for finding inner peice and relaxation',
         price: 'Free',
         image: require('../assets/Harrisa.jpg'),
     },

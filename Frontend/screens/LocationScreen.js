@@ -17,7 +17,7 @@ const LocationDetailScreen = () => {
         </TouchableOpacity>
         <LocationCard
            title={place.name}
-           subtitle={place.description}
+           subtitle={place.subtitle}
            description={place.description}
            imageSource={place.image}
            estPrice={place.price}
