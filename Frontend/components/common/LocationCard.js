@@ -84,21 +84,22 @@ priceValue: {
 },
 buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 20,
-  },
-  button: {
+    marginLeft: 20,
+    marginRight: 20
+},
+button: {
     alignItems: 'center',
     backgroundColor: '#A399DC',
     padding: 15,
     borderRadius: 10,
+    
   },
   buttonText: {
     color: 'white',
   },
   buttonEqual: {
     flex: 1, 
-    marginHorizontal: 10, 
+    marginHorizontal: 4, 
   },
 });
 

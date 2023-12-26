@@ -1,11 +1,18 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const NavigationBar = () => {
+  const navigation = useNavigation();
+  const navigatehome = () => {
+    return (
+      navigation.navigate('HomeScreen')
+    )
+  }
   return (
     <View style={styles.navigationBar}>
-      <Icon name='home' size={30} />
+      <Icon name='home' size={30} onPress={navigatehome} />
       <Icon name='plus-circle' size={50} style={styles.plusButton} />
       <Icon name='user' solid size={30} />
     </View>
