@@ -5,16 +5,22 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const NavigationBar = () => {
   const navigation = useNavigation();
+
   const navigatehome = () => {
     return (
       navigation.navigate('HomeScreen')
+    )
+  };
+  const navigateprofile = () => {
+    return (
+      navigation.navigate('profileScreen')
     )
   }
   return (
     <View style={styles.navigationBar}>
       <Icon name='home' size={30} onPress={navigatehome} />
       <Icon name='plus-circle' size={50} style={styles.plusButton} />
-      <Icon name='user' solid size={30} />
+      <Icon name='user' solid size={30} onPress={navigateprofile}/>
     </View>
   );
 };
