@@ -17,7 +17,7 @@ const Questionnaire = () => {
     {
       id: 3,
       question: "Approx budget",
-      input: true // This signifies that the third question requires an input field
+      input: true 
     }
   ];
 

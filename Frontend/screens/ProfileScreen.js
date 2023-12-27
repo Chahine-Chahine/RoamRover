@@ -13,6 +13,10 @@ const ProfileScreen = () => {
 
   const navigateBookmark = () => {
     navigation.navigate('BookmarkScreen')
+  };
+
+  const navigateprofileUpdate = ()=> {
+    navigation.navigate('ProfileUpdateScreen')
   }
   return (
     <>
@@ -27,7 +31,7 @@ const ProfileScreen = () => {
         <AboutSection aboutText="I am fueled by an insatiable passion for extraordinary adventures. Embarking on a journey is not just a routine for me; it is a thrilling and invigorating experience that ignites my spirit. The anticipation of waking up to a new day and the prospect of setting out on a trip exhilarate me, as I embrace the unknown with an adventurous zeal. Each expedition becomes a canvas for me to paint vibrant memories and indulge in the joy of exploration." />
       <View style={styles.actionContainer}>
         <ActionButton title="Bookmarks" onPress={navigateBookmark}/>
-        <ActionButton title="Change Password" onPress={() => {console.log("pressed change pass")}} />
+        <ActionButton title="Update profile" onPress={navigateprofileUpdate} />
       </View>
       <NavigationBar/>
       </ScrollView>
