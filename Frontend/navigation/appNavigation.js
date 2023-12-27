@@ -11,6 +11,7 @@ import GenerateTrip from '../screens/GenerateScreen';
 import BookmarkScreen from '../screens/BookmarkScreen';
 import LoadingScreen from '../screens/LoadingScreen';
 import CustomtripScreen from '../screens/CustomtripScreen';
+import Questionnaire from '../screens/AIquestionnaireScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,7 @@ export default AppNavigation = () => {
         <Stack.Screen name= 'BookmarkScreen' options={{headerShown:false}} component={BookmarkScreen}/>
         <Stack.Screen name= 'LoadingScreen' options={{headerShown:false}} component={LoadingScreen}/>
         <Stack.Screen name= 'CustomtripScreen' options={{headerShown:false}} component={CustomtripScreen}/>
+        <Stack.Screen name='Questionnaire' options={{headerShown:false}} component={Questionnaire}/>
         </Stack.Navigator>  
     </NavigationContainer>
     );

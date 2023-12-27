@@ -6,7 +6,7 @@ const GenerateTrip = () => {
 
   const navigation = useNavigation();
   const handleAIGeneratePress = () => {
-    
+    navigation.navigate('Questionnaire')
   };
 
   const handleCreateCustomTripPress = () => {
