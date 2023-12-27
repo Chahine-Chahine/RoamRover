@@ -1,6 +1,9 @@
 import React from 'react';
 import { SafeAreaView, View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import NavigationBar from '../components/common/NavigationBar';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 
 
 const data = [
@@ -50,37 +53,47 @@ const data = [
 
 const BookmarkScreen = () => {
 
-  const renderCard = ({ item }) => (
-    <>
-    <View style={styles.card}>
-      <Image source={item.image} style={styles.cardImage} />
-      <View style={styles.cardContent}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.subtitle}>{item.subtitle}</Text>
-        <Text style={styles.price}>{item.price}</Text>
-      </View>
-    </View>
-    <View style={styles.buttonwrapper}>
-        <TouchableOpacity style={styles.addButton}>
-          <Text style={styles.addButtonText} onPress={()=>{console.log("pressed")}}>Add</Text>
+  const renderRightActions = (progress, dragX) => {
+    return (
+      <View style={{ width: 170, flexDirection: 'row' }}>
+        <TouchableOpacity onPress={() => console.log('Add Pressed')} style={styles.rightAction}>
+          <Text style={styles.actionText}>Add</Text>
         </TouchableOpacity>
-    </View>
-        </>
+        <TouchableOpacity onPress={() => console.log('Delete Pressed')} style={[styles.rightAction, { backgroundColor: '#FF8556' }]}>
+          <Text style={styles.actionText}>Delete</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
+  const renderCard = ({ item }) => (
+    <Swipeable renderRightActions={renderRightActions}>
+      <View style={[styles.card, { height: 140 }]}>
+        <Image source={item.image} style={styles.cardImage} />
+        <View style={styles.cardContent}>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.subtitle}>{item.subtitle}</Text>
+          <Text style={styles.price}>{item.price}</Text>
+        </View>
+      </View>
+    </Swipeable>
   );
 
   return (
     <>
-    <SafeAreaView style={styles.container}>
-        <View >
-            <Text style={styles.mainTitle}>Let’s Check What’s saved!</Text>
+     <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.container}>
+        <View>
+          <Text style={styles.mainTitle}>Let’s Check What’s saved!</Text>
         </View>
-      <FlatList
-        data={data}
-        renderItem={renderCard}
-        keyExtractor={item => item.id}
-      />
-    </SafeAreaView>
-    <NavigationBar/>
+        <FlatList
+          data={data}
+          renderItem={renderCard}
+          keyExtractor={item => item.id}
+        />
+      </SafeAreaView>
+      <NavigationBar/>
+      </GestureHandlerRootView>
     </>
   );
 };
@@ -103,8 +116,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     overflow: 'hidden',
-    elevation: 3, 
-    shadowOpacity: 0.1, 
+    elevation: 3,
+    shadowOpacity: 0.1,
+    height: 150,
   },
   cardImage: {
     width: 115,
@@ -125,27 +139,21 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 14,
   },
-  buttonwrapper: {
-    width: '100%',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-  },
-  addButton: {
-    borderWidth: 3,
-    borderColor: '#A399DC',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 20,
-    alignItems: 'center',
+  rightAction: {
+    height: 100,
+    backgroundColor: '#A78BFA',
     justifyContent: 'center',
-    width: '30%',
-    height: 50,
-    margin: 5
-  },
-  addButtonText: {
-    color: '#A288DC',
-  },
+    alignItems: 'center',
+    flex: 1,
+    top: 25
+    
   
+  },
+  actionText: {
+    color: 'white',
+    fontWeight: '600',
+    padding: 20,
+  },
 });
 
 export default BookmarkScreen;
