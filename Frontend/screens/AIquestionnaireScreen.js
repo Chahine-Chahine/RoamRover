@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from "react-native";
 
@@ -28,11 +29,16 @@ const Questionnaire = () => {
     setSelectedAnswers({ ...selectedAnswers, [currentQuestionIndex]: answer });
   };
 
+  const navigation = useNavigation();
+  const navigateChat = () =>{
+      navigation.navigate('HomeScreen');
+  }
+
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      // Submit the answers or navigate to the next screen
+      navigateChat()
     }
   };
 
@@ -63,7 +69,7 @@ const Questionnaire = () => {
         />
       )}
       <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
-        <Text style={styles.nextButtonText}>Next</Text>
+        <Text style={styles.nextButtonText}>{currentQuestionIndex === questions.length - 1 ? "Done" : "Next"}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -71,25 +77,57 @@ const Questionnaire = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // styles for the container
+    flex: 1,
+    backgroundColor: 'white',
+    paddingTop: 50,
+    paddingHorizontal: 20,
   },
   questionTitle: {
-    // styles for the question title
+    marginBottom: 30,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'black',
+    textAlign: 'center',
   },
   answerButton: {
-    // styles for answer buttons
+    borderWidth: 1,
+    borderColor: '#524077',
+    borderRadius: 5,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    marginBottom: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   selectedAnswer: {
-    // additional styles for a selected answer, such as backgroundColor: 'lightblue'
+    backgroundColor: '#FF8566', 
+  },
+  answerText: {
+    fontSize: 16,
+    color: 'black',
   },
   input: {
-    // styles for the input field
+    borderWidth: 1,
+    borderColor: '#524077',
+    borderRadius: 5,
+    padding: 15,
+    fontSize: 16,
+    color: 'black',
+    marginBottom: 20,
   },
   nextButton: {
-    // styles for the next button
+    backgroundColor: '#A78BFA',
+    borderRadius: 5,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
   },
   nextButtonText: {
-    // styles for the next button text
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'white',
   }
 });
 
