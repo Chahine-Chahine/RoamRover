@@ -1,13 +1,9 @@
-import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import Header from '../components/common/Header';
-import Search from '../components/common/Search';
-import Card from '../components/common/Card';
-import NavigationBar from '../components/common/NavigationBar';
-import LoadingScreen from './LoadingScreen';
+import { useNavigation } from "@react-navigation/native";
+import { ScrollView , StyleSheet , Text, View} from "react-native";
+import Card from "../components/common/Card";
 
-const HomeScreen = () => {
+
+const CustomtripScreen = () => {
     const places = [
         {
             id: '1',
@@ -49,42 +45,32 @@ const HomeScreen = () => {
         navigation.navigate('LocationDetailScreen', { place });
     };
 
-    return (
-        <>
-            <View style={styles.container}>
-                <Header />
-                <Search />
-                <ScrollView style={styles.scrollView}>
-                    {places.map((place) => (
-                        <Card
-                            key={place.id}
-                            onPress={() => navigateLocationPage(place)}
-                            title={place.name}
-                            description={place.description}
-                            price={place.price}
-                            uri={place.image}
-                            label={"add to list"}
-                            showBookmark={true}
-                        />
-                    ))}
-                </ScrollView>
+    return(
+        <ScrollView style={styles.container}>
+            <View>
+                <Text style={styles.pagetitle}>Custom Trip</Text>
             </View>
-            <NavigationBar />
-        </>
-    );
-};
+            {places.map((place)=>(
+            <Card
+             key={place.id}
+             onPress={() => navigateLocationPage(place)}
+             title={place.name}
+             description={place.description}
+             price={place.price}
+             uri={place.image}
+             label={"Add"}
+             showBookmark={false}
+            />))}
+            
+        </ScrollView>
+    )
+}
+
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-        height: '100%',
-        backgroundColor: '#fff',
-        alignItems: 'center',
-    },
-    scrollView: {
-        width: '100%',
-    },
-});
+    container:{
+        flex: 1
+    }
+})
 
-export default HomeScreen;
+export default CustomtripScreen;

@@ -10,6 +10,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import GenerateTrip from '../screens/GenerateScreen';
 import BookmarkScreen from '../screens/BookmarkScreen';
 import LoadingScreen from '../screens/LoadingScreen';
+import CustomtripScreen from '../screens/CustomtripScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,7 @@ export default AppNavigation = () => {
         <Stack.Screen name= 'GenerateTrip' options={{headerShown: false}} component={GenerateTrip}/>
         <Stack.Screen name= 'BookmarkScreen' options={{headerShown:false}} component={BookmarkScreen}/>
         <Stack.Screen name= 'LoadingScreen' options={{headerShown:false}} component={LoadingScreen}/>
+        <Stack.Screen name= 'CustomtripScreen' options={{headerShown:false}} component={CustomtripScreen}/>
         </Stack.Navigator>  
     </NavigationContainer>
     );

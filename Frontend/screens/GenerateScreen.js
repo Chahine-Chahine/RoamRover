@@ -1,14 +1,16 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
 
-const GenerateTrip = ({ navigation }) => {
+const GenerateTrip = () => {
 
+  const navigation = useNavigation();
   const handleAIGeneratePress = () => {
     
   };
 
   const handleCreateCustomTripPress = () => {
-   
+   navigation.navigate('CustomtripScreen')
   };
 
   return (
