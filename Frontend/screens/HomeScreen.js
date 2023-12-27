@@ -5,6 +5,7 @@ import Header from '../components/common/Header';
 import Search from '../components/common/Search';
 import Card from '../components/common/Card';
 import NavigationBar from '../components/common/NavigationBar';
+import LoadingScreen from './LoadingScreen';
 
 const HomeScreen = () => {
     const places = [
