@@ -1,6 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView , StyleSheet , Text, View} from "react-native";
 import Card from "../components/common/Card";
+import NavigationBar from "../components/common/NavigationBar";
+import Search from "../components/common/Search";
+import ActionButton from "../components/ProfileScreen/ActionButton";
 
 
 const CustomtripScreen = () => {
@@ -46,10 +49,12 @@ const CustomtripScreen = () => {
     };
 
     return(
-        <ScrollView style={styles.container}>
-            <View>
+        <>
+            <View style={styles.container}>
                 <Text style={styles.pagetitle}>Custom Trip</Text>
-            </View>
+         
+        <ScrollView  contentContainerStyle={styles.containerStyle}>
+            <Search/>
             {places.map((place)=>(
             <Card
              key={place.id}
@@ -60,17 +65,38 @@ const CustomtripScreen = () => {
              uri={place.image}
              label={"Add"}
              showBookmark={false}
+             style={styles.outlinedButton}
             />))}
-            
         </ScrollView>
+        <ActionButton title={'Done'} style={styles.actionButton}/>
+        <NavigationBar/>
+        </View>
+        </>
     )
 }
 
 
 const styles = StyleSheet.create({
     container:{
-        flex: 1
-    }
+        flex: 1,
+        backgroundColor: '#fff',
+    },
+    containerStyle:{
+        alignItems: "center",
+    },
+    pagetitle:{
+        fontSize: 32,
+        margin: 30,
+        fontWeight: 'bold',
+    },
+    outlinedButton:{
+        width: 100,
+        position: 'absolute',
+        left: 15,
+        top: 5
+    },
+    
+    
 })
 
 export default CustomtripScreen;

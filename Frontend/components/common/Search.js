@@ -22,7 +22,7 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     width: "85%",
-    height: "9%",
+    height: 60,
     marginBottom: 20,
   },
   searchBar: {

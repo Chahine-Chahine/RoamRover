@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import OutlinedButton from "./OutlinedButton";
 import navigateLocationPage from '../../screens/HomeScreen'
 
-const Card = ({ onPress, title , description , price , uri, place, label,  showBookmark = false}) => {
+const Card = ({ onPress, title , description , price , uri, place, label,  showBookmark = false, style}) => {
   return (
     <TouchableOpacity  onPress={() => onPress(place)} style={styles.fullScreen}>
       <View style={styles.cardWrapper}>
@@ -19,7 +19,7 @@ const Card = ({ onPress, title , description , price , uri, place, label,  showB
           </View>
           <View style={styles.rightCard}>
             {showBookmark && <Icon name='bookmark' size={20} style={styles.bookmark}  />}
-            <OutlinedButton label={label} onPress={() => console.log("working")} />
+            <OutlinedButton label={label} style={style} onPress={() => console.log("working")} />
           </View>
         </View>
       </View>
