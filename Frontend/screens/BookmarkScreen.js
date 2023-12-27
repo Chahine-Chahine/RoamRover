@@ -1,5 +1,7 @@
 import React from 'react';
 import { SafeAreaView, View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import NavigationBar from '../components/common/NavigationBar';
+
 
 const data = [
   {
@@ -8,6 +10,34 @@ const data = [
     subtitle: 'Cloud 59 - Public beach',
     price: '20$/individual',
     image: require('../assets/3azme.png'), 
+  },
+  {
+    id: '2',
+    title: 'Dream Park',
+    subtitle: 'It is called funfair for a reason',
+    price: '20$/individual',
+    image: require('../assets/Baalbeck.webp'), 
+  },
+  {
+    id: '2',
+    title: 'Dream Park',
+    subtitle: 'It is called funfair for a reason',
+    price: '20$/individual',
+    image: require('../assets/Baalbeck.webp'), 
+  },
+  {
+    id: '2',
+    title: 'Dream Park',
+    subtitle: 'It is called funfair for a reason',
+    price: '20$/individual',
+    image: require('../assets/Baalbeck.webp'), 
+  },
+  {
+    id: '2',
+    title: 'Dream Park',
+    subtitle: 'It is called funfair for a reason',
+    price: '20$/individual',
+    image: require('../assets/Baalbeck.webp'), 
   },
   {
     id: '2',
@@ -30,21 +60,28 @@ const BookmarkScreen = () => {
         <Text style={styles.price}>{item.price}</Text>
       </View>
     </View>
+    <View style={styles.buttonwrapper}>
         <TouchableOpacity style={styles.addButton}>
-          <Text style={styles.addButtonText}>Add</Text>
+          <Text style={styles.addButtonText} onPress={()=>{console.log("pressed")}}>Add</Text>
         </TouchableOpacity>
+    </View>
         </>
   );
 
   return (
+    <>
     <SafeAreaView style={styles.container}>
+        <View >
+            <Text style={styles.mainTitle}>Let’s Check What’s saved!</Text>
+        </View>
       <FlatList
         data={data}
         renderItem={renderCard}
         keyExtractor={item => item.id}
       />
-     
     </SafeAreaView>
+    <NavigationBar/>
+    </>
   );
 };
 
@@ -53,8 +90,15 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 20,
   },
+  mainTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginLeft: 12,
+    marginVertical: 20
+  },
   card: {
     flexDirection: 'row',
+    alignItems: 'center',
     margin: 10,
     backgroundColor: '#fff',
     borderRadius: 10,
@@ -81,18 +125,25 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 14,
   },
+  buttonwrapper: {
+    width: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+  },
   addButton: {
-    backgroundColor: '#A399DC',
+    borderWidth: 3,
+    borderColor: '#A399DC',
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    width: '90%',
-    height: 50
+    width: '30%',
+    height: 50,
+    margin: 5
   },
   addButtonText: {
-    color: 'white',
+    color: '#A288DC',
   },
   
 });
