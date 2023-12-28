@@ -1,33 +1,28 @@
-import { LOGIN_SUCCESS, LOGOUT } from './actionTypes';
+import axios from 'axios';
+import { LOGIN_SUCCESS, LOGIN_FAILURE } from './actionTypes';
 
-export const loginSuccess = (userData) => {
-  return {
-    type: LOGIN_SUCCESS,
-    payload: userData,
-  };
-};
-
-// Action Creator for logging in
 export const loginUser = (credentials) => {
   return async (dispatch) => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(credentials),
-      });
-      const data = await response.json();
+      const response = await axios.post('http://192.168.0.116:8000/api/login', credentials);
+      const data = response.data;
       if (data.status === 'success') {
-        dispatch(loginSuccess(data.authorisation));
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: data.authorisation,
+        });
       } else {
-        // Handle failure
+        dispatch({
+          type: LOGIN_FAILURE,
+          payload: data.message,
+        });
       }
     } catch (error) {
-      console.error(error);
+      console.error('Login error:', error.response ? error.response.data : error.message);
+      dispatch({
+        type: LOGIN_FAILURE,
+        payload: error.response ? error.response.data : 'Network Error',
+      });
     }
   };
 };
-
-
