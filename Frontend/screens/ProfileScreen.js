@@ -23,10 +23,10 @@ const ProfileScreen = () => {
       <ScrollView style={styles.container}>
         <ProfileHeader onBack={() => {}} />
         <ProfileInfo 
-          name="Mhammad mhawesh"
+          name="Chahine Chahine"
           age="22 years old"
           trips="12"
-          imageSource={require('../assets/dodo.jpeg')}
+          imageSource={require('../assets/img.png')}
         />
         <AboutSection aboutText="I am fueled by an insatiable passion for extraordinary adventures. Embarking on a journey is not just a routine for me; it is a thrilling and invigorating experience that ignites my spirit. The anticipation of waking up to a new day and the prospect of setting out on a trip exhilarate me, as I embrace the unknown with an adventurous zeal. Each expedition becomes a canvas for me to paint vibrant memories and indulge in the joy of exploration." />
       <View style={styles.actionContainer}>

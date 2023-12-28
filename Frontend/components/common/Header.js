@@ -14,10 +14,10 @@ const Header = () => {
   return (
     <View style={styles.header}>
       <View>
-        <Image style={styles.headerImage} source={require("../../assets/dodo.jpeg")} />
+        <Image style={styles.headerImage} source={require("../../assets/img.png")} />
       </View>
       <View>
-        <Text>Hello Mohammad</Text>
+        <Text>Hello Chahine</Text>
         <Text>Beirut, Lebanon</Text>
       </View>
       <View style={styles.messageIcon}>
