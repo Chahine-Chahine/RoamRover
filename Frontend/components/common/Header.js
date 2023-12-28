@@ -1,8 +1,16 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const Header = () => {
+  const navigation = useNavigation();
+
+
+  const chatNavigate = () => {
+    navigation.navigate('ChatRoomScreen');
+  }
+
   return (
     <View style={styles.header}>
       <View>
@@ -13,7 +21,7 @@ const Header = () => {
         <Text>Beirut, Lebanon</Text>
       </View>
       <View style={styles.messageIcon}>
-        <Icon name="comment-dots" solid size={30} color="black" />
+        <Icon name="comment-dots" solid size={30} color="black" onPress= {chatNavigate}/>
       </View>
     </View>
   );
