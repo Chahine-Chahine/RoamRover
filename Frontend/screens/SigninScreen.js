@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../core/Redux/Actions/authActions';
 
 const SignInScreen = () => {
     const navigation = useNavigation();
     const navigateSignup = () => {
         navigation.navigate("Signup");
     };
+    const dispatch = useDispatch();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -16,7 +19,7 @@ const SignInScreen = () => {
         if (!username.trim() || !password.trim()) {
             setError("Please fill in all fields");
         } else {
-            navigation.navigate("HomeScreen");
+            dispatch(loginUser({ username, password }));
         }
     };
 
@@ -29,7 +32,7 @@ const SignInScreen = () => {
                     placeholder="Username"
                     placeholderTextColor="#aaaaaa"
                     value={username}
-                    onChangeText={(text) => setUsername(text)}
+                    onChangeText={setUsername}
                 />
                 <TextInput
                     style={styles.input}
@@ -37,9 +40,9 @@ const SignInScreen = () => {
                     placeholderTextColor="#aaaaaa"
                     secureTextEntry={true}
                     value={password}
-                    onChangeText={(text) => setPassword(text)}
+                    onChangeText={setPassword}
                 />
-                <TouchableOpacity >
+                <TouchableOpacity>
                     <Text style={styles.forgotPassword}>Forgot Password?</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonContainer} onPress={handleSignIn}>
@@ -48,8 +51,8 @@ const SignInScreen = () => {
                 {error ? <Text style={styles.errorText}>{error}</Text> : null}
                 <View style={styles.signupContainer}>
                     <Text style={styles.signupText}>Don't have an account? </Text>
-                    <TouchableOpacity>
-                        <Text onPress={navigateSignup} style={styles.signupLink}>
+                    <TouchableOpacity onPress={navigateSignup}>
+                        <Text style={styles.signupLink}>
                             Sign Up
                         </Text>
                     </TouchableOpacity>
