@@ -1,18 +1,27 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const ProfileInfo = ({ name, age, trips, imageSource }) => (
-  <View style={styles.profileSection}>
-    <Image style={styles.profileImage} source={imageSource} />
-    <View style={styles.profileHeader}>
-      <Text style={styles.profileName}>{name}</Text>
-      <Text style={styles.profileAge}>{age}</Text>
-      <TouchableOpacity style={styles.tripButton}>
-        <Text style={styles.profileTrips}>{trips} Trips</Text>
-      </TouchableOpacity>
+const ProfileInfo = ({ name, age, trips, imageSource }) => {
+  const navigation = useNavigation();
+
+  const navigateRooms = () => {
+    navigation.navigate('RoomListScreen');
+  }
+
+  return (
+    <View style={styles.profileSection}>
+      <Image style={styles.profileImage} source={imageSource} />
+      <View style={styles.profileHeader}>
+        <Text style={styles.profileName}>{name}</Text>
+        <Text style={styles.profileAge}>{age}</Text>
+        <TouchableOpacity style={styles.tripButton} onPress={navigateRooms}>
+          <Text style={styles.profileTrips}>{trips} Trips</Text>
+        </TouchableOpacity>
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 
 const styles = StyleSheet.create({

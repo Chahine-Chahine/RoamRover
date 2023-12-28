@@ -14,6 +14,7 @@ import CustomtripScreen from '../screens/CustomtripScreen';
 import Questionnaire from '../screens/AIquestionnaireScreen';
 import ProfileUpdateScreen from '../screens/UpdateprofileScreen';
 import ChatRoomScreen from '../screens/ChatroomScreen';
+import RoomListScreen from '../screens/roomlistScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,7 @@ export default AppNavigation = () => {
         <Stack.Screen name='Questionnaire' options={{headerShown:false}} component={Questionnaire}/>
         <Stack.Screen name='ProfileUpdateScreen' options={{headerShown: false}} component={ProfileUpdateScreen}/>
         <Stack.Screen name='ChatRoomScreen' options={{headerShown: false}} component={ChatRoomScreen}/>
+        <Stack.Screen name='RoomListScreen' options={{headerShown:false}} component={RoomListScreen}/>
         </Stack.Navigator>  
     </NavigationContainer>
     );
