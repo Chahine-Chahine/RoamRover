@@ -6,23 +6,24 @@ const ChatRoomScreen = () => {
   const [message, setMessage] = useState('');
 
   return (
-    <ImageBackground
-      source={require('../assets/chat-bg.jpg')}
-      style={styles.backgroundImage}
-    >
+    // <ImageBackground
+    //   source={require('../assets/chat-bg.jpg')}
+    //   style={styles.backgroundImage}
+    //   imageStyle={styles.backgroundImageStyle}
+    // >
+    <>
       <View style={styles.header}>
         <Ionicons name="chevron-back-outline" size={24} color="#6B46D9" />
         <Text style={styles.chatRoomName}>Chat room name</Text>
         <TouchableOpacity style={styles.inviteButton}>
           <Text style={styles.inviteText}>Invite</Text>
         </TouchableOpacity>
-        <Ionicons name="camera-outline" size={24} color="#6B46D9" />
+        <Ionicons name="camera-outline" size={30} color="#6B46D9" />
       </View>
 
       <View style={styles.messagesContainer}>
-        {/* Example message */}
-        <Text style={styles.message}>Good morning, your trip plot for today is:</Text>
-        {/* ... other messages */}
+        <Text style={styles.message}>Good morning, your trip plot for today is:{'\n'}First Station: {'\n'}bnaash3e Lake {'\n'}second station:{'\n'} Faraya-kfardibian</Text>
+        <Text style={styles.message}>Tell me If you need further assistance</Text>
       </View>
 
       <View style={styles.inputContainer}>
@@ -37,14 +38,20 @@ const ChatRoomScreen = () => {
           <Ionicons name="send" size={24} color="#6B46D9" />
         </TouchableOpacity>
       </View>
-    </ImageBackground>
+      </>
+    // </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
-    resizeMode: 'cover',
+    width: '100%',
+    height: '100%',
+  },
+  backgroundImageStyle: {
+    resizeMode: 'cover', 
+    transform: [{ scale: 1 }], 
   },
   header: {
     flexDirection: 'row',
@@ -71,7 +78,9 @@ const styles = StyleSheet.create({
   },
   messagesContainer: {
     flex: 1,
-    paddingHorizontal: 10,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    backgroundColor: '#6B46D9',
   },
   message: {
     backgroundColor: '#f0f0f0',
@@ -97,7 +106,6 @@ const styles = StyleSheet.create({
     color: '#6B46D9',
   },
   sendButton: {
-    backgroundColor: '#6B46D9',
     borderRadius: 25,
     padding: 10,
   },
