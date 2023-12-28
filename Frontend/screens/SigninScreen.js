@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../core/Redux/Actions/authActions';
 
 const SignInScreen = () => {
@@ -9,19 +9,32 @@ const SignInScreen = () => {
     const navigateSignup = () => {
         navigation.navigate("Signup");
     };
+    const authState = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-
+    
+    useEffect(() => {
+      if (authState.isLoggedIn) {
+        navigation.navigate("HomeScreen");
+      }
+      if (authState.error) {
+        setError(authState.error);
+      }
+    }, [authState, navigation]);
+  
     const handleSignIn = () => {
-        if (!username.trim() || !password.trim()) {
-            setError("Please fill in all fields");
-        } else {
-            dispatch(loginUser({ username, password }));
-        }
+      if (!email.trim() || !password.trim()) {
+        setError("Please fill in all fields");
+      } else {
+        dispatch(loginUser({ email, password }));
+      }
     };
+    
+
+
 
     return (
         <View style={styles.container}>
@@ -29,10 +42,11 @@ const SignInScreen = () => {
                 <Text style={styles.header}>Sign In</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder="Username"
+                    placeholder="Email"
                     placeholderTextColor="#aaaaaa"
-                    value={username}
-                    onChangeText={setUsername}
+                    value={email}
+                    onChangeText={setEmail}
+                    keyboardType="email-address"
                 />
                 <TextInput
                     style={styles.input}
