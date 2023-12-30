@@ -1,8 +1,15 @@
 import './Sidebar.css'
+import {  useNavigate } from 'react-router-dom';
 
 
 function Sidebar() {
- 
+
+  const navigation = useNavigate();
+
+  const handleAddPlaceClick = () => {
+    navigation('/addtrip')
+  };
+  
 
   return (
     <div className="sidebar-container">
@@ -16,7 +23,7 @@ function Sidebar() {
         </ul>
         <ul>
           <li className="li-title"><a>Content Management</a></li>
-          <li className="li-body"><a>Add Place</a></li>
+          <li className="li-body"><a onClick={handleAddPlaceClick}>Add Place</a></li>
           <li className="li-body"><a>delete Place</a></li>
           <li className="li-body"><a>update Place</a></li>
           <li className="li-body"><a>Read Place</a></li>

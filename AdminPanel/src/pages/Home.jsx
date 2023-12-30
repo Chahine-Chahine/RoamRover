@@ -1,4 +1,4 @@
-import Content from "../components/Homepage/Content";
+// import Content from "../components/Homepage/Content";
 import Sidebar from "../components/Homepage/Sidebar";
 import './Home.css'
 
@@ -14,9 +14,9 @@ const Home = () => {
           <div className="sidebar">
           <Sidebar/>
           </div>
-          <div className="content">
+          {/* <div className="content">
           <Content />
-          </div>
+          </div> */}
         </div>
         </>
 
