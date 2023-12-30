@@ -7,8 +7,12 @@ const Home = () => {
 
     return (
         <div className="container">
-          <Sidebar />
+          <div className="sidebar">
+          <Sidebar/>
+          </div>
+          <div className="content">
           <Content />
+          </div>
         </div>
       );
 }

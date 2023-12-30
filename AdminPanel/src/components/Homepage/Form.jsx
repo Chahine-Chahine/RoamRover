@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './Form.css'
 
 function Form() {
   const [place, setPlace] = useState({
@@ -9,20 +10,55 @@ function Form() {
   });
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle the form submission logic here
+    const { name, value } = event.target;
+    setPlace(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <h3>Add Place</h3>
-      <input type="text" placeholder="Name" value={place.name} onChange={(e) => setPlace({...place, name: e.target.value})} />
-      <input type="text" placeholder="Est budget" value={place.estBudget} onChange={(e) => setPlace({...place, estBudget: e.target.value})} />
-      <input type="text" placeholder="Location" value={place.location} onChange={(e) => setPlace({...place, location: e.target.value})} />
-      <textarea placeholder="Description" value={place.description} onChange={(e) => setPlace({...place, description: e.target.value})} />
-      <button type="submit">Save</button>
-    </form>
+    <div className="form-holder">
+      <form onSubmit={handleSubmit}>
+        <h2>Add Place</h2>
+        <div className="form-body-wrapper">
+          <div className="form-credentials">
+        <input
+          type="text"
+          name="name"
+          value={place.name}
+          onChange={handleSubmit}
+          placeholder="Name"
+        />
+        <input
+          type="text"
+          name="estBudget"
+          value={place.estBudget}
+          onChange={handleSubmit}
+          placeholder="Est budget"
+        />
+        <input
+          type="text"
+          name="location"
+          value={place.location}
+          onChange={handleSubmit}
+          placeholder="Location"
+        />
+        </div>
+        <div className="form-description">
+        <textarea
+          name="description"
+          value={place.description}
+          onChange={handleSubmit}
+          placeholder="Description"
+        />
+        </div>
+        </div>
+        <button type="submit">Save</button>
+      </form>
+    </div>
   );
 }
+
 
 export default Form;

@@ -1,85 +1,16 @@
-.container {
-    width: 100vh;
-    display: flex;
-    font-family: 'Arial', sans-serif;
-    height: 100vh;
-    margin: 0;
-  }
-  
-  .sidebar {
-    background-color: #5C54A4;
-    color: white;
-    width: 250px;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .sidebar h2 {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .menu button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background: transparent;
-    color: white;
-    border: none;
-    cursor: pointer;
-    text-align: left;
-  }
-  
-  .menu button:hover {
-    background-color: #6e67ab;
-  }
-  
-  .content {
-    flex-grow: 1;
-    background-color: #EDE7F6;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form h3 {
-    margin: 0 0 20px 0;
-  }
-  
-  .form input,
-  .form textarea {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  .form textarea {
-    height: 100px;
-  }
-  
-  .form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #5C54A4;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    box-sizing: border-box;
-  }
-  
-  .form button:hover {
-    background-color: #4e428b;
-  }
-  
+.container{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.sidebar{
+  position: absolute;
+  top: 150px;
+  left  : 50px;
+}
+
+.content{
+  position: absolute;
+  right: 40px;
+}
