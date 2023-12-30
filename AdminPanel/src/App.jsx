@@ -1,7 +1,8 @@
 import {BrowserRouter , Routes , Route} from 'react-router-dom';
 import './App.css'
 import Home from './pages/Home';
-import AddPlace from './components/SidebarRender/addPlace';
+import AddPlace from './components/SidebarRender/AddPlace.jsx';
+import DeleteUser from './components/SidebarRender/DeleteUser.jsx';
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />}/>
       <Route path='/addtrip' element={<AddPlace/>}/>
+      <Route path='/deleteuser' element={<DeleteUser/>}/>
     </Routes>
     </BrowserRouter>
   )

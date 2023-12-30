@@ -16,8 +16,13 @@
 }
 
 .title{
-  position: absolute;
-  top: 20px;
   font-size: 24px;
   color: white;
+}
+
+.header{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
 }

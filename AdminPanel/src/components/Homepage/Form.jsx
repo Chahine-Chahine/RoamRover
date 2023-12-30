@@ -53,7 +53,7 @@ const Form = ({ title, hidden }) => {
 // Prop type validation
 Form.propTypes = {
   title: PropTypes.string.isRequired,
-  hidden: PropTypes.string.isRequired
+  hidden: PropTypes.string
 };
 
 export default Form;

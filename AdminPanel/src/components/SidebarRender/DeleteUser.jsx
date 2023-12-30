@@ -1,10 +1,11 @@
 import Form from '../Homepage/Form';
 import Sidebar from "../Homepage/Sidebar";
 import '../../pages/Home.css'
+import './Deleteuser.css'
 import dodoImage from '../../assets/dodo.jpeg'
 
 
-const AddPlace = () => {
+const DeleteUser = () => {
 
     return (
       <>      
@@ -20,13 +21,13 @@ const AddPlace = () => {
           </div>
           <div className="content">
           <div className="content">
-            <Form title={'Add Place'} />
+            <Form title={'Delete User'} />
             </div>
           </div>
-        </div>
+        </div>  
         </>
 
       );
 }
 
-export default AddPlace;
+export default DeleteUser;
