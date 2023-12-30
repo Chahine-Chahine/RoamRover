@@ -14,3 +14,10 @@
   position: absolute;
   right: 40px;
 }
+
+.title{
+  position: absolute;
+  top: 20px;
+  font-size: 24px;
+  color: white;
+}

@@ -6,6 +6,10 @@ import './Home.css'
 const Home = () => {
 
     return (
+      <>      
+      <div className="title">
+        <h1>Welcome back Chahine</h1>
+      </div>
         <div className="container">
           <div className="sidebar">
           <Sidebar/>
@@ -14,6 +18,8 @@ const Home = () => {
           <Content />
           </div>
         </div>
+        </>
+
       );
 }
 
