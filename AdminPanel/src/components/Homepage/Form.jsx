@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import './Form.css'
+import{ useState } from 'react';
+import PropTypes from 'prop-types';
+import './Form.css';
+import InputField from '../common/InputField';
 
-function Form() {
+const Form = ({ title, hidden }) => {
   const [place, setPlace] = useState({
     name: '',
     estBudget: '',
@@ -9,7 +11,7 @@ function Form() {
     description: ''
   });
 
-  const handleSubmit = (event) => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
     setPlace(prevState => ({
       ...prevState,
@@ -17,42 +19,30 @@ function Form() {
     }));
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(place);
+  };
+
   return (
     <div className="form-holder">
       <form onSubmit={handleSubmit}>
-        <h2>Add Place</h2>
+        <h2>{title}</h2>
         <div className="form-body-wrapper">
           <div className="form-credentials">
-        <input
-          type="text"
-          name="name"
-          value={place.name}
-          onChange={handleSubmit}
-          placeholder="Name"
-        />
-        <input
-          type="text"
-          name="estBudget"
-          value={place.estBudget}
-          onChange={handleSubmit}
-          placeholder="Est budget"
-        />
-        <input
-          type="text"
-          name="location"
-          value={place.location}
-          onChange={handleSubmit}
-          placeholder="Location"
-        />
-        </div>
-        <div className="form-description">
-        <textarea
-          name="description"
-          value={place.description}
-          onChange={handleSubmit}
-          placeholder="Description"
-        />
-        </div>
+           <InputField name='name' placeholder='name'/>
+           <InputField name='estBudget' placeholder='Est budget'/>
+           <InputField name='location' placeholder='Location'/>
+          </div>
+          <div className="form-description">
+            <textarea
+              name="description"
+              value={place.description}
+              onChange={handleChange}
+              placeholder="Description"
+              className= {hidden}
+            />
+          </div>
         </div>
         <button type="submit">Save</button>
       </form>
@@ -60,5 +50,10 @@ function Form() {
   );
 }
 
+// Prop type validation
+Form.propTypes = {
+  title: PropTypes.string.isRequired,
+  hidden: PropTypes.string.isRequired
+};
 
 export default Form;

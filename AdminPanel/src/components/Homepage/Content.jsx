@@ -3,7 +3,7 @@ import Form from './Form';
 function Content() {
   return (
     <div className="content">
-      <Form />
+      <Form title={'title'} />
     </div>
   );
 }
