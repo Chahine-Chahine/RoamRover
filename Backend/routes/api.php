@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoomsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,3 +26,9 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
 
 });
+
+// Display a list of rooms
+Route::get('/rooms', [RoomsController::class, 'index']);
+
+// Store a new room
+Route::post('/rooms', [RoomsController::class, 'store']);
