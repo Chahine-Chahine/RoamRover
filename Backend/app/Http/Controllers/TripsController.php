@@ -46,4 +46,10 @@ class TripsController extends Controller
         $trip->fill($validatedData)->save();
         return response()->json(['trip' => $trip, 'message' => 'Trip updated successfully']);
     }
+    public function deleteTrip($id)
+    {
+        $trip = Trip::findOrFail($id);
+        $trip->delete();
+        return response()->json(['message' => 'Trip deleted successfully']);
+    }
 }
