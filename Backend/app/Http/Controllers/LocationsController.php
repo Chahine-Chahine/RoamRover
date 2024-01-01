@@ -28,6 +28,23 @@ class LocationsController extends Controller
         $location = Location::create($validatedData);
         return response()->json(['location' => $location, 'message' => 'Location created successfully'], 201);
     }
+     // PUT /locations/{id}
+     public function updateLocation(Request $request, $id)
+     {
+         $location = Location::findOrFail($id);
+ 
+         $validatedData = $request->validate([
+             'image' => 'string',
+             'description' => 'string',
+             'estimatedPrice' => 'numeric',
+             'title' => 'string',
+             'area' => 'string',
+             'rating' => 'integer',
+         ]);
+ 
+         $location->fill($validatedData)->save();
+         return response()->json(['location' => $location, 'message' => 'Location updated successfully']);
+     }
 
  
 }
