@@ -38,5 +38,6 @@ Route::post('/rooms', [RoomsController::class, 'store']);
 Route::controller(LocationsController::class)->group(function () {
     Route::get('/locations', 'displayAll'); 
     Route::post('/locations', 'createLocation'); 
-    Route::put('/locations/{id}', 'updateLocation'); 
+    Route::put('/locations/{id}', 'updateLocation');
+    Route::get('/locations/{id}', 'displayById'); 
 });

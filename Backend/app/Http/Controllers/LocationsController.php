@@ -45,6 +45,11 @@ class LocationsController extends Controller
          $location->fill($validatedData)->save();
          return response()->json(['location' => $location, 'message' => 'Location updated successfully']);
      }
+    // GET /locations/{id}
+    public function displayById($id)
+    {
+        return Location::findOrFail($id);
+    }
 
  
 }
