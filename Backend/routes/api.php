@@ -46,5 +46,7 @@ Route::controller(RoomsController::class)->group(function () {
 });
 
 Route::controller(TripsController::class)->group(function () {
-    Route::post('trips', 'createTrip');
+    Route::post('/trips', 'createTrip');
+    Route::get('/trips', 'displayAllTrips');
+    Route::get('/trips/{id}', 'displayById' );
 });

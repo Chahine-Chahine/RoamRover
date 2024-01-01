@@ -22,6 +22,14 @@ class TripsController extends Controller
         $trip = Trip::create($validatedData);
         return response()->json(['trip' => $trip, 'message' => 'Trip created successfully'], 201);
     }
+        public function displayAllTrips()
+        {
+            return Trip::all();
+        }
+
+        public function displayById($id)
+        {
+            return Trip::findOrFail($id);
+        }
     
-   
 }
