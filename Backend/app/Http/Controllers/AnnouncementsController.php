@@ -19,4 +19,16 @@ class AnnouncementsController extends Controller
         $announcement = Announcement::create($validatedData);
         return response()->json(['announcement' => $announcement, 'message' => 'Announcement created successfully'], 201);
     }
+
+    public function updateAnnouncement(Request $request, $id)
+    {
+        $announcement = Announcement::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'announcementBody' => 'string',
+        ]);
+
+        $announcement->update($validatedData);
+        return response()->json(['announcement' => $announcement, 'message' => 'Announcement updated successfully']);
+    }
 }
