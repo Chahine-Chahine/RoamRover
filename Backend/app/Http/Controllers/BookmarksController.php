@@ -20,13 +20,13 @@ class BookmarksController extends Controller
     }
     public function displayAllBookmarks()
     {
-        return Bookmark::all();
+        return  Bookmark::with('location')->get();
     }
 
     // Read a bookmark by ID
     public function displayById($id)
     {
-        return Bookmark::findOrFail($id);
+        return Bookmark::with('location')->findOrFail($id);
     }
 
 
