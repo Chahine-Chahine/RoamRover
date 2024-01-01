@@ -65,4 +65,5 @@ Route::controller(BookmarksController::class)->group(function (){
 Route::controller(AnnouncementsController::class)->group(function(){
     Route::post('/announcements', 'createAnnouncement');
     Route::put('announcements/{id}', 'updateAnnouncement');
+    Route::delete('announcements/{id}','deleteAnnouncement');
 });

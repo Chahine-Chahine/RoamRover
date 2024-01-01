@@ -31,4 +31,12 @@ class AnnouncementsController extends Controller
         $announcement->update($validatedData);
         return response()->json(['announcement' => $announcement, 'message' => 'Announcement updated successfully']);
     }
+
+
+    public function deleteAnnouncement($id)
+    {
+        $announcement = Announcement::findOrFail($id);
+        $announcement->delete();
+        return response()->json(['message' => 'Announcement deleted successfully']);
+    }
 }
