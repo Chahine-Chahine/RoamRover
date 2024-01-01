@@ -7,21 +7,17 @@ use App\Models\Room;
 
 class RoomsController extends Controller
 {
-    public function index()
+    // GET /rooms
+    public function displayAllRooms()
     {
-        $rooms = Room::all();
-        return response()->json($rooms);
+        return Room::all();
     }
 
-    public function store(Request $request)
+    // GET /rooms/{id}
+    public function displayById($id)
     {
-        $request->validate([
-            'roomName' => 'required|max:255',
-            'creatorID' => 'required|exists:users,id',
-            'participantsID' => 'required|exists:users,id',
-        ]);
-
-        $room = Room::create($request->all());
-        return response()->json($room, 201);
+        return Room::findOrFail($id);
     }
+
+   
 }

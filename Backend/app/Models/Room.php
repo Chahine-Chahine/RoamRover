@@ -4,29 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Room extends Model
 {
     use HasFactory;
-
     protected $table = 'rooms';
 
-    protected $primaryKey = 'id';
     protected $fillable = [
         'roomName',
         'creatorID',
         'participantsID'
     ];
 
-    public function creator()
+    protected $casts = [
+        'participantsID' => 'array',
+    ];
+
+    public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'creatorID');
     }
 
-    public function participants()
-    {
-        return $this->belongsTo(User::class, 'participantsID');
-    }
 
-    public $timestamps = true;
 }
