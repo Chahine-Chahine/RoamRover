@@ -1,19 +1,21 @@
 import axios from 'axios';
 import { LOGIN_SUCCESS, LOGIN_FAILURE } from './actionTypes';
-
-
 import { REGISTER_SUCCESS, REGISTER_FAILURE } from './actionTypes';
 
 // Signup action
 export const registerUser = (userData) => {
   return async (dispatch) => {
     try {
+      console.log('entered the try')
       const response = await axios.post('http://192.168.0.116:8000/api/register', userData);
+      console.log('after the response')
+      console.log('the response: ' , response)
       const data = response.data;
+      console.log("data: ", data)
       if (data.status === 'success') {
         dispatch({
           type: REGISTER_SUCCESS,
-          payload: data.user, // Assuming the API returns the user data on successful registration
+          payload: data.user, 
         });
       } else {
         dispatch({

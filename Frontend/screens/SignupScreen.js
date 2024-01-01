@@ -30,7 +30,7 @@ const SignUpScreen = () => {
     }, [authState, navigation]);
 
     const handleSignup = () => {
-        setError(""); // Reset error message
+        setError(""); 
         dispatch(registerUser({ username, email, password, firstName, lastName }));
     };
 
