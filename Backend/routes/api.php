@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnnouncementsController;
 use App\Http\Controllers\BookmarksController;
 use App\Http\Controllers\TripsController;
 use Illuminate\Http\Request;
@@ -59,4 +60,8 @@ Route::controller(BookmarksController::class)->group(function (){
     Route::get('/bookmarks' , 'displayAllBookmarks');
     Route::get('/bookmarks/{id}' , 'displayById');
     Route::delete('/bookmarks/{id}', 'deleteBookmark');
+});
+
+Route::controller(AnnouncementsController::class)->group(function(){
+    Route::post('/announcements', 'createAnnouncement');
 });
