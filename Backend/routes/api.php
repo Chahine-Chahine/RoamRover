@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoomsController;
+use App\Http\Controllers\LocationsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,3 +33,9 @@ Route::get('/rooms', [RoomsController::class, 'index']);
 
 // Store a new room
 Route::post('/rooms', [RoomsController::class, 'store']);
+
+//location APIs
+Route::controller(LocationsController::class)->group(function () {
+    Route::get('/locations', 'displayAll'); 
+    Route::post('/locations', 'createLocation'); 
+});
