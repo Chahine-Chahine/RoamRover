@@ -29,10 +29,10 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 // Display a list of rooms
-Route::get('/rooms', [RoomsController::class, 'displayAllRooms']);
+Route::get('/rooms', [RoomsController::class, 'index']);
 
 // Store a new room
-Route::post('/rooms', [RoomsController::class, 'createRoom']);
+Route::post('/rooms', [RoomsController::class, 'store']);
 
 //location APIs
 Route::controller(LocationsController::class)->group(function () {

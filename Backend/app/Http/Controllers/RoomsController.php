@@ -7,13 +7,13 @@ use App\Models\Room;
 
 class RoomsController extends Controller
 {
-    public function displayAllRooms()
+    public function index()
     {
         $rooms = Room::all();
         return response()->json($rooms);
     }
 
-    public function createRoom(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'roomName' => 'required|max:255',
