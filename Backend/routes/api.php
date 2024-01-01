@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookmarksController;
 use App\Http\Controllers\TripsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -51,4 +52,11 @@ Route::controller(TripsController::class)->group(function () {
     Route::get('/trips/{id}', 'displayById' );
     Route::put('/trips/{id}', 'updateTrip');
     Route::delete('trips/{id}', 'deleteTrip');
+});
+
+Route::controller(BookmarksController::class)->group(function (){
+    Route::post('/bookmarks' , 'createBookmark');
+    Route::get('/bookmarks' , 'displayAllBookmarks');
+    Route::get('/bookmarks/{id}' , 'displayById');
+    Route::delete('/bookmarks/{id}', 'deleteBookmark');
 });
