@@ -13,7 +13,10 @@ class Announcement extends Model
         'adminID',
         'receiverID'
     ];
-
+    
+    protected $casts = [
+        'receiverID' => 'array',
+    ];
     public function admin()
     {
         return $this->belongsTo(User::class, 'adminID');
@@ -23,4 +26,5 @@ class Announcement extends Model
     {
         return $this->belongsTo(User::class, 'receiverID');
     }
+
 }

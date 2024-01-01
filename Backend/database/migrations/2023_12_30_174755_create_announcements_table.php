@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string("announcementBody");
             $table->unsignedBigInteger("adminID");
             $table->foreign('adminID')->references('id')->on('users');
-            $table->unsignedBigInteger('receiverID');
-            $table->foreign('receiverID')->references('id')->on('users');
+            $table->json('receiverID'); 
             $table->timestamps();
         });
     }

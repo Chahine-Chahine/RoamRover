@@ -12,7 +12,8 @@ class AnnouncementsController extends Controller
         $validatedData = $request->validate([
             'announcementBody' => 'required|string',
             'adminID' => 'required|integer|exists:users,id',
-            'receiverID' => 'required|integer|exists:users,id'
+            'receiverID' => 'required|array', 
+            'receiverID.*' => 'integer|exists:users,id' 
         ]);
 
         $announcement = Announcement::create($validatedData);
