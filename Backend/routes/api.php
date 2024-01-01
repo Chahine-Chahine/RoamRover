@@ -29,10 +29,10 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 // Display a list of rooms
-Route::get('/rooms', [RoomsController::class, 'index']);
+Route::get('/rooms', [RoomsController::class, 'displayAllRooms']);
 
 // Store a new room
-Route::post('/rooms', [RoomsController::class, 'store']);
+Route::post('/rooms', [RoomsController::class, 'createRoom']);
 
 //location APIs
 Route::controller(LocationsController::class)->group(function () {
@@ -40,4 +40,5 @@ Route::controller(LocationsController::class)->group(function () {
     Route::post('/locations', 'createLocation'); 
     Route::put('/locations/{id}', 'updateLocation');
     Route::get('/locations/{id}', 'displayById'); 
+    Route::delete('/locations/{id}', 'deleteLocation'); 
 });
