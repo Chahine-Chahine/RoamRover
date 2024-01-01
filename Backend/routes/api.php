@@ -49,4 +49,5 @@ Route::controller(TripsController::class)->group(function () {
     Route::post('/trips', 'createTrip');
     Route::get('/trips', 'displayAllTrips');
     Route::get('/trips/{id}', 'displayById' );
+    Route::put('/trips/{id}', 'updateTrip');
 });

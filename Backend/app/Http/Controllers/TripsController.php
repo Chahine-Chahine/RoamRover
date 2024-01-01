@@ -31,5 +31,19 @@ class TripsController extends Controller
         {
             return Trip::findOrFail($id);
         }
-    
+        public function updateTrip(Request $request, $id)
+    {
+        $trip = Trip::findOrFail($id);
+        $validatedData = $request->validate([
+            'startingLocation' => 'string|max:255',
+            'destinationLocation' => 'string|max:255',
+            'totalBudget' => 'numeric',
+            'receipt' => 'string|nullable',
+            'locationID' => 'integer|exists:locations,id',
+            'roomID' => 'integer|exists:rooms,id'
+        ]);
+
+        $trip->fill($validatedData)->save();
+        return response()->json(['trip' => $trip, 'message' => 'Trip updated successfully']);
+    }
 }
