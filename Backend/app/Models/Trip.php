@@ -16,4 +16,7 @@ class Trip extends Model
         'locationID',
         'roomID'
     ];
+    protected $casts = [
+        'destinationLocation' => 'array',
+    ];
 }

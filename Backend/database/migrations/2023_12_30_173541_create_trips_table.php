@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
             $table->string('startingLocation');
-            $table->string('destinationLocation');
+            $table->json('destinationLocation');
             $table->float('totalBudget');
             $table->string('receipt');
             $table->unsignedBigInteger('locationID');

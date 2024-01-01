@@ -12,7 +12,7 @@ class TripsController extends Controller
     {
         $validatedData = $request->validate([
             'startingLocation' => 'required|string|max:255',
-            'destinationLocation' => 'required|string|max:255',
+            'destinationLocation.*' => 'required|string|max:255',
             'totalBudget' => 'required|numeric',
             'receipt' => 'string|nullable',
             'locationID' => 'required|integer|exists:locations,id',
@@ -36,7 +36,7 @@ class TripsController extends Controller
         $trip = Trip::findOrFail($id);
         $validatedData = $request->validate([
             'startingLocation' => 'string|max:255',
-            'destinationLocation' => 'string|max:255',
+            'destinationLocation.*' => 'string|max:255',
             'totalBudget' => 'numeric',
             'receipt' => 'string|nullable',
             'locationID' => 'integer|exists:locations,id',
