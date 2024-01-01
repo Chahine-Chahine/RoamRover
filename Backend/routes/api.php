@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TripsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -42,4 +43,8 @@ Route::controller(RoomsController::class)->group(function () {
     Route::get('/rooms', 'displayAllRooms'); 
     Route::get('/rooms/{id}', 'displayById');
     Route::post('/rooms', 'createRoom'); 
+});
+
+Route::controller(TripsController::class)->group(function () {
+    Route::post('trips', 'createTrip');
 });
