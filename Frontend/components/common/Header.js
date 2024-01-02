@@ -46,7 +46,7 @@ const styles = {
     width: 140,
     height: 60,
     justifyContent: "center",
-    left: 90
+    left: 98
     
   },
 };

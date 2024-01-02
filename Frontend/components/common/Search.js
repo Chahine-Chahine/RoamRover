@@ -6,7 +6,7 @@ const Search = () => {
   return (
     <View style={styles.search}>
       <View style={styles.searchBar}>
-        <Icon name="search" size={20} color="black" marginRight={10} />
+        <Icon name="search" size={20} color="#969696" marginRight={10} />
         <TextInput placeholder='Search' />
       </View>
       <View style={styles.filterIcon}>
@@ -26,13 +26,13 @@ const styles = {
     marginBottom: 20,
   },
   searchBar: {
-    padding: 10,
+    padding: 15,
     flexDirection: 'row',
     alignItems: 'center',
     width: '88%',
-    height: '90%',
+    height: '88%',
     borderRadius: 30,
-    backgroundColor: '#D9D9D9',
+    backgroundColor: '#EDEDED',
   },
   filterIcon: {
   },

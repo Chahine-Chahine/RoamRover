@@ -52,8 +52,10 @@ const HomeScreen = () => {
     return (
         <>
             <View style={styles.container}>
+                <View style={styles.header}>
                 <Header />
                 <Search />
+                </View>
                 <ScrollView style={styles.scrollView}>
                     {places.map((place) => (
                         <Card
@@ -85,6 +87,13 @@ const styles = StyleSheet.create({
     scrollView: {
         width: '100%',
     },
+    header: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 30,
+    
+    }
 });
 
 export default HomeScreen;
