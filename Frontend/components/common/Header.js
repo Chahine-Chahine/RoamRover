@@ -16,12 +16,12 @@ const Header = () => {
       <View>
         <Image style={styles.headerImage} source={require("../../assets/img.png")} />
       </View>
-      <View>
+      <View style={styles.headerText}>
         <Text>Hello Chahine</Text>
         <Text>Beirut, Lebanon</Text>
       </View>
       <View style={styles.messageIcon}>
-        <Icon name="comment-dots" solid size={30} color="black" onPress= {chatNavigate}/>
+        <Icon name="comment-dots"  size={25}  onPress= {chatNavigate}/>
       </View>
     </View>
   );
@@ -40,13 +40,15 @@ const styles = {
     width: 60,
     height: 60,
     borderRadius: 60 / 2,
-    marginRight: 20,
+  },
+  headerText: {
+    marginLeft: 15,
   },
   messageIcon: {
     width: 140,
     height: 60,
     justifyContent: "center",
-    left: 98
+    left: 120
     
   },
 };

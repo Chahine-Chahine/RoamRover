@@ -58,6 +58,7 @@ const HomeScreen = () => {
                 </View>
                 <ScrollView style={styles.scrollView}>
                     {places.map((place) => (
+                        <View style={styles.cardContainer}>
                         <Card
                             key={place.id}
                             onPress={() => navigateLocationPage(place)}
@@ -68,6 +69,7 @@ const HomeScreen = () => {
                             label={"add to list"}
                             showBookmark={true}
                         />
+                        </View>
                     ))}
                 </ScrollView>
             </View>
@@ -81,7 +83,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         height: '100%',
-        backgroundColor: '#fff',
+        backgroundColor: '#F3F3F3',
         alignItems: 'center',
     },
     scrollView: {
@@ -92,8 +94,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         gap: 30,
+        height: 200
     
-    }
+    },
+    // cardContainer: {
+    //     marginHorizontal: 20,
+    //     marginVertical: 10,
+    //     borderRadius: 20,
+    //     borderColor: '#524077',
+    //     width: "90%",
+    //     display: 'flex',
+    //     justifyContent: 'center',
+    //     alignItems: 'center',
+    //     backgroundColor: '#FFFF',
+    //   },
+    
 });
 
 export default HomeScreen;

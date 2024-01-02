@@ -7,19 +7,21 @@ import navigateLocationPage from '../../screens/HomeScreen'
 const Card = ({ onPress, title , description , price , uri, place, label,  showBookmark = false, style}) => {
   return (
     <TouchableOpacity  onPress={() => onPress(place)} style={styles.fullScreen}>
+      <View style={styles.containerStyle}>
       <View style={styles.cardWrapper}>
         <View >
           <Image source={uri} style={styles.cardImage}/>
         </View>
         <View style={styles.contentWrapper}>
           <View style={styles.leftCard}>
-            <Text>{title}</Text>
+            <Text style={styles.title}>{title}</Text>
             <Text>{description}</Text>
             <Text>{price}</Text>
           </View>
           <View style={styles.rightCard}>
             {showBookmark && <Icon name='bookmark' size={20} style={styles.bookmark}  />}
-            <OutlinedButton label={label} style={style} onPress={() => console.log("working")} />
+            <OutlinedButton label={'join'} style={styles.OutlinedButton} onPress={() => console.log("working")} />
+            </View>
           </View>
         </View>
       </View>
@@ -37,12 +39,25 @@ const styles = {
     flexDirection: "column",
     width: 300, 
     height: 200, 
-    marginBottom: 90, 
+    marginBottom: 40, 
+    paddingVertical: 10
   },
+  containerStyle: {
+    marginHorizontal: 20,
+    marginVertical: 10,
+    borderRadius: 20,
+    borderColor: '#524077',
+    width: "90%",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFFF',
+  },
+
   cardImage: {
     width: '100%',
     height: '85%', 
-    borderRadius: 30,
+    borderRadius: 20,
   },
   contentWrapper: {
     flexDirection: 'row',
@@ -50,9 +65,13 @@ const styles = {
     height: '20%', 
   },
   leftCard: {
-    padding: 10,
     width: '60%',
     justifyContent: 'center', 
+  },
+  title: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    paddingVertical: 8
   },
   rightCard: {
     padding: 10,
@@ -61,8 +80,17 @@ const styles = {
   bookmark:{
     position:'absolute',
     right: 70,
-    top: -10,
-  }
+    top: -140,
+
+  },
+  OutlinedButton: {
+    width: 100,
+    position: 'absolute',
+    left: 20,
+    top: 9,
+    backgroundColor: '#A78BFA',
+    borderWidth: 0
+   }
 };
 
 export default Card;

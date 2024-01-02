@@ -53,8 +53,10 @@ const CustomtripScreen = () => {
             <View style={styles.container}>
                 <Text style={styles.pagetitle}>Custom Trip</Text>
          
-        <ScrollView  contentContainerStyle={styles.containerStyle}>
+        <ScrollView >
+            <View style={styles.searchContainer}>
             <Search/>
+            </View>
             {places.map((place)=>(
             <Card
              key={place.id}
@@ -79,10 +81,10 @@ const CustomtripScreen = () => {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#F3F3F3',
     },
-    containerStyle:{
-        alignItems: "center",
+    searchContainer: {
+        alignItems: 'center'
     },
     pagetitle:{
         fontSize: 32,

@@ -6,8 +6,8 @@ const Search = () => {
   return (
     <View style={styles.search}>
       <View style={styles.searchBar}>
-        <Icon name="search" size={20} color="#969696" marginRight={10} />
-        <TextInput placeholder='Search' />
+        <Icon name="search" size={18} color="#969696" marginRight={10} />
+        <TextInput placeholder='Search' placeholderTextColor={'#969696'} style={styles.placeholder} />
       </View>
       <View style={styles.filterIcon}>
         <Icon name="filter" size={25} />
@@ -22,8 +22,7 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     width: "85%",
-    height: 60,
-    marginBottom: 20,
+    height: 55,
   },
   searchBar: {
     padding: 15,
@@ -32,8 +31,12 @@ const styles = {
     width: '88%',
     height: '88%',
     borderRadius: 30,
-    backgroundColor: '#EDEDED',
+    backgroundColor: '#ffff',
   },
+  placeholder: {
+    color: '#969696'
+  },
+ 
   filterIcon: {
   },
 };

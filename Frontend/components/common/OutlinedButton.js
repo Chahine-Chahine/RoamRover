@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
     left: -20
   },
   buttonText: {
-    color: "black",
+    color: "white",
+    fontWeight: '600'
   },
 });
 
