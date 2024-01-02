@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../core/Redux/Actions/authActions';
@@ -35,7 +35,7 @@ const SignUpScreen = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <View>
                 <Text style={styles.header}>Sign Up</Text>
                 <TextInput
@@ -86,15 +86,18 @@ const SignUpScreen = () => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        </ScrollView>
     );
 };
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#fff",
+    },
+    contentContainer: {
+        flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#fff",
     },
     header: {
         color: "#A78BFA",
