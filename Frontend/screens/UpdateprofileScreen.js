@@ -7,6 +7,7 @@ const ProfileUpdateScreen = () => {
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [bio, setbio] = useState('');
 
   const navigation = useNavigation();
 
@@ -43,6 +44,12 @@ const ProfileUpdateScreen = () => {
         value={lastName}
         onChangeText={setLastName}
         placeholder="Last Name"
+      />
+       <TextInput
+        style={styles.input}
+        value={bio}
+        onChangeText={setbio}
+        placeholder="bio"
       />
        <TouchableOpacity style={styles.button} onPress={handleUpdateProfile}>
         <Text style={styles.buttonText}>Update Profile</Text>
