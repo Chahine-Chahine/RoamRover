@@ -10,7 +10,7 @@ const Search = () => {
         <TextInput placeholder='Search' placeholderTextColor={'#969696'} style={styles.placeholder} />
       </View>
       <View style={styles.filterIcon}>
-        <Icon name="filter" size={25} />
+        <Icon name="sliders-h" color={'black'} size={25} />
       </View>
     </View>
   );

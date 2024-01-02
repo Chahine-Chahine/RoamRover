@@ -11,12 +11,12 @@ const ActionButton = ({ title, onPress }) => (
 const styles = StyleSheet.create({
     button: {
       backgroundColor: '#A78BFA',
-      paddingVertical: 12,
-      paddingHorizontal: 40,
       borderRadius: 25,
       alignItems: 'center',
-      marginVertical: 18,
+      marginVertical: 8,
       marginHorizontal: 25,
+      paddingVertical: 12,
+      paddingHorizontal: 40,
     },
     buttonText: {
       color: 'white',

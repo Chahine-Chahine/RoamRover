@@ -33,8 +33,8 @@ const ProfileScreen = () => {
         <ActionButton title="Bookmarks" onPress={navigateBookmark}/>
         <ActionButton title="Update profile" onPress={navigateprofileUpdate} />
       </View>
-      <NavigationBar/>
       </ScrollView>
+      <NavigationBar/>
     </>
   );
 };

@@ -34,16 +34,10 @@ const styles = StyleSheet.create({
       profileHeader:{
         marginTop:15,
         marginLeft: 20,
-        alignItems: 'center'
+        alignItems: 'right'
       },
       tripButton:{
-        paddingVertical: 5,
-        paddingHorizontal: 10,
-        borderRadius: 20,
-        alignItems: 'center',
-        borderWidth: 3,
-        borderColor: '#A78BFA',
-        marginVertical: 10,
+       marginVertical: 2,
       },
       profileImage: {
         width: 120,
