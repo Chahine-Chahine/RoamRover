@@ -7,7 +7,7 @@ export const registerUser = (userData) => {
   return async (dispatch) => {
     try {
       console.log('entered the try')
-      const response = await axios.post('http://192.168.0.116:8000/api/register', userData);
+      const response = await axios.post('http://192.168.240.32:8000/api/register', userData);
       console.log('after the response')
       console.log('the response: ' , response)
       const data = response.data;
@@ -38,7 +38,7 @@ export const registerUser = (userData) => {
 export const loginUser = ({ email, password }) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post('http://192.168.0.116:8000/api/login', { email, password });
+      const response = await axios.post('http://192.168.240.32:8000/api/login', { email, password });
       const data = response.data;
       if (data.status === 'success') {
         dispatch({

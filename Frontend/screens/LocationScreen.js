@@ -7,7 +7,7 @@ import { TouchableOpacity } from 'react-native';
 
 const LocationDetailScreen = () => {
   const route = useRoute();
-  const { place } = route.params;
+  const { location } = route.params;
   return (
     <>
     <View style={styles.screenContainer}>
@@ -16,11 +16,11 @@ const LocationDetailScreen = () => {
           {/* <Icon name= 'arrow'/> */}
         </TouchableOpacity>
         <LocationCard
-           title={place.name}
-           subtitle={place.subtitle}
-           description={place.description}
-           imageSource={place.image}
-           estPrice={place.price}
+           title={location.title}
+           subtitle={location.area}
+           description={location.description}
+           imageSource={location.image}
+           estPrice={location.estimatedPrice}
            onCheckMap={() => {/* navigation logic for Check on Map */}}
            onAdd={() => {/* logic to handle Add action */}}
            />

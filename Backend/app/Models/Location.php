@@ -16,4 +16,9 @@ class Location extends Model
         'area',
         'rating',
     ];
+
+    public function getImageAttribute($value)
+    {
+        return asset('storage/' . $value);
+    }
 }

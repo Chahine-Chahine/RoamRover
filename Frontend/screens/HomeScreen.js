@@ -21,8 +21,8 @@ const HomeScreen = () => {
 
     const navigation = useNavigation();
 
-    const navigateLocationPage = (place) => {
-        navigation.navigate('LocationDetailScreen', { place });
+    const navigateLocationPage = (location) => {
+        navigation.navigate('LocationDetailScreen', { location });
     };
 
     if (loading) return <LoadingScreen />;
@@ -39,9 +39,9 @@ const HomeScreen = () => {
                        <View key={location.id} style={styles.cardContainer}>
                        <Card
                            onPress={() => navigateLocationPage(location)}
-                           title={location.name}
+                           title={location.title}
                            description={location.description}
-                           price={location.price}
+                           price={location.estimatedPrice} 
                            uri={location.image}
                            label={"add to list"}
                            showBookmark={true}
