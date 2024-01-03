@@ -8,7 +8,7 @@ const LocationCard = ({ title, subtitle, description, imageSource, estPrice, onC
     <View style={styles.cardContainer}>
       <Image
         style={styles.image}
-        source={imageSource}
+        source={{imageSource}}
       />
       <View style={styles.textContainer}>
         <Text style={styles.title}>{title}</Text>
