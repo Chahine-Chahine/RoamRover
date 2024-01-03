@@ -1,5 +1,7 @@
-import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import React, { useEffect } from 'react';
+import { View,Text, StyleSheet, ScrollView } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchLocations } from '../core/Redux/Actions/locationActions';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/common/Header';
 import Search from '../components/common/Search';
@@ -8,40 +10,14 @@ import NavigationBar from '../components/common/NavigationBar';
 import LoadingScreen from './LoadingScreen';
 
 const HomeScreen = () => {
-    const places = [
-        {
-            id: '1',
-            name: '3azme Caffe',
-            subtitle: 'Beirut Lebanon',
-            description: 'Coffee shop in Beirut',
-            price: '20$/individual',
-            image: require('../assets/3azme.png'),
-        },
-        {
-            id: '2',
-            name: 'China City',
-            subtitle: 'Ashrafieh Lebanon',
-            description: 'New concept for studying in natural environment',
-            price: '20$/individual',
-            image: require('../assets/chinacity.png'),
-        },
-        {
-          id: '3',
-          name: 'Baalbeck Castle',
-          subtitle: 'Baalbeck Lebanon',
-          description: 'Discover Your history who you really are',
-          price: '10$/individual',
-          image: require('../assets/Baalbeck.webp'),
-      },
-      {
-        id: '4',
-        name: 'Lady of Harisa',
-        subtitle: 'Harissa Lebanon',
-        description: 'A great place for finding inner peice and relaxationA great place for finding inner peice and relaxationA great place for finding inner peice and relaxationA great place for finding inner peice and relaxationA great place for finding inner peice and relaxationA great place for finding inner peice and relaxation',
-        price: 'Free',
-        image: require('../assets/Harrisa.jpg'),
-    },
-    ];
+
+    const dispatch = useDispatch();
+    const { locations, loading, error } = useSelector(state => state.locations);
+
+    useEffect(() => {
+        dispatch(fetchLocations());
+    }, [dispatch]);
+
 
     const navigation = useNavigation();
 
@@ -49,6 +25,8 @@ const HomeScreen = () => {
         navigation.navigate('LocationDetailScreen', { place });
     };
 
+    if (loading) return <LoadingScreen />;
+    if (error) return <Text>Error: {error.message}</Text>;
     return (
         <>
             <View style={styles.container}>
@@ -57,19 +35,18 @@ const HomeScreen = () => {
                 <Search />
                 </View>
                 <ScrollView style={styles.scrollView}>
-                    {places.map((place) => (
-                        <View style={styles.cardContainer}>
-                        <Card
-                            key={place.id}
-                            onPress={() => navigateLocationPage(place)}
-                            title={place.name}
-                            description={place.description}
-                            price={place.price}
-                            uri={place.image}
-                            label={"add to list"}
-                            showBookmark={true}
-                        />
-                        </View>
+                    {locations.map((location) => (
+                       <View key={location.id} style={styles.cardContainer}>
+                       <Card
+                           onPress={() => navigateLocationPage(location)}
+                           title={location.name}
+                           description={location.description}
+                           price={location.price}
+                           uri={location.image}
+                           label={"add to list"}
+                           showBookmark={true}
+                       />
+                   </View>
                     ))}
                 </ScrollView>
             </View>
