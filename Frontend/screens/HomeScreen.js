@@ -42,7 +42,7 @@ const HomeScreen = () => {
                            title={location.title}
                            description={location.description}
                            price={`${location.estimatedPrice}$ per individual`} 
-                           uri={location.image}
+                           url={location.image}
                            label={"add to list"}
                            showBookmark={true}
                        />

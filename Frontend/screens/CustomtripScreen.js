@@ -4,67 +4,47 @@ import Card from "../components/common/Card";
 import NavigationBar from "../components/common/NavigationBar";
 import Search from "../components/common/Search";
 import ActionButton from "../components/ProfileScreen/ActionButton";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchLocations } from "../core/Redux/Actions/locationActions";
+import LoadingScreen from "./LoadingScreen";
 
 
 const CustomtripScreen = () => {
-    const places = [
-        {
-            id: '1',
-            name: '3azme Caffe',
-            subtitle: 'Beirut Lebanon',
-            description: 'Coffee shop in Beirut',
-            price: '20$/individual',
-            image: require('../assets/3azme.png'),
-        },
-        {
-            id: '2',
-            name: 'China City',
-            subtitle: 'Ashrafieh Lebanon',
-            description: 'New concept for studying in natural environment',
-            price: '20$/individual',
-            image: require('../assets/chinacity.png'),
-        },
-        {
-          id: '3',
-          name: 'Baalbeck Castle',
-          subtitle: 'Baalbeck Lebanon',
-          description: 'Discover Your history who you really are',
-          price: '10$/individual',
-          image: require('../assets/Baalbeck.webp'),
-      },
-      {
-        id: '4',
-        name: 'Lady of Harisa',
-        subtitle: 'Harissa Lebanon',
-        description: 'A great place for finding inner peice and relaxationA great place for finding inner peice and relaxationA great place for finding inner peice and relaxationA great place for finding inner peice and relaxationA great place for finding inner peice and relaxationA great place for finding inner peice and relaxation',
-        price: 'Free',
-        image: require('../assets/Harrisa.jpg'),
-    },
-    ];
+    const dispatch = useDispatch();
+    const { locations, loading, error } = useSelector(state => state.locations);
+
+    useEffect(() => {
+        dispatch(fetchLocations());
+    }, [dispatch]);
+
 
     const navigation = useNavigation();
 
-    const navigateLocationPage = (place) => {
-        navigation.navigate('LocationDetailScreen', { place });
+    const navigateLocationPage = (location) => {
+        navigation.navigate('LocationDetailScreen', { location });
     };
+
+    if (loading) return <LoadingScreen />;
+    if (error) return <Text>Error: {error.message}</Text>;
 
     return(
         <>
-            <View style={styles.container}>
-                <Text style={styles.pagetitle}>Custom Trip</Text>
+        <View style={styles.container}>
+        <Text style={styles.pagetitle}>Custom Trip</Text>
          
         <ScrollView >
             <View style={styles.searchContainer}>
             <Search/>
             </View>
-            {places.map((place)=>(
+            {locations.map((location)=>(
             <Card
-             key={place.id}
-             onPress={() => navigateLocationPage(place)}
-             title={place.name}
-             description={place.description}
-             price={place.price}
-             uri={place.image}
+             key={location.id}
+             onPress={() => navigateLocationPage(location)}
+             title={location.title}
+             description={location.description}
+             price={`${location.estimatedPrice}$ per individual`} 
+             url={location.image}
              label={"Add"}
              showBookmark={false}
              style={styles.outlinedButton}
