@@ -11,8 +11,8 @@ class BookmarksController extends Controller
     public function createBookmark(Request $request)
     {
         $validatedData = $request->validate([
-            'userID' => 'required|integer|exists:users,id',
-            'locationID' => 'required|integer|exists:locations,id'
+            'user_id' => 'required|integer|exists:users,id',
+            'location_id' => 'required|integer|exists:locations,id'
         ]);
     
         $bookmark = Bookmark::create($validatedData);
