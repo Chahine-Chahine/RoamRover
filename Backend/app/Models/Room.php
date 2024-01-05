@@ -19,7 +19,7 @@ class Room extends Model
     ];
 
     protected $casts = [
-        'participantsID' => 'array',
+        'participants_id' => 'array',
     ];
 
     public function creator(): BelongsTo
