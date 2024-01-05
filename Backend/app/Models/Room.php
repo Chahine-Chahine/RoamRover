@@ -14,8 +14,8 @@ class Room extends Model
 
     protected $fillable = [
         'roomName',
-        'creatorID',
-        'participantsID'
+        'creator_id',
+        'participants_id'
     ];
 
     protected $casts = [
@@ -24,7 +24,7 @@ class Room extends Model
 
     public function creator(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'creatorID');
+        return $this->belongsTo(User::class, 'creator_id');
     }
 
 

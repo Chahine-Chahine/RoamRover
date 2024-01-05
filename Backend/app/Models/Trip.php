@@ -13,8 +13,8 @@ class Trip extends Model
         'destinationLocation',
         'totalBudget',
         'receipt',
-        'locationID',
-        'roomID'
+        'location_id',
+        'room_id'
     ];
     protected $casts = [
         'destinationLocation' => 'array',
