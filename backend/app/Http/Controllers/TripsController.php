@@ -34,32 +34,45 @@ class TripsController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-        public function displayAllTrips()
-        {
-            return Trip::all();
-        }
-
-        public function displayById($id)
-        {
-            return Trip::findOrFail($id);
-        }
-        public function updateTrip(Request $request, $id)
+    public function displayAllTrips()
+    {
+        return Trip::with('locations')->get();
+    }
+    
+    public function displayById($id)
+    {
+        return Trip::with('locations')->findOrFail($id);
+    }
+    
+    public function updateTrip(Request $request, $id)
     {
         $trip = Trip::findOrFail($id);
+
         $validatedData = $request->validate([
             'startingLocation' => 'string|max:255',
             'totalBudget' => 'numeric',
             'receipt' => 'string|nullable',
-            'room_id' => 'integer|exists:rooms,id'
+            'room_id' => 'integer|exists:rooms,id',
+            'stops' => 'array',
+            'stops.*' => 'integer|exists:locations,id'
         ]);
 
-        $trip->fill($validatedData)->save();
-        return response()->json(['trip' => $trip, 'message' => 'Trip updated successfully']);
+        $trip->fill($validatedData);
+  
+        if (isset($validatedData['stops'])) {
+            $trip->locations()->sync($validatedData['stops']);
+        }
+    
+        $trip->save();
+    
+        return response()->json(['trip' => $trip->load('locations'), 'message' => 'Trip updated successfully']);
     }
+    
     public function deleteTrip($id)
     {
         $trip = Trip::findOrFail($id);
         $trip->delete();
         return response()->json(['message' => 'Trip deleted successfully']);
     }
+    
 }
