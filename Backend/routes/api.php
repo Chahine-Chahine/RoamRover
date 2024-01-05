@@ -32,7 +32,6 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 
-//location APIs
 Route::controller(LocationsController::class)->group(function () {
     Route::get('/locations', 'displayAll'); 
     Route::post('/locations', 'createLocation'); 

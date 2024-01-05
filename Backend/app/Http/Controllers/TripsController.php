@@ -15,8 +15,8 @@ class TripsController extends Controller
             'destinationLocation.*' => 'required|string|max:255',
             'totalBudget' => 'required|numeric',
             'receipt' => 'string|nullable',
-            'locationID' => 'required|integer|exists:locations,id',
-            'roomID' => 'required|integer|exists:rooms,id'
+            'location_id' => 'required|integer|exists:locations,id',
+            'room_id' => 'required|integer|exists:rooms,id'
         ]);
         
         $trip = Trip::create($validatedData);
