@@ -17,10 +17,10 @@ return new class extends Migration
             $table->json('destinationLocation');
             $table->float('totalBudget');
             $table->string('receipt');
-            $table->unsignedBigInteger('locationID');
-            $table->foreign('locationID')->references('id')->on('locations');
-            $table->unsignedBigInteger('roomID');
-            $table->foreign('roomID')->references('id')->on('rooms');
+            $table->unsignedBigInteger('location_id');
+            $table->foreign('location_id')->references('id')->on('locations');
+            $table->unsignedBigInteger('room_id');
+            $table->foreign('room_id')->references('id')->on('rooms');
             $table->timestamps();
         });
     }

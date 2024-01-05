@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
             $table->string("announcementBody");
-            $table->unsignedBigInteger("adminID");
-            $table->foreign('adminID')->references('id')->on('users');
-            $table->json('receiverID'); 
+            $table->unsignedBigInteger("admin_id");
+            $table->foreign('admin_id')->references('id')->on('users');
+            $table->json('receiver_id'); 
             $table->timestamps();
         });
     }

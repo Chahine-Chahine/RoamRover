@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('firstName');
             $table->string('lastName');
-            $table->unsignedBigInteger('roleID')->default(2);
-            $table->foreign('roleID')->references('id')->on('roles');
+            $table->unsignedBigInteger('role_id')->default(2);
+            $table->foreign('role_id')->references('id')->on('roles');
             $table->timestamps();
         });
     }

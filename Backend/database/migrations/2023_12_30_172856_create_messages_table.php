@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->string('messageBody');
-            $table->unsignedBigInteger('senderID');
-            $table->foreign('senderID')->references('id')->on('users');
-            $table->unsignedBigInteger('roomID');
-            $table->foreign('roomID')->references('id')->on('rooms');
+            $table->unsignedBigInteger('sender_id');
+            $table->foreign('sender_id')->references('id')->on('users');
+            $table->unsignedBigInteger('room_id');
+            $table->foreign('room_id')->references('id')->on('rooms');
             $table->timestamps();
         });
     }

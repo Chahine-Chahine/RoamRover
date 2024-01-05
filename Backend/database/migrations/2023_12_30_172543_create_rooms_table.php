@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->string('roomName');
-            $table->unsignedBigInteger('creatorID');
-            $table->foreign('creatorID')->references('id')->on('users');
-            $table->json('participantsID');
+            $table->unsignedBigInteger('creator_id');
+            $table->foreign('creator_id')->references('id')->on('users');
+            $table->json('participants_id');
             $table->timestamps();
         });
     }
