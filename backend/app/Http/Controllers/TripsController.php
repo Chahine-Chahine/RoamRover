@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Trip;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class TripsController extends Controller
@@ -12,15 +12,27 @@ class TripsController extends Controller
     {
         $validatedData = $request->validate([
             'startingLocation' => 'required|string|max:255',
-            'destinationLocation.*' => 'required|string|max:255',
             'totalBudget' => 'required|numeric',
             'receipt' => 'string|nullable',
-            'location_id' => 'required|integer|exists:locations,id',
-            'room_id' => 'required|integer|exists:rooms,id'
+            'room_id' => 'required|integer|exists:rooms,id',
+            'stops' => 'required|array', 
+            'stops.*' => 'required|integer|exists:locations,id' 
         ]);
         
-        $trip = Trip::create($validatedData);
-        return response()->json(['trip' => $trip, 'message' => 'Trip created successfully'], 201);
+        DB::beginTransaction();
+
+        try {
+            $trip = Trip::create($validatedData);
+            
+            $trip->locations()->attach($validatedData['stops']);
+ 
+            DB::commit();
+
+            return response()->json(['trip' => $trip, 'message' => 'Trip created successfully'], 201);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
         public function displayAllTrips()
         {
@@ -36,10 +48,8 @@ class TripsController extends Controller
         $trip = Trip::findOrFail($id);
         $validatedData = $request->validate([
             'startingLocation' => 'string|max:255',
-            'destinationLocation.*' => 'string|max:255',
             'totalBudget' => 'numeric',
             'receipt' => 'string|nullable',
-            'location_id' => 'integer|exists:locations,id',
             'room_id' => 'integer|exists:rooms,id'
         ]);
 

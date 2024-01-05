@@ -14,7 +14,8 @@ class Trip extends Model
         'receipt',
         'room_id'
     ];
-    protected $casts = [
-        'destinationLocation' => 'array',
-    ];
+    public function locations()
+{
+    return $this->belongsToMany(Location::class, 'trips_locations');
+}
 }
