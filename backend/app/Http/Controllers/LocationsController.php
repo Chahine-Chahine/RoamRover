@@ -23,41 +23,45 @@ class LocationsController extends Controller
             'title' => 'required|string',
             'area' => 'required|string',
             'rating' => 'required|integer',
+            'latitude' => 'required|numeric|between:-90,90',
+            'longitude' => 'required|numeric|between:-180,180',
         ]);
 
         $location = Location::create($validatedData);
         return response()->json(['location' => $location, 'message' => 'Location created successfully'], 201);
     }
-     // PUT /locations/{id}
-     public function updateLocation(Request $request, $id)
-     {
-         $location = Location::findOrFail($id);
- 
-         $validatedData = $request->validate([
-             'image' => 'string',
-             'description' => 'string',
-             'estimatedPrice' => 'numeric',
-             'title' => 'string',
-             'area' => 'string',
-             'rating' => 'integer',
-         ]);
- 
-         $location->fill($validatedData)->save();
-         return response()->json(['location' => $location, 'message' => 'Location updated successfully']);
-     }
+
+    // PUT /locations/{id}
+    public function updateLocation(Request $request, $id)
+    {
+        $location = Location::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'image' => 'string',
+            'description' => 'string',
+            'estimatedPrice' => 'numeric',
+            'title' => 'string',
+            'area' => 'string',
+            'rating' => 'integer',
+            'latitude' => 'numeric|between:-90,90',
+            'longitude' => 'numeric|between:-180,180',
+        ]);
+
+        $location->fill($validatedData)->save();
+        return response()->json(['location' => $location, 'message' => 'Location updated successfully']);
+    }
+
     // GET /locations/{id}
     public function displayById($id)
     {
         return Location::findOrFail($id);
     }
     
-      // DELETE /locations/{id}
-      public function deleteLocation($id)
-      {
-          $location = Location::findOrFail($id);
-          $location->delete();
-          return response()->json(['message' => 'Location deleted successfully']);
-      }
-
- 
+    // DELETE /locations/{id}
+    public function deleteLocation($id)
+    {
+        $location = Location::findOrFail($id);
+        $location->delete();
+        return response()->json(['message' => 'Location deleted successfully']);
+    }
 }
