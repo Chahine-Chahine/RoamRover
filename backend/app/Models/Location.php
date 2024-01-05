@@ -15,6 +15,8 @@ class Location extends Model
         'title',
         'area',
         'rating',
+        'longitude',
+        'latitude'
     ];
 
 }
