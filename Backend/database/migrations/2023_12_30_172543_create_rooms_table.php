@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('roomName');
             $table->unsignedBigInteger('creator_id');
             $table->foreign('creator_id')->references('id')->on('users');
-            $table->json('participants_id');
             $table->timestamps();
         });
     }
