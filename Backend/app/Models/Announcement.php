@@ -10,21 +10,21 @@ class Announcement extends Model
     use HasFactory;
     protected $fillable = [
         'announcementBody',
-        'adminID',
-        'receiverID'
+        'admin_id',
+        'receiver_id'
     ];
     
     protected $casts = [
-        'receiverID' => 'array',
+        'receiver_id' => 'array',
     ];
     public function admin()
     {
-        return $this->belongsTo(User::class, 'adminID');
+        return $this->belongsTo(User::class, 'admin_id');
     }
 
     public function receiver()
     {
-        return $this->belongsTo(User::class, 'receiverID');
+        return $this->belongsTo(User::class, 'receiver_id');
     }
 
 }
