@@ -18,5 +18,13 @@ class Location extends Model
         'longitude',
         'latitude'
     ];
-
+    public function locations()
+    {
+        return $this->belongsToMany(Location::class);
+    }
+    
+    public function trips()
+    {
+        return $this->belongsToMany(Trip::class);
+    }
 }
