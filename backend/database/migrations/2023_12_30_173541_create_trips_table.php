@@ -14,11 +14,8 @@ return new class extends Migration
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
             $table->string('startingLocation');
-            $table->json('destinationLocation');
             $table->float('totalBudget');
             $table->string('receipt');
-            $table->unsignedBigInteger('location_id');
-            $table->foreign('location_id')->references('id')->on('locations');
             $table->unsignedBigInteger('room_id');
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->timestamps();

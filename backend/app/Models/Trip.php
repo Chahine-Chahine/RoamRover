@@ -10,10 +10,8 @@ class Trip extends Model
     use HasFactory;
     protected $fillable = [
         'startingLocation',
-        'destinationLocation',
         'totalBudget',
         'receipt',
-        'location_id',
         'room_id'
     ];
     protected $casts = [
