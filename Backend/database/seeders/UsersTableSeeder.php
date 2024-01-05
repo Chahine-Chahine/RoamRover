@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('Chahine123'), 
             'firstName' => 'Chahine',
             'lastName' => 'Chahine',
-            'roleID' => 1, 
+            'role_id' => 1, 
         ]);
 
         // Create a general user
