@@ -19,7 +19,7 @@ const Card = ({ onPress, title , description , price , url, location, label,  sh
       <View style={styles.containerStyle}>
       <View style={styles.cardWrapper}>
         <View >
-          <Image source={{url}} style={styles.cardImage}/>
+          <Image source={{uri: url}} style={styles.cardImage}/>
         </View>
         <View style={styles.contentWrapper}>
           <View style={styles.leftCard}>

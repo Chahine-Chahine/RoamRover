@@ -20,7 +20,7 @@ class LocationsTableSeeder extends Seeder
             'estimatedPrice' => 20,
             'area' => 'Beirut Lebanon',
             'rating' => 5, 
-            'image' => "../assets/3azme.png", 
+            'image' => "http://192.168.0.116:8000/storage/images/3azme.png", 
         ],
         [
             'title' => 'China City',
@@ -28,7 +28,7 @@ class LocationsTableSeeder extends Seeder
             'estimatedPrice' => 20,
             'area' => 'Ashrafieh Lebanon',
             'rating' => 4, 
-            'image' => "../assets/chinacity.png", 
+            'image' => "http://192.168.0.116:8000/storage/images/chinacity.png", 
         ],
         [
            
@@ -37,7 +37,7 @@ class LocationsTableSeeder extends Seeder
             'description'=> 'Discover Your history who you really are',
             'estimatedPrice'=> 10,
             'rating' => 4, 
-            'image'=> "../assets/Baalbeck.webp",
+            'image'=> "http://192.168.0.116:8000/storage/images/Baalbeck.webp",
         ],
     ]);
     }
