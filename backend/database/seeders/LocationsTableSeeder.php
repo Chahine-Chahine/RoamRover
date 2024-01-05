@@ -21,6 +21,8 @@ class LocationsTableSeeder extends Seeder
             'area' => 'Beirut Lebanon',
             'rating' => 5, 
             'image' => "http://192.168.0.116:8000/storage/images/3azme.png", 
+            'longitude' => 10.859874,
+            'latitude' => 1.05454808
         ],
         [
             'title' => 'China City',
@@ -29,6 +31,8 @@ class LocationsTableSeeder extends Seeder
             'area' => 'Ashrafieh Lebanon',
             'rating' => 4, 
             'image' => "http://192.168.0.116:8000/storage/images/chinacity.png", 
+            'longitude' => 10.85874,
+            'latitude' => 1.5454808
         ],
         [
            
@@ -38,6 +42,8 @@ class LocationsTableSeeder extends Seeder
             'estimatedPrice'=> 10,
             'rating' => 4, 
             'image'=> "http://192.168.0.116:8000/storage/images/Baalbeck.webp",
+            'longitude' => 10.858174,
+            'latitude' => 1.54544808
         ],
     ]);
     }
