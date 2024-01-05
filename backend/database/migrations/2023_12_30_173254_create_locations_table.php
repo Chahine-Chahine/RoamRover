@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('area');
             $table->integer('rating');
+            $table->decimal('latitude', 10, 7); 
+            $table->decimal('longitude', 11, 7); 
             $table->timestamps();
         });
     }
