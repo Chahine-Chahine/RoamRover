@@ -28,7 +28,7 @@ const Card = ({ onPress, title , description , price , url, location, label,  sh
             <Text>{price}</Text>
           </View>
           <View style={styles.rightCard}>
-            {showBookmark && <Icon name='bookmark'  onPress={bookmarktoggle} solid={isBookmarked} size={30} style={styles.bookmark}  />}
+            {showBookmark && <Icon name='bookmark'  onPress={bookmarktoggle} solid={isBookmarked} size={22} style={styles.bookmark}  />}
             <OutlinedButton label={'join'} style={styles.OutlinedButton} onPress={() => console.log("working")} />
             </View>
           </View>
