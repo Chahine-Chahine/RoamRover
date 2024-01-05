@@ -15,12 +15,8 @@ class Room extends Model
     protected $fillable = [
         'roomName',
         'creator_id',
-        'participants_id'
     ];
 
-    protected $casts = [
-        'participants_id' => 'array',
-    ];
 
     public function creator(): BelongsTo
     {
