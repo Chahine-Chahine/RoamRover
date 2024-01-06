@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('area');
             $table->integer('rating');
             $table->json('coordinates'); 
-            $table->timestamps();
         });
     }
 

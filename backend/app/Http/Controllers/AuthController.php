@@ -47,16 +47,16 @@ class AuthController extends Controller
             'username' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
-            'firstName' => 'required|string|min:4',
-            'lastName' => 'required|string|min:4',
+            'first_name' => 'required|string|min:4',
+            'last_name' => 'required|string|min:4',
         ]);
 
         $user = User::create([
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'firstName' =>$request->firstName,
-            'lastName' => $request->lastName,
+            'first_name' =>$request->first_name,
+            'last_name' => $request->last_name,
         ]);
 
         $token = Auth::login($user);
