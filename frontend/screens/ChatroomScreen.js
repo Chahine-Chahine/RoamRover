@@ -80,15 +80,14 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 15,
     paddingHorizontal: 20,
-    backgroundColor: '#6B46D9',
   },
   message: {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#6B46D9',
     borderRadius: 20,
     padding: 15,
     marginVertical: 5,
     fontSize: 16,
-    color: '#333',
+    color: '#fff',
   },
   inputContainer: {
     flexDirection: 'row',
