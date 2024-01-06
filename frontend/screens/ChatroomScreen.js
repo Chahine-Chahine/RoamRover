@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
 
 const ChatRoomScreen = () => {
   const [message, setMessage] = useState('');
 
   return (
-    // <ImageBackground
-    //   source={require('../assets/chat-bg.jpg')}
-    //   style={styles.backgroundImage}
-    //   imageStyle={styles.backgroundImageStyle}
-    // >
     <>
       <View style={styles.header}>
         <Ionicons name="chevron-back-outline" size={24} color="#6B46D9" />
@@ -20,12 +15,16 @@ const ChatRoomScreen = () => {
         </TouchableOpacity>
         <Ionicons name="camera-outline" size={30} color="#6B46D9" />
       </View>
-
+      <ScrollView>
       <View style={styles.messagesContainer}>
+        <Text style={styles.username}>AI</Text>
         <Text style={styles.message}>Good morning, your trip plot for today is:{'\n'}First Station: {'\n'}bnaash3e Lake {'\n'}second station:{'\n'} Faraya-kfardibian</Text>
+      </View>
+      <View style={styles.messagesContainer}>
+        <Text style={styles.username}>chahine</Text>
         <Text style={styles.message}>Tell me If you need further assistance</Text>
       </View>
-
+      </ScrollView>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -39,7 +38,6 @@ const ChatRoomScreen = () => {
         </TouchableOpacity>
       </View>
       </>
-    // </ImageBackground>
   );
 };
 
@@ -80,6 +78,11 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 15,
     paddingHorizontal: 20,
+  },
+  username:{
+    fontSize: 14,
+    color: '#6B46D9',
+    fontWeight: 'bold',
   },
   message: {
     backgroundColor: '#6B46D9',
