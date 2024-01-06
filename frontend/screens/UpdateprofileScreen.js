@@ -1,6 +1,7 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+import { useNavigation } from '@react-navigation/native';
 
 const ProfileUpdateScreen = () => {
   const [username, setUsername] = useState('');
@@ -8,17 +9,40 @@ const ProfileUpdateScreen = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [bio, setbio] = useState('');
-
+  const [imageUri, setImageUri] = useState(null);
   const navigation = useNavigation();
 
   const handleUpdateProfile = () => {
-    console.log('Update Profile:', { username, password, firstName, lastName });
-    navigation.navigate('profileScreen')
+    console.log('Update Profile:', { username, password, firstName, lastName, imageUri, bio });
+    navigation.navigate('profileScreen');
+  };
+  const handleSelectImage = async () => {
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+  
+    if (permissionResult.granted === false) {
+      alert("You've refused to allow this app to access your photos!");
+      return;
+    }
+  
+    const result = await ImagePicker.launchImageLibraryAsync();
+    if (!result.canceled && result.assets) {
+      const selectedImageUri = result.assets[0].uri;
+      setImageUri(selectedImageUri);
+    }
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Update Profile</Text>
+
+      <TouchableOpacity onPress={handleSelectImage} style={styles.imageHolder}>
+        {imageUri ? (
+          <Image source={{ uri: imageUri }} style={styles.image} />
+        ) : (
+          <Text>Select Image</Text>
+        )}
+      </TouchableOpacity>
+
       <TextInput
         style={styles.input}
         value={username}
@@ -45,13 +69,14 @@ const ProfileUpdateScreen = () => {
         onChangeText={setLastName}
         placeholder="Last Name"
       />
-       <TextInput
+      <TextInput
         style={styles.input}
         value={bio}
         onChangeText={setbio}
-        placeholder="bio"
+        placeholder="Bio"
       />
-       <TouchableOpacity style={styles.button} onPress={handleUpdateProfile}>
+
+      <TouchableOpacity style={styles.button} onPress={handleUpdateProfile}>
         <Text style={styles.buttonText}>Update Profile</Text>
       </TouchableOpacity>
     </View>
@@ -81,7 +106,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '100%',
-    backgroundColor: '#A78BFA', 
+    backgroundColor: '#A78BFA',
     padding: 15,
     borderRadius: 5,
     alignItems: 'center',
@@ -92,6 +117,21 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  imageHolder: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'gray',
+    overflow: 'hidden',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
 });
 

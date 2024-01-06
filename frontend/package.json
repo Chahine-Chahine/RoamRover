@@ -23,6 +23,7 @@
     "react": "18.2.0",
     "react-native": "0.72.6",
     "react-native-gesture-handler": "~2.12.0",
+    "react-native-image-picker": "^7.1.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-onboarding-swiper": "^1.2.0",
     "react-native-reanimated": "~3.3.0",
@@ -33,7 +34,8 @@
     "react-redux": "^9.0.4",
     "redux": "^5.0.1",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^3.1.0"
+    "redux-thunk": "^3.1.0",
+    "expo-image-picker": "~14.3.2"
   },
   "private": true
 }
