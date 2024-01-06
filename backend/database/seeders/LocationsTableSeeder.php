@@ -17,33 +17,30 @@ class LocationsTableSeeder extends Seeder
         [
             'title' => '3azme Caffe',
             'description' => 'Coffee shop in Beirut',
-            'estimatedPrice' => 20,
+            'estimated_price' => 20,
             'area' => 'Beirut Lebanon',
             'rating' => 5, 
             'image' => "http://192.168.0.116:8000/storage/images/3azme.png", 
-            'longitude' => 10.859874,
-            'latitude' => 1.05454808
+            'coordinates' => json_encode(['latitude' => 1.05454808, 'longitude' => 10.859874]),
         ],
         [
             'title' => 'China City',
             'description' => 'New concept for studying in natural environment',
-            'estimatedPrice' => 20,
+            'estimated_price' => 20,
             'area' => 'Ashrafieh Lebanon',
             'rating' => 4, 
             'image' => "http://192.168.0.116:8000/storage/images/chinacity.png", 
-            'longitude' => 10.85874,
-            'latitude' => 1.5454808
+            'coordinates' => json_encode(['latitude' => 1.054554808, 'longitude' => 10.89874]),
         ],
         [
            
             'title'=> 'Baalbeck Castle',
             'area'=> 'Baalbeck Lebanon',
             'description'=> 'Discover Your history who you really are',
-            'estimatedPrice'=> 10,
+            'estimated_price'=> 10,
             'rating' => 4, 
             'image'=> "http://192.168.0.116:8000/storage/images/Baalbeck.webp",
-            'longitude' => 10.858174,
-            'latitude' => 1.54544808
+            'coordinates' => json_encode(['latitude' => 1.05454808, 'longitude' => 10.859874]),
         ],
     ]);
     }

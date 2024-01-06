@@ -19,8 +19,8 @@ class UsersTableSeeder extends Seeder
             'username' => 'chahine',
             'email' => 'chahine@hotmail.com',
             'password' => Hash::make('Chahine123'), 
-            'firstName' => 'Chahine',
-            'lastName' => 'Chahine',
+            'first_name' => 'Chahine',
+            'last_name' => 'Chahine',
             'role_id' => 1, 
         ]);
 
@@ -29,8 +29,8 @@ class UsersTableSeeder extends Seeder
             'username' => 'Chris',
             'email' => 'Chris@hotmail.com',
             'password' => Hash::make('Chahine123'), 
-            'firstName' => 'Christopher',
-            'lastName' => 'Yammine',
+            'first_name' => 'Christopher',
+            'last_name' => 'Yammine',
         ]);
     }
 }
