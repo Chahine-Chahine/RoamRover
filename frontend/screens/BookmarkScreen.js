@@ -9,53 +9,40 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 const data = [
   {
     id: '1',
-    title: 'Sour Beach',
-    subtitle: 'Cloud 59 - Public beach',
-    price: '20$/individual',
-    image: require('../assets/3azme.png'), 
+    title: 'Qadisha Valley',
+    subtitle: 'Peace in a heartbeat',
+    price: '0$/individual',
+    image: require('../assets/qadisha-valley.jpg'), 
   },
   {
     id: '2',
     title: 'Dream Park',
     subtitle: 'It is called funfair for a reason',
     price: '20$/individual',
-    image: require('../assets/Baalbeck.webp'), 
+    image: require('../assets/funfair.jpg'), 
   },
   {
     id: '3',
-    title: 'Dream Park',
-    subtitle: 'It is called funfair for a reason',
-    price: '20$/individual',
+    title: 'Baalback Castle',
+    subtitle: 'Remember who you are',
+    price: '10$/individual',
     image: require('../assets/Baalbeck.webp'), 
   },
   {
     id: '4',
-    title: 'Dream Park',
-    subtitle: 'It is called funfair for a reason',
-    price: '20$/individual',
-    image: require('../assets/Baalbeck.webp'), 
+    title: 'Lady of Harrisa',
+    subtitle: 'Find your path through calmness',
+    price: '0$/individual',
+    image: require('../assets/Harrisa.jpg'), 
   },
-  {
-    id: '5',
-    title: 'Dream Park',
-    subtitle: 'It is called funfair for a reason',
-    price: '20$/individual',
-    image: require('../assets/Baalbeck.webp'), 
-  },
-  {
-    id: '6',
-    title: 'Dream Park',
-    subtitle: 'It is called funfair for a reason',
-    price: '20$/individual',
-    image: require('../assets/Baalbeck.webp'), 
-  },
+ 
 ];
 
 const BookmarkScreen = () => {
 
-  const renderRightActions = (progress, dragX) => {
+  const renderRightActions = () => {
     return (
-      <View style={{ width: 170, flexDirection: 'row' }}>
+      <View style={{ width: 190, flexDirection: 'row' }}>
         <TouchableOpacity onPress={() => console.log('Add Pressed')} style={styles.rightAction}>
           <Text style={styles.actionText}>Add</Text>
         </TouchableOpacity>
@@ -68,7 +55,7 @@ const BookmarkScreen = () => {
 
   const renderCard = ({ item }) => (
     <Swipeable renderRightActions={renderRightActions}>
-      <View style={[styles.card, { height: 140 }]}>
+      <View style={[styles.card, { height: 200 }]}>
         <Image source={item.image} style={styles.cardImage} />
         <View style={styles.cardContent}>
           <Text style={styles.title}>{item.title}</Text>
@@ -118,10 +105,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     elevation: 3,
     shadowOpacity: 0.1,
-    height: 150,
   },
   cardImage: {
-    width: 115,
+    width: '50%',
     height: '100%',
   },
   cardContent: {
@@ -140,12 +126,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   rightAction: {
-    height: 100,
+    height: 160,
     backgroundColor: '#A78BFA',
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-    top: 25
+    top: 35
     
   
   },
