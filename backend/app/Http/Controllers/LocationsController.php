@@ -13,44 +13,54 @@ class LocationsController extends Controller
         return Location::all();
     }
 
-    // POST /locations
-    public function createLocation(Request $request)
-    {
-        $validatedData = $request->validate([
-            'image' => 'required|string',
-            'description' => 'required|string',
-            'estimatedPrice' => 'required|numeric',
-            'title' => 'required|string',
-            'area' => 'required|string',
-            'rating' => 'required|integer',
-            'latitude' => 'required|numeric|between:-90,90',
-            'longitude' => 'required|numeric|between:-180,180',
-        ]);
-
-        $location = Location::create($validatedData);
-        return response()->json(['location' => $location, 'message' => 'Location created successfully'], 201);
-    }
-
-    // PUT /locations/{id}
-    public function updateLocation(Request $request, $id)
-    {
-        $location = Location::findOrFail($id);
-
-        $validatedData = $request->validate([
-            'image' => 'string',
-            'description' => 'string',
-            'estimatedPrice' => 'numeric',
-            'title' => 'string',
-            'area' => 'string',
-            'rating' => 'integer',
-            'latitude' => 'numeric|between:-90,90',
-            'longitude' => 'numeric|between:-180,180',
-        ]);
-
-        $location->fill($validatedData)->save();
-        return response()->json(['location' => $location, 'message' => 'Location updated successfully']);
-    }
-
+      // POST /locations
+      public function createLocation(Request $request)
+      {
+          $validatedData = $request->validate([
+              'image' => 'required|string',
+              'description' => 'required|string',
+              'estimatedPrice' => 'required|numeric',
+              'title' => 'required|string',
+              'area' => 'required|string',
+              'rating' => 'required|integer',
+              // Validate as an array
+              'coordinates' => 'required|array',
+              'coordinates.latitude' => 'required|numeric|between:-90,90',
+              'coordinates.longitude' => 'required|numeric|between:-180,180',
+          ]);
+  
+          // Convert coordinates to JSON
+          $validatedData['coordinates'] = json_encode($request->coordinates);
+  
+          $location = Location::create($validatedData);
+          return response()->json(['location' => $location, 'message' => 'Location created successfully'], 201);
+      }
+  
+      // PUT /locations/{id}
+      public function updateLocation(Request $request, $id)
+      {
+          $location = Location::findOrFail($id);
+  
+          $validatedData = $request->validate([
+              'image' => 'string',
+              'description' => 'string',
+              'estimatedPrice' => 'numeric',
+              'title' => 'string',
+              'area' => 'string',
+              'rating' => 'integer',
+              'coordinates' => 'array',
+              'coordinates.latitude' => 'numeric|between:-90,90',
+              'coordinates.longitude' => 'numeric|between:-180,180',
+          ]);
+  
+          if (isset($validatedData['coordinates'])) {
+              $validatedData['coordinates'] = json_encode($validatedData['coordinates']);
+          }
+  
+          $location->fill($validatedData)->save();
+          return response()->json(['location' => $location, 'message' => 'Location updated successfully']);
+      }
+      
     // GET /locations/{id}
     public function displayById($id)
     {
