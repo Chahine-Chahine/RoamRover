@@ -25,14 +25,14 @@ const NavigationBar = () => {
     <View style={styles.navigationBar}>
       <Icon name='home' size={30} onPress={navigatehome} />
       <Icon name='plus-circle' size={50} style={styles.plusButton} onPress={navigategenerate}/>
-      <Icon name='user'  size={30} onPress={navigateprofile}/>
+      <Icon name='user' solid size={30} onPress={navigateprofile}/>
     </View>
   );
 };
 
 const styles = {
   navigationBar: {
-    gap: 80,
+    gap: 60,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
