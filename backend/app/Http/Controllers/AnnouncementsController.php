@@ -10,7 +10,7 @@ class AnnouncementsController extends Controller
     public function createAnnouncement(Request $request)
     {
         $validatedData = $request->validate([
-            'announcementBody' => 'required|string',
+            'announcement_body' => 'required|string',
             'admin_id' => 'required|integer|exists:users,id',
             'receiver_id' => 'required|array', 
             'receiver_id.*' => 'integer|exists:users,id' 
@@ -25,7 +25,7 @@ class AnnouncementsController extends Controller
         $announcement = Announcement::findOrFail($id);
 
         $validatedData = $request->validate([
-            'announcementBody' => 'string',
+            'announcement_body' => 'string',
         ]);
 
         $announcement->update($validatedData);

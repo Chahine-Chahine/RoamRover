@@ -19,7 +19,7 @@ class LocationsController extends Controller
           $validatedData = $request->validate([
               'image' => 'required|string',
               'description' => 'required|string',
-              'estimatedPrice' => 'required|numeric',
+              'estimated_price' => 'required|numeric',
               'title' => 'required|string',
               'area' => 'required|string',
               'rating' => 'required|integer',
@@ -44,7 +44,7 @@ class LocationsController extends Controller
           $validatedData = $request->validate([
               'image' => 'string',
               'description' => 'string',
-              'estimatedPrice' => 'numeric',
+              'estimated_price' => 'numeric',
               'title' => 'string',
               'area' => 'string',
               'rating' => 'integer',
@@ -60,7 +60,7 @@ class LocationsController extends Controller
           $location->fill($validatedData)->save();
           return response()->json(['location' => $location, 'message' => 'Location updated successfully']);
       }
-      
+
     // GET /locations/{id}
     public function displayById($id)
     {

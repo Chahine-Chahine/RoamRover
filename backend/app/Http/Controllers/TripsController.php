@@ -11,8 +11,8 @@ class TripsController extends Controller
     public function createTrip(Request $request)
     {
         $validatedData = $request->validate([
-            'startingLocation' => 'required|string|max:255',
-            'totalBudget' => 'required|numeric',
+            'starting_location' => 'required|string|max:255',
+            'total_budget' => 'required|numeric',
             'receipt' => 'string|nullable',
             'room_id' => 'required|integer|exists:rooms,id',
             'stops' => 'required|array', 
@@ -49,8 +49,8 @@ class TripsController extends Controller
         $trip = Trip::findOrFail($id);
 
         $validatedData = $request->validate([
-            'startingLocation' => 'string|max:255',
-            'totalBudget' => 'numeric',
+            'starting_location' => 'string|max:255',
+            'total_budget' => 'numeric',
             'receipt' => 'string|nullable',
             'room_id' => 'integer|exists:rooms,id',
             'stops' => 'array',

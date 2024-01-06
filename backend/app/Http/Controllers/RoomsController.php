@@ -24,7 +24,7 @@ class RoomsController extends Controller
     public function createRoom(Request $request)
     {
         $validatedData = $request->validate([
-            'roomName' => 'required|string|max:255',
+            'room_name' => 'required|string|max:255',
             'creator_id' => 'required|integer|exists:users,id',
             'participants' => 'required|array',
             'participants.*' => 'integer|distinct|exists:users,id'
@@ -34,7 +34,7 @@ class RoomsController extends Controller
 
         try {
             $room = Room::create([
-                'roomName' => $validatedData['roomName'],
+                'room_name' => $validatedData['room_name'],
                 'creator_id' => $validatedData['creator_id'],
             ]);
 
