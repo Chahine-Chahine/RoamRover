@@ -48,17 +48,24 @@ const Questionnaire = () => {
     <View style={styles.container}>
       <Text style={styles.questionTitle}>{currentQuestion.question}</Text>
       {currentQuestion.answers && currentQuestion.answers.map((answer) => (
-        <TouchableOpacity
-          key={answer}
-          style={[
-            styles.answerButton,
-            selectedAnswers[currentQuestionIndex] === answer && styles.selectedAnswer
-          ]}
-          onPress={() => handleSelectAnswer(answer)}
-        >
-          <Text style={styles.answerText}>{answer}</Text>
-        </TouchableOpacity>
-      ))}
+  <TouchableOpacity
+    key={answer}
+    style={[
+      styles.answerButton,
+      selectedAnswers[currentQuestionIndex] === answer && styles.selectedAnswer
+    ]}
+    onPress={() => handleSelectAnswer(answer)}
+  >
+    <Text 
+      style={[
+        styles.answerText,
+        selectedAnswers[currentQuestionIndex] === answer && styles.selectedAnswerText
+      ]}
+    >
+      {answer}
+    </Text>
+  </TouchableOpacity>
+))}
       {currentQuestion.input && (
         <TextInput
           style={styles.input}
@@ -101,6 +108,11 @@ const styles = StyleSheet.create({
   },
   selectedAnswer: {
     backgroundColor: '#FF8566', 
+    borderColor: '#FF8566',
+  },
+  selectedAnswerText: {
+    color: 'white',
+    fontWeight: 'bold'
   },
   answerText: {
     fontSize: 16,
