@@ -15,12 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('image');
             $table->string('description');
-            $table->float('estimatedPrice');
+            $table->float('estimated_price');
             $table->string('title');
             $table->string('area');
             $table->integer('rating');
-            $table->decimal('latitude', 10, 7); 
-            $table->decimal('longitude', 11, 7); 
+            $table->json('coordinates'); 
             $table->timestamps();
         });
     }

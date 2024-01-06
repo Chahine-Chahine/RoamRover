@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
-            $table->string("announcementBody");
+            $table->string("announcement_body");
             $table->unsignedBigInteger("admin_id");
             $table->foreign('admin_id')->references('id')->on('users');
             $table->json('receiver_id'); 

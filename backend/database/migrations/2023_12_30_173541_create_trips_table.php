@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
-            $table->string('startingLocation');
-            $table->float('totalBudget');
+            $table->string('starting_location');
+            $table->float('total_budget');
             $table->string('receipt');
             $table->unsignedBigInteger('room_id');
             $table->foreign('room_id')->references('id')->on('rooms');
