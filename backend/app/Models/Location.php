@@ -11,7 +11,7 @@ class Location extends Model
     protected $fillable = [
         'image',
         'description',
-        'estimatedPrice',
+        'estimated_price',
         'title',
         'area',
         'rating',

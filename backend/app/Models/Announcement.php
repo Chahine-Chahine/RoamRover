@@ -9,7 +9,7 @@ class Announcement extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'announcementBody',
+        'announcement_body',
         'admin_id',
         'receiver_id'
     ];
