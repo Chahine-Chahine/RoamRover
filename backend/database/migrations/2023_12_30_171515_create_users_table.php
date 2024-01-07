@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('image_url')->nullable();
+            $table->longText('bio')->nullable();
             $table->unsignedBigInteger('role_id')->default(2);
             $table->foreign('role_id')->references('id')->on('roles');
             $table->timestamps();
