@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
   cardContent: {
     padding: 10,
     justifyContent: 'space-around',
+    width:'60%'
   },
   title: {
     fontSize: 18,
