@@ -70,9 +70,13 @@ export const loginUser = ({ email, password }) => {
 };
 
 // Logout action
-export const logoutUser = () => {
+export const logoutUser = (navigation) => {
   return (dispatch) => {
     dispatch({ type: LOGOUT });
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Signin' }], 
+    });
   };
 };
 
