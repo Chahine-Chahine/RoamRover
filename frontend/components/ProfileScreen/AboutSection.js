@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 
 const AboutSection = ({ aboutText }) => (
   <View style={styles.aboutSection}>
-    <Text style={styles.aboutTitle}>About</Text>
+    <Text style={styles.aboutTitle}>Bio</Text>
     <Text style={styles.aboutText}>{aboutText}</Text>
   </View>
 );

@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { connect } from 'react-redux';
+import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import NavigationBar from '../components/common/NavigationBar';
 import ProfileHeader from '../components/ProfileScreen/ProfileHeader';
 import ProfileInfo from '../components/ProfileScreen/ProfileInfo';
@@ -7,38 +8,39 @@ import AboutSection from '../components/ProfileScreen/AboutSection';
 import ActionButton from '../components/ProfileScreen/ActionButton';
 import { useNavigation } from '@react-navigation/native';
 
-
-const ProfileScreen = () => {
+const ProfileScreen = ({ user }) => {
   const navigation = useNavigation();
 
   const navigateBookmark = () => {
-    navigation.navigate('BookmarkScreen')
+    navigation.navigate('BookmarkScreen');
   };
 
-  const navigateprofileUpdate = ()=> {
-    navigation.navigate('ProfileUpdateScreen')
-  }
+  const navigateprofileUpdate = () => {
+    navigation.navigate('ProfileUpdateScreen');
+  };
+
   return (
     <>
       <ScrollView style={styles.container}>
         <ProfileHeader onBack={() => {}} />
         <ProfileInfo 
-          name="Chahine Chahine"
-          username="chahine"
+          name={`${user?.first_name || ''} ${user?.last_name || ''}`}
+          username={user?.username || ''}
           trips="Previous"
-          imageSource={require('../assets/img.png')}
+          imageSource={user?.image_url ? { uri: user.image_url } : require('../assets/img.png')}
         />
-        <AboutSection aboutText="I am fueled by an insatiable passion for extraordinary adventures. Embarking on a journey is not just a routine for me; it is a thrilling and invigorating experience that ignites my spirit. The anticipation of waking up to a new day and the prospect of setting out on a trip exhilarate me, as I embrace the unknown with an adventurous zeal. Each expedition becomes a canvas for me to paint vibrant memories and indulge in the joy of exploration." />
-      <View style={styles.actionContainer}>
-        <ActionButton title="Bookmarks" onPress={navigateBookmark}/>
-        <ActionButton title="Update profile" onPress={navigateprofileUpdate} />
-      </View>
+        <AboutSection aboutText={user?.bio || <Text>Add a bio in the update profile section please</Text>} />
       </ScrollView>
+      <View style={styles.actionNavigationWrapper}>
+        <View style={styles.actionContainer}>
+          <ActionButton title="Bookmarks" onPress={navigateBookmark}/>
+          <ActionButton title="Update profile" onPress={navigateprofileUpdate} />
+        </View>
       <NavigationBar/>
+      </View>
     </>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -46,10 +48,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   actionContainer: {
-    backgroundColor: '#FFF', 
-    marginVertical:15,
+    backgroundColor: '#FFF',
+    justifyContent: 'flex-end',
+    marginBottom: 20,
   },
+  actionNavigationWrapper: {
+    backgroundColor: '#fff'
+  }
 
 });
 
-export default ProfileScreen;
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.auth.user,
+  };
+};
+
+export default connect(mapStateToProps)(ProfileScreen);
