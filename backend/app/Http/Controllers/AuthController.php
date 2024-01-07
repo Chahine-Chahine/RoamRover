@@ -49,16 +49,18 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
             'first_name' => 'required|string|min:4',
             'last_name' => 'required|string|min:4',
+            'image_url' => 'nullable|string|max:255', 
         ]);
-
+    
         $user = User::create([
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'first_name' =>$request->first_name,
+            'first_name' => $request->first_name,
             'last_name' => $request->last_name,
+            'image_url' => $request->image_url, 
         ]);
-
+    
         $token = Auth::login($user);
         return response()->json([
             'status' => 'success',
