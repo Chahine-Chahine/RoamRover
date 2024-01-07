@@ -50,6 +50,7 @@ class AuthController extends Controller
             'first_name' => 'required|string|min:4',
             'last_name' => 'required|string|min:4',
             'image_url' => 'nullable|string|max:255', 
+            'bio' => 'nullable|longText|min:20',
         ]);
     
         $user = User::create([
@@ -59,6 +60,7 @@ class AuthController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'image_url' => $request->image_url, 
+            'bio' => $request->bio,
         ]);
     
         $token = Auth::login($user);
