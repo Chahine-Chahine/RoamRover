@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux'; 
+import { updateUser } from '../core/Redux/Actions/authActions'; 
 
 const ProfileUpdateScreen = () => {
   const [username, setUsername] = useState('');
@@ -10,20 +12,22 @@ const ProfileUpdateScreen = () => {
   const [lastName, setLastName] = useState('');
   const [bio, setbio] = useState('');
   const [imageUri, setImageUri] = useState(null);
+  const dispatch = useDispatch(); 
   const navigation = useNavigation();
 
   const handleUpdateProfile = () => {
-    console.log('Update Profile:', { username, password, firstName, lastName, imageUri, bio });
-    navigation.navigate('profileScreen');
+    dispatch(updateUser({ username, password, firstName, lastName, bio, imageUri }));
+    navigation.navigate('profileScreen'); 
   };
+
   const handleSelectImage = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-  
+
     if (permissionResult.granted === false) {
       alert("You've refused to allow this app to access your photos!");
       return;
     }
-  
+
     const result = await ImagePicker.launchImageLibraryAsync();
     if (!result.canceled && result.assets) {
       const selectedImageUri = result.assets[0].uri;
