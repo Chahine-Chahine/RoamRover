@@ -94,11 +94,13 @@ const styles = StyleSheet.create({
         marginBottom: 40,
     },
     input: {
-        height: 40,
-        borderBottomColor: "#aaaaaa",
-        borderBottomWidth: 1,
+        height: 60,
+        borderColor: "#aaaaaa", 
+        borderWidth: 1, 
+        borderRadius: 8, 
         marginBottom: 20,
         fontSize: 16,
+        paddingHorizontal: 10, 
     },
     forgotPassword: {
         color: "#aaaaaa",
