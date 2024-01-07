@@ -22,6 +22,7 @@ class UsersTableSeeder extends Seeder
             'first_name' => 'Chahine',
             'last_name' => 'Chahine',
             'role_id' => 1, 
+            'image_url' => 'http://192.168.43.29:8000/storage/images/Baalbeck.webp'
         ]);
 
         // Create a general user
