@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch } from 'react-redux'; 
+import { connect, useDispatch } from 'react-redux'; 
 import { updateUser } from '../core/Redux/Actions/authActions'; 
 
-const ProfileUpdateScreen = () => {
+const ProfileUpdateScreen = ({user}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -16,8 +16,12 @@ const ProfileUpdateScreen = () => {
   const navigation = useNavigation();
 
   const handleUpdateProfile = () => {
-    dispatch(updateUser({ username, password, firstName, lastName, bio, imageUri }));
+    if (user && user.id) {
+    dispatch(updateUser(user.id,{ username, password, firstName, lastName, bio, imageUri }));
     navigation.navigate('profileScreen'); 
+  }else {
+    console.error("User ID is not available for update.");
+  }
   };
 
   const handleSelectImage = async () => {
@@ -138,5 +142,10 @@ const styles = StyleSheet.create({
     height: '100%',
   },
 });
+const mapStateToProps = (state) => {
+  return {
+    user: state.auth.user,
+  };
+};
 
-export default ProfileUpdateScreen;
+export default connect(mapStateToProps)(ProfileUpdateScreen);
