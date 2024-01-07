@@ -81,10 +81,10 @@ export const logoutUser = (navigation) => {
 };
 
 // Update user action
-export const updateUser = (userData) => {
+export const updateUser = (user_id , userData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put('http://192.168.43.29:8000/api/update', userData);
+      const response = await axios.put(`http://192.168.43.29:8000/api/update/${user_id}`, userData);
       const data = response.data;
       if (data.status === 'success') {
         dispatch({
