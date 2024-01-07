@@ -96,4 +96,31 @@ class AuthController extends Controller
         ]);
     }
 
+    public function update(Request $request, $id)
+    {
+        $user = Auth::user();
+        $request->validate([
+            'username' => 'string|max:255|unique:users,username,' ,
+            'email' => 'string|email|max:255|unique:users,email,',
+            'first_name' => 'string|min:4',
+            'last_name' => 'string|min:4',
+            'image_url' => 'nullable|string|max:255',
+            'bio' => 'nullable|string|min:20',
+        ]);
+        $user->update([
+        'username' => $request->username ?? $user->username,
+        'email' => $request->email ?? $user->email,
+        'first_name' => $request->first_name ?? $user->first_name,
+        'last_name' => $request->last_name ?? $user->last_name,
+        'image_url' => $request->image_url ?? $user->image_url,
+        'bio' => $request->bio ?? $user->bio,
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Profile updated successfully',
+            'user' => $user
+        ]);
+    }
+
 }
