@@ -2,6 +2,7 @@ import axios from 'axios';
 import { LOGIN_SUCCESS, LOGIN_FAILURE } from './actionTypes';
 import { REGISTER_SUCCESS, REGISTER_FAILURE } from './actionTypes';
 import  {LOGOUT, UPDATE_SUCCESS, UPDATE_FAILURE } from './actionTypes';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Signup action
 export const registerUser = (userData) => {
@@ -39,13 +40,15 @@ export const loginUser = ({ email, password }) => {
     try {
       const response = await axios.post('http://192.168.43.29:8000/api/login', { email, password });
       const data = response.data;
-      if (data.status === 'success') {
+      if (data.status === 'success' && data.authorisation && data.authorisation.token) {
+        await AsyncStorage.setItem('userToken', data.authorisation.token);
         dispatch({
           type: LOGIN_SUCCESS,
           payload: {
-            token: data.token, 
+            token: data.authorisation.token, 
             user: data.user, 
-          }});
+          }
+        });
       } else {
         dispatch({
           type: LOGIN_FAILURE,
@@ -68,6 +71,7 @@ export const loginUser = ({ email, password }) => {
     }
   };
 };
+
 
 // Logout action
 export const logoutUser = (navigation) => {
