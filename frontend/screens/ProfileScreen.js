@@ -27,7 +27,7 @@ const ProfileScreen = ({ user }) => {
           name={`${user?.first_name || ''} ${user?.last_name || ''}`}
           username={user?.username || ''}
           trips="Previous"
-          imageSource={user?.image_url ? { uri: user.image_url } : require('../assets/img.png')}
+          imageSource={user?.image_url ? { uri: user.image_url } : require('../assets/Default_pfp.svg.png')}
         />
         <AboutSection aboutText={user?.bio || <Text>Add a bio in the update profile section please</Text>} />
       </ScrollView>
