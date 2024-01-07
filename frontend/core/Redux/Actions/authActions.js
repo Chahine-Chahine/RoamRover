@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { LOGIN_SUCCESS, LOGIN_FAILURE } from './actionTypes';
 import { REGISTER_SUCCESS, REGISTER_FAILURE } from './actionTypes';
+import  {LOGOUT, UPDATE_SUCCESS, UPDATE_FAILURE } from './actionTypes';
 
 // Signup action
 export const registerUser = (userData) => {
@@ -31,8 +32,6 @@ export const registerUser = (userData) => {
     }
   };
 };
-
-
 
 // login Action
 export const loginUser = ({ email, password }) => {
@@ -65,6 +64,39 @@ export const loginUser = ({ email, password }) => {
       dispatch({
         type: LOGIN_FAILURE,
         payload: errorMessage,
+      });
+    }
+  };
+};
+
+// Logout action
+export const logoutUser = () => {
+  return (dispatch) => {
+    dispatch({ type: LOGOUT });
+  };
+};
+
+// Update user action
+export const updateUser = (userData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put('http://192.168.43.29:8000/api/update', userData);
+      const data = response.data;
+      if (data.status === 'success') {
+        dispatch({
+          type: UPDATE_SUCCESS,
+          payload: data.user,
+        });
+      } else {
+        dispatch({
+          type: UPDATE_FAILURE,
+          payload: "Update failed. Please try again.",
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: UPDATE_FAILURE,
+        payload: error.response ? error.response.data.message : 'Network Error',
       });
     }
   };
