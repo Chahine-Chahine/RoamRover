@@ -2,10 +2,10 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5'; 
 
-const ProfileHeader = () => (
+const ProfileHeader = ({ onLogout }) => (
   <View style={styles.header}>
     <Text style={styles.headerTitle}>Profile</Text>
-    <TouchableOpacity style={styles.logoutBtn}>
+    <TouchableOpacity style={styles.logoutBtn} onPress={onLogout}>
       <Icon name="sign-out-alt" size={18} color="#fff" />
       <Text style={styles.logoutText}>Logout</Text>
     </TouchableOpacity>

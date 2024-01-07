@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import NavigationBar from '../components/common/NavigationBar';
 import ProfileHeader from '../components/ProfileScreen/ProfileHeader';
@@ -7,9 +7,11 @@ import ProfileInfo from '../components/ProfileScreen/ProfileInfo';
 import AboutSection from '../components/ProfileScreen/AboutSection';
 import ActionButton from '../components/ProfileScreen/ActionButton';
 import { useNavigation } from '@react-navigation/native';
+import { logoutUser } from '../core/Redux/Actions/authActions';
 
 const ProfileScreen = ({ user }) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const navigateBookmark = () => {
     navigation.navigate('BookmarkScreen');
@@ -19,10 +21,14 @@ const ProfileScreen = ({ user }) => {
     navigation.navigate('ProfileUpdateScreen');
   };
 
+  const handleLogout = () => {
+    dispatch(logoutUser(navigation));
+  };
+
   return (
     <>
       <ScrollView style={styles.container}>
-        <ProfileHeader onBack={() => {}} />
+        <ProfileHeader onLogout={handleLogout}/>
         <ProfileInfo 
           name={`${user?.first_name || ''} ${user?.last_name || ''}`}
           username={user?.username || ''}
