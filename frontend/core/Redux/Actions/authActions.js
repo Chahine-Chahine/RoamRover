@@ -9,7 +9,7 @@ export const registerUser = (userData) => {
   return async (dispatch) => {
     try {
       console.log('entered the try')
-      const response = await axios.post('http://192.168.43.29:8000/api/register', userData);
+      const response = await axios.post('http://192.168.0.116:8000/api/register', userData);
       console.log('after the response')
       console.log('the response: ' , response)
       const data = response.data;
@@ -38,7 +38,7 @@ export const registerUser = (userData) => {
 export const loginUser = ({ email, password }) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post('http://192.168.43.29:8000/api/login', { email, password });
+      const response = await axios.post('http://192.168.0.116:8000/api/login', { email, password });
       const data = response.data;
       if (data.status === 'success' && data.authorisation && data.authorisation.token) {
         await AsyncStorage.setItem('userToken', data.authorisation.token);
@@ -72,23 +72,42 @@ export const loginUser = ({ email, password }) => {
   };
 };
 
-
 // Logout action
 export const logoutUser = (navigation) => {
-  return (dispatch) => {
+  return async (dispatch) => {
+    await AsyncStorage.removeItem('userToken'); 
     dispatch({ type: LOGOUT });
     navigation.reset({
       index: 0,
-      routes: [{ name: 'Signin' }], 
+      routes: [{ name: 'Signin' }],
     });
   };
 };
 
+// Function to get the stored token
+const getToken = async () => {
+  try {
+    return await AsyncStorage.getItem('userToken');
+  } catch (error) {
+    console.error('Error getting token from AsyncStorage:', error);
+    return null;
+  }
+};
+
 // Update user action
-export const updateUser = (user_id ,userData) => {
+export const updateUser = (userId, userData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`http://192.168.43.29:8000/api/update/${user_id}`, userData);
+      const token = await getToken();
+      if (!token) {
+        throw new Error('No token found');
+      }
+      const response = await axios.put(`http://192.168.0.116:8000/api/update/${userId}`, userData, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
       const data = response.data;
       if (data.status === 'success') {
         dispatch({
