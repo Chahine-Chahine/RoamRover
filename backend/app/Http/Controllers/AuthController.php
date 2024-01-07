@@ -50,7 +50,7 @@ class AuthController extends Controller
             'first_name' => 'required|string|min:4',
             'last_name' => 'required|string|min:4',
             'image_url' => 'nullable|string|max:255', 
-            'bio' => 'nullable|longText|min:20',
+            'bio' => 'nullable|string|min:20',
         ]);
     
         $user = User::create([
@@ -100,8 +100,8 @@ class AuthController extends Controller
     {
         $user = Auth::user();
         $request->validate([
-            'username' => 'string|max:255|unique:users,username,' ,
-            'email' => 'string|email|max:255|unique:users,email,',
+            'username' => 'string|max:255|unique:users,username,' . $user->id,
+            'email' => 'string|email|max:255|unique:users,email,' . $user->id,
             'first_name' => 'string|min:4',
             'last_name' => 'string|min:4',
             'image_url' => 'nullable|string|max:255',
