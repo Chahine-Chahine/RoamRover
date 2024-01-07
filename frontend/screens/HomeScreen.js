@@ -36,7 +36,7 @@ const HomeScreen = () => {
                 </View>
                 <ScrollView style={styles.scrollView}>
                     {locations.map((location) => (
-                       <View key={location.id} style={styles.cardContainer}>
+                       <View key={location.id}>
                        <Card
                            onPress={() => navigateLocationPage(location)}
                            title={location.title}
@@ -74,17 +74,7 @@ const styles = StyleSheet.create({
         height: 200
     
     },
-    // cardContainer: {
-    //     marginHorizontal: 20,
-    //     marginVertical: 10,
-    //     borderRadius: 20,
-    //     borderColor: '#524077',
-    //     width: "90%",
-    //     display: 'flex',
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    //     backgroundColor: '#FFFF',
-    //   },
+   
     
 });
 

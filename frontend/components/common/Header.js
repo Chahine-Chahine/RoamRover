@@ -11,10 +11,11 @@ const Header = ({ user }) => {
     navigation.navigate('ChatRoomScreen');
   }
 
+  const imageSource = user?.image ? { uri: user.image } : require("../../assets/Default_pfp.svg.png");
   return (
     <View style={styles.header}>
       <View>
-        <Image style={styles.headerImage} source={{ uri: user?.image || "../../assets/chat-bg.jpg" }} />
+        <Image style={styles.headerImage} source={imageSource} />
       </View>
       <View style={styles.headerText}>
         <Text>Hello {user?.username || "Guest"}</Text>
