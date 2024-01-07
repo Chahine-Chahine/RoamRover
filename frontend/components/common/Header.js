@@ -11,7 +11,7 @@ const Header = ({ user }) => {
     navigation.navigate('ChatRoomScreen');
   }
 
-  const imageSource = user?.image ? { uri: user.image } : require("../../assets/Default_pfp.svg.png");
+  const imageSource = user?.image_url ? { uri: user.image_url } : require("../../assets/Default_pfp.svg.png");
   return (
     <View style={styles.header}>
       <View>
