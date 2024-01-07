@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const ProfileInfo = ({ name, age, trips, imageSource }) => {
+const ProfileInfo = ({ name, username, trips, imageSource }) => {
   const navigation = useNavigation();
 
   const navigateRooms = () => {
@@ -14,7 +14,7 @@ const ProfileInfo = ({ name, age, trips, imageSource }) => {
       <Image style={styles.profileImage} source={imageSource} />
       <View style={styles.profileHeader}>
         <Text style={styles.profileName}>{name}</Text>
-        <Text style={styles.profileAge}>{age}</Text>
+        <Text style={styles.profileUsername}>{username}</Text>
         <TouchableOpacity style={styles.tripButton} onPress={navigateRooms}>
           <Text style={styles.profileTrips}>{trips} Trips</Text>
         </TouchableOpacity>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 10,
       },
-      profileAge: {
+      profileUsername: {
         fontSize: 18,
         color: 'grey',
     },
