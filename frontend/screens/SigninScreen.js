@@ -37,7 +37,8 @@ const SignInScreen = () => {
 
 
     return (
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+        <ScrollView style={styles.container} >
+            <View style={styles.contentContainer}>
                 <Text style={styles.header}>Sign In</Text>
                 <Image source={require('../assets/signin.png')}/>
             <View>
@@ -73,6 +74,7 @@ const SignInScreen = () => {
                     </TouchableOpacity>
                 </View>
             </View>
+            </View>
         </ScrollView>
     );
 };
@@ -86,13 +88,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-
     },
     header: {
         color: "#A78BFA",
         fontSize: 34,
         fontWeight: "bold",
-        marginBottom: 40,
+        margin: 40
     },
     input: {
         height: 60,
