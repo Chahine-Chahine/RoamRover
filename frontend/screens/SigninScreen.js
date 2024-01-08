@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView , Image } from "react-native";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../core/Redux/Actions/authActions';
 
@@ -38,8 +38,9 @@ const SignInScreen = () => {
 
     return (
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-            <View>
                 <Text style={styles.header}>Sign In</Text>
+                <Image source={require('../assets/signin.png')}/>
+            <View>
                 <TextInput
                     style={styles.input}
                     placeholder="Email"
