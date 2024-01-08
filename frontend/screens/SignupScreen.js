@@ -36,8 +36,8 @@ const SignUpScreen = () => {
 
     return (
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-            <View>
                 <Text style={styles.header}>Sign Up</Text>
+            <View>
                 <TextInput
                     style={styles.input}
                     placeholder="Username"
