@@ -35,7 +35,9 @@ const SignUpScreen = () => {
     };
 
     return (
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+        <>
+        <ScrollView style={styles.container} >
+        <View style={styles.contentContainer}>
                 <Text style={styles.header}>Sign Up</Text>
             <View>
                 <TextInput
@@ -86,7 +88,9 @@ const SignUpScreen = () => {
                     </TouchableOpacity>
                 </View>
             </View>
+        </View>
         </ScrollView>
+        </>
     );
 };
 const styles = StyleSheet.create({
@@ -103,7 +107,7 @@ const styles = StyleSheet.create({
         color: "#A78BFA",
         fontSize: 34,
         fontWeight: "bold",
-        marginBottom: 40,
+        margin: 40,
     },
     input: {
         height: 60,
