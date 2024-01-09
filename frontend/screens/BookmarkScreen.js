@@ -8,7 +8,7 @@ import { fetchBookmarks } from '../core/Redux/Actions/bookmarkActions';
 
 const BookmarkScreen = () => {
   const dispatch = useDispatch();
-  const bookmarks = useSelector(state => state.bookmark.bookmarks); // Assuming bookmark is the key in your reducer
+  const bookmarks = useSelector(state => state.bookmark.bookmarks); 
 
   useEffect(() => {
     dispatch(fetchBookmarks());

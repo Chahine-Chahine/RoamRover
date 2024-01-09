@@ -22,7 +22,7 @@ export const fetchBookmarks = createAsyncThunk(
 export const createBookmark = createAsyncThunk(
     'bookmark/createBookmark',
     async ({ userId, locationId }) => {
-        const response = await axios.post(`${baseUrl}/api/bookmarks/create`, { user_id: userId, location_id: locationId });
+        const response = await axios.post(`${baseUrl}/api/bookmarks`, { user_id: userId, location_id: locationId });
         return response.data;
     }
 );
@@ -30,7 +30,7 @@ export const createBookmark = createAsyncThunk(
 export const deleteBookmark = createAsyncThunk(
     'bookmark/deleteBookmark',
     async ({ userId, locationId }) => {
-        const response = await axios.delete(`${baseUrl}/api/bookmarks/delete`, { data: { user_id: userId, location_id: locationId }});
+        const response = await axios.delete(`${baseUrl}/api/bookmarks/${locationId}`, { data: { user_id: userId }});
         return response.data;
     }
 );

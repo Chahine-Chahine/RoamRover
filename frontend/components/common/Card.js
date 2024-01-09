@@ -1,24 +1,19 @@
 import React, { useState } from 'react';
-import OutlinedButton from "./OutlinedButton";
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity , Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { useDispatch } from 'react-redux';
-import { createBookmark, deleteBookmark } from '../../core/Redux/Actions/bookmarkActions'; 
+import OutlinedButton from "./OutlinedButton";
 
-const Card = ({ title, description, price, url, locationId, showBookmark = false }) => {
+
+const Card = ({ onPress, title , description , price , url, location, label,  showBookmark = false, style}) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const dispatch = useDispatch();
-  const userId = 1; 
 
-  const bookmarktoggle = () => {
-    if (isBookmarked) {
-      dispatch(deleteBookmark({ userId, locationId }));
-      setIsBookmarked(false);
-    } else {
-      dispatch(createBookmark({ userId, locationId }));
-      setIsBookmarked(true);
+  let bookmarktoggle = () => {
+    if (isBookmarked == true){
+      return setIsBookmarked(false)
+    }else{
+      setIsBookmarked(true)
     }
-  };
+  }
   return (
     <TouchableOpacity  onPress={() => onPress(location)} style={styles.fullScreen}>
       <View style={styles.containerStyle}>
