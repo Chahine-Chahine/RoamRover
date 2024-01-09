@@ -1,39 +1,29 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-import axios from 'axios'; 
-import {
-    ADD_BOOKMARK,
-    SET_BOOKMARKS,
-    REMOVE_BOOKMARK
-} from './actionTypes';
+const baseUrl = 'http://192.168.43.29:8000';
 
-const baseUrl = 'http://192.168.43.29';
-
-const API_ENDPOINT = `${baseUrl}`;
-
-// Add Bookmark
-export const addBookmark = (bookmark) => ({
-    type: ADD_BOOKMARK,
-    payload: bookmark,
-});
-
-// Set All Bookmarks
-export const setBookmarks = (bookmarks) => ({
-    type: SET_BOOKMARKS,
-    payload: bookmarks,
-});
-
-// Remove Bookmark
-export const removeBookmark = (bookmarkId) => ({
-    type: REMOVE_BOOKMARK,
-    payload: bookmarkId,
-});
-
-// Create a new bookmark
-export const createBookmark = (userId, locationId) => async (dispatch) => {
-    try {
-        const response = await axios.post(`${API_ENDPOINT}/bookmarks/create`, { user_id: userId, location_id: locationId });
-        dispatch(addBookmark(response.data.bookmark));
-    } catch (error) {
-        console.error('Error creating bookmark', error);
+// Async Thunk Actions
+export const createBookmark = createAsyncThunk(
+    'bookmark/createBookmark',
+    async ({ userId, locationId }) => {
+        const response = await axios.post(`${baseUrl}/api/bookmarks/create`, { user_id: userId, location_id: locationId });
+        return response.data.bookmark;
     }
-};
+);
+
+export const fetchBookmarks = createAsyncThunk(
+    'bookmark/fetchBookmarks',
+    async () => {
+        const response = await axios.get(`${baseUrl}/api/bookmarks`);
+        return response.data;
+    }
+);
+
+export const deleteBookmark = createAsyncThunk(
+    'bookmark/deleteBookmark',
+    async (bookmarkId) => {
+        await axios.delete(`${baseUrl}/api/bookmarks/${bookmarkId}`);
+        return bookmarkId;
+    }
+);
