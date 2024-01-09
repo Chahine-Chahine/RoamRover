@@ -1,14 +1,14 @@
 
 import axios from 'axios'; 
+import {
+    ADD_BOOKMARK,
+    SET_BOOKMARKS,
+    REMOVE_BOOKMARK
+} from './actionTypes';
 
 const baseUrl = 'http://192.168.43.29';
 
-export const ADD_BOOKMARK = 'ADD_BOOKMARK';
-export const SET_BOOKMARKS = 'SET_BOOKMARKS';
-export const REMOVE_BOOKMARK = 'REMOVE_BOOKMARK';
-
-
-const API_ENDPOINT = `${baseUrl}/bookmarks`;
+const API_ENDPOINT = `${baseUrl}`;
 
 // Add Bookmark
 export const addBookmark = (bookmark) => ({
@@ -28,4 +28,12 @@ export const removeBookmark = (bookmarkId) => ({
     payload: bookmarkId,
 });
 
-
+// Create a new bookmark
+export const createBookmark = (userId, locationId) => async (dispatch) => {
+    try {
+        const response = await axios.post(`${API_ENDPOINT}/bookmarks/create`, { user_id: userId, location_id: locationId });
+        dispatch(addBookmark(response.data.bookmark));
+    } catch (error) {
+        console.error('Error creating bookmark', error);
+    }
+};
