@@ -28,18 +28,24 @@ const BookmarkScreen = () => {
     );
   };
 
-  const renderCard = ({ item }) => (
-    <Swipeable renderRightActions={() => renderRightActions(item.id)}>
-      <View style={[styles.card, { height: 200 }]}>
-        <Image source={{ uri: item.location.image }} style={styles.cardImage} />
-        <View style={styles.cardContent}>
-          <Text style={styles.title}>{item.location.title}</Text>
-          <Text style={styles.subtitle}>{item.location.description}</Text>
-          <Text style={styles.price}>{item.location.estimated_price}$</Text>
-        </View>
-      </View>
-    </Swipeable>
-  );
+  const renderCard = ({ item }) => {
+    if (!item || !item.location) {
+        return null;
+    }
+
+    return (
+        <Swipeable renderRightActions={() => renderRightActions(item.id)}>
+            <View style={[styles.card, { height: 200 }]}>
+                <Image source={{ uri: item.location.image }} style={styles.cardImage} />
+                <View style={styles.cardContent}>
+                    <Text style={styles.title}>{item.location.title}</Text>
+                    <Text style={styles.subtitle}>{item.location.description}</Text>
+                    <Text style={styles.price}>{`${item.location.estimated_price}$`}</Text>
+                </View>
+            </View>
+        </Swipeable>
+    );
+};
   return (
     <>
       <GestureHandlerRootView style={{ flex: 1 }}>
@@ -48,10 +54,10 @@ const BookmarkScreen = () => {
             <Text style={styles.mainTitle}>Let’s Check What’s saved!</Text>
           </View>
           <FlatList
-            data={bookmarks}
-            renderItem={renderCard}
-            keyExtractor={item => item.id}
-          />
+        data={bookmarks}
+        renderItem={renderCard}
+        keyExtractor={(item, index) => item && item.id ? item.id.toString() : `unknown-${index}`}
+    />
         </SafeAreaView>
         <NavigationBar />
       </GestureHandlerRootView>
