@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
 
 const ChatRoomScreen = () => {
@@ -7,6 +7,11 @@ const ChatRoomScreen = () => {
 
   return (
     <>
+     <ImageBackground 
+      source={require('../assets/chat-bg.jpg')}
+      style={styles.backgroundImage}
+      imageStyle={styles.backgroundImageStyle}
+    >
       <View style={styles.header}>
         <Ionicons name="chevron-back-outline" size={24} color="#6B46D9" />
         <Text style={styles.chatRoomName}>Chat room name</Text>
@@ -37,6 +42,7 @@ const ChatRoomScreen = () => {
           <Ionicons name="send" size={24} color="#6B46D9" />
         </TouchableOpacity>
       </View>
+      </ImageBackground>
       </>
   );
 };
