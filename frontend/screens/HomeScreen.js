@@ -32,6 +32,8 @@ const HomeScreen = () => {
             <View style={styles.container}>
                 <View style={styles.header}>
                 <Header />
+                </View>
+                <View style={styles.searchView}>
                 <Search />
                 </View>
                 <ScrollView style={styles.scrollView}>
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         gap: 30,
-        height: 200
+        height: 140
     
     },
    
