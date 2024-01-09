@@ -4,12 +4,15 @@ import { REGISTER_SUCCESS, REGISTER_FAILURE } from './actionTypes';
 import  {LOGOUT, UPDATE_SUCCESS, UPDATE_FAILURE } from './actionTypes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
+const baseUrl = 'http://192.168.43.29';
+
 // Signup action
 export const registerUser = (userData) => {
   return async (dispatch) => {
     try {
       console.log('entered the try')
-      const response = await axios.post('http://192.168.0.116:8000/api/register', userData);
+      const response = await axios.post(`${baseUrl}:8000/api/register`, userData);
       console.log('after the response')
       console.log('the response: ' , response)
       const data = response.data;
@@ -38,7 +41,7 @@ export const registerUser = (userData) => {
 export const loginUser = ({ email, password }) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post('http://192.168.0.116:8000/api/login', { email, password });
+      const response = await axios.post(`${baseUrl}:8000/api/login`, { email, password });
       const data = response.data;
       if (data.status === 'success' && data.authorisation && data.authorisation.token) {
         await AsyncStorage.setItem('userToken', data.authorisation.token);
@@ -102,7 +105,7 @@ export const updateUser = (userId, userData) => {
       if (!token) {
         throw new Error('No token found');
       }
-      const response = await axios.put(`http://192.168.0.116:8000/api/update/${userId}`, userData, {
+      const response = await axios.put(`${baseUrl}:8000/api/update/${userId}`, userData, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },

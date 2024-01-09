@@ -4,12 +4,13 @@ import {
     FETCH_LOCATIONS_FAILURE
 } from './actionTypes';
 
+const baseUrl = 'http://192.168.43.29';
 
 export const fetchLocations = () => {
     return async (dispatch) => {
         try {
             dispatch({ type: FETCH_LOCATIONS_REQUEST });
-            const response = await fetch('http://192.168.0.116:8000/api/locations');
+            const response = await fetch(`${baseUrl}:8000/api/locations`);
             const data = await response.json();
             dispatch({ type: FETCH_LOCATIONS_SUCCESS, payload: data });
         } catch (error) {
