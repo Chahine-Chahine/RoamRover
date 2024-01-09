@@ -1,31 +1,36 @@
-// reducers/bookmarkReducer.js
-
-import { ADD_BOOKMARK, SET_BOOKMARKS, REMOVE_BOOKMARK } from '../Actions/bookmarkActions';
+import { createSlice } from '@reduxjs/toolkit';
+import { createBookmark, fetchBookmarks, deleteBookmark } from './bookmarkActions';
 
 const initialState = {
     bookmarks: [],
+    loading: false,
+    error: null,
 };
 
-const bookmarkReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case ADD_BOOKMARK:
-            return {
-                ...state,
-                bookmarks: [...state.bookmarks, action.payload],
-            };
-        case SET_BOOKMARKS:
-            return {
-                ...state,
-                bookmarks: action.payload,
-            };
-        case REMOVE_BOOKMARK:
-            return {
-                ...state,
-                bookmarks: state.bookmarks.filter(bookmark => bookmark.id !== action.payload),
-            };
-        default:
-            return state;
-    }
-};
+const bookmarkSlice = createSlice({
+    name: 'bookmark',
+    initialState,
+    reducers: {},
+    extraReducers: {
+        [createBookmark.fulfilled]: (state, action) => {
+            state.bookmarks.push(action.payload);
+        },
+        [fetchBookmarks.fulfilled]: (state, action) => {
+            state.bookmarks = action.payload;
+        },
+        [deleteBookmark.fulfilled]: (state, action) => {
+            state.bookmarks = state.bookmarks.filter(bookmark => bookmark.id !== action.payload);
+        },
+        [createBookmark.rejected]: (state, action) => {
+            state.error = action.error.message;
+        },
+        [fetchBookmarks.rejected]: (state, action) => {
+            state.error = action.error.message;
+        },
+        [deleteBookmark.rejected]: (state, action) => {
+            state.error = action.error.message;
+        },
+    },
+});
 
-export default bookmarkReducer;
+export default bookmarkSlice.reducer;
