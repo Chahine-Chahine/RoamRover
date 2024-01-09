@@ -20,7 +20,7 @@ const LocationDetailScreen = () => {
            subtitle={location.area}
            description={location.description}
            imageSource={location.image}
-           estPrice={location.estimatedPrice}
+           estPrice={location.estimated_price}
            onCheckMap={() => {/* navigation logic for Check on Map */}}
            onAdd={() => {/* logic to handle Add action */}}
            />
