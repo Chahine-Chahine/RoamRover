@@ -31,16 +31,15 @@ const BookmarkScreen = () => {
   const renderCard = ({ item }) => (
     <Swipeable renderRightActions={() => renderRightActions(item.id)}>
       <View style={[styles.card, { height: 200 }]}>
-        <Image source={{ uri: item.image }} style={styles.cardImage} />
+        <Image source={{ uri: item.location.image }} style={styles.cardImage} />
         <View style={styles.cardContent}>
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.subtitle}>{item.subtitle}</Text>
-          <Text style={styles.price}>{item.price}</Text>
+          <Text style={styles.title}>{item.location.title}</Text>
+          <Text style={styles.subtitle}>{item.location.description}</Text>
+          <Text style={styles.price}>{item.location.estimated_price}$</Text>
         </View>
       </View>
     </Swipeable>
   );
-
   return (
     <>
       <GestureHandlerRootView style={{ flex: 1 }}>
