@@ -58,6 +58,7 @@ Route::controller(BookmarksController::class)->group(function (){
     Route::post('/bookmarks' , 'createBookmark');
     Route::get('/bookmarks' , 'displayAllBookmarks');
     Route::get('/bookmarks/{id}' , 'displayById');
+    Route::get('displayUserBookmarks', 'displayUserBookmarks');
     Route::delete('/bookmarks/{id}', 'deleteBookmark');
 });
 
