@@ -29,6 +29,15 @@ class BookmarksController extends Controller
         return Bookmark::with('location')->findOrFail($id);
     }
 
+    public function displayUserBookmarks(Request $request)
+{
+    $userId = $request->user()->id;
+    $bookmarks = Bookmark::with('location')
+                         ->where('user_id', $userId)
+                         ->get();
+
+    return response()->json($bookmarks);
+}
 
     // Delete a bookmark
     public function deleteBookmark($id)
