@@ -8,12 +8,12 @@ import { fetchBookmarks } from '../core/Redux/Actions/bookmarkActions';
 
 const BookmarkScreen = () => {
   const dispatch = useDispatch();
-  const { bookmarks } = useSelector(state => state.bookmark); 
+  const bookmarks = useSelector(state => state.bookmark.bookmarks); // Assuming bookmark is the key in your reducer
 
   useEffect(() => {
     dispatch(fetchBookmarks());
   }, [dispatch]);
-
+  
   // Right swipe actions
   const renderRightActions = (id) => {
     return (

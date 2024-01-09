@@ -14,8 +14,15 @@ export const createBookmark = createAsyncThunk(
 
 export const fetchBookmarks = createAsyncThunk(
     'bookmark/fetchBookmarks',
-    async () => {
-        const response = await axios.get(`${baseUrl}/api/bookmarks`);
+    async (_, { getState }) => {
+        const state = getState();
+        const token = state.auth.token; 
+
+        const response = await axios.get(`${baseUrl}/api/bookmarks/user`, {
+            headers: {
+                Authorization: `Bearer ${token}` 
+            }
+        });
         return response.data;
     }
 );
