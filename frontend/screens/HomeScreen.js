@@ -14,7 +14,8 @@ const HomeScreen = () => {
     const dispatch = useDispatch();
     const { locations, loading, error } = useSelector(state => state.locations);
     const { bookmarks } = useSelector(state => state.bookmark);
-    const USER_ID = 1; 
+    const user = useSelector(state => state.auth.user); 
+    const USER_ID = user ? user.id : null;
 
     useEffect(() => {
         dispatch(fetchLocations());
@@ -33,7 +34,9 @@ const HomeScreen = () => {
             const bookmarkId = bookmarks.find(bookmark => bookmark.locationId === location.id).id;
             dispatch(deleteBookmark(bookmarkId));
         } else {
-            dispatch(createBookmark({ userId: USER_ID, locationId: location.id }));
+            if (USER_ID) {
+                dispatch(createBookmark({ userId: USER_ID, locationId: location.id }));
+            }
         }
     };
 
