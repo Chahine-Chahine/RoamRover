@@ -18,7 +18,7 @@ export const fetchBookmarks = createAsyncThunk(
         const state = getState();
         const token = state.auth.token; 
 
-        const response = await axios.get(`${baseUrl}/api/bookmarks/user`, {
+        const response = await axios.get(`${baseUrl}/api/displayUserBookmarks`, {
             headers: {
                 Authorization: `Bearer ${token}` 
             }
