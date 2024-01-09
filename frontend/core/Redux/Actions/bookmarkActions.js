@@ -21,8 +21,16 @@ export const fetchBookmarks = createAsyncThunk(
 // Async Thunk Actions
 export const createBookmark = createAsyncThunk(
     'bookmark/createBookmark',
-    async ({ userId, locationId }) => {
-        const response = await axios.post(`${baseUrl}/api/bookmarks`, { user_id: userId, location_id: locationId });
+    async ({ userId, locationId }, { getState }) => {
+        const token = getState().auth.token;
+        const response = await axios.post(`${baseUrl}/api/bookmarks`, 
+            { user_id: userId, location_id: locationId },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}` 
+                }
+            }
+        );
         return response.data;
     }
 );

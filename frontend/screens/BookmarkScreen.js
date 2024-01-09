@@ -50,7 +50,7 @@ const BookmarkScreen = () => {
           <FlatList
             data={bookmarks}
             renderItem={renderCard}
-            keyExtractor={item => item.id.toString()}
+            keyExtractor={item => item.id}
           />
         </SafeAreaView>
         <NavigationBar />
