@@ -39,7 +39,7 @@ const ChatRoomScreen = () => {
           placeholderTextColor="#6B46D9"
         />
         <TouchableOpacity style={styles.sendButton}>
-          <Ionicons name="send" size={24} color="#6B46D9" />
+          <Ionicons name="send" size={24} color="#fff" />
         </TouchableOpacity>
       </View>
       </ImageBackground>
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     padding: 10,
+    marginLeft: 10
   },
   input: {
     flex: 1,
@@ -109,13 +110,12 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingHorizontal: 20,
     marginRight: 10,
-    borderWidth: 1,
-    borderColor: '#6B46D9',
     color: '#6B46D9',
   },
   sendButton: {
     borderRadius: 25,
     padding: 10,
+    
   },
 });
 
