@@ -11,25 +11,26 @@ const bookmarkSlice = createSlice({
     name: 'bookmark',
     initialState,
     reducers: {},
-    extraReducers: {
-        [createBookmark.fulfilled]: (state, action) => {
-            state.bookmarks.push(action.payload);
-        },
-        [fetchBookmarks.fulfilled]: (state, action) => {
-            state.bookmarks = action.payload;
-        },
-        [deleteBookmark.fulfilled]: (state, action) => {
-            state.bookmarks = state.bookmarks.filter(bookmark => bookmark.id !== action.payload);
-        },
-        [createBookmark.rejected]: (state, action) => {
-            state.error = action.error.message;
-        },
-        [fetchBookmarks.rejected]: (state, action) => {
-            state.error = action.error.message;
-        },
-        [deleteBookmark.rejected]: (state, action) => {
-            state.error = action.error.message;
-        },
+    extraReducers: (builder) => {
+        builder
+            .addCase(createBookmark.fulfilled, (state, action) => {
+                state.bookmarks.push(action.payload);
+            })
+            .addCase(fetchBookmarks.fulfilled, (state, action) => {
+                state.bookmarks = action.payload;
+            })
+            .addCase(deleteBookmark.fulfilled, (state, action) => {
+                state.bookmarks = state.bookmarks.filter(bookmark => bookmark.id !== action.payload);
+            })
+            .addCase(createBookmark.rejected, (state, action) => {
+                state.error = action.error.message;
+            })
+            .addCase(fetchBookmarks.rejected, (state, action) => {
+                state.error = action.error.message;
+            })
+            .addCase(deleteBookmark.rejected, (state, action) => {
+                state.error = action.error.message;
+            });
     },
 });
 
