@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createBookmark, fetchBookmarks, deleteBookmark } from './bookmarkActions';
+import { createBookmark, fetchBookmarks, deleteBookmark } from '../Actions/bookmarkActions';
 
 const initialState = {
     bookmarks: [],

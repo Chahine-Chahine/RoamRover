@@ -1,52 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { SafeAreaView, View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import NavigationBar from '../components/common/NavigationBar';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
-
-
-const data = [
-  {
-    id: '1',
-    title: 'Qadisha Valley',
-    subtitle: 'Peace in a heartbeat',
-    price: '0$/individual',
-    image: require('../assets/qadisha-valley.jpg'), 
-  },
-  {
-    id: '2',
-    title: 'Dream Park',
-    subtitle: 'It is called funfair for a reason',
-    price: '20$/individual',
-    image: require('../assets/funfair.jpg'), 
-  },
-  {
-    id: '3',
-    title: 'Baalback Castle',
-    subtitle: 'Remember who you are',
-    price: '10$/individual',
-    image: require('../assets/Baalbeck.webp'), 
-  },
-  {
-    id: '4',
-    title: 'Lady of Harrisa',
-    subtitle: 'Find your path through calmness',
-    price: '0$/individual',
-    image: require('../assets/Harrisa.jpg'), 
-  },
- 
-];
+import { fetchBookmarks } from '../core/Redux/Actions/bookmarkActions'; 
 
 const BookmarkScreen = () => {
+  const dispatch = useDispatch();
+  const { bookmarks } = useSelector(state => state.bookmark); 
 
-  const renderRightActions = () => {
+  useEffect(() => {
+    dispatch(fetchBookmarks());
+  }, [dispatch]);
+
+  // Right swipe actions
+  const renderRightActions = (id) => {
     return (
       <View style={{ width: 190, flexDirection: 'row' }}>
-        <TouchableOpacity onPress={() => console.log('Add Pressed')} style={styles.rightAction}>
+        <TouchableOpacity onPress={() => console.log('Add Pressed', id)} style={styles.rightAction}>
           <Text style={styles.actionText}>Add</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => console.log('Delete Pressed')} style={[styles.rightAction, { backgroundColor: '#FF8556' }]}>
+        <TouchableOpacity onPress={() => console.log('Delete Pressed', id)} style={[styles.rightAction, { backgroundColor: '#FF8556' }]}>
           <Text style={styles.actionText}>Delete</Text>
         </TouchableOpacity>
       </View>
@@ -54,9 +29,9 @@ const BookmarkScreen = () => {
   };
 
   const renderCard = ({ item }) => (
-    <Swipeable renderRightActions={renderRightActions}>
+    <Swipeable renderRightActions={() => renderRightActions(item.id)}>
       <View style={[styles.card, { height: 200 }]}>
-        <Image source={item.image} style={styles.cardImage} />
+        <Image source={{ uri: item.image }} style={styles.cardImage} />
         <View style={styles.cardContent}>
           <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.subtitle}>{item.subtitle}</Text>
@@ -68,18 +43,18 @@ const BookmarkScreen = () => {
 
   return (
     <>
-     <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaView style={styles.container}>
-        <View>
-          <Text style={styles.mainTitle}>Let’s Check What’s saved!</Text>
-        </View>
-        <FlatList
-          data={data}
-          renderItem={renderCard}
-          keyExtractor={item => item.id}
-        />
-      </SafeAreaView>
-      <NavigationBar/>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <SafeAreaView style={styles.container}>
+          <View>
+            <Text style={styles.mainTitle}>Let’s Check What’s saved!</Text>
+          </View>
+          <FlatList
+            data={bookmarks}
+            renderItem={renderCard}
+            keyExtractor={item => item.id.toString()}
+          />
+        </SafeAreaView>
+        <NavigationBar />
       </GestureHandlerRootView>
     </>
   );
