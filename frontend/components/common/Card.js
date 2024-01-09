@@ -45,6 +45,7 @@ const styles = {
     alignItems: 'center',
   },
   cardWrapper: {
+    elevation: 2,
     flexDirection: "column",
     width: 300, 
     height: 200, 
