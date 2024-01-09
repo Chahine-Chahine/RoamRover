@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView , Image} from "react-native";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../core/Redux/Actions/authActions';
@@ -39,6 +39,7 @@ const SignUpScreen = () => {
         <ScrollView style={styles.container} >
         <View style={styles.contentContainer}>
                 <Text style={styles.header}>Sign Up</Text>
+                <Image source={require('../assets/signup.png')}/>
             <View>
                 <TextInput
                     style={styles.input}
@@ -107,14 +108,15 @@ const styles = StyleSheet.create({
         color: "#A78BFA",
         fontSize: 34,
         fontWeight: "bold",
-        margin: 40,
+        margin: 30,
+
     },
     input: {
-        height: 60,
+        height: 55,
         borderColor: "#aaaaaa", 
         borderWidth: 1, 
         borderRadius: 8, 
-        marginBottom: 20,
+        marginBottom: 10,
         fontSize: 16,
         paddingHorizontal: 10, 
     },
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 120,
         borderRadius: 10,
-        marginTop: 30,
+        marginTop: 20,
     },
     buttonText: {
         color: "#fff",
@@ -134,7 +136,7 @@ const styles = StyleSheet.create({
     signupContainer: {
         flexDirection: "row",
         justifyContent: "center",
-        marginTop: 20,
+        marginTop: 10,
     },
     signupText: {
         color: "#aaaaaa",
