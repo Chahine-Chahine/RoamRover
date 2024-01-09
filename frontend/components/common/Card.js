@@ -1,41 +1,52 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity , Image} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import OutlinedButton from "./OutlinedButton";
 
+const Card = ({ onPress, title, description, price, url, location, label, showBookmark = false, style, onBookmarkPress, isBookmarkedInitially }) => {
+    const [isBookmarked, setIsBookmarked] = useState(isBookmarkedInitially);
 
-const Card = ({ onPress, title , description , price , url, location, label,  showBookmark = false, style}) => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
+    useEffect(() => {
+        setIsBookmarked(isBookmarkedInitially);
+    }, [isBookmarkedInitially]);
 
-  let bookmarktoggle = () => {
-    if (isBookmarked == true){
-      return setIsBookmarked(false)
-    }else{
-      setIsBookmarked(true)
-    }
-  }
-  return (
-    <TouchableOpacity  onPress={() => onPress(location)} style={styles.fullScreen}>
-      <View style={styles.containerStyle}>
-      <View style={styles.cardWrapper}>
-        <View >
-          <Image source={{uri: url}} style={styles.cardImage}/>
-        </View>
-        <View style={styles.contentWrapper}>
-          <View style={styles.leftCard}>
-            <Text style={styles.title}>{title}</Text>
-            <Text>{description}</Text>
-            <Text>{price}</Text>
-          </View>
-          <View style={styles.rightCard}>
-            {showBookmark && <Icon name='bookmark'  onPress={bookmarktoggle} solid={isBookmarked} size={22} style={styles.bookmark}  />}
-            <OutlinedButton label={'join'} style={styles.OutlinedButton} onPress={() => console.log("working")} />
+    const handleBookmarkToggle = () => {
+        setIsBookmarked(!isBookmarked);
+        if (onBookmarkPress) {
+            onBookmarkPress();
+        }
+    };
+
+    return (
+        <TouchableOpacity onPress={() => onPress(location)} style={styles.fullScreen}>
+            <View style={styles.containerStyle}>
+                <View style={styles.cardWrapper}>
+                    <View>
+                        <Image source={{ uri: url }} style={styles.cardImage} />
+                    </View>
+                    <View style={styles.contentWrapper}>
+                        <View style={styles.leftCard}>
+                            <Text style={styles.title}>{title}</Text>
+                            <Text>{description}</Text>
+                            <Text>{price}</Text>
+                        </View>
+                        <View style={styles.rightCard}>
+                            {showBookmark && (
+                                <Icon
+                                    name='bookmark'
+                                    onPress={handleBookmarkToggle}
+                                    solid={isBookmarked}
+                                    size={22}
+                                    style={styles.bookmark}
+                                />
+                            )}
+                            <OutlinedButton label={'join'} style={styles.OutlinedButton} onPress={() => console.log("working")} />
+                        </View>
+                    </View>
+                </View>
             </View>
-          </View>
-        </View>
-      </View>
-    </TouchableOpacity>
-  );
+        </TouchableOpacity>
+    );
 };
 
 const styles = {

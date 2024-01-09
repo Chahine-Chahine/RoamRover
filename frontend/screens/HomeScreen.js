@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { View,Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLocations } from '../core/Redux/Actions/locationActions';
+import { createBookmark, deleteBookmark, fetchBookmarks } from '../core/Redux/Actions/bookmarkActions';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/common/Header';
 import Search from '../components/common/Search';
@@ -10,14 +11,15 @@ import NavigationBar from '../components/common/NavigationBar';
 import LoadingScreen from './LoadingScreen';
 
 const HomeScreen = () => {
-
     const dispatch = useDispatch();
     const { locations, loading, error } = useSelector(state => state.locations);
+    const { bookmarks } = useSelector(state => state.bookmark);
+    const YOUR_USER_ID = 'yourUserId'; // Replace with the actual user ID
 
     useEffect(() => {
         dispatch(fetchLocations());
+        dispatch(fetchBookmarks());
     }, [dispatch]);
-
 
     const navigation = useNavigation();
 
@@ -25,30 +27,37 @@ const HomeScreen = () => {
         navigation.navigate('LocationDetailScreen', { location });
     };
 
+    const handleBookmarkToggle = (location) => {
+        const isBookmarked = bookmarks.some(bookmark => bookmark.locationId === location.id);
+        if (isBookmarked) {
+            const bookmarkId = bookmarks.find(bookmark => bookmark.locationId === location.id).id;
+            dispatch(deleteBookmark(bookmarkId));
+        } else {
+            dispatch(createBookmark({ userId: YOUR_USER_ID, locationId: location.id }));
+        }
+    };
+
     if (loading) return <LoadingScreen />;
     if (error) return <Text>Error: {error.message}</Text>;
+
     return (
         <>
             <View style={styles.container}>
-                <View style={styles.header}>
                 <Header />
-                </View>
-                <View style={styles.searchView}>
                 <Search />
-                </View>
                 <ScrollView style={styles.scrollView}>
                     {locations.map((location) => (
-                       <View key={location.id}>
-                       <Card
-                           onPress={() => navigateLocationPage(location)}
-                           title={location.title}
-                           description={location.description}
-                           price={`${location.estimated_price}$ per individual`} 
-                           url={location.image}
-                           label={"add to list"}
-                           showBookmark={true}
-                       />
-                   </View>
+                        <Card
+                            key={location.id}
+                            onPress={() => navigateLocationPage(location)}
+                            title={location.title}
+                            description={location.description}
+                            price={`${location.estimated_price}$ per individual`} 
+                            url={location.image}
+                            label={bookmarks.some(bookmark => bookmark.locationId === location.id) ? 'Remove from list' : 'Add to list'}
+                            showBookmark={true}
+                            onBookmarkPress={() => handleBookmarkToggle(location)}
+                        />
                     ))}
                 </ScrollView>
             </View>
@@ -56,6 +65,7 @@ const HomeScreen = () => {
         </>
     );
 };
+
 
 const styles = StyleSheet.create({
     container: {
