@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View , Text} from 'react-native';
+import { View , Text, Touchable, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const NavigationBar = () => {
@@ -28,22 +28,22 @@ const NavigationBar = () => {
   }
   return (
     <View style={styles.navigationBar}>
-      <View style={styles.container}>
-        <Icon name='compass' solid size={25} onPress={navigatehome}/>
+      <TouchableOpacity style={styles.container} onPress={navigatehome}>
+        <Icon name='compass' solid size={25} />
         <Text style={styles.navigationText}>explore</Text>
-        </View>
-      <View style={styles.container}>
-        <Icon name='book-open' size={25} onPress={navigategenerate}/>
+        </TouchableOpacity>
+      <TouchableOpacity style={styles.container} onPress={navigategenerate}>
+        <Icon name='book-open' size={25} />
       <Text style={styles.navigationText}>planning</Text>
-        </View>
-      <View style={styles.container}>
-        <Icon name="bookmark" solid size={25} onPress={navigatebookmark}/>
+        </TouchableOpacity>
+      <TouchableOpacity style={styles.container} onPress={navigatebookmark}>
+        <Icon name="bookmark" solid size={25}/>
       <Text style={styles.navigationText}>bookmarks</Text>
-        </View>
-      <View style={styles.container}>
-        <Icon name='user' solid size={25} onPress={navigateprofile}/>
+        </TouchableOpacity>
+      <TouchableOpacity style={styles.container} onPress={navigateprofile}>
+        <Icon name='user' solid size={25}/>
       <Text style={styles.navigationText}>profile</Text>
-        </View>
+        </TouchableOpacity>
     </View>
   );
 };
