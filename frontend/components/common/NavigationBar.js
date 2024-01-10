@@ -21,11 +21,16 @@ const NavigationBar = () => {
       navigation.navigate('GenerateTrip')
     )
   }
+  const navigatebookmark = () =>{
+    return (
+      navigation.navigate('BookmarkScreen')
+    )
+  }
   return (
     <View style={styles.navigationBar}>
       <Icon name='compass' solid size={25} onPress={navigatehome} />
       <Icon name='book-open' size={25} onPress={navigategenerate}/>
-      <Icon name="bookmark" solid size={25} />
+      <Icon name="bookmark" solid size={25} onPress={navigatebookmark}/>
       <Icon name='user' solid size={25} onPress={navigateprofile}/>
     </View>
   );
