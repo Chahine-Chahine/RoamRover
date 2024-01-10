@@ -18,7 +18,7 @@ const Header = ({ user }) => {
         <Image style={styles.headerImage} source={imageSource} />
       </View>
       <View style={styles.headerText}>
-        <Text>Hello {user?.username || "Guest"}</Text>
+        <Text>Hello {user?.first_name || "Guest"}</Text>
         <Text>Beirut, Lebanon</Text> 
       </View>
       <View style={styles.messageIcon}>
