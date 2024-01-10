@@ -9,6 +9,7 @@ import Search from '../components/common/Search';
 import Card from '../components/common/Card';
 import NavigationBar from '../components/common/NavigationBar';
 import LoadingScreen from './LoadingScreen';
+import Categories from '../components/common/Categories';
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const HomeScreen = () => {
         <>
             <View style={styles.container}>
                 <Header />
-                <Search />
+                <Categories/>
                 <ScrollView style={styles.scrollView}>
                     {locations.map((location) => (
                         <Card
