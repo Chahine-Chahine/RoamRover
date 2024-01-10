@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, BackHandler } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import OutlinedButton from "./OutlinedButton";
 
@@ -56,12 +56,11 @@ const styles = {
     alignItems: 'center',
   },
   cardWrapper: {
-    elevation: 2,
     flexDirection: "column",
     width: 300, 
     height: 200, 
     marginBottom: 40, 
-    paddingVertical: 10
+    paddingVertical: 10,
   },
   containerStyle: {
     marginHorizontal: 20,
@@ -72,7 +71,8 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFF',
+    backgroundColor: '#fff',
+    
   },
 
   cardImage: {

@@ -1,6 +1,6 @@
-import { View, Text } from "react-native";
+import { View, Text ,Image } from "react-native";
 import { StyleSheet } from "react-native";
-
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
 
@@ -10,7 +10,9 @@ const Categories = () => {
     return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
-            <View style={styles.box}></View>
+            <View style={styles.box}>
+                <Icon name= 'umbrella-beach' size={30}/>
+            </View>
             <Text style={styles.categoryTitle}>Beach</Text>
          </View>
          <View style={styles.wrapper}>
@@ -48,8 +50,11 @@ const styles = StyleSheet.create({
     box:{
         width: '22%',
         height: '80%',
+        justifyContent: 'center',
+        alignItems: 'center',
         borderRadius: 15,
-        backgroundColor: '#D9D9D9'
+        backgroundColor: '#fff',
+        elevation: 2
     },
     categoryTitle:{
         fontWeight: '500'

@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         height: '100%',
-        backgroundColor: '#F3F3F3',
+        backgroundColor: '#fff',
         alignItems: 'center',
     },
     scrollView: {
