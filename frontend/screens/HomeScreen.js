@@ -48,8 +48,8 @@ const HomeScreen = () => {
         <>
             <View style={styles.container}>
                 <Header />
-                <Categories/>
                 <ScrollView style={styles.scrollView}>
+                <Categories/>
                     {locations.map((location) => (
                         <Card
                             key={location.id}
