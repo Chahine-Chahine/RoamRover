@@ -3,27 +3,16 @@ import logger from 'redux-logger';
 import authReducer from './Reducers/authReducer';
 import locationReducer from './Reducers/locationReducer';
 import bookmarkReducer from './Reducers/bookmarkReducer'; 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const loadState = () => {
-  try {
-    const serializedState = localStorage.getItem('state');
-    if (serializedState === null) return undefined;
-    return JSON.parse(serializedState);
-  } catch (err) {
-    return undefined;
-  }
-};
-
-const saveState = (state) => {
+const saveState = async (state) => {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem('state', serializedState);
-  } catch {
-    console.log('error during saving state')
+    await AsyncStorage.setItem('state', serializedState);
+  } catch (err) {
+    console.error('Error during state save:', err);
   }
 };
-
-const persistedState = loadState();
 
 export const store = configureStore({
   reducer: {
@@ -32,9 +21,9 @@ export const store = configureStore({
     bookmark: bookmarkReducer, 
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
-  preloadedState: persistedState,  
 });
 
+// Subscribe to store updates to save the state to AsyncStorage
 store.subscribe(() => {
   saveState(store.getState());
 });

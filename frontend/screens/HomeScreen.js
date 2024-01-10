@@ -30,20 +30,17 @@ const HomeScreen = () => {
     };
 
     const handleBookmarkToggle = (location) => {
-        const bookmark = bookmarks.find(bookmark => bookmark.locationId === location.id);
-
-        console.log("Toggling bookmark for location:", location.id, "Bookmark found:", bookmark);
-
+        const bookmark = bookmarks.find(bookmark => bookmark.location_id === location.id);
+    
         if (bookmark) {
-            console.log("Deleting bookmark:", bookmark.id);
             dispatch(deleteBookmark(bookmark.id));
         } else {
-            console.log("Creating new bookmark for location:", location.id);
             if (USER_ID) {
                 dispatch(createBookmark({ userId: USER_ID, locationId: location.id }));
             }
         }
     };
+    
     if (loading) return <LoadingScreen />;
     if (error) return <Text>Error: {error.message}</Text>;
 

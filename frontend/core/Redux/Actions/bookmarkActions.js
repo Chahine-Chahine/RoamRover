@@ -37,8 +37,8 @@ export const createBookmark = createAsyncThunk(
 
 export const deleteBookmark = createAsyncThunk(
     'bookmark/deleteBookmark',
-    async ({ userId, locationId }) => {
-        const response = await axios.delete(`${baseUrl}/api/bookmarks/${locationId}`, { data: { user_id: userId }});
-        return response.data;
+    async (bookmarkId) => {
+        const response = await axios.delete(`${baseUrl}/api/bookmarks/${bookmarkId}`);
+        return response.data; // Assuming this returns the deleted bookmark's ID
     }
 );
