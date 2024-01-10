@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect, useDispatch } from 'react-redux';
-import { StyleSheet, ScrollView, View, Text } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import NavigationBar from '../components/common/NavigationBar';
 import ProfileHeader from '../components/ProfileScreen/ProfileHeader';
 import ProfileInfo from '../components/ProfileScreen/ProfileInfo';
@@ -8,6 +8,7 @@ import AboutSection from '../components/ProfileScreen/AboutSection';
 import ActionButton from '../components/ProfileScreen/ActionButton';
 import { useNavigation } from '@react-navigation/native';
 import { logoutUser } from '../core/Redux/Actions/authActions';
+import Icon from 'react-native-vector-icons/FontAwesome5'; 
 
 const ProfileScreen = ({ user }) => {
   const navigation = useNavigation();
@@ -28,7 +29,6 @@ const ProfileScreen = ({ user }) => {
   return (
     <>
       <ScrollView style={styles.container}>
-        <ProfileHeader onLogout={handleLogout}/>
         <ProfileInfo 
           name={`${user?.first_name || ''} ${user?.last_name || ''}`}
           username={user?.username || ''}
@@ -39,8 +39,11 @@ const ProfileScreen = ({ user }) => {
       </ScrollView>
       <View style={styles.actionNavigationWrapper}>
         <View style={styles.actionContainer}>
-          <ActionButton title="Bookmarks" onPress={navigateBookmark}/>
           <ActionButton title="Update profile" onPress={navigateprofileUpdate} />
+      <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout}>
+         <Icon name="sign-out-alt" size={18} color="#fff" />
+         <Text style={styles.logoutText}>Logout</Text>
+      </TouchableOpacity>
         </View>
       <NavigationBar/>
       </View>
@@ -60,6 +63,24 @@ const styles = StyleSheet.create({
   },
   actionNavigationWrapper: {
     backgroundColor: '#fff'
+  },
+  logoutText: {
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  logoutBtn: {
+    backgroundColor: '#A78BFA',
+      borderRadius: 25,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginVertical: 12,
+      marginHorizontal: 25,
+      paddingVertical: 12,
+      paddingHorizontal: 40,
+    backgroundColor: '#e63946', 
+    
   }
 
 });
