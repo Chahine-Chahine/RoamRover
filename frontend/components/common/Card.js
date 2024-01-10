@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import OutlinedButton from "./OutlinedButton";
 
-const Card = ({ onPress, title, description, price, url, location, label, showBookmark = false, style, onBookmarkPress, isBookmarkedInitially }) => {
+const Card = ({ onPress, title, description, price, url, location, showBookmark = false, onBookmarkPress, isBookmarkedInitially }) => {
     const [isBookmarked, setIsBookmarked] = useState(isBookmarkedInitially);
 
     useEffect(() => {
