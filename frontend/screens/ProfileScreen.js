@@ -29,6 +29,7 @@ const ProfileScreen = ({ user }) => {
   return (
     <>
       <ScrollView style={styles.container}>
+        <ProfileHeader/>
         <ProfileInfo 
           name={`${user?.first_name || ''} ${user?.last_name || ''}`}
           username={user?.username || ''}
