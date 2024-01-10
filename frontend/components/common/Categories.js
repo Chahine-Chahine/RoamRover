@@ -16,16 +16,22 @@ const Categories = () => {
             <Text style={styles.categoryTitle}>Beach</Text>
          </View>
          <View style={styles.wrapper}>
-            <View style={styles.box}></View>
-            <Text style={styles.categoryTitle}>Beach</Text>
+            <View style={styles.box}>
+            <Icon name= 'hiking' size={30}/>
+            </View>
+            <Text style={styles.categoryTitle}>Hiking</Text>
          </View>
          <View style={styles.wrapper}>
-            <View style={styles.box}></View>
-            <Text style={styles.categoryTitle}>Beach</Text>
+            <View style={styles.box}>
+            <Icon name= 'utensils' size={30}/>
+            </View>
+            <Text style={styles.categoryTitle}>Restaurants</Text>
          </View>
          <View style={styles.wrapper}>
-            <View style={styles.box}></View>
-            <Text style={styles.categoryTitle}>Beach</Text>
+            <View style={styles.box}>
+            <Icon name= 'landmark' size={30}/>
+            </View>
+            <Text style={styles.categoryTitle}>Ruins</Text>
          </View>
     
         </View>
