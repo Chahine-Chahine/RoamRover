@@ -23,22 +23,23 @@ const NavigationBar = () => {
   }
   return (
     <View style={styles.navigationBar}>
-      <Icon name='home' size={30} onPress={navigatehome} />
-      <Icon name='plus-circle' size={50} style={styles.plusButton} onPress={navigategenerate}/>
-      <Icon name='user' solid size={30} onPress={navigateprofile}/>
+      <Icon name='compass' solid size={25} onPress={navigatehome} />
+      <Icon name='book-open' size={25} onPress={navigategenerate}/>
+      <Icon name="bookmark" solid size={25} />
+      <Icon name='user' solid size={25} onPress={navigateprofile}/>
     </View>
   );
 };
 
 const styles = {
   navigationBar: {
-    gap: 60,
+    gap: 40,
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     width: '100%',
     height: 60,
-    backgroundColor: '#FFF', 
+    backgroundColor: '#D9D9D9', 
   },
   plusButton: {
     color: '#A78BFA',
