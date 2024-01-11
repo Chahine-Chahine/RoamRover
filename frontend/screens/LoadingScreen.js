@@ -7,7 +7,7 @@ const LoadingScreen = () => {
         <>
         <View style={styles.container}>
       <LottieView 
-        source={require('../assets/Animation - 1703636832841.json')} 
+        source={require('../assets/Animation - 1704993709185.json')} 
         autoPlay 
         loop 
         style={{ width: 400, height: 400 }}
