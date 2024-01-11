@@ -1,37 +1,39 @@
-import { useNavigation } from '@react-navigation/native';
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { useNavigation, useNavigationState, useRoute } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { View , Text, Touchable, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { connect } from 'react-redux';
-import { setActiveTab } from '../../core/Redux/Actions/navigationAction';
 
-const NavigationBar = ({ activeTab, setActiveTab }) => {
+const NavigationBar = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+  const currentRoute = route.name;
 
-  const navigate = (screenName, tabName) => {
+  const navigate = (screenName) => {
     navigation.navigate(screenName);
-    setActiveTab(tabName);
   };
 
-  const getColor = (tabName) => activeTab === tabName ? '#A78BFA' : '#bab8b8';
+  const getColor = (tabName) => {
+    return currentRoute === tabName ? '#A78BFA' : '#bab8b8';
+  };
 
-  return (
-    <View style={styles.navigationBar}>
-      <TouchableOpacity style={styles.container} onPress={() => navigate('HomeScreen', 'Explore')}>
-        <Icon name='compass' solid size={25} color={getColor('Explore')} />
-        <Text style={{ ...styles.navigationText, color: getColor('Explore') }}>Explore</Text>
+
+  return (  
+      <View style={styles.navigationBar}>
+      <TouchableOpacity style={styles.container} onPress={() => navigate('HomeScreen')}>
+        <Icon name='compass' solid size={25} color={getColor('HomeScreen')} />
+        <Text style={{ ...styles.navigationText, color: getColor('HomeScreen') }}>Explore</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.container} onPress={() => navigate('GenerateTrip', 'Planning')}>
-        <Icon name='book-open' size={25} color={getColor('Planning')} />
-        <Text style={{ ...styles.navigationText, color: getColor('Planning') }}>Planning</Text>
+        <Icon name='book-open' size={25} color={getColor('GenerateTrip')} />
+        <Text style={{ ...styles.navigationText, color: getColor('GenerateTrip') }}>Planning</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.container} onPress={() => navigate('BookmarkScreen', 'Bookmarks')}>
-        <Icon name="bookmark" solid size={25} color={getColor('Bookmarks')} />
-        <Text style={{ ...styles.navigationText, color: getColor('Bookmarks') }}>Bookmarks</Text>
+        <Icon name="bookmark" solid size={25} color={getColor('BookmarkScreen')} />
+        <Text style={{ ...styles.navigationText, color: getColor('BookmarkScreen') }}>Bookmarks</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.container} onPress={() => navigate('ProfileScreen', 'Profile')}>
-        <Icon name='user' solid size={25} color={getColor('Profile')} />
-        <Text style={{ ...styles.navigationText, color: getColor('Profile') }}>Profile</Text>
+      <TouchableOpacity style={styles.container} onPress={() => navigate('profileScreen', 'Profile')}>
+        <Icon name='user' solid size={25} color={getColor('profileScreen')} />
+        <Text style={{ ...styles.navigationText, color: getColor('profileScreen') }}>Profile</Text>
       </TouchableOpacity>
     </View>
   );
@@ -45,24 +47,17 @@ const styles = {
     alignItems: 'center',
     width: '100%',
     height: 60,
-    backgroundColor: '#FFF',
+    backgroundColor: '#FFF', 
   },
-  container: {
+  container:{
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent:'center',
     alignItems: 'center'
   },
-  navigationText: {
+  navigationText:{
     fontSize: 12,
+    color: '#a8a8a8'
   }
 };
 
-const mapStateToProps = (state) => ({
-  activeTab: state.activeTab,
-});
-
-const mapDispatchToProps = {
-  setActiveTab,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);
+export default NavigationBar;
