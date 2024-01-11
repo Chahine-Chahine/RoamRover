@@ -1,46 +1,37 @@
 import { useState } from "react";
-import { View, Text ,Image } from "react-native";
+import { View, Text ,Image, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
-
 const Categories = () => {
-    const [activeCategory, setActiveCategory] = useState('Beach');
+    // State to track the selected category
+    const [selectedCategory, setSelectedCategory] = useState(0);
 
-    const getBoxStyle = (category) => {
-        return category === activeCategory ? styles.boxSpecial : styles.box;
-    };
+    // Categories data
+    const categories = [
+        { name: 'umbrella-beach', title: 'Beach' },
+        { name: 'hiking', title: 'Hiking' },
+        { name: 'utensils', title: 'Restaurants' },
+        { name: 'landmark', title: 'Ruins' },
+    ];
 
     return (
         <View style={styles.container}>
-            {["Beach", "Hiking", "Restaurants", "Ruins"].map((category) => (
-                <TouchableOpacity 
-                    key={category}
-                    style={styles.wrapper}
-                    onPress={() => setActiveCategory(category)}
-                >
-                    <View style={getBoxStyle(category)}>
-                        <Icon name={getIconName(category)} size={30} color={category === activeCategory ? 'white' : 'black'}/>
-                    </View>
-                    <Text style={styles.categoryTitle}>{category}</Text>
-                </TouchableOpacity>
+            {categories.map((category, index) => (
+                <View key={index} style={styles.wrapper}>
+                    <TouchableOpacity
+                        style={selectedCategory === index ? styles.boxSpecial : styles.box}
+                        onPress={() => setSelectedCategory(index)}
+                    >
+                        <Icon name={category.name} size={30} color={selectedCategory === index ? 'white' : 'black'} />
+                    </TouchableOpacity>
+                    <Text style={styles.categoryTitle}>{category.title}</Text>
+                </View>
             ))}
         </View>
     );
 };
-
-const getIconName = (category) => {
-    switch (category) {
-        case 'Beach': return 'umbrella-beach';
-        case 'Hiking': return 'hiking';
-        case 'Restaurants': return 'utensils';
-        case 'Ruins': return 'landmark';
-        default: return '';
-    }
-};
-
 const styles = StyleSheet.create({
     container: {
         width: '100%',
