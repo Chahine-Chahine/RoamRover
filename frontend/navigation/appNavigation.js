@@ -29,9 +29,9 @@ export default AppNavigation = () => {
         <Stack.Screen name= 'Signup' options={{headerShown: false}} component={SignUpScreen}/>
         <Stack.Screen name= 'HomeScreen' options={{headerShown: false}} component={HomeScreen}/>
         <Stack.Screen name= 'LocationDetailScreen' options={{headerShown: true}} component={LocationDetailScreen}/>
-        <Stack.Screen name= 'profileScreen' options={{headerShown: true}} component={ProfileScreen}/>
+        <Stack.Screen name= 'profileScreen' options={{headerShown: true, headerTitle: 'Profile'}} component={ProfileScreen}/>
         <Stack.Screen name= 'GenerateTrip' options={{headerShown: true}} component={GenerateTrip}/>
-        <Stack.Screen name= 'BookmarkScreen' options={{headerShown:true}} component={BookmarkScreen}/>
+        <Stack.Screen name= 'BookmarkScreen' options={{headerShown:true, headerTitle: 'Bookmarks'}} component={BookmarkScreen}/>
         <Stack.Screen name= 'LoadingScreen' options={{headerShown:true}} component={LoadingScreen}/>
         <Stack.Screen name= 'CustomtripScreen' options={{headerShown:true}} component={CustomtripScreen}/>
         <Stack.Screen name='Questionnaire' options={{headerShown:true}} component={Questionnaire}/>

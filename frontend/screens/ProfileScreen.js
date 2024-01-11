@@ -2,7 +2,6 @@ import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { StyleSheet, ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import NavigationBar from '../components/common/NavigationBar';
-import ProfileHeader from '../components/ProfileScreen/ProfileHeader';
 import ProfileInfo from '../components/ProfileScreen/ProfileInfo';
 import AboutSection from '../components/ProfileScreen/AboutSection';
 import ActionButton from '../components/ProfileScreen/ActionButton';
@@ -29,7 +28,6 @@ const ProfileScreen = ({ user }) => {
   return (
     <>
       <ScrollView style={styles.container}>
-        <ProfileHeader/>
         <ProfileInfo 
           name={`${user?.first_name || ''} ${user?.last_name || ''}`}
           username={user?.username || ''}
