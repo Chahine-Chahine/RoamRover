@@ -56,7 +56,7 @@ const HomeScreen = () => {
                             onPress={() => navigateLocationPage(location)}
                             title={location.title}
                             description={location.description}
-                            price={`${location.estimated_price}$ per individual`} 
+                            price={`$${location.estimated_price} per individual`} 
                             url={location.image}
                             label={'join'}
                             showBookmark={true}
