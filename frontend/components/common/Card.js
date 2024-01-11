@@ -18,7 +18,7 @@ const Card = ({ onPress, title, description, price, url, label ,location, showBo
     };
 
     return (
-        <TouchableOpacity onPress={() => onPress(location)} style={styles.fullScreen}>
+        <TouchableOpacity onPress={() => onPress(location)} style={styles.fullScreen} activeOpacity={0.8}>
             <View style={styles.containerStyle}>
                 <View style={styles.cardWrapper}>
                     <View>
@@ -73,8 +73,12 @@ const styles = {
     alignItems: 'center',
     backgroundColor: '#fff',
     borderWidth: 1,
-    borderColor: '#a8a8a8'
-    
+    borderColor: '#A78BFA',
+    elevation: 5, 
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 2 }, 
+    shadowOpacity: 0.25, 
+    shadowRadius: 0.84, 
   },
 
   cardImage: {
