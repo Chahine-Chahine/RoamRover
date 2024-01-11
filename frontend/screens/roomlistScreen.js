@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
+import { useNavigation } from '@react-navigation/native';
 
 const RoomListScreen = () => {
   const rooms = [
@@ -10,8 +11,14 @@ const RoomListScreen = () => {
     'Saturday Hike - camp',
   ];
 
+  const navigation = useNavigation();
+
+  const navigateChat = () => {
+    navigation.navigate('ChatRoomScreen');
+  }
+
   const renderRoom = ({ item }) => (
-    <TouchableOpacity style={styles.roomButton}>
+    <TouchableOpacity style={styles.roomButton} onPress={navigateChat}>
       <Text style={styles.roomText}>{item}</Text>
     </TouchableOpacity>
   );
