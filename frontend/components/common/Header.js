@@ -8,7 +8,7 @@ const Header = ({ user }) => {
   const navigation = useNavigation();
 
   const chatNavigate = () => {
-    navigation.navigate('ChatRoomScreen');
+    navigation.navigate('RoomListScreen');
   }
 
   const imageSource = user?.image_url ? { uri: user.image_url } : require("../../assets/Default_pfp.svg.png");
@@ -22,7 +22,7 @@ const Header = ({ user }) => {
         <Text>Beirut, Lebanon</Text> 
       </View>
       <View style={styles.messageIcon}>
-        <Icon name="comment-dots"  size={25}  onPress= {chatNavigate}/>
+        <Icon name="facebook-messenger"  size={25}  onPress= {chatNavigate}/>
       </View>
     </View>
   );
