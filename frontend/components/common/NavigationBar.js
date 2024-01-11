@@ -29,20 +29,20 @@ const NavigationBar = () => {
   return (
     <View style={styles.navigationBar}>
       <TouchableOpacity style={styles.container} onPress={navigatehome}>
-        <Icon name='compass' solid size={25} />
-        <Text style={styles.navigationText}>explore</Text>
+        <Icon name='compass' solid size={25} color={'#A78BFA'}/>
+        <Text style={styles.navigationText} >Explore</Text>
         </TouchableOpacity>
       <TouchableOpacity style={styles.container} onPress={navigategenerate}>
-        <Icon name='book-open' size={25} />
-      <Text style={styles.navigationText}>planning</Text>
+        <Icon name='book-open' size={25}  color={'#bab8b8'}/>
+      <Text style={styles.navigationText}>Planning</Text>
         </TouchableOpacity>
       <TouchableOpacity style={styles.container} onPress={navigatebookmark}>
-        <Icon name="bookmark" solid size={25}/>
-      <Text style={styles.navigationText}>bookmarks</Text>
+        <Icon name="bookmark" solid size={25}  color={'#bab8b8'}/>
+      <Text style={styles.navigationText}>Bookmarks</Text>
         </TouchableOpacity>
       <TouchableOpacity style={styles.container} onPress={navigateprofile}>
-        <Icon name='user' solid size={25}/>
-      <Text style={styles.navigationText}>profile</Text>
+        <Icon name='user' solid size={25}  color={'#bab8b8'}/>
+      <Text style={styles.navigationText}>Profile</Text>
         </TouchableOpacity>
     </View>
   );
@@ -56,21 +56,16 @@ const styles = {
     alignItems: 'center',
     width: '100%',
     height: 60,
-    backgroundColor: '#D9D9D9', 
+    backgroundColor: '#FFF', 
   },
   container:{
     flexDirection: 'column',
     justifyContent:'center',
     alignItems: 'center'
   },
-  plusButton: {
-    color: '#A78BFA',
-    position: 'relative',
-    top: -15,
-  },
   navigationText:{
     fontSize: 12,
-    color: '#474747'
+    color: '#a8a8a8'
   }
 };
 

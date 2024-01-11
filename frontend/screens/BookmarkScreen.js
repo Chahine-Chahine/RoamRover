@@ -35,7 +35,7 @@ const BookmarkScreen = () => {
 
     return (
         <Swipeable renderRightActions={() => renderRightActions(item.id)}>
-            <View style={[styles.card, { height: 200 }]}>
+            <View style={[styles.card, { height: 180 }]}>
                 <Image source={{ uri: item.location.image }} style={styles.cardImage} />
                 <View style={styles.cardContent}>
                     <Text style={styles.title}>{item.location.title}</Text>
@@ -50,9 +50,9 @@ const BookmarkScreen = () => {
     <>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaView style={styles.container}>
-          <View>
+          {/* <View>
             <Text style={styles.mainTitle}>Let’s Check What’s saved!</Text>
-          </View>
+          </View> */}
           <FlatList
         data={bookmarks}
         renderItem={renderCard}
@@ -79,9 +79,10 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 10,
+    marginBottom: 20,
+    marginHorizontal: 18,
     backgroundColor: '#fff',
-    borderRadius: 10,
+    borderRadius: 20,
     overflow: 'hidden',
     elevation: 3,
     shadowOpacity: 0.1,

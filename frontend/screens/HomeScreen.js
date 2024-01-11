@@ -58,7 +58,7 @@ const HomeScreen = () => {
                             description={location.description}
                             price={`${location.estimated_price}$ per individual`} 
                             url={location.image}
-                            label={bookmarks.some(bookmark => bookmark.locationId === location.id) ? 'Remove from list' : 'Add to list'}
+                            label={'join'}
                             showBookmark={true}
                             onBookmarkPress={() => handleBookmarkToggle(location)}
                         />

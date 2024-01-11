@@ -35,7 +35,7 @@ export default AppNavigation = () => {
         <Stack.Screen name= 'LoadingScreen' options={{headerShown:true}} component={LoadingScreen}/>
         <Stack.Screen name= 'CustomtripScreen' options={{headerShown:true}} component={CustomtripScreen}/>
         <Stack.Screen name='Questionnaire' options={{headerShown:true}} component={Questionnaire}/>
-        <Stack.Screen name='ProfileUpdateScreen' options={{headerShown: true}} component={ProfileUpdateScreen}/>
+        <Stack.Screen name='ProfileUpdateScreen' options={{headerShown: true, headerTitle: 'Update Profile'}} component={ProfileUpdateScreen}/>
         <Stack.Screen name='ChatRoomScreen' options={{headerShown: false}} component={ChatRoomScreen}/>
         <Stack.Screen name='RoomListScreen' options={{headerShown:true}} component={RoomListScreen}/>
         </Stack.Navigator>  

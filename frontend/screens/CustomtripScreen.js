@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLocations } from "../core/Redux/Actions/locationActions";
 import LoadingScreen from "./LoadingScreen";
+import Categories from "../components/common/Categories";
 
 
 const CustomtripScreen = () => {
@@ -31,11 +32,12 @@ const CustomtripScreen = () => {
     return(
         <>
         <View style={styles.container}>
-        <Text style={styles.pagetitle}>Custom Trip</Text>
+        {/* <Text style={styles.pagetitle}>Custom Trip</Text> */}
          
         <ScrollView >
             <View style={styles.searchContainer}>
-            <Search/>
+            {/* <Search/> */}
+            <Categories/>
             </View>
             {locations.map((location)=>(
             <Card
@@ -61,7 +63,7 @@ const CustomtripScreen = () => {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#F3F3F3',
+        backgroundColor: '#fff',
     },
     searchContainer: {
         alignItems: 'center'

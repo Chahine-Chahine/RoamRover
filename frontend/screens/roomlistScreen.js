@@ -18,11 +18,11 @@ const RoomListScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <Ionicons name="chevron-back-outline" size={25} color="black" />
         <Text style={styles.headerTitle}>Your previous rooms</Text>
         <View style={{ width: 25 }} /> 
-      </View>
+      </View> */}
       <FlatList
         data={rooms}
         renderItem={renderRoom}
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   roomButton: {
-    backgroundColor: '#6B46D9',
+    backgroundColor: '#A78BFA',
     padding: 35,
     borderRadius: 10,
     marginBottom: 10,

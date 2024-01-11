@@ -7,12 +7,12 @@ const Questionnaire = () => {
     {
       id: 1,
       question: "What kind of trip are you searching for?",
-      answers: ["Beach and chill", "Camp Fire and camp", "Team Building", "Outdoor exercising"]
+      answers: ["Beach and Chill", "Camp Fire and Camp", "Team Building", "Outdoor Exercising"]
     },
     {
       id: 2,
       question: "How much time are you willing to put in the trip?",
-      answers: ["2 hours", "4 hours", "Half day", "Full day"]
+      answers: ["2 Hours", "4 Hours", "Half Day", "Full Day"]
     },
     {
       id: 3,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingTop: 50,
+    paddingTop: 30,
     paddingHorizontal: 20,
   },
   questionTitle: {

@@ -41,16 +41,28 @@ const ProfileUpdateScreen = ({user}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Update Profile</Text>
 
       <TouchableOpacity onPress={handleSelectImage} style={styles.imageHolder}>
-        {imageUri ? (
+        {imageUri ? 
           <Image source={{ uri: imageUri }} style={styles.image} />
-        ) : (
-          <Text>Select Image</Text>
-        )}
+        : 
+         <Image source={require('../assets/Default_pfp.svg.png')} style={styles.image}/>
+          }
       </TouchableOpacity>
+      <Text style={styles.photoText}>Edit Photo</Text>
 
+          <TextInput
+            style={styles.input}
+            value={firstName}
+            onChangeText={setFirstName}
+            placeholder="First Name"
+          />
+          <TextInput
+            style={styles.input}
+            value={lastName}
+            onChangeText={setLastName}
+            placeholder="Last Name"
+          />
       <TextInput
         style={styles.input}
         value={username}
@@ -60,28 +72,16 @@ const ProfileUpdateScreen = ({user}) => {
       />
       <TextInput
         style={styles.input}
+        value={bio}
+        onChangeText={setbio}
+        placeholder="Bio"
+      />
+      <TextInput
+        style={styles.input}
         value={password}
         onChangeText={setPassword}
         placeholder="New Password"
         secureTextEntry
-      />
-      <TextInput
-        style={styles.input}
-        value={firstName}
-        onChangeText={setFirstName}
-        placeholder="First Name"
-      />
-      <TextInput
-        style={styles.input}
-        value={lastName}
-        onChangeText={setLastName}
-        placeholder="Last Name"
-      />
-      <TextInput
-        style={styles.input}
-        value={bio}
-        onChangeText={setbio}
-        placeholder="Bio"
       />
 
       <TouchableOpacity style={styles.button} onPress={handleUpdateProfile}>
@@ -119,17 +119,22 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: 15,
   },
   buttonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
   },
+  photoText:{
+    textDecorationLine: 'underline',
+    marginBottom: 30,
+    color: '#A78BFA'
+  },
   imageHolder: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: 130,
+    height: 130,
+    borderRadius: 65,
     marginBottom: 20,
     justifyContent: 'center',
     alignItems: 'center',

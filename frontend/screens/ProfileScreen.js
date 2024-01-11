@@ -38,7 +38,7 @@ const ProfileScreen = ({ user }) => {
       </ScrollView>
       <View style={styles.actionNavigationWrapper}>
         <View style={styles.actionContainer}>
-          <ActionButton title="Update profile" onPress={navigateprofileUpdate} />
+          <ActionButton title="Update Profile" onPress={navigateprofileUpdate} />
       <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout}>
          <Icon name="sign-out-alt" size={18} color="#fff" />
          <Text style={styles.logoutText}>Logout</Text>

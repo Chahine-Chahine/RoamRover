@@ -10,8 +10,8 @@ const Categories = () => {
     return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
-            <View style={styles.box}>
-                <Icon name= 'umbrella-beach' size={30}/>
+            <View style={styles.boxSpecial}>
+                <Icon name= 'umbrella-beach' size={30} color={'white'}/>
             </View>
             <Text style={styles.categoryTitle}>Beach</Text>
          </View>
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         paddingHorizontal: '3%',
+        marginBottom: 10
     },
     wrapper:{
         width: '100%',
@@ -59,8 +60,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 15,
-        backgroundColor: '#fff',
-        elevation: 2
+        backgroundColor: '#f5f5f5',
+        // elevation: 2
+    },
+    boxSpecial: {
+        width: '22%',
+        height: '80%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 15,
+        backgroundColor: '#A78BFA',
     },
     categoryTitle:{
         fontWeight: '500'
