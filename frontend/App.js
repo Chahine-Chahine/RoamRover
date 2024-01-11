@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppNavigation from './navigation/appNavigation';
 import { store } from './core/Redux/store';
 import LoadingScreen from './screens/LoadingScreen'; 
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const App = () => {
   const [isReady, setIsReady] = useState(false);
@@ -28,9 +29,11 @@ const App = () => {
   }
 
   return (
+    <GestureHandlerRootView style={{ flex: 1 }}> 
     <Provider store={store}>
       <AppNavigation />
     </Provider>
+  </GestureHandlerRootView>
   );
 };
 

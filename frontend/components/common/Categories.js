@@ -1,42 +1,45 @@
+import { useState } from "react";
 import { View, Text ,Image } from "react-native";
 import { StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
 
 const Categories = () => {
+    const [activeCategory, setActiveCategory] = useState('Beach');
 
+    const getBoxStyle = (category) => {
+        return category === activeCategory ? styles.boxSpecial : styles.box;
+    };
 
     return (
         <View style={styles.container}>
-            <View style={styles.wrapper}>
-            <View style={styles.boxSpecial}>
-                <Icon name= 'umbrella-beach' size={30} color={'white'}/>
-            </View>
-            <Text style={styles.categoryTitle}>Beach</Text>
-         </View>
-         <View style={styles.wrapper}>
-            <View style={styles.box}>
-            <Icon name= 'hiking' size={30}/>
-            </View>
-            <Text style={styles.categoryTitle}>Hiking</Text>
-         </View>
-         <View style={styles.wrapper}>
-            <View style={styles.box}>
-            <Icon name= 'utensils' size={30}/>
-            </View>
-            <Text style={styles.categoryTitle}>Restaurants</Text>
-         </View>
-         <View style={styles.wrapper}>
-            <View style={styles.box}>
-            <Icon name= 'landmark' size={30}/>
-            </View>
-            <Text style={styles.categoryTitle}>Ruins</Text>
-         </View>
-    
+            {["Beach", "Hiking", "Restaurants", "Ruins"].map((category) => (
+                <TouchableOpacity 
+                    key={category}
+                    style={styles.wrapper}
+                    onPress={() => setActiveCategory(category)}
+                >
+                    <View style={getBoxStyle(category)}>
+                        <Icon name={getIconName(category)} size={30} color={category === activeCategory ? 'white' : 'black'}/>
+                    </View>
+                    <Text style={styles.categoryTitle}>{category}</Text>
+                </TouchableOpacity>
+            ))}
         </View>
-    )
-}
+    );
+};
+
+const getIconName = (category) => {
+    switch (category) {
+        case 'Beach': return 'umbrella-beach';
+        case 'Hiking': return 'hiking';
+        case 'Restaurants': return 'utensils';
+        case 'Ruins': return 'landmark';
+        default: return '';
+    }
+};
 
 const styles = StyleSheet.create({
     container: {
