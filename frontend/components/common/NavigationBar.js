@@ -2,13 +2,15 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View , Text, Touchable, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { connect } from 'react-redux';
+import { setActiveTab } from '../../core/Redux/Actions/navigationAction';
 
-const NavigationBar = () => {
-  const navigation = useNavigation();
-  const [activeTab, setActiveTab] = useState('Explore');
+
+const NavigationBar = ({ activeTab, setActiveTab }) => {
+  const navigation = useNavigation(); 
 
   const navigate = (screenName, tabName) => {
-    navigation.navigate(screenName);
+    navigation.navigate(screenName); 
     setActiveTab(tabName); 
   };
   const getColor = (tabName) => {
@@ -57,4 +59,12 @@ const styles = {
   }
 };
 
-export default NavigationBar;
+const mapStateToProps = (state) => ({
+  activeTab: state.activeTab,
+});
+
+const mapDispatchToProps = {
+  setActiveTab,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);

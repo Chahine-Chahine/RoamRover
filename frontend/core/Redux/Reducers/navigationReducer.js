@@ -1,5 +1,5 @@
 // reducer.js
-import { SET_ACTIVE_TAB } from '../Actions/navigationAction';
+import { SET_ACTIVE_TAB } from '../Actions/actionTypes';
 
 const initialState = {
   activeTab: 'Explore', 

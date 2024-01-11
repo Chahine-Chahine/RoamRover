@@ -1,4 +1,5 @@
-import SET_ACTIVE_TAB from './actionTypes';
+export const SET_ACTIVE_TAB = 'SET_ACTIVE_TAB';
+
 
 export const setActiveTab = (tabName) => ({
   type: SET_ACTIVE_TAB,
