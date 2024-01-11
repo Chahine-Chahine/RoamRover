@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   mainTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    marginLeft: 12,
+    marginLeft: '12%',
     marginVertical: 20
   },
   card: {
@@ -91,9 +91,9 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   cardContent: {
-    padding: 10,
+    padding: 20,
     justifyContent: 'space-around',
-    width:'60%'
+    width:'50%'
   },
   title: {
     fontSize: 18,
