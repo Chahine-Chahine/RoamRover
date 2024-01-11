@@ -1,21 +1,20 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
-import { View , Text, Touchable, TouchableOpacity} from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { connect } from 'react-redux';
 import { setActiveTab } from '../../core/Redux/Actions/navigationAction';
 
-
 const NavigationBar = ({ activeTab, setActiveTab }) => {
-  const navigation = useNavigation(); 
+  const navigation = useNavigation();
 
   const navigate = (screenName, tabName) => {
-    navigation.navigate(screenName); 
-    setActiveTab(tabName); 
+    navigation.navigate(screenName);
+    setActiveTab(tabName);
   };
-  const getColor = (tabName) => {
-    return activeTab === tabName ? '#A78BFA' : '#bab8b8';
-  };
+
+  const getColor = (tabName) => activeTab === tabName ? '#A78BFA' : '#bab8b8';
+
   return (
     <View style={styles.navigationBar}>
       <TouchableOpacity style={styles.container} onPress={() => navigate('HomeScreen', 'Explore')}>
@@ -30,7 +29,7 @@ const NavigationBar = ({ activeTab, setActiveTab }) => {
         <Icon name="bookmark" solid size={25} color={getColor('Bookmarks')} />
         <Text style={{ ...styles.navigationText, color: getColor('Bookmarks') }}>Bookmarks</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.container} onPress={() => navigate('profileScreen', 'Profile')}>
+      <TouchableOpacity style={styles.container} onPress={() => navigate('ProfileScreen', 'Profile')}>
         <Icon name='user' solid size={25} color={getColor('Profile')} />
         <Text style={{ ...styles.navigationText, color: getColor('Profile') }}>Profile</Text>
       </TouchableOpacity>
@@ -46,16 +45,15 @@ const styles = {
     alignItems: 'center',
     width: '100%',
     height: 60,
-    backgroundColor: '#FFF', 
+    backgroundColor: '#FFF',
   },
-  container:{
+  container: {
     flexDirection: 'column',
-    justifyContent:'center',
+    justifyContent: 'center',
     alignItems: 'center'
   },
-  navigationText:{
+  navigationText: {
     fontSize: 12,
-    color: '#a8a8a8'
   }
 };
 
