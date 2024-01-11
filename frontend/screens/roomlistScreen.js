@@ -25,11 +25,6 @@ const RoomListScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <View style={styles.header}>
-        <Ionicons name="chevron-back-outline" size={25} color="black" />
-        <Text style={styles.headerTitle}>Your previous rooms</Text>
-        <View style={{ width: 25 }} /> 
-      </View> */}
       <FlatList
         data={rooms}
         renderItem={renderRoom}
