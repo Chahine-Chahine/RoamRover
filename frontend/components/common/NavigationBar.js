@@ -1,49 +1,37 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useState } from 'react';
 import { View , Text, Touchable, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const NavigationBar = () => {
   const navigation = useNavigation();
+  const [activeTab, setActiveTab] = useState('Explore');
 
-  const navigatehome = () => {
-    return (
-      navigation.navigate('HomeScreen')
-    )
+  const navigate = (screenName, tabName) => {
+    navigation.navigate(screenName);
+    setActiveTab(tabName); 
   };
-  const navigateprofile = () => {
-    return (
-      navigation.navigate('profileScreen')
-    )
+  const getColor = (tabName) => {
+    return activeTab === tabName ? '#A78BFA' : '#bab8b8';
   };
-  const navigategenerate = () => {
-    return (
-      navigation.navigate('GenerateTrip')
-    )
-  }
-  const navigatebookmark = () =>{
-    return (
-      navigation.navigate('BookmarkScreen')
-    )
-  }
   return (
     <View style={styles.navigationBar}>
-      <TouchableOpacity style={styles.container} onPress={navigatehome}>
-        <Icon name='compass' solid size={25} color={'#A78BFA'}/>
-        <Text style={styles.navigationText} >Explore</Text>
-        </TouchableOpacity>
-      <TouchableOpacity style={styles.container} onPress={navigategenerate}>
-        <Icon name='book-open' size={25}  color={'#bab8b8'}/>
-      <Text style={styles.navigationText}>Planning</Text>
-        </TouchableOpacity>
-      <TouchableOpacity style={styles.container} onPress={navigatebookmark}>
-        <Icon name="bookmark" solid size={25}  color={'#bab8b8'}/>
-      <Text style={styles.navigationText}>Bookmarks</Text>
-        </TouchableOpacity>
-      <TouchableOpacity style={styles.container} onPress={navigateprofile}>
-        <Icon name='user' solid size={25}  color={'#bab8b8'}/>
-      <Text style={styles.navigationText}>Profile</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.container} onPress={() => navigate('HomeScreen', 'Explore')}>
+        <Icon name='compass' solid size={25} color={getColor('Explore')} />
+        <Text style={{ ...styles.navigationText, color: getColor('Explore') }}>Explore</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.container} onPress={() => navigate('GenerateTrip', 'Planning')}>
+        <Icon name='book-open' size={25} color={getColor('Planning')} />
+        <Text style={{ ...styles.navigationText, color: getColor('Planning') }}>Planning</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.container} onPress={() => navigate('BookmarkScreen', 'Bookmarks')}>
+        <Icon name="bookmark" solid size={25} color={getColor('Bookmarks')} />
+        <Text style={{ ...styles.navigationText, color: getColor('Bookmarks') }}>Bookmarks</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.container} onPress={() => navigate('profileScreen', 'Profile')}>
+        <Icon name='user' solid size={25} color={getColor('Profile')} />
+        <Text style={{ ...styles.navigationText, color: getColor('Profile') }}>Profile</Text>
+      </TouchableOpacity>
     </View>
   );
 };
