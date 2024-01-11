@@ -63,26 +63,25 @@ const ProfileUpdateScreen = ({user}) => {
             onChangeText={setLastName}
             placeholder="Last Name"
           />
-      <TextInput
-        style={styles.input}
-        value={username}
-        onChangeText={setUsername}
-        placeholder="New Username"
-        autoCapitalize="none"
-      />
-      <TextInput
-        style={styles.input}
-        value={bio}
-        onChangeText={setbio}
-        placeholder="Bio"
-      />
-      <TextInput
-        style={styles.input}
-        value={password}
-        onChangeText={setPassword}
-        placeholder="New Password"
-        secureTextEntry
-      />
+          <TextInput
+            style={styles.input}
+            value={username}
+            onChangeText={setUsername}
+            placeholder="New Username"
+          />
+          <TextInput
+            style={styles.input}
+            value={bio}
+            onChangeText={setbio}
+            placeholder="Bio"
+          />
+          <TextInput
+            style={styles.input}
+            value={password}
+            onChangeText={setPassword}
+            placeholder="New Password"
+            secureTextEntry
+          />
 
       <TouchableOpacity style={styles.button} onPress={handleUpdateProfile}>
         <Text style={styles.buttonText}>Update Profile</Text>
