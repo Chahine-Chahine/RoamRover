@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
 const Categories = () => {
-    // State to track the selected category
     const [selectedCategory, setSelectedCategory] = useState(0);
 
     // Categories data
@@ -55,7 +54,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 15,
         backgroundColor: '#f5f5f5',
-        // elevation: 2
     },
     boxSpecial: {
         width: '22%',
