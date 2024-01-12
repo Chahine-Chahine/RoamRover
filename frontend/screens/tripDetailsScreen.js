@@ -3,47 +3,53 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground }
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import NavigationBar from '../components/common/NavigationBar';
 
-const TripDetailScreen = () => {
-  const coverImageUrl = require('../assets/Baalbeck.webp');
 
-  return (
-    <View style={styles.container}>
+const TripDetailScreen = ({ route }) => {
+    const { trip } = route.params; 
+    const coverImageUrl = trip.locations[0]?.image ? { uri: trip.locations[0].image } : require('../assets/Baalbeck.webp');
+  
+    return (
+      <View style={styles.container}>
         <View style={styles.coverImageContainer}>
-      <ImageBackground source={coverImageUrl} style={styles.coverImage}>
-        <View style={styles.contentContainer}>
-          <Text style={styles.title}>Best Trip To Destination</Text>
-          <Text style={styles.location}>Location</Text>
-          <View style={styles.ratingContainer}>
-            <FontAwesome name="star" size={25} color="white" />
-            <FontAwesome name="star" size={25} color="white" />
-            <FontAwesome name="star" size={25} color="white" />
-            <FontAwesome name="star" size={25} color="white" />
-            <FontAwesome name="star" size={25} color="white" />
+          <ImageBackground source={coverImageUrl} style={styles.coverImage}>
+            <View style={styles.contentContainer}>
+              <Text style={styles.title}>{trip.room?.room_name ?? 'Best Trip To Destination'}</Text>
+              <Text style={styles.location}>{trip.starting_location ?? 'Location'}</Text>
+              <View style={styles.ratingContainer}>
+                {/* Generate stars based on the rating */}
+                {Array(5).fill().map((_, index) => (
+                  <FontAwesome
+                    key={index}
+                    name={index < trip.rating ? "star" : "star-o"}
+                    size={25}
+                    color="white"
+                  />
+                ))}
+              </View>
+            </View>
+          </ImageBackground>
+        </View>
+        <ScrollView style={styles.scrollView}>
+          <Text style={styles.sectionTitle}>About</Text>
+          <Text style={styles.description}>{trip.description ?? 'No description available.'}</Text>
+          <Text style={styles.sectionTitle}>Gallery</Text>
+          <View style={styles.galleryContainer}>
+            {trip.locations.map((location, index) => (
+              <ImageBackground
+                key={index}
+                source={{ uri: location.image }}
+                style={styles.imagePlaceholder}
+              />
+            ))}
           </View>
-        </View>
-      </ImageBackground>
+          <TouchableOpacity style={styles.joinButton} onPress={() => {/* Add join logic here */}}>
+            <Text style={styles.joinButtonText}>Join now</Text>
+          </TouchableOpacity>
+        </ScrollView>
+        <NavigationBar />
       </View>
-      <ScrollView style={styles.scrollView}>
-        <Text style={styles.sectionTitle}>About</Text>
-        <Text style={styles.description}>
-          Lorem ipsum dolor sit amet, elit, sed do eiusmod. Lorem ipsum dolor sit amet.
-        </Text>
-        <Text style={styles.sectionTitle}>Gallery</Text>
-        <View style={styles.galleryContainer}>
-          <View style={styles.imagePlaceholder} />
-          <View style={styles.imagePlaceholder} />
-          <View style={styles.imagePlaceholder} />
-          <View style={styles.imagePlaceholder} />
-          <View style={styles.imagePlaceholder} />
-        </View>
-        <TouchableOpacity style={styles.joinButton}>
-          <Text style={styles.joinButtonText}>Join now</Text>
-        </TouchableOpacity>
-      </ScrollView>
-    <NavigationBar/>
-    </View>
-  );
-};
+    );
+  };
 
 const styles = StyleSheet.create({
   container: {
