@@ -4,6 +4,7 @@ import authReducer from './Reducers/authReducer';
 import locationReducer from './Reducers/locationReducer';
 import bookmarkReducer from './Reducers/bookmarkReducer'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import tripReducer from './Reducers/tripReducer';
 
 const saveState = async (state) => {
   try {
@@ -19,6 +20,7 @@ export const store = configureStore({
     auth: authReducer,
     locations: locationReducer,
     bookmark: bookmarkReducer, 
+    trips: tripReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
