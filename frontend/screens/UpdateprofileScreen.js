@@ -6,18 +6,18 @@ import { connect, useDispatch } from 'react-redux';
 import { updateUser } from '../core/Redux/Actions/authActions'; 
 
 const ProfileUpdateScreen = ({user}) => {
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
   const [bio, setbio] = useState('');
-  const [imageUri, setImageUri] = useState(null);
+  const [password, setPassword] = useState('');
+  const [image_url, setImageUri] = useState(null);
   const dispatch = useDispatch(); 
   const navigation = useNavigation();
 
   const handleUpdateProfile = () => {
     if (user && user.id) {
-    dispatch(updateUser(user.id,{ username, password, firstName, lastName, bio, imageUri }));
+    dispatch(updateUser(user.id,{first_name, last_name, username, bio,  password, image_url }));
     navigation.navigate('profileScreen'); 
   }else {
     console.error("User ID is not available for update.");
@@ -43,8 +43,8 @@ const ProfileUpdateScreen = ({user}) => {
     <View style={styles.container}>
 
       <TouchableOpacity onPress={handleSelectImage} style={styles.imageHolder}>
-        {imageUri ? 
-          <Image source={{ uri: imageUri }} style={styles.image} />
+        {image_url ? 
+          <Image source={{ uri: image_url }} style={styles.image} />
         : 
          <Image source={require('../assets/Default_pfp.svg.png')} style={styles.image}/>
           }
@@ -53,13 +53,13 @@ const ProfileUpdateScreen = ({user}) => {
 
           <TextInput
             style={styles.input}
-            value={firstName}
+            value={first_name}
             onChangeText={setFirstName}
             placeholder="First Name"
           />
           <TextInput
             style={styles.input}
-            value={lastName}
+            value={last_name}
             onChangeText={setLastName}
             placeholder="Last Name"
           />
