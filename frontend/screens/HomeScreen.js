@@ -1,75 +1,51 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchLocations } from '../core/Redux/Actions/locationActions';
-import { createBookmark, deleteBookmark, fetchBookmarks } from '../core/Redux/Actions/bookmarkActions';
+import { fetchTrips } from '../core/Redux/Actions/tripActions';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/common/Header';
-import Search from '../components/common/Search';
 import Card from '../components/common/Card';
 import NavigationBar from '../components/common/NavigationBar';
-import LoadingScreen from './LoadingScreen';
 import Categories from '../components/common/Categories';
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
-    const { locations, loading, error } = useSelector(state => state.locations);
-    const { bookmarks } = useSelector(state => state.bookmark);
-    const user = useSelector(state => state.auth.user); 
-    const USER_ID = user ? user.id : null;
-
-    useEffect(() => {
-        dispatch(fetchLocations());
-        dispatch(fetchBookmarks());
-    }, [dispatch]);
-
+    const { trips, loading, error } = useSelector(state => state.trips);
     const navigation = useNavigation();
 
-    const navigateLocationPage = (location) => {
-        navigation.navigate('LocationDetailScreen', { location });
+    useEffect(() => {
+        dispatch(fetchTrips());
+    }, [dispatch]);
+
+    const navigateTripPage = (trip) => {
+        navigation.navigate('TripDetailScreen', { trip });
     };
 
-    const handleBookmarkToggle = (location) => {
-        const bookmark = bookmarks.find(bookmark => bookmark.location_id === location.id);
-    
-        if (bookmark) {
-            dispatch(deleteBookmark(bookmark.id));
-        } else {
-            if (USER_ID) {
-                dispatch(createBookmark({ userId: USER_ID, locationId: location.id }));
-            }
-        }
-    };
-    
-    if (loading) return <LoadingScreen />;
     if (error) return <Text>Error: {error.message}</Text>;
 
     return (
-        <>
-            <View style={styles.container}>
-                <Header />
-                <ScrollView style={styles.scrollView}>
-                <Categories/>
-                    {locations.map((location) => (
-                        <Card
-                            key={location.id}
-                            onPress={() => navigateLocationPage(location)}
-                            title={location.title}
-                            description={location.description}
-                            price={`$${location.estimated_price} per individual`} 
-                            url={location.image}
-                            label={'join'}
-                            showBookmark={true}
-                            onBookmarkPress={() => handleBookmarkToggle(location)}
-                        />
-                    ))}
-                </ScrollView>
-            </View>
+        <View style={styles.container}>
+            <Header />
+            <ScrollView style={styles.scrollView}>
+                <Categories />
+                {trips.map((trip) => (
+                    <Card
+                        key={trip.id}
+                        onPress={() => navigateTripPage(trip)}
+                        title={trip.room.room_name}
+                        description={`${trip.creator.first_name} ${trip.creator.last_name}`}
+                        price={`$${trip.total_budget} total`}
+                        url={trip.locations[0]?.image}
+                        label={'Join'}
+                        showBookmark={true}
+                        onBookmarkPress={() => {}}
+                    />
+                ))}
+            </ScrollView>
             <NavigationBar />
-        </>
+        </View>
     );
 };
-
 
 const styles = StyleSheet.create({
     container: {
@@ -82,16 +58,6 @@ const styles = StyleSheet.create({
     scrollView: {
         width: '100%',
     },
-    header: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: 30,
-        height: 140
-    
-    },
-   
-    
 });
 
 export default HomeScreen;
