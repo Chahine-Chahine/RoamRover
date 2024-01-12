@@ -100,10 +100,10 @@ class AuthController extends Controller
     {
         $user = Auth::user();
         $request->validate([
-            'username' => 'string|max:255|unique:users,username,' . $user->id,
-            'email' => 'string|email|max:255|unique:users,email,' . $user->id,
-            'first_name' => 'string|min:4',
-            'last_name' => 'string|min:4',
+            'username' => 'nullable|string|max:255|unique:users,username,' . $user->id,
+            'email' => 'nullable|string|email|max:255|unique:users,email,' . $user->id,
+            'first_name' => 'nullable|string|min:4',
+            'last_name' => 'nullable|string|min:4',
             'image_url' => 'nullable|string|max:255',
             'bio' => 'nullable|string|min:20',
         ]);
