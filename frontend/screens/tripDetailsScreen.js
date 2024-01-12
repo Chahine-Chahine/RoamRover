@@ -6,12 +6,7 @@ const TripDetailScreen = () => {
     const coverImageUrl = '../assets/Baalbeck.webp';
     return (
         <View style={styles.container}>
-          <ScrollView style={styles.scrollView}>
             <ImageBackground source={require(coverImageUrl)} style={styles.coverImage}>
-              <View style={styles.headerContainer}>
-                <AntDesign name="left" size={24} color="white" /> 
-                <FontAwesome name="bookmark-o" size={24} color="white" /> 
-              </View>
               <Text style={styles.title}>Best Trip To Destination</Text>
               <Text style={styles.location}>Location</Text>
               <View style={styles.ratingContainer}>
@@ -22,6 +17,7 @@ const TripDetailScreen = () => {
                 <FontAwesome name="star" size={16} color="white" />
               </View>
             </ImageBackground>
+          <ScrollView style={styles.scrollView}>
             <Text style={styles.sectionTitle}>About</Text>
             <Text style={styles.description}>
               Lorem ipsum dolor sit amet, elit, sed do eiusmod. Lorem ipsum dolor sit amet.
@@ -64,20 +60,22 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   coverImage: {
-    height: 200, 
-    justifyContent: 'flex-end', 
+    height: 300, 
+    justifyContent: 'center', 
     paddingHorizontal: 16, 
     paddingTop: 36, 
+    borderRadius: 20
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
     color: 'black', 
     marginBottom: 8,
   },
   location: {
     fontSize: 18,
-    color: 'black', 
+    color: '#D9D9D9', 
+    fontWeight: 'bold',
     marginBottom: 8,
   },
   ratingContainer: {
