@@ -8,19 +8,21 @@ const TripDetailScreen = () => {
 
   return (
     <View style={styles.container}>
+        <View style={styles.coverImageContainer}>
       <ImageBackground source={coverImageUrl} style={styles.coverImage}>
         <View style={styles.contentContainer}>
           <Text style={styles.title}>Best Trip To Destination</Text>
           <Text style={styles.location}>Location</Text>
           <View style={styles.ratingContainer}>
-            <FontAwesome name="star" size={16} color="white" />
-            <FontAwesome name="star" size={16} color="white" />
-            <FontAwesome name="star" size={16} color="white" />
-            <FontAwesome name="star" size={16} color="white" />
-            <FontAwesome name="star" size={16} color="white" />
+            <FontAwesome name="star" size={25} color="white" />
+            <FontAwesome name="star" size={25} color="white" />
+            <FontAwesome name="star" size={25} color="white" />
+            <FontAwesome name="star" size={25} color="white" />
+            <FontAwesome name="star" size={25} color="white" />
           </View>
         </View>
       </ImageBackground>
+      </View>
       <ScrollView style={styles.scrollView}>
         <Text style={styles.sectionTitle}>About</Text>
         <Text style={styles.description}>
@@ -51,9 +53,15 @@ const styles = StyleSheet.create({
 scrollView: {
 margin: 16,
 },
-coverImage: {
+coverImageContainer: {
 height: 300, 
-justifyContent: 'flex-end', 
+borderBottomLeftRadius: 20, 
+borderBottomRightRadius: 20,
+overflow: 'hidden',
+},
+coverImage: {
+height: '100%', 
+justifyContent: 'flex-end',
 },
 contentContainer: {
 paddingHorizontal: 16,
@@ -67,12 +75,12 @@ backgroundColor: 'rgba(0,0,0,0.3)',
 title: {
 fontSize: 26,
 fontWeight: 'bold',
-color: 'white',
+color: 'black',
 marginBottom: 8,
 },
 location: {
 fontSize: 18,
-color: 'white',
+color: '#D9D9D9',
 fontWeight: 'bold',
 marginBottom: 8,
 },
@@ -106,19 +114,12 @@ borderRadius: 25,
 paddingVertical: 12,
 alignItems: 'center',
 justifyContent: 'center',
-marginBottom: 16, // Add space below the button
+marginBottom: 16,
 },
 joinButtonText: {
 color: 'white',
 fontSize: 18,
 fontWeight: 'bold',
-},
-tabBar: {
-flexDirection: 'row',
-justifyContent: 'space-around',
-paddingVertical: 20,
-borderTopWidth: 1,
-borderColor: '#e1e4e8',
 },
 });
 
