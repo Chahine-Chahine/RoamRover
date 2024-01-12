@@ -6,7 +6,7 @@ import {
 
 const baseUrl = 'http://192.168.0.116';
 
-export const fetchLocations = () => {
+export const fetchTrips = () => {
     return async (dispatch) => {
         try {
             dispatch({ type: FETCH_TRIPS_REQUEST });
