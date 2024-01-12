@@ -17,11 +17,13 @@ const HomeScreen = () => {
         dispatch(fetchTrips());
     }, [dispatch]);
 
-    const navigateTripPage = () => {
-        navigation.navigate('TripDetailsScreen');
+    const navigateTripPage = (trip) => {
+        navigation.navigate('TripDetailsScreen', { trip });
     };
 
+    if (loading) return <Text>Loading...</Text>; 
     if (error) return <Text>Error: {error.message}</Text>;
+
     return (
         <View style={styles.container}>
             <Header />
@@ -30,7 +32,7 @@ const HomeScreen = () => {
                 {trips.map((trip) => (
                     <Card
                         key={trip.id.toString()}
-                        onPress={() => navigateTripPage(trip)}
+                        onPress={() => navigateTripPage(trip)} 
                         title={trip.room?.room_name ?? 'Trip Room'}
                         description={`${trip.room?.creator?.first_name ?? 'Description'} ${trip.room?.creator?.last_name ?? ''}`}
                         price={`$${trip.total_budget ?? ''} total`}

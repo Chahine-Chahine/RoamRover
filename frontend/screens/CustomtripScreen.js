@@ -32,11 +32,8 @@ const CustomtripScreen = () => {
     return(
         <>
         <View style={styles.container}>
-        {/* <Text style={styles.pagetitle}>Custom Trip</Text> */}
-         
         <ScrollView >
             <View style={styles.searchContainer}>
-            {/* <Search/> */}
             <Categories/>
             </View>
             {locations.map((location)=>(
