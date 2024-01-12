@@ -16,8 +16,8 @@ const SignUpScreen = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [first_name, setFirstName] = useState("");
+    const [last_name, setLastName] = useState("");
     const [error, setError] = useState("");
 
     useEffect(() => {
@@ -31,7 +31,7 @@ const SignUpScreen = () => {
 
     const handleSignup = () => {
         setError(""); 
-        dispatch(registerUser({ username, email, password, firstName, lastName }));
+        dispatch(registerUser({ username, email, password, first_name, last_name }));
     };
 
     return (
@@ -52,14 +52,14 @@ const SignUpScreen = () => {
                     style={styles.input}
                     placeholder="First Name"
                     placeholderTextColor="#aaaaaa"
-                    value={firstName}
+                    value={first_name}
                     onChangeText={setFirstName}
                 />
                 <TextInput
                     style={styles.input}
                     placeholder="Last Name"
                     placeholderTextColor="#aaaaaa"
-                    value={lastName}
+                    value={last_name}
                     onChangeText={setLastName}
                 />
                 <TextInput

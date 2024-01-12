@@ -23,7 +23,6 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
-// Subscribe to store updates to save the state to AsyncStorage
 store.subscribe(() => {
   saveState(store.getState());
 });
