@@ -15,7 +15,12 @@ class Trip extends Model
         'room_id'
     ];
     public function locations()
-{
-    return $this->belongsToMany(Location::class, 'trips_locations');
-}
+    {
+        return $this->belongsToMany(Location::class, 'trips_locations', 'trip_id', 'location_id');
+    }
+    
+    public function room()
+    {
+        return $this->belongsTo(Room::class, 'room_id');
+    }
 }

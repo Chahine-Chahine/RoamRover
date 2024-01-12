@@ -49,9 +49,10 @@ class TripsController extends Controller
     
     public function displayAllTrips()
     {
-        return Trip::with('locations')->get();
-    }
+        $trips = Trip::with(['locations', 'room'])->get();
     
+        return response()->json(['trips' => $trips]);
+    }
     public function displayById($id)
     {
         return Trip::with('locations')->findOrFail($id);
