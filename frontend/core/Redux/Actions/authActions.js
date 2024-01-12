@@ -16,10 +16,11 @@ export const registerUser = (userData) => {
       console.log('after the response')
       console.log('the response: ' , response)
       const data = response.data;
-      console.log("data: ", data)
-      if (data.status === 'success') {
+      if (data.status === 'success' && data.authorisation && data.authorisation.token) {
+        await AsyncStorage.setItem('userToken', data.authorisation.token);
         dispatch({
           type: REGISTER_SUCCESS,
+          token: data.authorisation.token,
           payload: data.user, 
         });
       } else {

@@ -22,7 +22,7 @@ const Header = ({ user }) => {
         <Text>Beirut, Lebanon</Text> 
       </View>
       <View style={styles.messageIcon}>
-        <Icon name="facebook-messenger"  size={25}  onPress= {chatNavigate}/>
+        <Icon name="comment-alt"  size={25}  onPress= {chatNavigate}/>
       </View>
     </View>
   );
