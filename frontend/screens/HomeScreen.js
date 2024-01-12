@@ -17,8 +17,8 @@ const HomeScreen = () => {
         dispatch(fetchTrips());
     }, [dispatch]);
 
-    const navigateTripPage = (trip) => {
-        navigation.navigate('TripDetailScreen', { trip });
+    const navigateTripPage = () => {
+        navigation.navigate('TripDetailsScreen');
     };
 
     if (error) return <Text>Error: {error.message}</Text>;
@@ -32,11 +32,11 @@ const HomeScreen = () => {
                         key={trip.id.toString()}
                         onPress={() => navigateTripPage(trip)}
                         title={trip.room?.room_name ?? 'Trip Room'}
-                        description={`${trip.room?.creator?.first_name ?? 'Unknown'} ${trip.room?.creator?.last_name ?? ''}`}
+                        description={`${trip.room?.creator?.first_name ?? 'Description'} ${trip.room?.creator?.last_name ?? ''}`}
                         price={`$${trip.total_budget ?? ''} total`}
                         url={trip.locations[0]?.image ?? 'default_image_url'}
                         label={'Join'}
-                        showBookmark={true}
+                        showBookmark={false}
                         onBookmarkPress={() => {}} 
                     />
                 ))}

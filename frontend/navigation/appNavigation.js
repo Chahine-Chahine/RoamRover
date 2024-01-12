@@ -15,6 +15,7 @@ import Questionnaire from '../screens/AIquestionnaireScreen';
 import ProfileUpdateScreen from '../screens/UpdateprofileScreen';
 import ChatRoomScreen from '../screens/ChatroomScreen';
 import RoomListScreen from '../screens/roomlistScreen';
+import TripDetailsScreen from '../screens/tripDetailsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,7 @@ export default AppNavigation = () => {
         <Stack.Screen name='Signin' options={{headerShown :false}} component={SignInScreen}/>
         <Stack.Screen name= 'Signup' options={{headerShown: false}} component={SignUpScreen}/>
         <Stack.Screen name= 'HomeScreen' options={{headerShown: false}} component={HomeScreen}/>
+        <Stack.Screen name="TripDetailsScreen" component={TripDetailsScreen} options={{headerShown: true, headerTitle: 'Trip Details'}} />
         <Stack.Screen name= 'LocationDetailScreen' options={{headerShown: true}} component={LocationDetailScreen}/>
         <Stack.Screen name= 'profileScreen' options={{headerShown: true, headerTitle: 'Profile'}} component={ProfileScreen}/>
         <Stack.Screen name= 'GenerateTrip' options={{headerShown: true}} component={GenerateTrip}/>
