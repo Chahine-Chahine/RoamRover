@@ -22,7 +22,6 @@ const HomeScreen = () => {
     };
 
     if (error) return <Text>Error: {error.message}</Text>;
-
     return (
         <View style={styles.container}>
             <Header />
@@ -30,15 +29,15 @@ const HomeScreen = () => {
                 <Categories />
                 {trips.map((trip) => (
                     <Card
-                        key={trip.id}
+                        key={trip.id.toString()}
                         onPress={() => navigateTripPage(trip)}
-                        title={trip.room.room_name}
-                        description={`${trip.creator.first_name} ${trip.creator.last_name}`}
-                        price={`$${trip.total_budget} total`}
-                        url={trip.locations[0]?.image}
+                        title={trip.room?.room_name ?? 'Trip Room'}
+                        description={`${trip.room?.creator?.first_name ?? 'Unknown'} ${trip.room?.creator?.last_name ?? ''}`}
+                        price={`$${trip.total_budget ?? ''} total`}
+                        url={trip.locations[0]?.image ?? 'default_image_url'}
                         label={'Join'}
                         showBookmark={true}
-                        onBookmarkPress={() => {}}
+                        onBookmarkPress={() => {}} 
                     />
                 ))}
             </ScrollView>
