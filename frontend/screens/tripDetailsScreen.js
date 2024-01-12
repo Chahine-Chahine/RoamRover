@@ -85,8 +85,10 @@ fontWeight: 'bold',
 marginBottom: 8,
 },
 ratingContainer: {
+width: 155,
 flexDirection: 'row',
 marginBottom: 16,
+justifyContent: 'space-evenly'
 },
 sectionTitle: {
 fontSize: 18,
@@ -102,6 +104,7 @@ galleryContainer: {
 flexDirection: 'row',
 justifyContent: 'space-between',
 marginBottom: 16,
+marginTop: 25
 },
 imagePlaceholder: {
 width: 64,
@@ -114,7 +117,6 @@ borderRadius: 25,
 paddingVertical: 12,
 alignItems: 'center',
 justifyContent: 'center',
-marginBottom: 16,
 },
 joinButtonText: {
 color: 'white',
