@@ -16,7 +16,7 @@ const CustomtripScreen = () => {
     const [roomName, setRoomName] = useState('');
     const [roomDescription, setRoomDescription] = useState('');
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [startingLocation,setStartingLocation] = useState('')
+    const [startingLocation, setStartingLocation] = useState('');
     const dispatch = useDispatch();
     const { locations, loading, error } = useSelector(state => state.locations);
     const { bookmarks } = useSelector(state => state.bookmark);
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     modalView: {
         flex: 1,
         justifyContent: 'center',
-        marginTop: 20,
+        marginTop: 120,
         marginHorizontal: 10,
         width: '95%',
         height: '40%',
