@@ -7,6 +7,7 @@ import Card from '../components/common/Card';
 import NavigationBar from '../components/common/NavigationBar';
 import LoadingScreen from './LoadingScreen';
 import Categories from '../components/common/Categories';
+import Search from '../components/common/Search';
 import { useEffect } from 'react';
 import ActionButton from '../components/ProfileScreen/ActionButton';
 
@@ -47,6 +48,9 @@ const CustomtripScreen = () => {
         <>
             <View style={styles.container}>
                 <ScrollView style={styles.scrollView}>
+                <View style={styles.Search}>
+                <Search/>
+                </View>
                 <View style={styles.Categories}>
                 <Categories/>
                 </View>
@@ -58,7 +62,7 @@ const CustomtripScreen = () => {
                             description={location.description}
                             price={`$${location.estimated_price} per individual`} 
                             url={location.image}
-                            label={'join'}
+                            label={'add'}
                             showBookmark={true}
                             onBookmarkPress={() => handleBookmarkToggle(location)}
                         />
@@ -75,6 +79,8 @@ const CustomtripScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
 	},
     scrollView: {
         width: '100%',
@@ -94,6 +100,12 @@ const styles = StyleSheet.create({
     },
     Categories:{
         marginTop: 20
+    },
+    Search:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginHorizontal: 50,
+        marginVertical: 10
     }
 
 });

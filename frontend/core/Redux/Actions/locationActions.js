@@ -4,7 +4,7 @@ import {
     FETCH_LOCATIONS_FAILURE
 } from './actionTypes';
 
-const baseUrl = 'http://192.168.0.116';
+const baseUrl = 'http://192.168.240.32';
 
 export const fetchLocations = () => {
     return async (dispatch) => {

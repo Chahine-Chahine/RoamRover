@@ -9,9 +9,9 @@ const Search = () => {
         <Icon name="search" size={18} color="#969696" marginRight={10} />
         <TextInput placeholder='Search' placeholderTextColor={'#969696'} style={styles.placeholder} />
       </View>
-      <View style={styles.filterIcon}>
+      {/* <View style={styles.filterIcon}>
         <Icon name="sliders-h" color={'black'} size={25} />
-      </View>
+      </View> */}
     </View>
   );
 };
