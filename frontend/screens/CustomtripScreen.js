@@ -28,7 +28,6 @@ const CustomtripScreen = () => {
     useEffect(() => {
         dispatch(fetchLocations());
         dispatch(fetchBookmarks());
-        dispatch(createTrip());
     }, [dispatch]);
 
     const navigation = useNavigation();
@@ -67,6 +66,19 @@ const CustomtripScreen = () => {
         return selectedLocations.reduce((total, location) => total + location.estimatedPrice, 0);
       };
 
+      const handleSubmit = () => {
+        const totalBudget = calculateTotalBudget(selectedLocations);
+        const tripData = {
+          starting_location: startingLocation,
+          room_name: roomName,
+          room_description: roomDescription,
+          stops: selectedLocations,
+          total_budget: totalBudget
+        };
+      
+        dispatch(createTrip(tripData));
+      };
+      
       
     if (loading) return <LoadingScreen />;
     if (error) return <Text>Error: {error.message}</Text>;
