@@ -16,7 +16,7 @@ const CustomtripScreen = () => {
     const [roomName, setRoomName] = useState('');
     const [roomDescription, setRoomDescription] = useState('');
     const [isModalVisible, setIsModalVisible] = useState(false);
-
+    const [startingLocation,setStartingLocation] = useState('')
     const dispatch = useDispatch();
     const { locations, loading, error } = useSelector(state => state.locations);
     const { bookmarks } = useSelector(state => state.bookmark);
@@ -74,6 +74,12 @@ const CustomtripScreen = () => {
         <View style={styles.modalView}>
         <ScrollView style={styles.modalScrollView} showsVerticalScrollIndicator={false}>
         <Text style={styles.modalTitle}>Create a Room</Text>
+        <TextInput
+        placeholder="Starting Location"
+        onChangeText={setStartingLocation}
+        value={startingLocation}
+        style={styles.input}
+        />
         <TextInput
         placeholder="Room Name"
         onChangeText={setRoomName}
