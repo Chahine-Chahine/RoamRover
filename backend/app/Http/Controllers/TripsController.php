@@ -16,6 +16,7 @@ class TripsController extends Controller
             'total_budget' => 'required|numeric',
             'receipt' => 'string|nullable',
             'room_name' => 'required|string|max:255', 
+            'room_description' => 'required|string|max:255',
             'stops' => 'required|array', 
             'stops.*' => 'required|integer|exists:locations,id' 
         ]);
@@ -28,6 +29,7 @@ class TripsController extends Controller
             $room = Room::create([
                 'room_name' => $validatedData['room_name'],
                 'creator_id' => $user->id,
+                'room_description' => $validatedData['room_description']
             ]);
     
             $validatedData['room_id'] = $room->id;

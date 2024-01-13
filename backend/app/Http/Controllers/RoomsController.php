@@ -27,7 +27,8 @@ class RoomsController extends Controller
             'room_name' => 'required|string|max:255',
             'creator_id' => 'required|integer|exists:users,id',
             'participants' => 'required|array',
-            'participants.*' => 'integer|distinct|exists:users,id'
+            'participants.*' => 'integer|distinct|exists:users,id',
+            'room_description' => 'required|string|max:255',
         ]);
 
         DB::beginTransaction();
@@ -36,6 +37,7 @@ class RoomsController extends Controller
             $room = Room::create([
                 'room_name' => $validatedData['room_name'],
                 'creator_id' => $validatedData['creator_id'],
+                'room_description' => $validatedData['room_description']
             ]);
 
             $room->users()->attach(array_diff($validatedData['participants'], [$validatedData['creator_id']]));
