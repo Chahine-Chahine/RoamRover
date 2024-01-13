@@ -30,7 +30,7 @@ const TripDetailScreen = ({ route }) => {
         </View>
         <ScrollView style={styles.scrollView}>
           <Text style={styles.sectionTitle}>About</Text>
-          <Text style={styles.description}>{trip.description ?? 'No description available.'}</Text>
+          <Text style={styles.description}>{trip.room?.room_description ?? 'No description available.'}</Text>
           <Text style={styles.sectionTitle}>Gallery</Text>
           <View style={styles.galleryContainer}>
             {trip.locations.map((location, index) => (
