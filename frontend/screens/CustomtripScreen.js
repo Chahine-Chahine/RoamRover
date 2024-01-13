@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchLocations } from '../core/Redux/Actions/locationActions';
 import { createBookmark, deleteBookmark, fetchBookmarks } from '../core/Redux/Actions/bookmarkActions';
 import { useNavigation } from '@react-navigation/native';
-import Header from '../components/common/Header';
-import Search from '../components/common/Search';
 import Card from '../components/common/Card';
 import NavigationBar from '../components/common/NavigationBar';
 import LoadingScreen from './LoadingScreen';
