@@ -16,7 +16,6 @@ const TripDetailScreen = ({ route }) => {
               <Text style={styles.title}>{trip.room?.room_name ?? 'Best Trip To Destination'}</Text>
               <Text style={styles.location}>{trip.starting_location ?? 'Location'}</Text>
               <View style={styles.ratingContainer}>
-                {/* Generate stars based on the rating */}
                 {Array(5).fill().map((_, index) => (
                   <FontAwesome
                     key={index}
@@ -81,7 +80,7 @@ backgroundColor: 'rgba(0,0,0,0.3)',
 title: {
 fontSize: 26,
 fontWeight: 'bold',
-color: 'black',
+color: '#fff',
 marginBottom: 8,
 },
 location: {
@@ -108,7 +107,6 @@ marginBottom: 16,
 },
 galleryContainer: {
 flexDirection: 'row',
-justifyContent: 'space-between',
 marginBottom: 16,
 marginTop: 25
 },
@@ -116,6 +114,7 @@ imagePlaceholder: {
 width: 64,
 height: 64,
 backgroundColor: '#e1e4e8',
+marginLeft: 5,
 },
 joinButton: {
 backgroundColor: 'red',
