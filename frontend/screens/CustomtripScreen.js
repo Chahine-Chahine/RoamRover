@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, Modal, TextInput } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Modal, TextInput, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLocations } from '../core/Redux/Actions/locationActions';
 import { createBookmark, deleteBookmark, fetchBookmarks } from '../core/Redux/Actions/bookmarkActions';
@@ -10,7 +10,6 @@ import Categories from '../components/common/Categories';
 import Search from '../components/common/Search';
 import { useEffect, useState } from 'react';
 import ActionButton from '../components/ProfileScreen/ActionButton';
-import { Button } from 'react-native';
 
 const CustomtripScreen = () => {
     const [selectedLocations, setSelectedLocations] = useState([]);
@@ -65,7 +64,6 @@ const CustomtripScreen = () => {
 
     return (
         <>
-
     <Modal
         animationType="slide"
         transparent={true}
@@ -74,6 +72,7 @@ const CustomtripScreen = () => {
         setIsModalVisible(!isModalVisible);
         }}>
         <View style={styles.modalView}>
+        <ScrollView style={styles.modalScrollView} showsVerticalScrollIndicator={false}>
         <Text style={styles.modalTitle}>Create a Room</Text>
         <TextInput
         placeholder="Room Name"
@@ -87,13 +86,12 @@ const CustomtripScreen = () => {
         value={roomDescription}
         style={styles.input}
         />
-        <Button
-        title="Save"
-        style={styles.button}
-        onPress={() => {
-            setIsModalVisible(!isModalVisible);
-        }}
-        />
+        <TouchableOpacity style={styles.button} onPress={() => {
+    setIsModalVisible(!isModalVisible);
+}}>
+    <Text style={styles.buttonText}>Save</Text>
+</TouchableOpacity>
+</ScrollView>
         </View>
     </Modal>
             <View style={styles.container}>
@@ -161,17 +159,17 @@ const styles = StyleSheet.create({
     },
     modalView: {
         justifyContent: 'center',
-        marginTop: 70,
+        marginTop: 200,
         marginHorizontal: 10,
         width: '95%',
-        height: '70%',
+        height: '40%',
         backgroundColor: 'white',
         borderRadius: 20,
         elevation: 5
     },
     input: {
         height: 60,
-        margin: 12,
+        margin: 6,
         borderWidth: 1,
         paddingHorizontal: 10,
         backgroundColor: 'white',
@@ -179,11 +177,11 @@ const styles = StyleSheet.create({
         borderColor: '#A78BFA',
     },
     button: {
-        backgroundColor: 'blue',
-        padding: 0,
+        backgroundColor: '#A78BFA',
+        padding: 12,
         borderRadius: 10,
         alignItems: 'center',
-        marginTop: 20,
+        margin: 20,
     },
     buttonText: {
         color: 'white',
@@ -193,7 +191,8 @@ const styles = StyleSheet.create({
     modalTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 20,
+        marginHorizontal: 10,
+        marginVertical: 20
     },
     
 
