@@ -33,13 +33,21 @@ class LocationsTableSeeder extends Seeder
             'coordinates' => json_encode(['latitude' => 1.054554808, 'longitude' => 10.89874]),
         ],
         [
-           
             'title'=> 'Baalbeck Castle',
             'area'=> 'Baalbeck Lebanon',
             'description'=> 'Discover Your history who you really are',
             'estimated_price'=> 10,
             'rating' => 4, 
             'image'=> "http://192.168.0.116:8000/storage/images/Baalbeck.webp",
+            'coordinates' => json_encode(['latitude' => 1.05454808, 'longitude' => 10.859874]),
+        ],
+        [
+            'title'=> 'Qadisha Valley',
+            'area'=> 'Qadisha Lebanon',
+            'description'=> 'Beautifull place to go',
+            'estimated_price'=> 0,
+            'rating' => 5, 
+            'image'=> "http://192.168.0.116:8000/storage/images/qadisha-valley.jpg",
             'coordinates' => json_encode(['latitude' => 1.05454808, 'longitude' => 10.859874]),
         ],
     ]);

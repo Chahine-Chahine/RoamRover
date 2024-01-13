@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     searchContainer: {
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 20,
     },
     pagetitle:{
         fontSize: 32,
