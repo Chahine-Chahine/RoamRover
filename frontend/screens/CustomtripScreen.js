@@ -10,13 +10,15 @@ import Categories from '../components/common/Categories';
 import Search from '../components/common/Search';
 import { useEffect, useState } from 'react';
 import ActionButton from '../components/ProfileScreen/ActionButton';
+import { connect } from 'react-redux';
+import { createTrip } from '../core/Redux/Actions/tripActions';
 
 const CustomtripScreen = () => {
     const [selectedLocations, setSelectedLocations] = useState([]);
     const [roomName, setRoomName] = useState('');
     const [roomDescription, setRoomDescription] = useState('');
-    const [isModalVisible, setIsModalVisible] = useState(false);
     const [startingLocation, setStartingLocation] = useState('');
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const dispatch = useDispatch();
     const { locations, loading, error } = useSelector(state => state.locations);
     const { bookmarks } = useSelector(state => state.bookmark);
@@ -26,6 +28,7 @@ const CustomtripScreen = () => {
     useEffect(() => {
         dispatch(fetchLocations());
         dispatch(fetchBookmarks());
+        dispatch(createTrip());
     }, [dispatch]);
 
     const navigation = useNavigation();
@@ -59,6 +62,12 @@ const CustomtripScreen = () => {
         }
     };
 
+    // Function to calculate the total budget of a trip
+    const calculateTotalBudget = (selectedLocations) => {
+        return selectedLocations.reduce((total, location) => total + location.estimatedPrice, 0);
+      };
+
+      
     if (loading) return <LoadingScreen />;
     if (error) return <Text>Error: {error.message}</Text>;
 
