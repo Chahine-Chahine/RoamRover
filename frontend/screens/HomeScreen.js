@@ -40,6 +40,7 @@ const HomeScreen = () => {
                         label={'Join'}
                         showBookmark={false}
                         onBookmarkPress={() => {}} 
+                        onAddPress= {() => {console.log('pressed')}}
                     />
                 ))}
             </ScrollView>
