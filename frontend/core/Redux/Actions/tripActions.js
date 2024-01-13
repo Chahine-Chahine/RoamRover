@@ -4,7 +4,7 @@ import {
     FETCH_TRIPS_FAILURE
 } from './actionTypes';
 
-const baseUrl = 'http://192.168.240.32';
+const baseUrl = 'http://192.168.0.116';
 
 export const fetchTrips = () => {
     return async (dispatch) => {
