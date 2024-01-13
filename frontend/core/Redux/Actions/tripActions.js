@@ -24,7 +24,7 @@ export const fetchTrips = () => {
 };
 
 // createTrip action creator
-export const createTrip = (tripData) => {
+export const createTrip = (tripData, token) => {
     return async (dispatch) => {
         try {
             dispatch({ type: CREATE_TRIP_REQUEST });
@@ -32,6 +32,7 @@ export const createTrip = (tripData) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
                 },
                 body: JSON.stringify(tripData),
             });

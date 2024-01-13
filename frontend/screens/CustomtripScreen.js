@@ -85,42 +85,41 @@ const CustomtripScreen = () => {
 
     return (
         <>
-    <Modal
-        animationType="slide"
-        transparent={true}
-        visible={isModalVisible}
-        onRequestClose={() => {
-        setIsModalVisible(!isModalVisible);
-        }}>
-        <View style={styles.modalView}>
-        <ScrollView style={styles.modalScrollView} showsVerticalScrollIndicator={false}>
-        <Text style={styles.modalTitle}>Create a Room</Text>
-        <TextInput
+<Modal
+  animationType="slide"
+  transparent={true}
+  visible={isModalVisible}
+  onRequestClose={() => setIsModalVisible(!isModalVisible)}>
+  <View style={styles.modalView}>
+    <ScrollView style={styles.modalScrollView} showsVerticalScrollIndicator={false}>
+      <Text style={styles.modalTitle}>Create a Trip</Text>
+      <TextInput
         placeholder="Starting Location"
         onChangeText={setStartingLocation}
         value={startingLocation}
         style={styles.input}
-        />
-        <TextInput
+      />
+      <TextInput
         placeholder="Room Name"
         onChangeText={setRoomName}
         value={roomName}
         style={styles.input}
-        />
-        <TextInput
+      />
+      <TextInput
         placeholder="Room Description"
         onChangeText={setRoomDescription}
         value={roomDescription}
         style={styles.input}
-        />
-        <TouchableOpacity style={styles.button} onPress={() => {
-    setIsModalVisible(!isModalVisible);
-}}>
-    <Text style={styles.buttonText}>Save</Text>
-</TouchableOpacity>
-</ScrollView>
-        </View>
-    </Modal>
+      />
+      <TouchableOpacity style={styles.button} onPress={() => {
+          setIsModalVisible(!isModalVisible);
+          handleSubmit();
+      }}>
+        <Text style={styles.buttonText}>Create Trip</Text>
+      </TouchableOpacity>
+    </ScrollView>
+  </View>
+</Modal>
             <View style={styles.container}>
                 <ScrollView style={styles.scrollView}>
                 <View style={styles.Search}>
@@ -225,6 +224,6 @@ const styles = StyleSheet.create({
     
 
 });
-export default CustomtripScreen;
+export default connect()(CustomtripScreen);
 
         
