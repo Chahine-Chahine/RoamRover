@@ -8,10 +8,11 @@ import NavigationBar from '../components/common/NavigationBar';
 import LoadingScreen from './LoadingScreen';
 import Categories from '../components/common/Categories';
 import Search from '../components/common/Search';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ActionButton from '../components/ProfileScreen/ActionButton';
 
 const CustomtripScreen = () => {
+    const [selectedLocations, setSelectedLocations] = useState([]);
     const dispatch = useDispatch();
     const { locations, loading, error } = useSelector(state => state.locations);
     const { bookmarks } = useSelector(state => state.bookmark);
@@ -28,7 +29,17 @@ const CustomtripScreen = () => {
     const navigateLocationPage = (location) => {
         navigation.navigate('LocationDetailScreen', { location });
     };
-
+ 
+    const handleAddLocation = (locationId) => {
+        setSelectedLocations(prevLocations => {
+            const updatedLocations = [...prevLocations, locationId];
+            console.log("Added location ID:", updatedLocations);
+            return updatedLocations;
+        });
+    };
+    
+    
+    
     const handleBookmarkToggle = (location) => {
         const bookmark = bookmarks.find(bookmark => bookmark.location_id === location.id);
 
@@ -57,12 +68,14 @@ const CustomtripScreen = () => {
                     {locations.map((location) => (
                         <Card
                             key={location.id}
+                            location_id={location.id}
                             onPress={() => navigateLocationPage(location)}
                             title={location.title}
                             description={location.description}
                             price={`$${location.estimated_price} per individual`} 
                             url={location.image}
                             label={'add'}
+                            onAddPress={handleAddLocation}
                             showBookmark={true}
                             onBookmarkPress={() => handleBookmarkToggle(location)}
                         />

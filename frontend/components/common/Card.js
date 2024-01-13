@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image, BackHandler } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import OutlinedButton from "./OutlinedButton";
 
-const Card = ({ onPress, title, description, price, url, label ,location, showBookmark = false, onBookmarkPress, isBookmarkedInitially }) => {
+const Card = ({ location_id , onPress, title, description, price, url, label ,location, showBookmark = false, onBookmarkPress, isBookmarkedInitially, onAddPress  }) => {
     const [isBookmarked, setIsBookmarked] = useState(isBookmarkedInitially);
 
     useEffect(() => {
@@ -40,7 +40,7 @@ const Card = ({ onPress, title, description, price, url, label ,location, showBo
                                     style={styles.bookmark}
                                 />
                             )}
-                            <OutlinedButton label={label} style={styles.OutlinedButton} onPress={() => console.log("working")} />
+                            <OutlinedButton label={label} style={styles.OutlinedButton} onPress={() => onAddPress(location_id)}  />
                         </View>
                     </View>
                 </View>
