@@ -16,7 +16,7 @@ const Search = () => {
       }).start();
     } else {
       Animated.timing(animationWidth, {
-        toValue: 300,  
+        toValue: 315,  
         duration: 300,
         useNativeDriver: false  
       }).start();

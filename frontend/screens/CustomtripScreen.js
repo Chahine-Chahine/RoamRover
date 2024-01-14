@@ -141,9 +141,7 @@ const CustomtripScreen = () => {
                 <View style={styles.Search}>
                 <Search/>
                 </View>
-                <View style={styles.Categories}>
-                <Categories/>
-                </View>
+                <Text style={styles.searchText}>Search for your favorite place in town</Text>
                     {locations.map((location) => (
                         <Card
                             key={location.id}
@@ -195,8 +193,18 @@ const styles = StyleSheet.create({
     },
     Search:{
         justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 20
+        alignItems: 'flex-start',
+        marginLeft: 18,
+        marginTop: 10,
+        zIndex :  2
+    },
+    searchText: {
+        position: 'absolute',
+        top: 25,
+        left: 80,
+        fontSize: 14,
+        fontWeight: '700',
+        color: '#A78BFA'
     },
     modalView: {
         flex: 1,
