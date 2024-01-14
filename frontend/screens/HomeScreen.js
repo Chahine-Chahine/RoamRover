@@ -7,6 +7,7 @@ import Header from '../components/common/Header';
 import Card from '../components/common/Card';
 import NavigationBar from '../components/common/NavigationBar';
 import Categories from '../components/common/Categories';
+import LoadingScreen from './LoadingScreen';
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const HomeScreen = () => {
         navigation.navigate('TripDetailsScreen', { trip });
     };
 
-    if (loading) return <Text>Loading...</Text>; 
+    if (loading) return <LoadingScreen/>; 
     if (error) return <Text>Error: {error.message}</Text>;
 
     return (
@@ -40,7 +41,6 @@ const HomeScreen = () => {
                         label={'Join'}
                         showBookmark={false}
                         onBookmarkPress={() => {}} 
-                        onAddPress= {() => {console.log('pressed')}}
                     />
                 ))}
             </ScrollView>
