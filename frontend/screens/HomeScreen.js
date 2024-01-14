@@ -39,6 +39,7 @@ const HomeScreen = () => {
                         price={`$${trip.total_budget ?? ''} total`}
                         url={trip.locations[0]?.image ?? 'default_image_url'}
                         label={'Join'}
+                        onAddPress={()=>{console.log('pressed')}}
                         showBookmark={false}
                         onBookmarkPress={() => {}} 
                     />

@@ -9,7 +9,7 @@ import LoadingScreen from './LoadingScreen';
 import Categories from '../components/common/Categories';
 import Search from '../components/common/Search';
 import { useEffect, useState } from 'react';
-import ActionButton from '../components/ProfileScreen/ActionButton';
+import ActionButton from '../components/ProfileScreen/ActionButton';    
 import { connect } from 'react-redux';
 import { createTrip } from '../core/Redux/Actions/tripActions';
 
@@ -27,6 +27,10 @@ const CustomtripScreen = () => {
     const USER_ID = user ? user.id : null;
 
     useEffect(() => {
+        console.log("Locations:", locations);
+        console.log("Bookmarks:", bookmarks);
+        console.log("User:", user);
+        console.log("Token:", token);
         dispatch(fetchLocations());
         dispatch(fetchBookmarks());
     }, [dispatch]);
@@ -34,7 +38,10 @@ const CustomtripScreen = () => {
     const navigation = useNavigation();
 
     const navigateLocationPage = (location) => {
-        navigation.navigate('LocationDetailScreen', { location });
+        console.log("Navigating to location:", location);
+        if (location) {
+            navigation.navigate('LocationDetailScreen', { location });
+        }
     };
  
     const handleAddLocation = (locationId) => {
@@ -62,12 +69,11 @@ const CustomtripScreen = () => {
         }
     };
 
-    // Function to calculate the total budget of a trip
-    const calculateTotalBudget = (selectedLocations) => {
-        return selectedLocations.reduce((total, location) => total + location.estimated_price, 0);
-      };
-
       const handleSubmit = () => {
+        if (!startingLocation || !roomName || !roomDescription || selectedLocations.length === 0) {
+            console.error("Required fields are missing");
+            return;
+        }
         const totalBudget = selectedLocations.reduce(
           (total, locationId) => {
             const location = locations.find(loc => loc.id === locationId);
