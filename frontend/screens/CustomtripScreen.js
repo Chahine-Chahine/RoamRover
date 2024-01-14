@@ -27,10 +27,6 @@ const CustomtripScreen = () => {
     const USER_ID = user ? user.id : null;
 
     useEffect(() => {
-        console.log("Locations:", locations);
-        console.log("Bookmarks:", bookmarks);
-        console.log("User:", user);
-        console.log("Token:", token);
         dispatch(fetchLocations());
         dispatch(fetchBookmarks());
     }, [dispatch]);
@@ -71,7 +67,7 @@ const CustomtripScreen = () => {
 
       const handleSubmit = () => {
          if (!startingLocation || !roomName || !roomDescription || selectedLocations.length === 0) {
-        console.error("Required fields are missing");
+        alert("Required fields are missing");
         return;
     }
         const totalBudget = selectedLocations.reduce(
@@ -200,8 +196,8 @@ const styles = StyleSheet.create({
     Search:{
         justifyContent: 'center',
         alignItems: 'center',
-        marginHorizontal: 50,
-        marginVertical: 10
+        marginLeft: 30,
+        marginTop: 20
     },
     modalView: {
         flex: 1,

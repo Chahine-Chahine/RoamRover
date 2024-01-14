@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const baseUrl = 'http://192.168.240.32:8000';
+const baseUrl = 'http://192.168.0.116:8000';
 
 
 export const fetchBookmarks = createAsyncThunk(
@@ -39,6 +39,6 @@ export const deleteBookmark = createAsyncThunk(
     'bookmark/deleteBookmark',
     async (bookmarkId) => {
         const response = await axios.delete(`${baseUrl}/api/bookmarks/${bookmarkId}`);
-        return response.data; // Assuming this returns the deleted bookmark's ID
+        return response.data; 
     }
 );
