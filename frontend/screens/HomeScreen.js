@@ -11,7 +11,7 @@ import LoadingScreen from './LoadingScreen';
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
-    const { trips, loading, error } = useSelector(state => state.trips);
+    const { trips, loading, error} = useSelector(state => state.trips);
     const navigation = useNavigation();
 
     useEffect(() => {
@@ -24,7 +24,6 @@ const HomeScreen = () => {
 
     if (loading) return <LoadingScreen/>; 
     if (error) return <Text>Error: {error.message}</Text>;
-
     return (
         <View style={styles.container}>
             <Header />
