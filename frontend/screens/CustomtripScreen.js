@@ -23,6 +23,7 @@ const CustomtripScreen = () => {
     const { locations, loading, error } = useSelector(state => state.locations);
     const { bookmarks } = useSelector(state => state.bookmark);
     const user = useSelector(state => state.auth.user); 
+    const token = useSelector((state) => state.auth.token);
     const USER_ID = user ? user.id : null;
 
     useEffect(() => {
@@ -63,21 +64,34 @@ const CustomtripScreen = () => {
 
     // Function to calculate the total budget of a trip
     const calculateTotalBudget = (selectedLocations) => {
-        return selectedLocations.reduce((total, location) => total + location.estimatedPrice, 0);
+        return selectedLocations.reduce((total, location) => total + location.estimated_price, 0);
       };
 
       const handleSubmit = () => {
-        const totalBudget = calculateTotalBudget(selectedLocations);
+        const totalBudget = selectedLocations.reduce(
+          (total, locationId) => {
+            const location = locations.find(loc => loc.id === locationId);
+            if (location && !isNaN(location.estimated_price)) {
+              return total + parseFloat(location.estimated_price); 
+            }
+      
+            return total;
+          },
+          0 
+        );
         const tripData = {
           starting_location: startingLocation,
           room_name: roomName,
           room_description: roomDescription,
           stops: selectedLocations,
-          total_budget: totalBudget
+          total_budget: isNaN(totalBudget) ? 0 : totalBudget, 
+          receipt: "this is a receipt",
         };
       
-        dispatch(createTrip(tripData));
+        console.log("Sending trip data:", tripData, token);
+        dispatch(createTrip(tripData, token));
       };
+      
       
       
     if (loading) return <LoadingScreen />;
@@ -91,7 +105,7 @@ const CustomtripScreen = () => {
   visible={isModalVisible}
   onRequestClose={() => setIsModalVisible(!isModalVisible)}>
   <View style={styles.modalView}>
-    <ScrollView style={styles.modalScrollView} showsVerticalScrollIndicator={false}>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <Text style={styles.modalTitle}>Create a Trip</Text>
       <TextInput
         placeholder="Starting Location"
