@@ -196,7 +196,6 @@ const styles = StyleSheet.create({
     Search:{
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 30,
         marginTop: 20
     },
     modalView: {

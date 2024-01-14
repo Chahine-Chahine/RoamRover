@@ -9,9 +9,6 @@ const Search = () => {
         <Icon name="search" size={18} color="#969696" marginRight={10} />
         <TextInput placeholder='Search' placeholderTextColor={'#969696'} style={styles.placeholder} />
       </View>
-      {/* <View style={styles.filterIcon}>
-        <Icon name="sliders-h" color={'black'} size={25} />
-      </View> */}
     </View>
   );
 };
@@ -21,14 +18,17 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: "85%",
+    width: "80%",
     height: 55,
+    borderWidth: 2,
+    borderRadius: 30,
+    borderColor: '#A78BFA'
   },
   searchBar: {
     padding: 15,
     flexDirection: 'row',
     alignItems: 'center',
-    width: '88%',
+    width: '100%',
     height: '88%',
     borderRadius: 30,
     backgroundColor: '#ffff',
@@ -36,9 +36,7 @@ const styles = {
   placeholder: {
     color: '#969696'
   },
- 
-  filterIcon: {
-  },
+
 };
 
 export default Search;
