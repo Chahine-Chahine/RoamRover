@@ -70,10 +70,10 @@ const CustomtripScreen = () => {
     };
 
       const handleSubmit = () => {
-        if (!startingLocation || !roomName || !roomDescription || selectedLocations.length === 0) {
-            console.error("Required fields are missing");
-            return;
-        }
+         if (!startingLocation || !roomName || !roomDescription || selectedLocations.length === 0) {
+        console.error("Required fields are missing");
+        return;
+    }
         const totalBudget = selectedLocations.reduce(
           (total, locationId) => {
             const location = locations.find(loc => loc.id === locationId);

@@ -50,9 +50,6 @@ const BookmarkScreen = () => {
     <>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaView style={styles.container}>
-          {/* <View>
-            <Text style={styles.mainTitle}>Let’s Check What’s saved!</Text>
-          </View> */}
           <FlatList
         data={bookmarks}
         renderItem={renderCard}
