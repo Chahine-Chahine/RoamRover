@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Dimensions, Text } from 'react-native';
+import { View, Dimensions, Text } from 'react-native';
 import MapView from 'react-native-maps';
 import * as Location from 'expo-location';
 
@@ -21,43 +21,31 @@ const MapScreen = () => {
         return;
       }
 
-      let location = await Location.getCurrentPositionAsync({});
+      let location =await Location.getCurrentPositionAsync({});
       setLocation(location);
       setRegion({
-        ...region,
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
+      ...region,
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
       });
-    })();
-  }, []);
-
-  useEffect(() => {
-    if (location) {
+      })();
+      }, []);
+      
+      useEffect(() => {
+      if (location) {
       console.log(location);
-    }
-  }, [location]);
-
-  return (
-    <View style={styles.container}>
-      <MapView style={styles.map} region={region} />
-      {errorMsg ? <Text style={styles.paragraph}>{errorMsg}</Text> : null}
-    </View>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  map: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-  },
-  paragraph: {
-    textAlign: 'center',
-  },
-});
-
-export default MapScreen;
+      }
+      }, [location]);
+      
+      return (
+      <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+      <MapView
+      style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
+      region={region}
+      />
+      {errorMsg && <Text style={{ textAlign: 'center', marginBottom: 10, color: 'red' }}>{errorMsg}</Text>}
+      </View>
+      );
+      };
+      
+      export default MapScreen;

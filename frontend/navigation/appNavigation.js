@@ -16,7 +16,7 @@ import ProfileUpdateScreen from '../screens/UpdateprofileScreen';
 import ChatRoomScreen from '../screens/ChatroomScreen';
 import RoomListScreen from '../screens/roomlistScreen';
 import TripDetailsScreen from '../screens/tripDetailsScreen';
-import MapScreen from '../screens/mapScreen';
+import MapScreen from '../screens/MapScreen';
 
 
 const Stack = createNativeStackNavigator();
