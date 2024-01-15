@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Dimensions, Text } from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
 
 const MapScreen = () => {
@@ -22,30 +22,34 @@ const MapScreen = () => {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+      setLocation(location.coords);
       setRegion({
-      ...region,
-      latitude: location.coords.latitude,
-      longitude: location.coords.longitude,
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
       });
-      })();
-      }, []);
-      
-      useEffect(() => {
-      if (location) {
-      console.log(location);
-      }
-      }, [location]);
-      
-      return (
-      <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+    })();
+  }, []);
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
       <MapView
-      style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
-      region={region}
-      />
+        provider={PROVIDER_GOOGLE}
+        style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
+        region={region}
+      >
+        {location && (
+          <Marker
+            coordinate={location}
+            title={"Starting Location"}
+            description={"You are here"}
+          />
+        )}
+      </MapView>
       {errorMsg && <Text style={{ textAlign: 'center', marginBottom: 10, color: 'red' }}>{errorMsg}</Text>}
-      </View>
-      );
-      };
-      
-      export default MapScreen;
+    </View>
+  );
+};
+
+export default MapScreen;
