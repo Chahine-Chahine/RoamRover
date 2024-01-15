@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const baseUrl = 'http://192.168.240.32:8000';
+const baseUrl = 'http://192.168.0.116:8000';
 
 
 export const fetchBookmarks = createAsyncThunk(
