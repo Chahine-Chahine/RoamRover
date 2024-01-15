@@ -21,7 +21,7 @@ const MapScreen = () => {
         return;
       }
 
-      let location =await Location.getCurrentPositionAsync({});
+      let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
       setRegion({
       ...region,
