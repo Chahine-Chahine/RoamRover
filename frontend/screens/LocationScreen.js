@@ -1,13 +1,17 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import NavigationBar from '../components/common/NavigationBar';
 import LocationCard from '../components/common/LocationCard';
-import { TouchableOpacity } from 'react-native';
+
 
 const LocationDetailScreen = () => {
   const route = useRoute();
   const { location } = route.params;
+  const navigation = useNavigation();
+  const navigateMap = () => {
+  navigation.navigate('MapScreen')
+  }
   return (
     <>
     <View style={styles.screenContainer}>
@@ -18,7 +22,7 @@ const LocationDetailScreen = () => {
            description={location.description}
            imageSource={location.image}
            estPrice={location.estimated_price}
-           onCheckMap={() => {/* navigation logic for Check on Map */}}
+           onCheckMap={navigateMap}
            onAdd={() => {/* logic to handle Add action */}}
            />
       </ScrollView>
