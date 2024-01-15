@@ -1,23 +1,22 @@
-// LocationCard.js
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 const LocationCard = ({ title, subtitle, description, imageSource, estPrice, onCheckMap, onAdd }) => {
   return (
-    <>
-    <View style={styles.cardContainer}>
-      <Image
-        style={styles.image}
-        source={{uri: imageSource}}
-      />
-      <View style={styles.textContainer}>
+    <View style={styles.container}>
+      <View style={styles.imageCard}>
+        <Image
+          style={styles.image}
+          source={{ uri: imageSource }}
+        />
+      </View>
+      <View style={styles.textCard}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.subtitle}>{subtitle}</Text>
         <Text style={styles.descriptionTitle}>Description</Text>
         <Text style={styles.description}>{description}</Text>
         <Text style={styles.price}>Est. Price</Text>
         <Text style={styles.priceValue}>{estPrice}</Text>
-      </View>
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={[styles.button, styles.buttonEqual]} onPress={onCheckMap}>
@@ -26,84 +25,90 @@ const LocationCard = ({ title, subtitle, description, imageSource, estPrice, onC
         <TouchableOpacity style={[styles.button, styles.buttonEqual]} onPress={onAdd}>
           <Text style={styles.buttonText}>Add</Text>
         </TouchableOpacity>
+      </View>
     </View>
-    </>
   );
 };
 
 const styles = StyleSheet.create({
-  cardContainer: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: 60
+  container: {
+    gap: 30,
+    marginVertical: 10,
+    marginHorizontal: 15,
   },
-  
-  contentContainer: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  backButton: {
-    position: 'absolute',
-    top: 10,
-    left: 10,
-    zIndex: 10,
+  imageCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 3,
+    overflow: 'hidden',
   },
   image: {
-    width: '85%',
-    height: 200,
-    borderRadius: 30,
-    marginTop: 20,
+    width: '100%',
+    height: 200, 
   },
-  textContainer: {
-    padding: 20,
-    width: '90%'
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  subtitle: {
-    marginBottom: 18,
-    fontSize: 16,
-    color: '#656262',
-  },
-  descriptionTitle:{
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  description: {
-    fontSize: 16,
-    color: '#938E8E'
-  },
-  price: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 20,
+textCard: {
+  backgroundColor: '#FFFFFF',
+  borderRadius: 20,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.1,
+  shadowRadius: 6,
+  elevation: 6,
+  padding: 20,
+},
+title: {
+fontSize: 22,
+fontWeight: 'bold',
+marginBottom: 5,
+},
+subtitle: {
+fontSize: 16,
+color: '#656262',
+marginBottom: 10,
+},
+descriptionTitle: {
+fontSize: 18,
+fontWeight: 'bold',
+marginBottom: 5,
+},
+description: {
+fontSize: 16,
+color: '#6F6F6F',
+marginBottom: 10,
+},
+price: {
+fontSize: 18,
+fontWeight: 'bold',
+marginBottom: 5,
 },
 priceValue: {
-    fontSize: 16,
-    color: '#938E8E'
+fontSize: 16,
+color: '#6F6F6F',
 },
 buttonContainer: {
-    flexDirection: 'row',
-    marginLeft: 20,
-    marginRight: 20
+flexDirection: 'row',
+justifyContent: 'space-evenly',
 },
 button: {
-    alignItems: 'center',
-    backgroundColor: '#A399DC',
-    padding: 15,
-    borderRadius: 10,
-    
-  },
-  buttonText: {
-    color: 'white',
-  },
-  buttonEqual: {
-    flex: 1, 
-    marginHorizontal: 4, 
-  },
+  justifyContent: 'center',
+  alignItems: 'center',
+backgroundColor: '#A399DC',
+paddingVertical: 12,
+borderRadius: 10,
+elevation: 2,
+flex: 1,
+},
+buttonText: {
+color: 'white',
+fontSize: 16,
+},
+buttonEqual: {
+marginHorizontal: 5,
+},
 });
 
 export default LocationCard;

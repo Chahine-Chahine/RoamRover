@@ -12,9 +12,6 @@ const LocationDetailScreen = () => {
     <>
     <View style={styles.screenContainer}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <TouchableOpacity style={styles.backButton}>
-          {/* <Icon name= 'arrow'/> */}
-        </TouchableOpacity>
         <LocationCard
            title={location.title}
            subtitle={location.area}
