@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnnouncementsController;
 use App\Http\Controllers\BookmarksController;
+use App\Http\Controllers\QuestionnairesController;
 use App\Http\Controllers\TripsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -67,4 +68,8 @@ Route::controller(AnnouncementsController::class)->group(function(){
     Route::post('/announcements', 'createAnnouncement');
     Route::put('announcements/{id}', 'updateAnnouncement');
     Route::delete('announcements/{id}','deleteAnnouncement');
+});
+
+Route::controller(QuestionnairesController::class)->group(function(){
+    Route::post('/postQuestionnaire', 'createQuestionnaires');
 });

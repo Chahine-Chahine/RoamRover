@@ -12,7 +12,6 @@ class QuestionnairesController extends Controller
             'type_question_response' => 'required|string',
             'time_question_response' => 'required|string',
             'budget_question_response' => 'required|numeric',
-            'room_id' => 'required|integer',
             'room_name' => 'required|string|max:255', 
             'room_description' => 'required|string|max:255',
         ]);
