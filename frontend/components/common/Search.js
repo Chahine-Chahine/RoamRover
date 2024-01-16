@@ -16,7 +16,7 @@ const Search = () => {
       }).start();
     } else {
       Animated.timing(animationWidth, {
-        toValue: 315,  
+        toValue: 322,  
         duration: 300,
         useNativeDriver: false  
       }).start();
@@ -25,7 +25,10 @@ const Search = () => {
   };
   return (
     <View style={styles.search}>
-    <Animated.View style={[styles.searchBar, { width: animationWidth }]}>
+    <Animated.View style={[
+      styles.searchBar, 
+      { width: animationWidth, borderColor: isExpanded ? '#A78BFA' : '#D9D9D9' } 
+    ]}>
       <TouchableOpacity onPress={handlePress}>
         <Icon name="search" size={18} color="#969696" style={{ marginRight: isExpanded ? 10 : 0 }} />
       </TouchableOpacity>

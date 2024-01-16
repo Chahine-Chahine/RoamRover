@@ -1,14 +1,19 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 
 const ActionButton = ({ title, onPress }) => (
+  <View style={styles.container}>
   <TouchableOpacity style={styles.button} onPress={onPress}>
     <Text style={styles.buttonText}>{title}</Text>
   </TouchableOpacity>
+  </View>
 );
 
 
 const styles = StyleSheet.create({
+  container:{
+    backgroundColor: 'transparent',
+  },
     button: {
       backgroundColor: '#A78BFA',
       borderRadius: 25,

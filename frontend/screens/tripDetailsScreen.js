@@ -117,7 +117,7 @@ backgroundColor: '#e1e4e8',
 marginLeft: 5,
 },
 joinButton: {
-backgroundColor: 'red',
+backgroundColor: '#A78BFA',
 borderRadius: 25,
 paddingVertical: 12,
 alignItems: 'center',

@@ -158,7 +158,7 @@ const CustomtripScreen = () => {
                     ))}
                 </ScrollView>
             </View>
-            <ActionButton title={'Done'} onPress={handleDonePress} style={styles.actionButton}/>
+            <ActionButton title={'Done'} onPress={handleDonePress}/>
         <NavigationBar/>
         </>
     );
@@ -199,11 +199,11 @@ const styles = StyleSheet.create({
     },
     searchText: {
         position: 'absolute',
-        top: 25,
+        top: 28,
         left: 80,
         fontSize: 14,
         fontWeight: '700',
-        color: '#A78BFA'
+        color: '#969696'
     },
     modalView: {
         flex: 1,
@@ -243,7 +243,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         marginVertical: 20
     },
-    
 
 });
 export default connect()(CustomtripScreen);
