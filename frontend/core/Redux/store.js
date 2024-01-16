@@ -22,7 +22,7 @@ export const store = configureStore({
     locations: locationReducer,
     bookmark: bookmarkReducer, 
     trips: tripReducer,
-    map: routeReducer,
+    route: routeReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
