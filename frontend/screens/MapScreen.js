@@ -39,12 +39,19 @@ import { fetchRoute } from '../core/Redux/Actions/mapActions';
       return poly;
     };
 
-const MapScreen = () => {
+const MapScreen = ({route}) => {
   const dispatch = useDispatch();
   const { isLoading, data, error } = useSelector(state => state.route);
   const [location, setLocation] = useState(null);
 
-  const destination = { latitude: 34.1230, longitude: 35.6519 }; 
+  const coordinates = JSON.parse(route.params.coordinates);
+  console.log(coordinates);
+  latitude = coordinates.latitude;
+  console.log(latitude);
+  longitude = coordinates.longitude;
+  console.log(longitude);
+  const destination =  {latitude , longitude}; 
+  console.log(destination);
 
   useEffect(() => {
     (async () => {
