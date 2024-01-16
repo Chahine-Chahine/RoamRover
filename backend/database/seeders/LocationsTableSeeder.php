@@ -50,6 +50,33 @@ class LocationsTableSeeder extends Seeder
             'image'=> "http://192.168.0.116:8000/storage/images/qadisha-valley.jpg",
             'coordinates' => json_encode(['latitude' => 34.284825239254246 , 'longitude' => 35.9527412329511]),
         ],
+        [
+            'title' => 'Byblos Old Port',
+            'description' => 'Historic port in Byblos',
+            'estimated_price' => 0,
+            'area' => 'Byblos Lebanon',
+            'rating' => 5,
+            'image' => "http://192.168.0.116:8000/storage/images/byblos-old-port.webp",
+            'coordinates' => json_encode(['latitude' => 34.123002, 'longitude' => 35.651928]),
+        ],
+        [
+            'title' => 'Jeita Grotto',
+            'description' => 'Stunning limestone caves',
+            'estimated_price' => 18,
+            'area' => 'Jeita Lebanon',
+            'rating' => 5,
+            'image' => "http://192.168.0.116:8000/storage/images/jeita-grotto.jpg",
+            'coordinates' => json_encode(['latitude' => 33.976480, 'longitude' => 35.621355]),
+        ],
+        [
+            'title' => 'Sidon Sea Castle',
+            'description' => 'Crusader castle in Sidon',
+            'estimated_price' => 5,
+            'area' => 'Sidon Lebanon',
+            'rating' => 4,
+            'image' => "http://192.168.0.116:8000/storage/images/sidon-castle.jpg",
+            'coordinates' => json_encode(['latitude' => 33.563056, 'longitude' => 35.368889]),
+        ],
     ]);
     }
 }
