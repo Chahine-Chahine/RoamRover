@@ -6,7 +6,6 @@ import { useNavigation } from '@react-navigation/native';
 import Card from '../components/common/Card';
 import NavigationBar from '../components/common/NavigationBar';
 import LoadingScreen from './LoadingScreen';
-import Categories from '../components/common/Categories';
 import Search from '../components/common/Search';
 import { useEffect, useState } from 'react';
 import ActionButton from '../components/ProfileScreen/ActionButton';    

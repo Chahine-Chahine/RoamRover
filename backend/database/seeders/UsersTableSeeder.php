@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             'first_name' => 'Chahine',
             'last_name' => 'Chahine',
             'role_id' => 1, 
-            'image_url' => 'http://192.168.240.32:8000/storage/images/chahine.jpeg',
+            'image_url' => 'http://192.168.0.116:8000/storage/images/chahine.jpeg',
             'bio' => "I am fueled by an insatiable passion for extraordinary adventures. Embarking on a journey is not just a routine for me; it is a thrilling and invigorating experience that ignites my spirit. The anticipation of waking up to a new day and the prospect of setting out on a trip exhilarate me, as I embrace the unknown with an adventurous zeal. Each expedition becomes a canvas for me to paint vibrant memories and indulge in the joy of exploration"
         ]);
 
@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
             'first_name' => 'Nour',
             'last_name' => 'Mshawrab',
             'role_id' => 1, 
-            'image_url' => 'http://192.168.240.32:8000/storage/images/nour.jpeg',
+            'image_url' => 'http://192.168.0.116:8000/storage/images/nour.jpeg',
             'bio' => "Hello there I am Nour!"
         ]);
 

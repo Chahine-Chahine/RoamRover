@@ -20,7 +20,7 @@ class LocationsTableSeeder extends Seeder
             'estimated_price' => 20,
             'area' => 'Beirut Lebanon',
             'rating' => 5, 
-            'image' => "http://192.168.240.32:8000/storage/images/3azme.png", 
+            'image' => "http://192.168.0.116:8000/storage/images/3azme.png", 
             'coordinates' => json_encode(['latitude' => 33.88762080695294, 'longitude' => 35.5076221965429]),
         ],
         [
@@ -29,7 +29,7 @@ class LocationsTableSeeder extends Seeder
             'estimated_price' => 20,
             'area' => 'Ashrafieh Lebanon',
             'rating' => 4, 
-            'image' => "http://192.168.240.32:8000/storage/images/chinacity.png", 
+            'image' => "http://192.168.0.116:8000/storage/images/chinacity.png", 
             'coordinates' => json_encode(['latitude' => 33.89550476190117, 'longitude' => 35.52042455421304]),
         ],
         [
@@ -38,7 +38,7 @@ class LocationsTableSeeder extends Seeder
             'description'=> 'Discover Your history who you really are',
             'estimated_price'=> 10,
             'rating' => 4, 
-            'image'=> "http://192.168.240.32:8000/storage/images/Baalbeck.webp",
+            'image'=> "http://192.168.0.116:8000/storage/images/Baalbeck.webp",
             'coordinates' => json_encode(['latitude' => 34.005434973434745 , 'longitude' => 36.21091110212627]),
         ],
         [
@@ -47,7 +47,7 @@ class LocationsTableSeeder extends Seeder
             'description'=> 'Beautifull place to go',
             'estimated_price'=> 0,
             'rating' => 5, 
-            'image'=> "http://192.168.240.32:8000/storage/images/qadisha-valley.jpg",
+            'image'=> "http://192.168.0.116:8000/storage/images/qadisha-valley.jpg",
             'coordinates' => json_encode(['latitude' => 34.284825239254246 , 'longitude' => 35.9527412329511]),
         ],
     ]);

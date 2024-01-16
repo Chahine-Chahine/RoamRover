@@ -18,10 +18,10 @@ function tripReducer(state = initialState, action) {
           return {...state, loading: true};
           case CREATE_TRIP_SUCCESS:
             const newTrips = action.payload.trips || [];
-            return { ...state, loading: false, trips: newTrips };
+            return { ...state, loading: false,  success: true, trips: newTrips };
 
       case CREATE_TRIP_FAILURE:
-          return {...state, loading: false, error: action.payload};
+          return {...state, loading: false, success: false, error: action.payload};
       default:
         return state;
     }

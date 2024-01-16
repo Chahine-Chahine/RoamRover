@@ -39,7 +39,7 @@ const HomeScreen = () => {
                         title={trip.room?.room_name ?? 'Trip Room'}
                         description={`${trip.room?.room_description ?? 'Description'}`}
                         price={`$${trip.total_budget ?? ''} total`}
-                        url={trip.locations[0]?.image ?? 'default_image_url'}
+                        url={trip.locations[0]?.image ?? '../assets/qadisha-valley.jpg'}
                         label={'Join'}
                         onAddPress={() => {console.log('pressed')}}
                         showBookmark={false}
