@@ -15,7 +15,9 @@ class Location extends Model
         'title',
         'area',
         'rating',
-        'coordinates'
+        'coordinates',
+        'est_time_spend',
+        'tags',
     ];
     public function locations()
     {
