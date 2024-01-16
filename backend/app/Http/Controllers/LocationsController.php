@@ -16,7 +16,7 @@ class LocationsController extends Controller
     // POST /locations
     public function createLocation(Request $request)
     {
-        $validatedData = $request->validate([
+        $validatedData = $request->validate([   
             'image' => 'required|string',
             'description' => 'required|string',
             'estimated_price' => 'required|numeric',

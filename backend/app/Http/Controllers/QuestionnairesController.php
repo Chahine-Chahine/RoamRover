@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Questionnaires;
+use App\Models\Questionnaire;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Room;
@@ -30,7 +30,7 @@ class QuestionnairesController extends Controller
             $validatedData['room_id'] = $room->id;
     
             // Create the questionnaire
-            $questionnaire = Questionnaires::create($validatedData);
+            $questionnaire = Questionnaire::create($validatedData);
     
             DB::commit();
     
@@ -39,5 +39,9 @@ class QuestionnairesController extends Controller
             DB::rollback();
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+
+    public function readQuestionnaires($id){
+        return Questionnaire::findOrFail($id);
     }
 }
