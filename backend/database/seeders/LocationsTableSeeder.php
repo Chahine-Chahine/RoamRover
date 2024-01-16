@@ -14,61 +14,42 @@ class LocationsTableSeeder extends Seeder
     public function run(): void
     {
         DB::table('locations')->insert([
-        [
-            'title' => '3azme Caffe',
-            'description' => 'Coffee shop in Beirut',
-            'estimated_price' => 20,
-            'area' => 'Beirut Lebanon',
-            'rating' => 5, 
-            'image' => "http://192.168.0.116:8000/storage/images/3azme.png", 
-            'coordinates' => json_encode(['latitude' => 33.88762080695294, 'longitude' => 35.5076221965429]),
-        ],
-        [
-            'title' => 'China City',
-            'description' => 'New concept for studying in natural environment',
-            'estimated_price' => 20,
-            'area' => 'Ashrafieh Lebanon',
-            'rating' => 4, 
-            'image' => "http://192.168.0.116:8000/storage/images/chinacity.png", 
-            'coordinates' => json_encode(['latitude' => 33.89550476190117, 'longitude' => 35.52042455421304]),
-        ],
-        [
-            'title'=> 'Baalbeck Castle',
-            'area'=> 'Baalbeck Lebanon',
-            'description'=> 'Discover Your history who you really are',
-            'estimated_price'=> 10,
-            'rating' => 4, 
-            'image'=> "http://192.168.0.116:8000/storage/images/Baalbeck.webp",
-            'coordinates' => json_encode(['latitude' => 34.005434973434745 , 'longitude' => 36.21091110212627]),
-        ],
-        [
-            'title'=> 'Qadisha Valley',
-            'area'=> 'Qadisha Lebanon',
-            'description'=> 'Beautifull place to go',
-            'estimated_price'=> 0,
-            'rating' => 5, 
-            'image'=> "http://192.168.0.116:8000/storage/images/qadisha-valley.jpg",
-            'coordinates' => json_encode(['latitude' => 34.284825239254246 , 'longitude' => 35.9527412329511]),
-        ],
-        [
-            'title' => 'Byblos Old Port',
-            'description' => 'Historic port in Byblos',
-            'estimated_price' => 0,
-            'area' => 'Byblos Lebanon',
-            'rating' => 5,
-            'image' => "http://192.168.0.116:8000/storage/images/byblos-old-port.webp",
-            'coordinates' => json_encode(['latitude' => 34.123002, 'longitude' => 35.651928]),
-        ],
-        [
-            'title' => 'Jeita Grotto',
-            'description' => 'Stunning limestone caves',
-            'estimated_price' => 18,
-            'area' => 'Jeita Lebanon',
-            'rating' => 5,
-            'image' => "http://192.168.0.116:8000/storage/images/jeita-grotto.jpg",
-            'coordinates' => json_encode(['latitude' => 33.976480, 'longitude' => 35.621355]),
-        ],
-        [
+            [
+                'title' => '3azme Caffe',
+                'description' => 'Coffee shop in Beirut',
+                'estimated_price' => 20,
+                'area' => 'Beirut Lebanon',
+                'rating' => 5, 
+                'image' => "http://192.168.0.116:8000/storage/images/3azme.png", 
+                'coordinates' => json_encode(['latitude' => 33.88762080695294, 'longitude' => 35.5076221965429]),
+                "est_time_spend" => 120, // in minutes
+                "tags" => json_encode(["coffee", "snacks", "relaxation"])
+            ],
+            [
+                'title' => 'China City',
+                'description' => 'New concept for studying in natural environment',
+                'estimated_price' => 20,
+                'area' => 'Ashrafieh Lebanon',
+                'rating' => 4, 
+                'image' => "http://192.168.0.116:8000/storage/images/chinacity.png", 
+                'coordinates' => json_encode(['latitude' => 33.89550476190117, 'longitude' => 35.52042455421304]),
+                "est_time_spend" => 180,
+                "tags" => json_encode(["study", "nature", "quiet"])
+            ],
+            // ... (other locations)
+            [
+                'title' => 'Jeita Grotto',
+                'description' => 'Stunning limestone caves',
+                'estimated_price' => 18,
+                'area' => 'Jeita Lebanon',
+                'rating' => 5,
+                'image' => "http://192.168.0.116:8000/storage/images/jeita-grotto.jpg",
+                'coordinates' => json_encode(['latitude' => 33.976480, 'longitude' => 35.621355]),
+                "est_time_spend" => 240,
+                "tags" => json_encode(["adventure", "nature
+                ", "exploration"])
+            ],
+            [
             'title' => 'Sidon Sea Castle',
             'description' => 'Crusader castle in Sidon',
             'estimated_price' => 5,
@@ -76,7 +57,46 @@ class LocationsTableSeeder extends Seeder
             'rating' => 4,
             'image' => "http://192.168.0.116:8000/storage/images/sidon-castle.jpg",
             'coordinates' => json_encode(['latitude' => 33.563056, 'longitude' => 35.368889]),
-        ],
-    ]);
-    }
-}
+            "est_time_spend" => 90,
+            "tags" => json_encode(["history", "sightseeing", "photography"])
+            ],
+            [
+            'title' => 'Byblos Old Port',
+            'description' => 'Historic port in Byblos',
+            'estimated_price' => 0,
+            'area' => 'Byblos Lebanon',
+            'rating' => 5,
+            'image' => "http://192.168.0.116:8000/storage/images/byblos-old-port.webp",
+            'coordinates' => json_encode(['latitude' => 34.123002, 'longitude' => 35.651928]),
+            "est_time_spend" => 60,
+            "tags" => json_encode(["historic", "maritime", "relaxation"])
+            ],
+            [
+            'title' => 'Qadisha Valley',
+            'description' => 'Beautiful place to go',
+            'estimated_price' => 0,
+            'area' => 'Qadisha Lebanon',
+            'rating' => 5,
+            'image' => "http://192.168.0.116:8000/storage/images/qadisha-valley.jpg",
+            'coordinates' => json_encode(['latitude' => 34.284825239254246, 'longitude' => 35.9527412329511]),
+            "est_time_spend" => 300,
+            "tags" => json_encode(["hiking", "nature", "scenery"])
+            ],
+            [
+            'title'=> 'Baalbeck Castle',
+            'area'=> 'Baalbeck Lebanon',
+            'description'=> 'Discover your history - who you really are',
+            'estimated_price'=> 10,
+            'rating' => 4,
+            'image'=> "http://192.168.0.116:8000/storage/images/Baalbeck.webp",
+            'coordinates' => json_encode(['latitude' => 34.005434973434745 , 'longitude' => 36.21091110212627]),
+            "est_time_spend" => 210,
+            "tags" => json_encode(["cultural", "histor
+            
+            ic", "exploration"])
+            ]
+            ]);
+            }
+            }
+            
+            
