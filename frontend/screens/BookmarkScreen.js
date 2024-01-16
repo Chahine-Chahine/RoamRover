@@ -6,6 +6,9 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { fetchBookmarks } from '../core/Redux/Actions/bookmarkActions'; 
 
+// Image for the empty state
+import EmptyStateImage from '../assets/magnifier.png';
+
 const BookmarkScreen = () => {
   const dispatch = useDispatch();
   const bookmarks = useSelector(state => state.bookmark.bookmarks); 
@@ -13,48 +16,56 @@ const BookmarkScreen = () => {
   useEffect(() => {
     dispatch(fetchBookmarks());
   }, [dispatch]);
-  
+
   // Right swipe actions
-  const renderRightActions = (id) => {
-    return (
-      <View style={{ width: 190, flexDirection: 'row' }}>
-        <TouchableOpacity onPress={() => console.log('Add Pressed', id)} style={styles.rightAction}>
-          <Text style={styles.actionText}>Add</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => console.log('Delete Pressed', id)} style={[styles.rightAction, { backgroundColor: '#FF8556' }]}>
-          <Text style={styles.actionText}>Delete</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
+  const renderRightActions = (id) => (
+    <View style={{ width: 190, flexDirection: 'row' }}>
+      <TouchableOpacity onPress={() => console.log('Add Pressed', id)} style={styles.rightAction}>
+        <Text style={styles.actionText}>Add</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => console.log('Delete Pressed', id)} style={[styles.rightAction, { backgroundColor: '#FF8556' }]}>
+        <Text style={styles.actionText}>Delete</Text>
+      </TouchableOpacity>
+    </View>
+  );
 
   const renderCard = ({ item }) => {
     if (!item || !item.location) {
-        return null;
+      return null;
     }
 
     return (
-        <Swipeable renderRightActions={() => renderRightActions(item.id)}>
-            <View style={[styles.card, { height: 180 }]}>
-                <Image source={{ uri: item.location.image }} style={styles.cardImage} />
-                <View style={styles.cardContent}>
-                    <Text style={styles.title}>{item.location.title}</Text>
-                    <Text style={styles.subtitle}>{item.location.description}</Text>
-                    <Text style={styles.price}>{`${item.location.estimated_price}$`}</Text>
-                </View>
-            </View>
-        </Swipeable>
+      <Swipeable renderRightActions={() => renderRightActions(item.id)}>
+        <View style={[styles.card, { height: 180 }]}>
+          <Image source={{ uri: item.location.image }} style={styles.cardImage} />
+          <View style={styles.cardContent}>
+            <Text style={styles.title}>{item.location.title}</Text>
+            <Text style={styles.subtitle}>{item.location.description}</Text>
+            <Text style={styles.price}>{`${item.location.estimated_price}$`}</Text>
+          </View>
+        </View>
+      </Swipeable>
     );
-};
+  };
+
+  // Empty state view
+  const renderEmptyState = () => (
+    <View style={styles.emptyStateContainer}>
+      <Image source={EmptyStateImage} style={styles.emptyStateImage} />
+      <Text style={styles.emptyStateText}>No Bookmarks Yet</Text>
+    </View>
+  );
+
   return (
     <>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaView style={styles.container}>
           <FlatList
-        data={bookmarks}
-        renderItem={renderCard}
-        keyExtractor={(item, index) => item && item.id ? item.id.toString() : `unknown-${index}`}
-    />
+            data={bookmarks}
+            renderItem={renderCard}
+            keyExtractor={(item, index) => item && item.id ? item.id.toString() : `unknown-${index}`}
+            ListEmptyComponent={renderEmptyState}
+          />
         </SafeAreaView>
         <NavigationBar />
       </GestureHandlerRootView>
@@ -119,6 +130,21 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     padding: 20,
   },
+  emptyStateContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  emptyStateImage: {
+    width: 200, 
+    height: 200, 
+    resizeMode: 'contain'
+  },
+  emptyStateText: {
+    marginTop: 20,
+    fontSize: 18,
+    color: 'gray'
+  }
 });
 
 export default BookmarkScreen;
