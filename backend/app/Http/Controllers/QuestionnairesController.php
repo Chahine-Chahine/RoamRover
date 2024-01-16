@@ -41,7 +41,7 @@ class QuestionnairesController extends Controller
         }
     }
 
-    public function readQuestionnaires($id){
+    public function readQuestionnaire($id){
         return Questionnaire::findOrFail($id);
     }
 }

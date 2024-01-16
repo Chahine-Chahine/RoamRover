@@ -72,4 +72,5 @@ Route::controller(AnnouncementsController::class)->group(function(){
 
 Route::controller(QuestionnairesController::class)->group(function(){
     Route::post('/postQuestionnaire', 'createQuestionnaires');
+    Route::get('/readQuestionnaire/{id}', 'readQuestionnaire');
 });
