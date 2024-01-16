@@ -28,7 +28,7 @@ const TripDetailScreen = ({ route }) => {
             </View>
           </ImageBackground>
         </View>
-        <ScrollView style={styles.scrollView}>
+        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
           <Text style={styles.sectionTitle}>About</Text>
           <Text style={styles.description}>{trip.room?.room_description ?? 'No description available.'}</Text>
           <Text style={styles.sectionTitle}>Gallery</Text>
