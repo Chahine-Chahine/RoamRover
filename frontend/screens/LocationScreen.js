@@ -11,7 +11,7 @@ const LocationDetailScreen = () => {
 
   const navigation = useNavigation();
   const navigateMap = () => {
-    navigation.navigate('MapScreen', { coordinates: location.coordinates });
+    navigation.navigate('MapScreen', {location});
   };
 
   return (

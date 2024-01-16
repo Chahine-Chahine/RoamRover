@@ -44,14 +44,14 @@ const MapScreen = ({route}) => {
   const { isLoading, data, error } = useSelector(state => state.route);
   const [location, setLocation] = useState(null);
 
-  const coordinates = JSON.parse(route.params.coordinates);
-  console.log(coordinates);
+
+  const locationDetails = route.params.location;
+  const coordinates = JSON.parse(locationDetails.coordinates);
   latitude = coordinates.latitude;
-  console.log(latitude);
   longitude = coordinates.longitude;
-  console.log(longitude);
   const destination =  {latitude , longitude}; 
-  console.log(destination);
+
+
 
   useEffect(() => {
     (async () => {
@@ -95,8 +95,8 @@ const MapScreen = ({route}) => {
           )}
           <Marker
             coordinate={destination}
-            title="Destination"
-            description="Jbeil, Lebanon"
+            title={locationDetails.title}
+            description={locationDetails.area}
           />
           {routeCoordinates.length > 0 && (
             <Polyline
