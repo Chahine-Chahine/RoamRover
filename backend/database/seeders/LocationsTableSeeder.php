@@ -22,7 +22,7 @@ class LocationsTableSeeder extends Seeder
                 'rating' => 5, 
                 'image' => "http://192.168.0.116:8000/storage/images/3azme.png", 
                 'coordinates' => json_encode(['latitude' => 33.88762080695294, 'longitude' => 35.5076221965429]),
-                "est_time_spend" => 120, // in minutes
+                "est_time_spend" => 120,
                 "tags" => json_encode(["coffee", "snacks", "relaxation"])
             ],
             [
@@ -34,9 +34,8 @@ class LocationsTableSeeder extends Seeder
                 'image' => "http://192.168.0.116:8000/storage/images/chinacity.png", 
                 'coordinates' => json_encode(['latitude' => 33.89550476190117, 'longitude' => 35.52042455421304]),
                 "est_time_spend" => 180,
-                "tags" => json_encode(["study", "nature", "quiet"])
+                "tags" => json_encode(["study", "nature", "calm"])
             ],
-            // ... (other locations)
             [
                 'title' => 'Jeita Grotto',
                 'description' => 'Stunning limestone caves',
