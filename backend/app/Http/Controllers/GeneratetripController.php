@@ -100,19 +100,15 @@ class GeneratetripController extends Controller {
             $responseText = $result['choices'][0]['text'];
             Log::info('Raw AI Response', ['responseText' => $responseText]);
     
-            // Try decoding the response
             $jsonResponse = json_decode($responseText, true);
     
             if (json_last_error() === JSON_ERROR_NONE) {
-                // If the response is valid JSON, return it
                 return response()->json($jsonResponse);
             } else {
-                // If the response is not valid JSON, log the error and return a custom error message
                 Log::error('JSON Decoding Error', ['error' => json_last_error_msg()]);
                 return response()->json(['error' => 'Invalid JSON response from AI', 'aiResponse' => $responseText]);
             }
         } catch (\Exception $e) {
-            // Log any exceptions
             Log::error('Error in AI API call', ['exception' => $e->getMessage()]);
             return response()->json(['error' => 'AI API call failed']);
         }
