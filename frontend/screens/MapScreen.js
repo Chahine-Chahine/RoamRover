@@ -102,6 +102,7 @@ const MapScreen = ({ route }) => {
         >
           {isMarkerPressed && (
             <CustomMarker
+              rating={locationDetails.rating}
               title={locationDetails.title}
               description={locationDetails.area}
             />
