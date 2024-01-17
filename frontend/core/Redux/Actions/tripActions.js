@@ -6,6 +6,7 @@ import {
     CREATE_TRIP_REQUEST,
     CREATE_TRIP_SUCCESS,
     CREATE_TRIP_FAILURE,
+    RESET_TRIP_CREATION_STATE,
 } from './actionTypes';
 import { baseUrl } from '../../helpers/baseUrl';
 
@@ -36,4 +37,8 @@ export const createTrip = (tripData, token) => {
             dispatch({ type: CREATE_TRIP_FAILURE, payload: error.message || 'An unknown error occurred' });
         }
     };
+};
+
+export const resetTripCreationState = () => {
+    return { type: RESET_TRIP_CREATION_STATE };
 };

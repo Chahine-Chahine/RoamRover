@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, Modal, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Modal, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLocations } from '../core/Redux/Actions/locationActions';
 import { createBookmark, deleteBookmark, fetchBookmarks } from '../core/Redux/Actions/bookmarkActions';
@@ -10,7 +10,7 @@ import Search from '../components/common/Search';
 import { useEffect, useState } from 'react';
 import ActionButton from '../components/ProfileScreen/ActionButton';    
 import { connect } from 'react-redux';
-import { createTrip } from '../core/Redux/Actions/tripActions';
+import { createTrip, resetTripCreationState } from '../core/Redux/Actions/tripActions';
 
 const CustomtripScreen = () => {
     const [selectedLocations, setSelectedLocations] = useState([]);
@@ -24,6 +24,7 @@ const CustomtripScreen = () => {
     const user = useSelector(state => state.auth.user); 
     const token = useSelector((state) => state.auth.token);
     const USER_ID = user ? user.id : null;
+    
 
     useEffect(() => {
         dispatch(fetchLocations());
@@ -64,9 +65,27 @@ const CustomtripScreen = () => {
         }
     };
 
+    const [alertShown, setAlertShown] = useState(false);
+
+    const { success, error: tripError  } = useSelector(state => state.trips);
+
+    useEffect(() => {
+        if (success && !alertShown) {
+            Alert.alert("Success", "Thank you, the trip created successfully!", [
+                { text: "OK", onPress: () => {
+                    dispatch(resetTripCreationState());
+                    setAlertShown(true);
+                }}
+            ]);
+        } else if (tripError) {
+          Alert.alert("Failure", "Oops, an error occurred. Please try again later.");
+        }
+    }, [success, tripError, alertShown, dispatch]);
+
       const handleSubmit = () => {
          if (!startingLocation || !roomName || !roomDescription || selectedLocations.length === 0) {
         alert("Required fields are missing");
+        setAlertShown(false);
         return;
     }
         const totalBudget = selectedLocations.reduce(
