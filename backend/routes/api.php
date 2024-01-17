@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnnouncementsController;
 use App\Http\Controllers\BookmarksController;
+use App\Http\Controllers\GeneratetripController;
 use App\Http\Controllers\QuestionnairesController;
 use App\Http\Controllers\TripsController;
 use Illuminate\Http\Request;
@@ -73,4 +74,8 @@ Route::controller(AnnouncementsController::class)->group(function(){
 Route::controller(QuestionnairesController::class)->group(function(){
     Route::post('/postQuestionnaire', 'createQuestionnaires');
     Route::get('/readQuestionnaire/{id}', 'readQuestionnaire');
+});
+
+Route::controller(GeneratetripController::class)->group(function(){
+    Route::get('/generateTripAi' , 'generateTripAi');
 });
