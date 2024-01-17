@@ -7,7 +7,7 @@ import LocationCard from '../components/common/LocationCard';
 
 const LocationDetailScreen = () => {
   const route = useRoute();
-  const { location } = route.params;
+  const { location, onAddPress } = route.params;
 
   const navigation = useNavigation();
   const navigateMap = () => {
@@ -25,7 +25,7 @@ const LocationDetailScreen = () => {
            imageSource={location.image}
            estPrice={location.estimated_price}
            onCheckMap={navigateMap}
-           onAdd={() => {}}
+           onAdd={() => onAddPress(location.id)}
            />
       </ScrollView>
       <NavigationBar/>
