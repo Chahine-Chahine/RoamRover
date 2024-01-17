@@ -81,6 +81,13 @@ const CustomtripScreen = () => {
           Alert.alert("Failure", "Oops, an error occurred. Please try again later.");
         }
     }, [success, tripError, alertShown, dispatch]);
+    
+    useEffect(() => {
+        return () => {
+            dispatch(resetTripCreationState());
+            setAlertShown(false);
+        };
+    }, [dispatch]);
 
       const handleSubmit = () => {
          if (!startingLocation || !roomName || !roomDescription || selectedLocations.length === 0) {
