@@ -3,9 +3,9 @@ import { LOGIN_SUCCESS, LOGIN_FAILURE } from './actionTypes';
 import { REGISTER_SUCCESS, REGISTER_FAILURE } from './actionTypes';
 import  {LOGOUT, UPDATE_SUCCESS, UPDATE_FAILURE } from './actionTypes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { baseUrl } from '../../helpers/baseUrl';
 
-
-const baseUrl = 'http://192.168.240.32';
+// const baseUrl = 'http://192.168.0.116';
 
 // Signup action
 export const registerUser = (userData) => {

@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-const baseUrl = 'http://192.168.240.32:8000';
+import { baseUrl } from '../../helpers/baseUrl';
 
 
 export const fetchBookmarks = createAsyncThunk(
@@ -10,7 +9,7 @@ export const fetchBookmarks = createAsyncThunk(
         const state = getState();
         const token = state.auth.token; 
 
-        const response = await axios.get(`${baseUrl}/api/displayUserBookmarks`, {
+        const response = await axios.get(`${baseUrl}:8000/api/displayUserBookmarks`, {
             headers: {
                 Authorization: `Bearer ${token}` 
             }
@@ -23,7 +22,7 @@ export const createBookmark = createAsyncThunk(
     'bookmark/createBookmark',
     async ({ userId, locationId }, { getState }) => {
         const token = getState().auth.token;
-        const response = await axios.post(`${baseUrl}/api/bookmarks`, 
+        const response = await axios.post(`${baseUrl}:8000/api/bookmarks`, 
             { user_id: userId, location_id: locationId },
             {
                 headers: {
@@ -38,7 +37,7 @@ export const createBookmark = createAsyncThunk(
 export const deleteBookmark = createAsyncThunk(
     'bookmark/deleteBookmark',
     async (bookmarkId) => {
-        const response = await axios.delete(`${baseUrl}/api/bookmarks/${bookmarkId}`);
+        const response = await axios.delete(`${baseUrl}:8000/api/bookmarks/${bookmarkId}`);
         return response.data; 
     }
 );

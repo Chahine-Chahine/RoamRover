@@ -3,8 +3,7 @@ import {
     FETCH_LOCATIONS_SUCCESS,
     FETCH_LOCATIONS_FAILURE
 } from './actionTypes';
-
-const baseUrl = 'http://192.168.240.32';
+import { baseUrl } from '../../helpers/baseUrl';
 
 export const fetchLocations = () => {
     return async (dispatch) => {
