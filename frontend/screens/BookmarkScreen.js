@@ -9,8 +9,8 @@ import EmptyStateImage from '../assets/magnifier.png';
 
 const BookmarkScreen = () => {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.token);
   const bookmarks = useSelector(state => state.bookmark.bookmarks); 
+  const token = useSelector((state) => state.auth.token); 
 
   useEffect(() => {
     dispatch(fetchBookmarks(token));

@@ -44,7 +44,7 @@ const bookmarkReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                chatrooms: [...state.chatrooms, action.payload],
+                bookmarks: [...state.bookmarks, action.payload],
                 error: null
             };
         case CREATE_BOOKMARKS_FAILURE:
