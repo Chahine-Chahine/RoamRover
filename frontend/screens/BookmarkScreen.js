@@ -4,20 +4,18 @@ import { SafeAreaView, View, Text, FlatList, StyleSheet, Image, TouchableOpacity
 import NavigationBar from '../components/common/NavigationBar';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { fetchBookmarks } from '../core/Redux/Actions/bookmarkActions'; 
-
-// Image for the empty state
+import { fetchBookmarks} from '../core/Redux/Actions/bookmarkActions'; 
 import EmptyStateImage from '../assets/magnifier.png';
 
 const BookmarkScreen = () => {
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
   const bookmarks = useSelector(state => state.bookmark.bookmarks); 
 
   useEffect(() => {
-    dispatch(fetchBookmarks());
-  }, [dispatch]);
+    dispatch(fetchBookmarks(token));
+  }, [dispatch, token]);
 
-  // Right swipe actions
   const renderRightActions = (id) => (
     <View style={{ width: 190, flexDirection: 'row' }}>
       <TouchableOpacity onPress={() => console.log('Add Pressed', id)} style={styles.rightAction}>
@@ -29,13 +27,8 @@ const BookmarkScreen = () => {
     </View>
   );
 
-  const renderCard = ({ item }) => {
-    if (!item || !item.location) {
-      return null;
-    }
-
-    return (
-      <Swipeable renderRightActions={() => renderRightActions(item.id)}>
+  const renderCard = ({ item }) => (
+    <Swipeable renderRightActions={() => renderRightActions(item.id)}>
         <View style={[styles.card, { height: 180 }]}>
           <Image source={{ uri: item.location.image }} style={styles.cardImage} />
           <View style={styles.cardContent}>
@@ -44,11 +37,9 @@ const BookmarkScreen = () => {
             <Text style={styles.price}>{`${item.location.estimated_price}$`}</Text>
           </View>
         </View>
-      </Swipeable>
-    );
-  };
+    </Swipeable>
+  );
 
-  // Empty state view
   const renderEmptyState = () => (
     <View style={styles.emptyStateContainer}>
       <Image source={EmptyStateImage} style={styles.emptyStateImage} />
@@ -57,22 +48,19 @@ const BookmarkScreen = () => {
   );
 
   return (
-    <>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <SafeAreaView style={styles.container}>
-          <FlatList
-            data={bookmarks}
-            renderItem={renderCard}
-            keyExtractor={(item, index) => item && item.id ? item.id.toString() : `unknown-${index}`}
-            ListEmptyComponent={renderEmptyState}
-          />
-        </SafeAreaView>
-        <NavigationBar />
-      </GestureHandlerRootView>
-    </>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={bookmarks}
+          renderItem={renderCard}
+          keyExtractor={(item, index) => item && item.id ? item.id.toString() : `unknown-${index}`}
+          ListEmptyComponent={renderEmptyState}
+        />
+      </SafeAreaView>
+      <NavigationBar />
+    </GestureHandlerRootView>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
