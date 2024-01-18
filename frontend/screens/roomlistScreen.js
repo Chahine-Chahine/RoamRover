@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { fetchChatrooms, createChatroom } from '../core/Redux/Actions/roomActions'; 
 
-const RoomListScreen = ({ chatrooms, loading, error }) => {
+const RoomListScreen = ({chatrooms}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [room_name, setRoomName] = useState('');
   const [room_description, setRoomDescription] = useState('');
@@ -28,11 +28,17 @@ const RoomListScreen = ({ chatrooms, loading, error }) => {
     dispatch(createChatroom({
       room_name,
       room_description
-    }, token));
-    setIsModalVisible(false);
-    setRoomName('');
-    setRoomDescription('');
-  };
+    }, token))
+    .then(() => {
+      setIsModalVisible(false);
+      setRoomName('');
+      setRoomDescription('');
+      navigation.navigate('ChatRoomScreen'); 
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
   const renderRoom = ({ item }) => (
     <TouchableOpacity style={styles.roomButton} onPress={navigateChat}>
       <Text style={styles.roomText}>{item.room_name}</Text> 
