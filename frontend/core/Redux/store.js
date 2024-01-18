@@ -24,7 +24,7 @@ export const store = configureStore({
     bookmark: bookmarkReducer, 
     trips: tripReducer,
     route: routeReducer,
-    rooms: roomReducer,
+    chatroom: roomReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

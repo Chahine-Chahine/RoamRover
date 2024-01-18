@@ -1,41 +1,109 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, FlatList } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, FlatList, Modal, ScrollView, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
+import { connect } from 'react-redux';
+import { fetchChatrooms } from '../core/Redux/Actions/roomActions'; 
+const RoomListScreen = ({ chatrooms, loading, error, fetchChatRooms }) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [startingLocation, setStartingLocation] = useState('');
+  const [roomName, setRoomName] = useState('');
+  const [roomDescription, setRoomDescription] = useState('');
 
-const RoomListScreen = () => {
-  const rooms = [
-    "Friday's night out",
-    'Beach Batroon',
-    'Full Tour South Lebanon',
-    'Saturday Hike - camp',
-  ];
+  useEffect(() => {
+    fetchChatrooms();
+    console.log(chatrooms);
+  }, [fetchChatRooms]);
 
   const navigation = useNavigation();
 
   const navigateChat = () => {
     navigation.navigate('ChatRoomScreen');
+  };
+
+  const handleSubmit = () => {
+    console.log('Form Submitted');
+  };
+
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (error) {
+    return <Text>Error: {error}</Text>;
   }
 
   const renderRoom = ({ item }) => (
     <TouchableOpacity style={styles.roomButton} onPress={navigateChat}>
-      <Text style={styles.roomText}>{item}</Text>
+      <Text style={styles.roomText}>{item.name}</Text> 
     </TouchableOpacity>
   );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={rooms}
-        renderItem={renderRoom}
-        keyExtractor={(item, index) => index.toString()}
-        contentContainerStyle={styles.roomList}
+    <>
+      <Modal
+  animationType="slide"
+  transparent={true}
+  visible={isModalVisible}
+  onRequestClose={() => setIsModalVisible(!isModalVisible)}
+>
+  <View style={styles.modalView}>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <Text style={styles.modalTitle}>Create a Trip</Text>
+      <TextInput
+        placeholder="Starting Location"
+        onChangeText={setStartingLocation}
+        value={startingLocation}
+        style={styles.input}
       />
-      <TouchableOpacity style={styles.addButton}>
-        <Ionicons name="add" size={30} color="white" />
+      <TextInput
+        placeholder="Room Name"
+        onChangeText={setRoomName}
+        value={roomName}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Room Description"
+        onChangeText={setRoomDescription}
+        value={roomDescription}
+        style={styles.input}
+      />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          setIsModalVisible(!isModalVisible);
+          handleSubmit();
+        }}
+      >
+        <Text style={styles.buttonText}>Create Trip</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </ScrollView>
+  </View>
+</Modal>
+
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={chatrooms}
+          renderItem={renderRoom}
+          keyExtractor={(item, index) => index.toString()}
+          contentContainerStyle={styles.roomList}
+        />
+        <TouchableOpacity style={styles.addButton} onPress={() => setIsModalVisible(true)}>
+          <Ionicons name="add" size={30} color="white" />
+        </TouchableOpacity>
+      </SafeAreaView>
+    </>
   );
+};
+
+const mapStateToProps = (state) => ({
+  chatrooms: state.chatroom.chatrooms,
+  loading: state.chatroom.loading,
+  error: state.chatroom.error,
+});
+
+const mapDispatchToProps = {
+  fetchChatrooms,
 };
 
 const styles = StyleSheet.create({
@@ -85,6 +153,44 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
   },
+  modalView: {
+    flex: 1,
+    justifyContent: "center",
+    marginTop: 120,
+    marginHorizontal: 10,
+    width: "95%",
+    height: "40%",
+    backgroundColor: "white",
+    borderRadius: 20,
+    elevation: 5,
+  },
+  input: {
+    height: 60,
+    margin: 6,
+    borderWidth: 1,
+    paddingHorizontal: 10,
+    backgroundColor: "white",
+    borderRadius: 10,
+    borderColor: "#A78BFA",
+  },
+  button: {
+    backgroundColor: "#A78BFA",
+    padding: 12,
+    borderRadius: 10,
+    alignItems: "center",
+    margin: 20,
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginHorizontal: 10,
+    marginVertical: 20,
+  },
 });
 
-export default RoomListScreen;
+export default connect(mapStateToProps, mapDispatchToProps)(RoomListScreen);
