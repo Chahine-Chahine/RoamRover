@@ -27,9 +27,8 @@ const RoomListScreen = ({ chatrooms, loading, error }) => {
   const handleSubmit = () => {
     dispatch(createChatroom({
       roomName,
-      roomDescription,
-      token
-    }));
+      roomDescription
+    }, token));
     setIsModalVisible(false);
     setRoomName('');
     setRoomDescription('');
