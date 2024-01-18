@@ -27,11 +27,11 @@ export const fetchChatrooms = (token) => {
     };
 };
 
-export const createChatroom = (roomData, token) => {
+export const createChatroom = (roomDetails, token) => {
     return async (dispatch) => {
         dispatch({ type: CREATE_CHATROOMS_REQUEST });
         try {
-            const response = await axios.post(`${baseUrl}:8000/api/rooms`, roomData, {
+            const response = await axios.post(`${baseUrl}:8000/api/rooms`, roomDetails, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`

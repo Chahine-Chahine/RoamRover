@@ -3,10 +3,10 @@ import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, FlatList, Modal
 import { Ionicons } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
 import { connect, useDispatch, useSelector } from 'react-redux';
-import { fetchChatrooms } from '../core/Redux/Actions/roomActions'; 
-const RoomListScreen = ({ chatrooms, loading, error, fetchChatRooms }) => {
+import { fetchChatrooms, createChatroom } from '../core/Redux/Actions/roomActions'; 
+
+const RoomListScreen = ({ chatrooms, loading, error }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [startingLocation, setStartingLocation] = useState('');
   const [roomName, setRoomName] = useState('');
   const [roomDescription, setRoomDescription] = useState('');
   const dispatch = useDispatch();
@@ -25,17 +25,15 @@ const RoomListScreen = ({ chatrooms, loading, error, fetchChatRooms }) => {
   };
 
   const handleSubmit = () => {
-    console.log('Form Submitted');
+    dispatch(createChatroom({
+      roomName,
+      roomDescription,
+      token
+    }));
+    setIsModalVisible(false);
+    setRoomName('');
+    setRoomDescription('');
   };
-
-  if (loading) {
-    return <Text>Loading...</Text>;
-  }
-
-  if (error) {
-    return <Text>Error: {error}</Text>;
-  }
-
   const renderRoom = ({ item }) => (
     <TouchableOpacity style={styles.roomButton} onPress={navigateChat}>
       <Text style={styles.roomText}>{item.room_name}</Text> 
@@ -45,44 +43,35 @@ const RoomListScreen = ({ chatrooms, loading, error, fetchChatRooms }) => {
   return (
     <>
       <Modal
-  animationType="slide"
-  transparent={true}
-  visible={isModalVisible}
-  onRequestClose={() => setIsModalVisible(!isModalVisible)}
->
-  <View style={styles.modalView}>
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <Text style={styles.modalTitle}>Create a Trip</Text>
-      <TextInput
-        placeholder="Starting Location"
-        onChangeText={setStartingLocation}
-        value={startingLocation}
-        style={styles.input}
-      />
-      <TextInput
-        placeholder="Room Name"
-        onChangeText={setRoomName}
-        value={roomName}
-        style={styles.input}
-      />
-      <TextInput
-        placeholder="Room Description"
-        onChangeText={setRoomDescription}
-        value={roomDescription}
-        style={styles.input}
-      />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          setIsModalVisible(!isModalVisible);
-          handleSubmit();
-        }}
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={() => setIsModalVisible(!isModalVisible)}
       >
-        <Text style={styles.buttonText}>Create Trip</Text>
-      </TouchableOpacity>
-    </ScrollView>
-  </View>
-</Modal>
+        <View style={styles.modalView}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Text style={styles.modalTitle}>Create a Trip</Text>
+            <TextInput
+              placeholder="Room Name"
+              onChangeText={setRoomName}
+              value={roomName}
+              style={styles.input}
+            />
+            <TextInput
+              placeholder="Room Description"
+              onChangeText={setRoomDescription}
+              value={roomDescription}
+              style={styles.input}
+            />
+            <TouchableOpacity
+              style={styles.button}
+              onPress={handleSubmit}
+            >
+              <Text style={styles.buttonText}>Create Trip</Text>
+            </TouchableOpacity>
+          </ScrollView>
+        </View>
+      </Modal>
 
       <SafeAreaView style={styles.container}>
         <FlatList
