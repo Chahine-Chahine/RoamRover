@@ -1,15 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet , ScrollView, Modal, TextInput, TouchableOpacity, Alert } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Modal,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLocations } from "../core/Redux/Actions/locationActions";
-import { createBookmark, deleteBookmark, fetchBookmarks } from "../core/Redux/Actions/bookmarkActions";
+import {
+  createBookmark,
+  deleteBookmark,
+  fetchBookmarks,
+} from "../core/Redux/Actions/bookmarkActions";
 import { useNavigation } from "@react-navigation/native";
 import Card from "../components/common/Card";
 import NavigationBar from "../components/common/NavigationBar";
 import LoadingScreen from "./LoadingScreen";
 import Search from "../components/common/Search";
 import ActionButton from "../components/ProfileScreen/ActionButton";
-import { createTrip, resetTripCreationState } from "../core/Redux/Actions/tripActions";
+import {
+  createTrip,
+  resetTripCreationState,
+} from "../core/Redux/Actions/tripActions";
 
 const CustomtripScreen = () => {
   const [selectedLocations, setSelectedLocations] = useState([]);
@@ -54,7 +70,9 @@ const CustomtripScreen = () => {
   };
 
   const handleBookmarkToggle = (location) => {
-    const existingBookmark = bookmarks.find(bookmark => bookmark.location_id === location.id);
+    const existingBookmark = bookmarks.find(
+      (bookmark) => bookmark.location_id === location.id
+    );
     console.log(location.id);
     console.log(bookmarks);
     console.log(existingBookmark);
@@ -62,7 +80,9 @@ const CustomtripScreen = () => {
       dispatch(deleteBookmark(existingBookmark.id));
     } else {
       if (USER_ID) {
-        dispatch(createBookmark({ userId: USER_ID, locationId: location.id , token}));
+        dispatch(
+          createBookmark({ userId: USER_ID, locationId: location.id, token })
+        );
       }
     }
   };
@@ -181,21 +201,28 @@ const CustomtripScreen = () => {
           <Text style={styles.searchText}>
             Search for your favorite place in town
           </Text>
-          {locations.map((location) => (
-            <Card
-              key={location.id}
-              location_id={location.id}
-              onPress={() => navigateLocationPage(location)}
-              title={location.title}
-              description={location.description}
-              price={`$${location.estimated_price} per individual`}
-              url={location.image}
-              label={"add"}
-              onAddPress={handleAddLocation}
-              showBookmark={true}
-              onBookmarkPress={() => handleBookmarkToggle(location)}
-            />
-          ))}
+          {locations.map((location) => {
+            const isBookmarked = bookmarks.some(
+              (bookmark) => bookmark.location_id === location.id
+            );
+
+            return (
+              <Card
+                key={location.id}
+                location_id={location.id}
+                onPress={() => navigateLocationPage(location)}
+                title={location.title}
+                description={location.description}
+                price={`$${location.estimated_price} per individual`}
+                url={location.image}
+                label={"add"}
+                onAddPress={handleAddLocation}
+                showBookmark={true}
+                isBookmarked={isBookmarked} // Pass the bookmark status
+                onBookmarkPress={() => handleBookmarkToggle(location)}
+              />
+            );
+          })}
         </ScrollView>
       </View>
       <ActionButton title={"Done"} onPress={handleDonePress} />
