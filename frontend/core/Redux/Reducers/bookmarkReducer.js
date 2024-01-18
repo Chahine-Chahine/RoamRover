@@ -21,13 +21,13 @@ const bookmarkReducer = (state = initialState, action) => {
                 loading: true,
                 error: null
             };
-        case FETCH_BOOKMARKS_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                chatrooms: action.payload,
-                error: null
-            };
+            case FETCH_BOOKMARKS_SUCCESS:
+                return {
+                  ...state,
+                  bookmarks: action.payload,
+                  bookmarksFetched: true,
+                  error: null
+                };
         case FETCH_BOOKMARKS_FAILURE:
             return {
                 ...state,
