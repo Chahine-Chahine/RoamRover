@@ -1,38 +1,61 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { createBookmark, fetchBookmarks, deleteBookmark } from '../Actions/bookmarkActions';
+import {
+    FETCH_BOOKMARKS_REQUEST,
+    FETCH_BOOKMARKS_SUCCESS,
+    FETCH_BOOKMARKS_FAILURE,
+    CREATE_BOOKMARKS_REQUEST,
+    CREATE_BOOKMARKS_SUCCESS,
+    CREATE_BOOKMARKS_FAILURE,
+} from '../Actions/actionTypes';
 
 const initialState = {
     bookmarks: [],
     loading: false,
-    error: null,
+    error: null
 };
 
-const bookmarkSlice = createSlice({
-    name: 'bookmark',
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-            .addCase(createBookmark.fulfilled, (state, action) => {    
-                return {...state, bookmarks: [...state.bookmarks, action.payload]}
-            })
-            .addCase(fetchBookmarks.fulfilled, (state, action) => {
-                return {...state, bookmarks: action.payload}
-            })
-            .addCase(deleteBookmark.fulfilled, (state, action) => {
-               const taha = state.bookmarks.filter(bookmark => bookmark.id !== action.payload);
-               return {...state, bookmarks: taha}
-            })
-            .addCase(createBookmark.rejected, (state, action) => {
-                state.error = action.error.message;
-            })
-            .addCase(fetchBookmarks.rejected, (state, action) => {
-                state.error = action.error.message;
-            })
-            .addCase(deleteBookmark.rejected, (state, action) => {
-                state.error = action.error.message;
-            });
-    },
-});
+const bookmarkReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case FETCH_BOOKMARKS_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: null
+            };
+        case FETCH_BOOKMARKS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                chatrooms: action.payload,
+                error: null
+            };
+        case FETCH_BOOKMARKS_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+        case CREATE_BOOKMARKS_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: null
+            };
+        case CREATE_BOOKMARKS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                chatrooms: [...state.chatrooms, action.payload],
+                error: null
+            };
+        case CREATE_BOOKMARKS_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+        default:
+            return state;
+    }
+};
 
-export default bookmarkSlice.reducer;
+export default bookmarkReducer;
