@@ -5,6 +5,9 @@ import {
     CREATE_BOOKMARKS_REQUEST,
     CREATE_BOOKMARKS_SUCCESS,
     CREATE_BOOKMARKS_FAILURE,
+    DELETE_BOOKMARK_REQUEST, 
+    DELETE_BOOKMARK_SUCCESS, 
+    DELETE_BOOKMARK_FAILURE
 } from '../Actions/actionTypes';
 
 const initialState = {
@@ -21,13 +24,13 @@ const bookmarkReducer = (state = initialState, action) => {
                 loading: true,
                 error: null
             };
-            case FETCH_BOOKMARKS_SUCCESS:
-                return {
-                  ...state,
-                  bookmarks: action.payload,
-                  bookmarksFetched: true,
-                  error: null
-                };
+        case FETCH_BOOKMARKS_SUCCESS:
+            return {
+                ...state,
+                bookmarks: action.payload,
+                loading: false,
+                error: null
+            };
         case FETCH_BOOKMARKS_FAILURE:
             return {
                 ...state,
@@ -43,11 +46,28 @@ const bookmarkReducer = (state = initialState, action) => {
         case CREATE_BOOKMARKS_SUCCESS:
             return {
                 ...state,
-                loading: false,
                 bookmarks: [...state.bookmarks, action.payload],
+                loading: false,
                 error: null
             };
         case CREATE_BOOKMARKS_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+        case DELETE_BOOKMARK_REQUEST:
+            return {
+                ...state,
+                loading: true
+            };
+        case DELETE_BOOKMARK_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                bookmarks: state.bookmarks.filter(bookmark => bookmark.id !== action.payload.id)
+            };
+        case DELETE_BOOKMARK_FAILURE:
             return {
                 ...state,
                 loading: false,
