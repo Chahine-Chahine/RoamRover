@@ -1,32 +1,16 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Modal,
-  TextInput,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView, Modal, TextInput, TouchableOpacity, Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLocations } from "../core/Redux/Actions/locationActions";
-import {
-  createBookmark,
-  deleteBookmark,
-  fetchBookmarks,
-} from "../core/Redux/Actions/bookmarkActions";
+import { createBookmark, deleteBookmark, fetchBookmarks } from "../core/Redux/Actions/bookmarkActions";
 import { useNavigation } from "@react-navigation/native";
 import Card from "../components/common/Card";
 import NavigationBar from "../components/common/NavigationBar";
 import LoadingScreen from "./LoadingScreen";
 import Search from "../components/common/Search";
-import { useEffect, useState } from "react";
 import ActionButton from "../components/ProfileScreen/ActionButton";
 import { connect } from "react-redux";
-import {
-  createTrip,
-  resetTripCreationState,
-} from "../core/Redux/Actions/tripActions";
+import { createTrip, resetTripCreationState } from "../core/Redux/Actions/tripActions";
 
 const CustomtripScreen = () => {
   const [selectedLocations, setSelectedLocations] = useState([]);
@@ -51,7 +35,10 @@ const CustomtripScreen = () => {
   const navigateLocationPage = (location) => {
     console.log("Navigating to location:", location);
     if (location) {
-        navigation.navigate("LocationDetailScreen", { location, onAddPress: handleAddLocation });
+      navigation.navigate("LocationDetailScreen", {
+        location,
+        onAddPress: handleAddLocation,
+      });
     }
   };
 
