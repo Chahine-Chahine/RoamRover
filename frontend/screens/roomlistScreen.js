@@ -34,6 +34,7 @@ const RoomListScreen = ({chatrooms}) => {
       setRoomName('');
       setRoomDescription('');
       navigation.navigate('ChatRoomScreen'); 
+      dispatch(fetchChatrooms(token)); 
     })
     .catch(error => {
       console.log(error);
