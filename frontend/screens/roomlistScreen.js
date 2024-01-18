@@ -7,8 +7,8 @@ import { fetchChatrooms, createChatroom } from '../core/Redux/Actions/roomAction
 
 const RoomListScreen = ({ chatrooms, loading, error }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [roomName, setRoomName] = useState('');
-  const [roomDescription, setRoomDescription] = useState('');
+  const [room_name, setRoomName] = useState('');
+  const [room_description, setRoomDescription] = useState('');
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
 
@@ -26,8 +26,8 @@ const RoomListScreen = ({ chatrooms, loading, error }) => {
 
   const handleSubmit = () => {
     dispatch(createChatroom({
-      roomName,
-      roomDescription
+      room_name,
+      room_description
     }, token));
     setIsModalVisible(false);
     setRoomName('');
@@ -53,13 +53,13 @@ const RoomListScreen = ({ chatrooms, loading, error }) => {
             <TextInput
               placeholder="Room Name"
               onChangeText={setRoomName}
-              value={roomName}
+              value={room_name}
               style={styles.input}
             />
             <TextInput
               placeholder="Room Description"
               onChangeText={setRoomDescription}
-              value={roomDescription}
+              value={room_description}
               style={styles.input}
             />
             <TouchableOpacity
