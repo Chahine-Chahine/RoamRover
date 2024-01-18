@@ -6,6 +6,7 @@ import bookmarkReducer from './Reducers/bookmarkReducer';
 import tripReducer from './Reducers/tripReducer';
 import routeReducer from './Reducers/mapReducer';
 import roomReducer from './Reducers/roomReducer';
+import generateaiReducer from './Reducers/generateaiReducer';
 
 
 export const store = configureStore({
@@ -16,6 +17,7 @@ export const store = configureStore({
     trips: tripReducer,
     route: routeReducer,
     chatroom: roomReducer,
+    Questionnaire: generateaiReducer,
   },
   // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
