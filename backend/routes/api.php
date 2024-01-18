@@ -42,10 +42,10 @@ Route::controller(LocationsController::class)->group(function () {
     Route::delete('/locations/{id}', 'deleteLocation'); 
 });
 
-Route::controller(RoomsController::class)->group(function () {
-    Route::get('/rooms', 'displayAllRooms'); 
-    Route::get('/rooms/{id}', 'displayById');
-    Route::post('/rooms', 'createRoom'); 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/rooms',[RoomsController::class, 'displayAllRooms'] ); 
+    Route::get('/rooms/{id}', [RoomsController::class, 'displayById']);
+    Route::post('/rooms', [RoomsController::class,'createRoom']); 
 });
 
 Route::controller(TripsController::class)->group(function () {

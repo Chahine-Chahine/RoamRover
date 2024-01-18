@@ -9,9 +9,15 @@ use Illuminate\Support\Facades\DB;
 class RoomsController extends Controller
 {
     // GET /rooms
-    public function displayAllRooms()
+    public function displayAllRooms(Request $request)
     {
-        return Room::with('users')->get();
+        if ($user = $request->user()) {
+            $userId = $user->id;
+            return Room::where('creator_id', $userId)->with('users')->get();
+        } else {
+            // Return an error response if no user is authenticated
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
     }
 
     // GET /rooms/{id}
