@@ -62,7 +62,7 @@ const CustomtripScreen = () => {
       dispatch(deleteBookmark(existingBookmark.id));
     } else {
       if (USER_ID) {
-        dispatch(createBookmark({ userId: USER_ID, locationId: location.id }));
+        dispatch(createBookmark({ userId: USER_ID, locationId: location.id , token}));
       }
     }
   };

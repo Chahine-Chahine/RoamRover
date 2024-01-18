@@ -28,9 +28,8 @@ export const fetchBookmarks = (token) => {
     };
 }
 
-export const createBookmark = ({ userId, locationId }) => {
-    return async (dispatch, getState) => {
-        const token = getState().auth.token;
+export const createBookmark = ({ userId, locationId , token }) => {
+    return async (dispatch) => {
         dispatch({ type: CREATE_BOOKMARK_REQUEST });
         try {
             const response = await axios.post(`${baseUrl}:8000/api/bookmarks`,
