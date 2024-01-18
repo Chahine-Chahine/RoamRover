@@ -37,6 +37,7 @@ export const createBookmark = ({ userId, locationId , token }) => {
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             dispatch({ type: CREATE_BOOKMARK_SUCCESS, payload: response.data });
+            dispatch(fetchBookmarks(token));
         } catch (error) {
             dispatch({ type: CREATE_BOOKMARK_FAILURE, payload: error.message || 'An unknown error occurred' });
         }
@@ -44,12 +45,13 @@ export const createBookmark = ({ userId, locationId , token }) => {
 }
 
 // Refactored deleteBookmark
-export const deleteBookmark = (bookmarkId) => {
+export const deleteBookmark = (bookmarkId, token) => {
     return async (dispatch) => {
         dispatch({ type: DELETE_BOOKMARK_REQUEST });
         try {
             const response = await axios.delete(`${baseUrl}:8000/api/bookmarks/${bookmarkId}`);
             dispatch({ type: DELETE_BOOKMARK_SUCCESS, payload: response.data });
+            dispatch(fetchBookmarks(token));
         } catch (error) {
             dispatch({ type: DELETE_BOOKMARK_FAILURE, payload: error.message || 'An unknown error occurred' });
         }
