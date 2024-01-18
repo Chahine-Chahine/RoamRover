@@ -17,7 +17,7 @@ const ProfileUpdateScreen = ({user}) => {
 
   const handleUpdateProfile = () => {
     if (user && user.id) {
-    dispatch(updateUser(user.id,{first_name, last_name, username, bio,  password, image_url }));
+    dispatch(updateUser(user.id,{first_name, last_name, username, bio, password, image_url }));
     navigation.navigate('profileScreen'); 
   }else {
     console.error("User ID is not available for update.");

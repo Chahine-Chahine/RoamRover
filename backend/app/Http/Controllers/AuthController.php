@@ -106,21 +106,26 @@ class AuthController extends Controller
             'last_name' => 'nullable|string|min:4',
             'image_url' => 'nullable|string|max:255',
             'bio' => 'nullable|string|min:20',
+            'password' => 'nullable|string|min:6',
         ]);
+    
+        if ($request->has('password') && !empty($request->password)) {
+            $user->password = Hash::make($request->password);
+        }
+    
         $user->update([
-        'username' => $request->username ?? $user->username,
-        'email' => $request->email ?? $user->email,
-        'first_name' => $request->first_name ?? $user->first_name,
-        'last_name' => $request->last_name ?? $user->last_name,
-        'image_url' => $request->image_url ?? $user->image_url,
-        'bio' => $request->bio ?? $user->bio,
+            'username' => $request->username ?? $user->username,
+            'email' => $request->email ?? $user->email,
+            'first_name' => $request->first_name ?? $user->first_name,
+            'last_name' => $request->last_name ?? $user->last_name,
+            'image_url' => $request->image_url ?? $user->image_url,
+            'bio' => $request->bio ?? $user->bio,
         ]);
-
+    
         return response()->json([
             'status' => 'success',
             'message' => 'Profile updated successfully',
             'user' => $user
         ]);
     }
-
-}
+}    
