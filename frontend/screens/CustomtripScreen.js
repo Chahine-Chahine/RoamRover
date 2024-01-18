@@ -202,7 +202,7 @@ const CustomtripScreen = () => {
             Search for your favorite place in town
           </Text>
           {locations.map((location) => {
-            const isBookmarked = bookmarks.some(
+            const isBookmarkedInitially = bookmarks.some(
               (bookmark) => bookmark.location_id === location.id
             );
 
@@ -218,7 +218,7 @@ const CustomtripScreen = () => {
                 label={"add"}
                 onAddPress={handleAddLocation}
                 showBookmark={true}
-                isBookmarked={isBookmarked} // Pass the bookmark status
+                isBookmarkedInitially={isBookmarkedInitially}
                 onBookmarkPress={() => handleBookmarkToggle(location)}
               />
             );
