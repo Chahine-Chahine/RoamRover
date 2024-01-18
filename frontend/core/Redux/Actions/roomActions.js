@@ -10,11 +10,16 @@ import {
 
 import { baseUrl } from '../../helpers/baseUrl';
 
-export const fetchChatrooms = () => {
+export const fetchChatrooms = (token) => {
     return async (dispatch) => {
         dispatch({ type: FETCH_CHATROOMS_REQUEST });
         try {
-            const response = await axios.get(`${baseUrl}:8000/api/rooms`); 
+            const response = await axios.get(`${baseUrl}:8000/api/rooms`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                }
+            }); 
             dispatch({ type: FETCH_CHATROOMS_SUCCESS, payload: response.data });
         } catch (error) {
             dispatch({ type: FETCH_CHATROOMS_FAILURE, payload: error.message || 'An unknown error occurred' });

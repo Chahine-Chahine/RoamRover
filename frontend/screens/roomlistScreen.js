@@ -2,18 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, FlatList, Modal, ScrollView, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { fetchChatrooms } from '../core/Redux/Actions/roomActions'; 
 const RoomListScreen = ({ chatrooms, loading, error, fetchChatRooms }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [startingLocation, setStartingLocation] = useState('');
   const [roomName, setRoomName] = useState('');
   const [roomDescription, setRoomDescription] = useState('');
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
-    fetchChatrooms();
-    console.log(chatrooms);
-  }, [fetchChatRooms]);
+    if (token) {
+      dispatch(fetchChatrooms(token)); 
+    }
+  }, [dispatch, token]);
 
   const navigation = useNavigation();
 
@@ -35,7 +38,7 @@ const RoomListScreen = ({ chatrooms, loading, error, fetchChatRooms }) => {
 
   const renderRoom = ({ item }) => (
     <TouchableOpacity style={styles.roomButton} onPress={navigateChat}>
-      <Text style={styles.roomText}>{item.name}</Text> 
+      <Text style={styles.roomText}>{item.room_name}</Text> 
     </TouchableOpacity>
   );
 
