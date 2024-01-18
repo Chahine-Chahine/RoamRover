@@ -1,43 +1,58 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { baseUrl } from '../../helpers/baseUrl';
+import {
+    FETCH_BOOKMARKS_REQUEST , 
+    FETCH_BOOKMARKS_SUCCESS ,
+    FETCH_BOOKMARKS_FAILURE, 
+    CREATE_BOOKMARK_REQUEST, 
+    CREATE_BOOKMARK_SUCCESS, 
+    CREATE_BOOKMARK_FAILURE,
+    DELETE_BOOKMARK_REQUEST, 
+    DELETE_BOOKMARK_SUCCESS, 
+    DELETE_BOOKMARK_FAILURE} from './actionTypes'
 
 
-export const fetchBookmarks = createAsyncThunk(
-    'bookmark/fetchBookmarks',
-    async (_, { getState }) => {
-        const state = getState();
-        const token = state.auth.token; 
-
-        const response = await axios.get(`${baseUrl}:8000/api/displayUserBookmarks`, {
-            headers: {
-                Authorization: `Bearer ${token}` 
-            }
-        });
-        return response.data;
-    }
-    );
-// Async Thunk Actions
-export const createBookmark = createAsyncThunk(
-    'bookmark/createBookmark',
-    async ({ userId, locationId }, { getState }) => {
-        const token = getState().auth.token;
-        const response = await axios.post(`${baseUrl}:8000/api/bookmarks`, 
-            { user_id: userId, location_id: locationId },
-            {
+export const fetchBookmarks = () => {
+    return async (dispatch) => {
+        dispatch({ type: FETCH_BOOKMARKS_REQUEST });
+        try {
+            const response = await axios.get(`${baseUrl}:8000/api/displayUserBookmarks` , { 
                 headers: {
-                    Authorization: `Bearer ${token}` 
-                }
-            }
-        );
-        return response.data;
-    }
-);
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            },});
+            dispatch({ type: FETCH_BOOKMARKS_SUCCESS, payload: response.data });
+        } catch (error) {
+            dispatch({ type: FETCH_BOOKMARKS_FAILURE, payload: error.message || 'An unknown error occurred'});
+        }
+    };
+}
 
-export const deleteBookmark = createAsyncThunk(
-    'bookmark/deleteBookmark',
-    async (bookmarkId) => {
-        const response = await axios.delete(`${baseUrl}:8000/api/bookmarks/${bookmarkId}`);
-        return response.data; 
-    }
-);
+export const createBookmark = ({ userId, locationId }) => {
+    return async (dispatch, getState) => {
+        const token = getState().auth.token;
+        dispatch({ type: CREATE_BOOKMARK_REQUEST });
+        try {
+            const response = await axios.post(`${baseUrl}:8000/api/bookmarks`,
+                { user_id: userId, location_id: locationId },
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            dispatch({ type: CREATE_BOOKMARK_SUCCESS, payload: response.data });
+        } catch (error) {
+            dispatch({ type: CREATE_BOOKMARK_FAILURE, payload: error.message || 'An unknown error occurred' });
+        }
+    };
+}
+
+// Refactored deleteBookmark
+export const deleteBookmark = (bookmarkId) => {
+    return async (dispatch) => {
+        dispatch({ type: DELETE_BOOKMARK_REQUEST });
+        try {
+            const response = await axios.delete(`${baseUrl}:8000/api/bookmarks/${bookmarkId}`);
+            dispatch({ type: DELETE_BOOKMARK_SUCCESS, payload: response.data });
+        } catch (error) {
+            dispatch({ type: DELETE_BOOKMARK_FAILURE, payload: error.message || 'An unknown error occurred' });
+        }
+    };
+}

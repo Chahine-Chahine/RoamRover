@@ -13,14 +13,15 @@ const bookmarkSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(createBookmark.fulfilled, (state, action) => {
-                state.bookmarks.push(action.payload);
+            .addCase(createBookmark.fulfilled, (state, action) => {    
+                return {...state, bookmarks: [...state.bookmarks, action.payload]}
             })
             .addCase(fetchBookmarks.fulfilled, (state, action) => {
-                state.bookmarks = action.payload;
+                return {...state, bookmarks: action.payload}
             })
             .addCase(deleteBookmark.fulfilled, (state, action) => {
-                state.bookmarks = state.bookmarks.filter(bookmark => bookmark.id !== action.payload);
+               const taha = state.bookmarks.filter(bookmark => bookmark.id !== action.payload);
+               return {...state, bookmarks: taha}
             })
             .addCase(createBookmark.rejected, (state, action) => {
                 state.error = action.error.message;

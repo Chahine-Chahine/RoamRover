@@ -8,14 +8,6 @@ import tripReducer from './Reducers/tripReducer';
 import routeReducer from './Reducers/mapReducer';
 import roomReducer from './Reducers/roomReducer';
 
-const saveState = async (state) => {
-  try {
-    const serializedState = JSON.stringify(state);
-    await AsyncStorage.setItem('state', serializedState);
-  } catch (err) {
-    console.error('Error during state save:', err);
-  }
-};
 
 export const store = configureStore({
   reducer: {
@@ -27,10 +19,6 @@ export const store = configureStore({
     chatroom: roomReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
-});
-
-store.subscribe(() => {
-  saveState(store.getState());
 });
 
 export default store;
