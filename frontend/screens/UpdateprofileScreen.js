@@ -46,7 +46,7 @@ const ProfileUpdateScreen = ({user}) => {
         {image_url ? 
           <Image source={{ uri: image_url }} style={styles.image} />
         : 
-         <Image source={require('../assets/Default_pfp.svg.png')} style={styles.image}/>
+         <Image source={user?.image_url ? { uri: user.image_url } : require('../assets/Default_pfp.svg.png')} style={styles.image}/>
           }
       </TouchableOpacity>
       <Text style={styles.photoText}>Edit Photo</Text>
