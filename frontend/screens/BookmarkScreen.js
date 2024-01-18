@@ -6,7 +6,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { fetchBookmarks} from '../core/Redux/Actions/bookmarkActions'; 
 import EmptyStateImage from '../assets/magnifier.png';
-
+import { deleteBookmark } from '../core/Redux/Actions/bookmarkActions';
 const BookmarkScreen = () => {
   const dispatch = useDispatch();
   const bookmarks = useSelector(state => state.bookmark.bookmarks); 
@@ -21,12 +21,14 @@ const BookmarkScreen = () => {
       <TouchableOpacity onPress={() => console.log('Add Pressed', id)} style={styles.rightAction}>
         <Text style={styles.actionText}>Add</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => console.log('Delete Pressed', id)} style={[styles.rightAction, { backgroundColor: '#FF8556' }]}>
-        <Text style={styles.actionText}>Delete</Text>
-      </TouchableOpacity>
-    </View>
-  );
-
+      <TouchableOpacity 
+      onPress={() => dispatch(deleteBookmark(id, token))} 
+      style={[styles.rightAction, { backgroundColor: '#FF8556' }]}
+    >
+      <Text style={styles.actionText}>Delete</Text>
+    </TouchableOpacity>
+  </View>
+);
   const renderCard = ({ item }) => (
     <Swipeable renderRightActions={() => renderRightActions(item.id)}>
         <View style={[styles.card, { height: 180 }]}>
