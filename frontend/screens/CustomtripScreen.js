@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, Modal, TextInput, TouchableOpacity, Alert } from "react-native";
+import { View, Text, StyleSheet , ScrollView, Modal, TextInput, TouchableOpacity, Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLocations } from "../core/Redux/Actions/locationActions";
 import { createBookmark, deleteBookmark, fetchBookmarks } from "../core/Redux/Actions/bookmarkActions";
@@ -9,7 +9,6 @@ import NavigationBar from "../components/common/NavigationBar";
 import LoadingScreen from "./LoadingScreen";
 import Search from "../components/common/Search";
 import ActionButton from "../components/ProfileScreen/ActionButton";
-import { connect } from "react-redux";
 import { createTrip, resetTripCreationState } from "../core/Redux/Actions/tripActions";
 
 const CustomtripScreen = () => {
@@ -55,12 +54,12 @@ const CustomtripScreen = () => {
   };
 
   const handleBookmarkToggle = (location) => {
-    const bookmark = bookmarks.find(
-      (bookmark) => bookmark.location_id === location.id
-    );
-
-    if (bookmark) {
-      dispatch(deleteBookmark(bookmark.id));
+    const existingBookmark = bookmarks.find(bookmark => bookmark.location_id === location.id);
+    console.log(location.id);
+    console.log(bookmarks);
+    console.log(existingBookmark);
+    if (existingBookmark) {
+      dispatch(deleteBookmark(existingBookmark.id));
     } else {
       if (USER_ID) {
         dispatch(createBookmark({ userId: USER_ID, locationId: location.id }));
@@ -284,4 +283,4 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
 });
-export default connect()(CustomtripScreen);
+export default CustomtripScreen;
