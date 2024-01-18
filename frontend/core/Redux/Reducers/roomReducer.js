@@ -13,7 +13,7 @@ const initialState = {
     error: null
 };
 
-const chatroomReducer = (state = initialState, action) => {
+const roomReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_CHATROOMS_REQUEST:
             return {
@@ -58,4 +58,4 @@ const chatroomReducer = (state = initialState, action) => {
     }
 };
 
-export default chatroomReducer;
+export default roomReducer;

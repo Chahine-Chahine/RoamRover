@@ -6,6 +6,7 @@ import bookmarkReducer from './Reducers/bookmarkReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import tripReducer from './Reducers/tripReducer';
 import routeReducer from './Reducers/mapReducer';
+import roomReducer from './Reducers/roomReducer';
 
 const saveState = async (state) => {
   try {
@@ -23,6 +24,7 @@ export const store = configureStore({
     bookmark: bookmarkReducer, 
     trips: tripReducer,
     route: routeReducer,
+    rooms: roomReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
