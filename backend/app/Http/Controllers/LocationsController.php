@@ -84,4 +84,11 @@ class LocationsController extends Controller
         $location->delete();
         return response()->json(['message' => 'Location deleted successfully']);
     }
+    
+    public function search(Request $request)
+    {
+        $query = $request->get('query');
+        $locations = Location::where('name', 'LIKE', "%$query%")->get();
+        return response()->json($locations);
+    }
 }

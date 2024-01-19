@@ -40,6 +40,8 @@ Route::controller(LocationsController::class)->group(function () {
     Route::put('/locations/{id}', 'updateLocation');
     Route::get('/locations/{id}', 'displayById'); 
     Route::delete('/locations/{id}', 'deleteLocation'); 
+    Route::get('/search', 'search');
+
 });
 
 Route::middleware(['auth'])->group(function () {
