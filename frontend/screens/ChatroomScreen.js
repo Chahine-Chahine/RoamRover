@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAIResponse } from '../core/Redux/Actions/generateaiActions';
 
 const ChatRoomScreen = () => {
   const route = useRoute();
   const roomId = route.params?.roomId;
+  const dispatch = useDispatch();
   const [message, setMessage] = useState('');
   const [displayedMessage, setDisplayedMessage] = useState('');
   const aiResponse = useSelector(state => state.Questionnaire.Questionnaire);
@@ -18,6 +20,15 @@ const ChatRoomScreen = () => {
       setRoomName(roomNameFromResponse);
     }
   }, [roomNameFromResponse]);
+
+  useEffect(() => {
+    try {
+      dispatch(fetchAIResponse());
+    } catch (error) {
+      console.error('Error fetching AI response:', error);
+      dispatch(fetchAIResponse());
+    }
+  }, [dispatch]);
   
 
   useEffect(() => {
