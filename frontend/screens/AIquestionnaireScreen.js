@@ -41,30 +41,43 @@ const Questionnaire = () => {
   const questionnaireState = useSelector(state => state.Questionnaire);
 
   const handleSubmit = async () => {
-  const questionnaireData = {
-    type_question_response,
-    time_question_response,
-    budget_question_response,
-    room_name,
-    room_description
-  };
-
-  try {
-    await dispatch(createQuestionnaire({ QuestionnaireData: questionnaireData, token }));
-
-    // Access the latest state
-    const roomId = questionnaireState.Questionnaire.questionnaire.room_id;
-
-    if (roomId) {
-      dispatch(fetchAIResponse());
-      navigation.navigate('ChatRoomScreen', { roomId });
-    } else {
-      console.error('Room ID not found in the latest state');
+    const questionnaireData = {
+      type_question_response,
+      time_question_response,
+      budget_question_response,
+      room_name,
+      room_description
+    };
+  
+    try {
+      await dispatch(createQuestionnaire({ QuestionnaireData: questionnaireData, token }));
+      // Use a flag to determine if the room ID check should occur
+      let checkForRoomId = true;
+      // Define a function to check for the room ID in the updated state
+      const checkRoomIdAndUpdate = () => {
+        const latestState = questionnaireState.Questionnaire;
+        const roomId = latestState.questionnaire?.room_id;
+  
+        if (roomId && checkForRoomId) {
+          // Set flag to false to prevent further checks
+          checkForRoomId = false;  
+          dispatch(fetchAIResponse());
+          navigation.navigate('ChatRoomScreen', { roomId });
+        }
+      };
+      // Set up an interval to repeatedly check for the room ID
+      const intervalId = setInterval(checkRoomIdAndUpdate, 500); 
+  
+      // Clear the interval when the component unmounts or when roomId is found
+      return () => {
+        checkForRoomId = false;
+        clearInterval(intervalId);
+      };
+    } catch (error) {
+      console.error('Error submitting questionnaire:', error);
     }
-  } catch (error) {
-    console.error('Error submitting questionnaire:', error);
-  }
-};
+  };
+  
   
   
 
