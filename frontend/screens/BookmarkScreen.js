@@ -4,33 +4,40 @@ import { SafeAreaView, View, Text, FlatList, StyleSheet, Image, TouchableOpacity
 import NavigationBar from '../components/common/NavigationBar';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { fetchBookmarks} from '../core/Redux/Actions/bookmarkActions'; 
+import { fetchBookmarks, deleteBookmark } from '../core/Redux/Actions/bookmarkActions'; 
 import EmptyStateImage from '../assets/magnifier.png';
-import { deleteBookmark } from '../core/Redux/Actions/bookmarkActions';
+import { useNavigation } from '@react-navigation/native';
+
 const BookmarkScreen = () => {
   const dispatch = useDispatch();
   const bookmarks = useSelector(state => state.bookmark.bookmarks); 
   const token = useSelector((state) => state.auth.token); 
+  const navigation = useNavigation();
 
   useEffect(() => {
     dispatch(fetchBookmarks(token));
   }, [dispatch, token]);
 
-  const renderRightActions = (id) => (
+  const navigateBookmark = (location) => {
+    navigation.navigate('LocationDetailScreen', { location });
+  }
+  
+  const renderRightActions = (bookmark) => (
     <View style={{ width: 190, flexDirection: 'row' }}>
-      <TouchableOpacity onPress={() => console.log('Add Pressed', id)} style={styles.rightAction}>
-        <Text style={styles.actionText}>Add</Text>
+      <TouchableOpacity onPress={() => navigateBookmark(bookmark.location)} style={styles.rightAction}>
+        <Text style={styles.actionText}>View</Text>
       </TouchableOpacity>
       <TouchableOpacity 
-      onPress={() => dispatch(deleteBookmark(id, token))} 
-      style={[styles.rightAction, { backgroundColor: '#FF8556' }]}
-    >
-      <Text style={styles.actionText}>Delete</Text>
-    </TouchableOpacity>
-  </View>
-);
+        onPress={() => dispatch(deleteBookmark(bookmark.id, token))} 
+        style={[styles.rightAction, { backgroundColor: '#FF8556' }]}
+      >
+        <Text style={styles.actionText}>Delete</Text>
+      </TouchableOpacity>
+    </View>
+  );
+
   const renderCard = ({ item }) => (
-    <Swipeable renderRightActions={() => renderRightActions(item.id)}>
+    <Swipeable renderRightActions={() => renderRightActions(item)}>
         <View style={[styles.card, { height: 180 }]}>
           <Image source={{ uri: item.location.image }} style={styles.cardImage} />
           <View style={styles.cardContent}>
@@ -63,16 +70,11 @@ const BookmarkScreen = () => {
     </GestureHandlerRootView>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 20,
-  },
-  mainTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginLeft: '12%',
-    marginVertical: 20
   },
   card: {
     flexDirection: 'row',
@@ -112,8 +114,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     top: 15,
-    
-  
   },
   actionText: {
     color: 'white',
