@@ -79,9 +79,9 @@ class GeneratetripController extends Controller {
 
         // Constructing the AI prompt
         $prompt = "Using these locations: $locationDescriptions";
-        $prompt .= "generate a trip plan for a $type trip, with a duration of $time, and a budget of $budget dollars. ";
+        $prompt .= "generate a trip plan for a $type trip, with a duration of $time, and a budget of $budget dollars.";
         $prompt .= "The plan should include location names and AI-generated descriptions based on the given data.";
-        $prompt .= "Be carefull not to exceed $budget and not less than $budget - 20";
+        $prompt .= "Be carefull not to exceed $budget and not less than $budget-20";
         $prompt .= "\n Return the answer as JSON parsable object (do not return any text
         or explanation or notes before or after the JSON object)";
         $prompt .= "\n the JSON object should be in this format {result: [

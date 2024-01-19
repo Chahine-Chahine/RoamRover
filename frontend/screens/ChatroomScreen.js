@@ -1,57 +1,55 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
-import { useRoute } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
-
-  const ChatRoomScreen = () => {
-    const route = useRoute();
-    const roomId = route.params?.roomId;
+const ChatRoomScreen = () => {
+  const aiResponse = useSelector(state => state.Questionnaire.Questionnaire);
   const [message, setMessage] = useState('');
 
+  // Helper function to render AI response text
+  const renderAIResponseText = () => {
+    // Assuming aiResponse contains a property like aiResponseText or similar
+    return aiResponse.aiResponseText || "No AI response available.";
+  };
 
   return (
     <>
-     <ImageBackground 
-      source={require('../assets/chat-bg.jpg')}
-      style={styles.backgroundImage}
-      imageStyle={styles.backgroundImageStyle}
-    >
-      <View style={styles.header}>
-        <Ionicons name="chevron-back-outline" size={24} color="#6B46D9" />
-        <Text style={styles.chatRoomName}>Chat room name</Text>
-        <TouchableOpacity style={styles.inviteButton}>
-          <Text style={styles.inviteText}>Invite</Text>
-        </TouchableOpacity>
-        <Ionicons name="camera-outline" size={30} color="#6B46D9" />
-      </View>
-      <ScrollView>
-      <View style={styles.messagesContainer}>
-        <Text style={styles.username}>AI</Text>
-        <Text style={styles.message}>Good morning, your trip plot for today is:{'\n'}First Station: {'\n'}bnaash3e Lake {'\n'}second station:{'\n'} Faraya-kfardibian</Text>
-      </View>
-      <View style={styles.messagesContainer}>
-        <Text style={styles.username}>chahine</Text>
-        <Text style={styles.message}>Tell me If you need further assistance</Text>
-      </View>
-      </ScrollView>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Message"
-          value={message}
-          onChangeText={setMessage}
-          placeholderTextColor="#6B46D9"
-        />
-        <TouchableOpacity style={styles.sendButton}>
-          <Ionicons name="send" size={24} color="#fff" />
-        </TouchableOpacity>
-      </View>
+      <ImageBackground 
+        source={require('../assets/chat-bg.jpg')}
+        style={styles.backgroundImage}
+        imageStyle={styles.backgroundImageStyle}
+      >
+        <View style={styles.header}>
+          <Ionicons name="chevron-back-outline" size={24} color="#6B46D9" />
+          <Text style={styles.chatRoomName}>{aiResponse.room?.room_name || "Chat Room"}</Text>
+          <TouchableOpacity style={styles.inviteButton}>
+            <Text style={styles.inviteText}>Invite</Text>
+          </TouchableOpacity>
+          <Ionicons name="camera-outline" size={30} color="#6B46D9" />
+        </View>
+        <ScrollView>
+          <View style={styles.messagesContainer}>
+            <Text style={styles.username}>AI</Text>
+            <Text style={styles.message}>{renderAIResponseText()}</Text>
+          </View>
+        </ScrollView>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Message"
+            value={message}
+            onChangeText={setMessage}
+            placeholderTextColor="#6B46D9"
+          />
+          <TouchableOpacity style={styles.sendButton}>
+            <Ionicons name="send" size={24} color="#fff" />
+          </TouchableOpacity>
+        </View>
       </ImageBackground>
-      </>
+    </>
   );
 };
-
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,

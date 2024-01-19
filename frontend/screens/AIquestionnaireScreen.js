@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from 'react-redux';
-import { createQuestionnaire } from '../core/Redux/Actions/generateaiActions';
+import { createQuestionnaire, fetchAIResponse } from '../core/Redux/Actions/generateaiActions';
 
 const Questionnaire = () => {
   const questions = [
@@ -38,21 +38,34 @@ const Questionnaire = () => {
     }
   };
 
-  const navigateChat = () => {
-    navigation.navigate('ChatRoomScreen');
+  const questionnaireState = useSelector(state => state.Questionnaire);
+
+  const handleSubmit = async () => {
+  const questionnaireData = {
+    type_question_response,
+    time_question_response,
+    budget_question_response,
+    room_name,
+    room_description
   };
 
-  const handleSubmit = () => {
-    const questionnaireData = {
-      type_question_response: type_question_response,
-      time_question_response: time_question_response,
-      budget_question_response: budget_question_response,
-      room_name: room_name,
-      room_description: room_description
-    };
-    dispatch(createQuestionnaire({ QuestionnaireData: questionnaireData, token }));
-    navigateChat();
-  };
+  try {
+    await dispatch(createQuestionnaire({ QuestionnaireData: questionnaireData, token }));
+
+    // Access the latest state
+    const roomId = questionnaireState.Questionnaire.questionnaire.room_id;
+
+    if (roomId) {
+      navigation.navigate('ChatRoomScreen', { roomId });
+    } else {
+      console.error('Room ID not found in the latest state');
+    }
+  } catch (error) {
+    console.error('Error submitting questionnaire:', error);
+  }
+};
+  
+  
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length) {

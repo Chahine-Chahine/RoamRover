@@ -23,8 +23,10 @@ export const createQuestionnaire = ({ QuestionnaireData, token }) => {
         }
       );
       dispatch({ type: CREATE_QUESTIONNAIRE_SUCCESS, payload: response.data });
+      return response.data; 
     } catch (error) {
-      dispatch({ type: CREATE_QUESTIONNAIRE_FAILURE, payload: error });
+      dispatch({ type: CREATE_QUESTIONNAIRE_FAILURE, payload: error.message });
+      return Promise.reject(error); 
     }
   };
 };
@@ -33,11 +35,7 @@ export const fetchAIResponse = () => {
   return async (dispatch) => {
     dispatch({ type: FETCH_AIRESPONSE_REQUEST });
     try {
-      const response = await axios.post(`${baseUrl}:8000/api/generateTripAi`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(`${baseUrl}:8000/api/generateTripAi`);
       dispatch({ type: FETCH_AIRESPONSE_SUCCESS, payload: response.data });
     } catch (error) {
       dispatch({ type: FETCH_AIRESPONSE_FAILURE, payload: error });
