@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, ImageBackground } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 
@@ -9,20 +9,35 @@ const ChatRoomScreen = () => {
   const route = useRoute();
   const roomId = route.params?.roomId;
   const [message, setMessage] = useState('');
+  const [displayedMessage, setDisplayedMessage] = useState('');
 
-  // Process AI response for display
+  useEffect(() => {
+    if (aiResponse && aiResponse.result && Array.isArray(aiResponse.result)) {
+      const fullMessage = aiResponse.result.map(item => `${item.title}: ${item.description}`).join('\n');
+      setDisplayedMessage('');
+      let currentIndex = 0;
+
+      const typingInterval = setInterval(() => {
+        if (currentIndex < fullMessage.length) {
+          setDisplayedMessage((prev) => prev + fullMessage[currentIndex]);
+          currentIndex++;
+        } else {
+          clearInterval(typingInterval);
+        }
+      }, 50); // Adjust typing speed here
+
+      return () => clearInterval(typingInterval);
+    }
+  }, [aiResponse]);
+
   const processAIResponse = () => {
     if (aiResponse && aiResponse.error) {
       return <Text style={styles.message}>Error fetching AI response: {aiResponse.error}</Text>;
-    } else if (aiResponse && aiResponse.result && Array.isArray(aiResponse.result)) {
-      return aiResponse.result.map((item, index) => (
-        <Text key={index} style={styles.message}>
-          {item.title}: {item.description}
-        </Text>
-      ));
+    } else {
+      return <Text style={styles.message}>{displayedMessage}</Text>;
     }
-    return <Text style={styles.message}>Loading AI response...</Text>;
   };
+
   // Get room name from questionnaire state
   const roomName = aiResponse.room ? aiResponse.room.room_name : "Chat Room";
 
@@ -63,6 +78,7 @@ const ChatRoomScreen = () => {
     </>
   );
 };
+
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
@@ -101,7 +117,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 20,
   },
-  username:{
+  username: {
     fontSize: 14,
     color: '#6B46D9',
     fontWeight: 'bold',
@@ -131,7 +147,6 @@ const styles = StyleSheet.create({
   sendButton: {
     borderRadius: 25,
     padding: 10,
-    
   },
 });
 
