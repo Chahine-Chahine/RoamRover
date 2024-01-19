@@ -56,6 +56,7 @@ const Questionnaire = () => {
     const roomId = questionnaireState.Questionnaire.questionnaire.room_id;
 
     if (roomId) {
+      dispatch(fetchAIResponse());
       navigation.navigate('ChatRoomScreen', { roomId });
     } else {
       console.error('Room ID not found in the latest state');

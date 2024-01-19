@@ -1,17 +1,30 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
+import { useRoute } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 
 const ChatRoomScreen = () => {
   const aiResponse = useSelector(state => state.Questionnaire.Questionnaire);
+  const route = useRoute();
+  const roomId = route.params?.roomId;
   const [message, setMessage] = useState('');
 
-  // Helper function to render AI response text
-  const renderAIResponseText = () => {
-    // Assuming aiResponse contains a property like aiResponseText or similar
-    return aiResponse.aiResponseText || "No AI response available.";
+  // Process AI response for display
+  const processAIResponse = () => {
+    if (aiResponse && aiResponse.error) {
+      return <Text style={styles.message}>Error fetching AI response: {aiResponse.error}</Text>;
+    } else if (aiResponse && aiResponse.result && Array.isArray(aiResponse.result)) {
+      return aiResponse.result.map((item, index) => (
+        <Text key={index} style={styles.message}>
+          {item.title}: {item.description}
+        </Text>
+      ));
+    }
+    return <Text style={styles.message}>Loading AI response...</Text>;
   };
+  // Get room name from questionnaire state
+  const roomName = aiResponse.room ? aiResponse.room.room_name : "Chat Room";
 
   return (
     <>
@@ -22,7 +35,7 @@ const ChatRoomScreen = () => {
       >
         <View style={styles.header}>
           <Ionicons name="chevron-back-outline" size={24} color="#6B46D9" />
-          <Text style={styles.chatRoomName}>{aiResponse.room?.room_name || "Chat Room"}</Text>
+          <Text style={styles.chatRoomName}>{roomName}</Text>
           <TouchableOpacity style={styles.inviteButton}>
             <Text style={styles.inviteText}>Invite</Text>
           </TouchableOpacity>
@@ -31,7 +44,7 @@ const ChatRoomScreen = () => {
         <ScrollView>
           <View style={styles.messagesContainer}>
             <Text style={styles.username}>AI</Text>
-            <Text style={styles.message}>{renderAIResponseText()}</Text>
+            {processAIResponse()}
           </View>
         </ScrollView>
         <View style={styles.inputContainer}>

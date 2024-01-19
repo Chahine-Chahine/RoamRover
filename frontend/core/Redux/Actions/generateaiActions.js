@@ -35,10 +35,10 @@ export const fetchAIResponse = () => {
   return async (dispatch) => {
     dispatch({ type: FETCH_AIRESPONSE_REQUEST });
     try {
-      const response = await axios.post(`${baseUrl}:8000/api/generateTripAi`);
+      const response = await axios.get(`${baseUrl}:8000/api/generateTripAi`);
       dispatch({ type: FETCH_AIRESPONSE_SUCCESS, payload: response.data });
     } catch (error) {
-      dispatch({ type: FETCH_AIRESPONSE_FAILURE, payload: error });
-    }
+        dispatch({ type: FETCH_AIRESPONSE_FAILURE, payload: error.message });
+      }
   };
 };
