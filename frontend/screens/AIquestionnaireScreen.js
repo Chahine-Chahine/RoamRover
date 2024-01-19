@@ -39,7 +39,7 @@ const Questionnaire = () => {
   };
 
   const navigateChat = () => {
-    navigation.navigate('HomeScreen');
+    navigation.navigate('ChatRoomScreen');
   };
 
   const handleSubmit = () => {
