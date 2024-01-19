@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, Modal, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from 'react-redux';
 import { createQuestionnaire } from '../core/Redux/Actions/generateaiActions';
 
@@ -32,6 +32,8 @@ const Questionnaire = () => {
   const handleSelectAnswer = (answer) => {
     if (currentQuestionIndex === 0) {
       setTripType(answer);
+      console.log('Selected answer:', answer);
+
     } else if (currentQuestionIndex === 1) {
       setTripTime(answer);
     }
@@ -42,15 +44,24 @@ const Questionnaire = () => {
   };
 
   const handleSubmit = () => {
-    setIsModalVisible(false);
+    const questionnaireData = {
+      typeQuestionResponse: type_question_response,
+      timeQuestionResponse: time_question_response,
+      budgetQuestionResponse: budget_question_response,
+      roomName: room_name,
+      roomDescription: room_description
+    };
+    console.log('Submitting questionnaire with data:', questionnaireData);
+    dispatch(createQuestionnaire({ QuestionnaireData: questionnaireData, token }));
     navigateChat();
   };
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+console.log('Moving to next question. Current index:', currentQuestionIndex);
     } else {
-      setIsModalVisible(true);
+      handleSubmit();
     }
   };
 
@@ -58,61 +69,59 @@ const Questionnaire = () => {
   const isLastQuestion = currentQuestionIndex === questions.length;
 
   return (
-    <>
-      <View style={styles.container}>
-        {!isLastQuestion ? (
-          <>
-            <Text style={styles.questionTitle}>{currentQuestion.question}</Text>
-            {currentQuestion.answers.map((answer) => (
-              <TouchableOpacity
-                key={answer}
+    <View style={styles.container}>
+      {!isLastQuestion ? (
+        <>
+          <Text style={styles.questionTitle}>{currentQuestion.question}</Text>
+          {currentQuestion.answers.map((answer) => (
+            <TouchableOpacity
+              key={answer}
+              style={[
+                styles.answerButton,
+                type_question_response === answer && styles.selectedAnswer,
+                time_question_response === answer && styles.selectedAnswer
+              ]}
+              onPress={() => handleSelectAnswer(answer)}
+            >
+              <Text 
                 style={[
-                  styles.answerButton,
-                  type_question_response === answer && styles.selectedAnswer,
-                  time_question_response === answer && styles.selectedAnswer
+                  styles.answerText,
+                  type_question_response === answer && styles.selectedAnswerText,
+                  time_question_response === answer && styles.selectedAnswerText
                 ]}
-                onPress={() => handleSelectAnswer(answer)}
               >
-                <Text 
-                  style={[
-                    styles.answerText,
-                    type_question_response === answer && styles.selectedAnswerText,
-                    time_question_response === answer && styles.selectedAnswerText
-                  ]}
-                >
-                  {answer}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </>
-        ) : (
-          <>
-            <TextInput
-              style={styles.input}
-              value={budget_question_response}
-              onChangeText={setBudget}
-              placeholder="Enter your budget"
-              keyboardType="numeric"
-            />
-            <TextInput
-              style={styles.input}
-              value={room_name}
-              onChangeText={setRoomName}
-              placeholder="Enter room name"
-            />
-            <TextInput
-              style={styles.input}
-              value={room_description}
-              onChangeText={setRoomDescription}
-              placeholder="Enter room description"
-            />
-          </>
-        )}
-        <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
-          <Text style={styles.nextButtonText}>{isLastQuestion ? "Submit" : "Next"}</Text>
-        </TouchableOpacity>
-      </View>
-    </>
+                {answer}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </>
+      ) : (
+        <>
+          <TextInput
+            style={styles.input}
+            value={budget_question_response}
+            onChangeText={setBudget}
+            placeholder="Enter your budget"
+            keyboardType="numeric"
+          />
+          <TextInput
+            style={styles.input}
+            value={room_name}
+            onChangeText={setRoomName}
+            placeholder="Enter room name"
+          />
+          <TextInput
+            style={styles.input}
+            value={room_description}
+            onChangeText={setRoomDescription}
+            placeholder="Enter room description"
+          />
+        </>
+      )}
+      <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
+        <Text style={styles.nextButtonText}>{isLastQuestion ? "Submit" : "Next"}</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
