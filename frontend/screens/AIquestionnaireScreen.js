@@ -32,7 +32,6 @@ const Questionnaire = () => {
   const handleSelectAnswer = (answer) => {
     if (currentQuestionIndex === 0) {
       setTripType(answer);
-      console.log('Selected answer:', answer);
 
     } else if (currentQuestionIndex === 1) {
       setTripTime(answer);
@@ -45,13 +44,12 @@ const Questionnaire = () => {
 
   const handleSubmit = () => {
     const questionnaireData = {
-      typeQuestionResponse: type_question_response,
-      timeQuestionResponse: time_question_response,
-      budgetQuestionResponse: budget_question_response,
-      roomName: room_name,
-      roomDescription: room_description
+      type_question_response: type_question_response,
+      time_question_response: time_question_response,
+      budget_question_response: budget_question_response,
+      room_name: room_name,
+      room_description: room_description
     };
-    console.log('Submitting questionnaire with data:', questionnaireData);
     dispatch(createQuestionnaire({ QuestionnaireData: questionnaireData, token }));
     navigateChat();
   };
@@ -59,7 +57,6 @@ const Questionnaire = () => {
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-console.log('Moving to next question. Current index:', currentQuestionIndex);
     } else {
       handleSubmit();
     }
