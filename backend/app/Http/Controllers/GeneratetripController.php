@@ -21,51 +21,81 @@ class GeneratetripController extends Controller {
                 "title" => "3azme Caffe",
                 "estimated_price" => 20,
                 "est_time_spend" => 120,
-                "tags" => ["coffee", "snacks", "relaxation", "Chill"]
+                "tags" => ["Beach and Chill"]
             ],
             [
                 "id" => 2,
                 "title" => "China City",
                 "estimated_price" => 20,
                 "est_time_spend" => 180,
-                "tags" => ["study", "nature", "calm", "Chill", "Outdoor Exercising"]
+                "tags" => ["Outdoor Exercising"]
             ],
             [
                 "id" => 3,
                 "title" => "Jeita Grotto",
                 "estimated_price" => 18,
                 "est_time_spend" => 240,
-                "tags" => ["adventure", "nature", "exploration", "Camp", "Outdoor Exercising"]
+                "tags" => ["Camp Fire and Camp"]
             ],
             [
                 "id" => 4,
                 "title" => "Sidon Sea Castle",
                 "estimated_price" => 5,
                 "est_time_spend" => 90,
-                "tags" => ["history", "sightseeing", "photography", "Beach", "Chill"]
+                "tags" => ["Beach and Chill"]
             ],
             [
                 "id" => 5,
                 "title" => "Byblos Old Port",
                 "estimated_price" => 0,
                 "est_time_spend" => 60,
-                "tags" => ["historic", "maritime", "relaxation", "Beach", "Chill"]
+                "tags" => ["Beach and Chill"]
             ],
             [
                 "id" => 6,
                 "title" => "Qadisha Valley",
                 "estimated_price" => 0,
                 "est_time_spend" => 300,
-                "tags" => ["hiking", "nature", "scenery", "Camp", "Team Building", "Outdoor Exercising"]
+                "tags" => ["Team Building", "Outdoor Exercising"]
             ],
             [
                 "id" => 7,
                 "title" => "Baalbeck Castle",
                 "estimated_price" => 10,
                 "est_time_spend" => 210,
-                "tags" => ["cultural", "historic", "exploration", "Chill", "Outdoor Exercising"]
+                "tags" => ["Camp Fire and Camp"]
+            ],
+            // Adding more locations
+            [
+                "id" => 8,
+                "title" => "Harissa",
+                "estimated_price" => 15,
+                "est_time_spend" => 120,
+                "tags" => ["Beach and Chill"]
+            ],
+            [
+                "id" => 9,
+                "title" => "Anjar",
+                "estimated_price" => 20,
+                "est_time_spend" => 180,
+                "tags" => ["Camp Fire and Camp"]
+            ],
+            [
+                "id" => 10,
+                "title" => "The Cedars",
+                "estimated_price" => 25,
+                "est_time_spend" => 240,
+                "tags" => ["Outdoor Exercising", "Team Building"]
+            ],
+            [
+                "id" => 11,
+                "title" => "Al Shouf Cedar Nature Reserve",
+                "estimated_price" => 5,
+                "est_time_spend" => 200,
+                "tags" => ["Outdoor Exercising", "Team Building"]
             ]
         ];
+        
         
         
 
@@ -81,7 +111,8 @@ class GeneratetripController extends Controller {
         $prompt = "Using these locations: $locationDescriptions";
         $prompt .= "generate a trip plan for a $type trip, with a duration of $time, and a budget of $budget dollars.";
         $prompt .= "The plan should include location names and AI-generated descriptions based on the given data.";
-        $prompt .= "Be carefull not to exceed $budget";
+        $prompt .= "Be carefull not to exceed $budget and not to go below the budget with 40$.";
+        $prompt .= "\n Make sure to state the estimated spending and the total budget.";
         $prompt .= "\n Return the answer as JSON parsable object (do not return any text
         or explanation or notes before or after the JSON object)";
         $prompt .= "\n the JSON object should be in this format {result: [
@@ -94,7 +125,7 @@ class GeneratetripController extends Controller {
             $result = OpenAI::completions()->create([
                 'model' => 'gpt-3.5-turbo-instruct',
                 'prompt' => $prompt,
-                'max_tokens' => 3700,
+                'max_tokens' => 1700,
             ]);
     
             // Extract the text part from the response
