@@ -24,6 +24,7 @@ const Questionnaire = () => {
   const [budget_question_response, setBudget] = useState('');
   const [room_name, setRoomName] = useState('');
   const [room_description, setRoomDescription] = useState('');  
+  
 
   const dispatch = useDispatch();
   const navigation = useNavigation();

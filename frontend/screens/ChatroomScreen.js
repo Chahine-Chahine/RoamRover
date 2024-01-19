@@ -5,11 +5,20 @@ import { useRoute } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 
 const ChatRoomScreen = () => {
-  const aiResponse = useSelector(state => state.Questionnaire.Questionnaire);
   const route = useRoute();
   const roomId = route.params?.roomId;
   const [message, setMessage] = useState('');
   const [displayedMessage, setDisplayedMessage] = useState('');
+  const aiResponse = useSelector(state => state.Questionnaire.Questionnaire);
+  const roomNameFromResponse = aiResponse.room ? aiResponse.room.room_name : null;
+  const [roomName, setRoomName] = useState(roomNameFromResponse || "Chat Room");
+
+  useEffect(() => {
+    if (roomNameFromResponse) {
+      setRoomName(roomNameFromResponse);
+    }
+  }, [roomNameFromResponse]);
+  
 
   useEffect(() => {
     if (aiResponse && aiResponse.result && Array.isArray(aiResponse.result)) {
@@ -20,11 +29,11 @@ const ChatRoomScreen = () => {
       const typingInterval = setInterval(() => {
         if (currentIndex < fullMessage.length) {
           setDisplayedMessage((prev) => prev + fullMessage[currentIndex]);
-          currentIndex++;
+          currentIndex++; 
         } else {
           clearInterval(typingInterval);
         }
-      }, 50); // Adjust typing speed here
+      }, 50);
 
       return () => clearInterval(typingInterval);
     }
@@ -38,8 +47,6 @@ const ChatRoomScreen = () => {
     }
   };
 
-  // Get room name from questionnaire state
-  const roomName = aiResponse.room ? aiResponse.room.room_name : "Chat Room";
 
   return (
     <>
