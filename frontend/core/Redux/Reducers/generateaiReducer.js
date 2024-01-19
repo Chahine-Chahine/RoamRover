@@ -12,6 +12,12 @@ const generateaiReducer = (state = initialState, action) => {
             return { ...state, loading: false, Questionnaire: action.payload };
         case 'CREATE_QUESTIONNAIRE_FAILURE':
             return { ...state, loading: false, error: action.payload };
+        case 'FETCH_AIRESPONSE_REQUEST':
+            return {...state, loading: true};
+        case 'FETCH_AIRESPONSE_SUCCESS':
+            return {...state, loading: false, Questionnaire: action.payload };
+        case 'FETCH_AIRESPONSE_FAILURE':
+            return {...state, loading: false , error: action.payload};
         default:
             return state;
     }
