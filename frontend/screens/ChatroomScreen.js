@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
+import { useRoute } from '@react-navigation/native';
 
-const ChatRoomScreen = () => {
+
+  const ChatRoomScreen = () => {
+    const route = useRoute();
+    const roomId = route.params?.roomId;
   const [message, setMessage] = useState('');
+
 
   return (
     <>

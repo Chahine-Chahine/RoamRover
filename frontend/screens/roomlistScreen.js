@@ -20,9 +20,11 @@ const RoomListScreen = ({chatrooms}) => {
 
   const navigation = useNavigation();
 
-  const navigateChat = () => {
-    navigation.navigate('ChatRoomScreen');
+  const navigateChat = (roomId) => {
+    console.log("Navigating to ChatRoomScreen with room_id:", roomId);
+    navigation.navigate('ChatRoomScreen', { roomId });
   };
+  
 
   const handleSubmit = () => {
     dispatch(createChatroom({
@@ -40,11 +42,11 @@ const RoomListScreen = ({chatrooms}) => {
       console.log(error);
     });
 };
-  const renderRoom = ({ item }) => (
-    <TouchableOpacity style={styles.roomButton} onPress={navigateChat}>
-      <Text style={styles.roomText}>{item.room_name}</Text> 
-    </TouchableOpacity>
-  );
+const renderRoom = ({ item }) => (
+  <TouchableOpacity style={styles.roomButton} onPress={() => navigateChat(item.id)}>
+    <Text style={styles.roomText}>{item.room_name}</Text> 
+  </TouchableOpacity>
+);
 
   return (
     <>

@@ -15,7 +15,6 @@ export const createQuestionnaire = ({QuestionnaireData, token }) => {
                     Authorization: `Bearer ${token}`
                 }
             });
-            console.log('createQuestionnaire response:', response);
             dispatch({ type: CREATE_QUESTIONNAIRE_SUCCESS, payload: response.data });
         } catch (error) {
             dispatch({ type: CREATE_QUESTIONNAIRE_FAILURE, payload: error });

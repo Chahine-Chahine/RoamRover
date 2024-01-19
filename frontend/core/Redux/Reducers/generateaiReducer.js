@@ -5,7 +5,6 @@ const initialState = {
 };
 
 const generateaiReducer = (state = initialState, action) => {
-    console.log('generateaiReducer received action:', action);
     switch (action.type) {
         case 'CREATE_QUESTIONNAIRE_REQUEST':
             return { ...state, loading: true };

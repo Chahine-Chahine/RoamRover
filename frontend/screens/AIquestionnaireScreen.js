@@ -23,7 +23,7 @@ const Questionnaire = () => {
   const [time_question_response, setTripTime] = useState('');
   const [budget_question_response, setBudget] = useState('');
   const [room_name, setRoomName] = useState('');
-  const [room_description, setRoomDescription] = useState('');
+  const [room_description, setRoomDescription] = useState('');  
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
