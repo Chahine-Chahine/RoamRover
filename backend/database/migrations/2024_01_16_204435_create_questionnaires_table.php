@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('type_question_response');
             $table->string('time_question_response');
-            $table->integer('budget_question_response');
+            $table->float('budget_question_response');
             $table->unsignedBigInteger('room_id');
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->timestamps();

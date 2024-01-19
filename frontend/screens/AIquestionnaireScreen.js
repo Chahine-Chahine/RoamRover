@@ -1,6 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from "react-native";
+import { useDispatch, useSelector } from 'react-redux';
+import { createQuestionnaire } from '../core/Redux/Actions/generateaiActions';
 
 const Questionnaire = () => {
   const questions = [
@@ -22,50 +24,63 @@ const Questionnaire = () => {
   ];
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [tripType, setTripType] = useState('');
+  const [tripTime, setTripTime] = useState('');
   const [budget, setBudget] = useState('');
 
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const token = useSelector((state) => state.auth.token); 
+
   const handleSelectAnswer = (answer) => {
-    setSelectedAnswers({ ...selectedAnswers, [currentQuestionIndex]: answer });
+    if (currentQuestionIndex === 0) {
+      setTripType(answer);
+    } else if (currentQuestionIndex === 1) {
+      setTripTime(answer);
+    }
   };
 
-  const navigation = useNavigation();
-  const navigateChat = () =>{
-      navigation.navigate('HomeScreen');
-  }
+  const navigateChat = () => {
+    navigation.navigate('HomeScreen');
+  };
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      navigateChat()
+      const finalBudget = parseFloat(budget); 
+      const finalAnswers = { tripType, tripTime, budget: finalBudget };
+      console.log(`Trip Type: ${tripType}, Trip Time: ${tripTime}, Budget: ${finalBudget}`); 
+      dispatch(createQuestionnaire(finalAnswers, token));
+      navigateChat();
     }
   };
-
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
     <View style={styles.container}>
       <Text style={styles.questionTitle}>{currentQuestion.question}</Text>
       {currentQuestion.answers && currentQuestion.answers.map((answer) => (
-  <TouchableOpacity
-    key={answer}
-    style={[
-      styles.answerButton,
-      selectedAnswers[currentQuestionIndex] === answer && styles.selectedAnswer
-    ]}
-    onPress={() => handleSelectAnswer(answer)}
-  >
-    <Text 
-      style={[
-        styles.answerText,
-        selectedAnswers[currentQuestionIndex] === answer && styles.selectedAnswerText
-      ]}
-    >
-      {answer}
-    </Text>
-  </TouchableOpacity>
-))}
+        <TouchableOpacity
+          key={answer}
+          style={[
+            styles.answerButton,
+            currentQuestionIndex === 0 && tripType === answer && styles.selectedAnswer,
+            currentQuestionIndex === 1 && tripTime === answer && styles.selectedAnswer
+          ]}
+          onPress={() => handleSelectAnswer(answer)}
+        >
+          <Text 
+            style={[
+              styles.answerText,
+              currentQuestionIndex === 0 && tripType === answer && styles.selectedAnswerText,
+              currentQuestionIndex === 1 && tripTime === answer && styles.selectedAnswerText
+            ]}
+          >
+            {answer}
+          </Text>
+        </TouchableOpacity>
+      ))}
       {currentQuestion.input && (
         <TextInput
           style={styles.input}
