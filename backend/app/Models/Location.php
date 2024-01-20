@@ -30,4 +30,9 @@ class Location extends Model
     {
         return $this->belongsToMany(Trip::class);
     }
+    public function categories() {
+        return $this->belongsToMany(Category::class);
+    }
+    
 }
+
