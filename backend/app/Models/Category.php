@@ -14,9 +14,9 @@ class Category extends Model
     /**
      * The locations that belong to the category.
      */
-    public function locations()
+    public function trips()
     {
-        return $this->belongsToMany(Location::class);
+        return $this->belongsToMany(Trip::class);
     }
 }
 
