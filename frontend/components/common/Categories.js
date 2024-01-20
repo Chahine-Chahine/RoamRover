@@ -9,11 +9,11 @@ const Categories = () => {
   const dispatch = useDispatch();
 
   const categories = [
-    { name: "umbrella-beach", title: "Beach" },
-    { name: "hiking", title: "Hiking" },
-    { name: "utensils", title: "Restaurants" },
-    { name: "landmark", title: "Ruins" },
-  ];
+    { id: 1, name: "umbrella-beach", title: "Beach" },
+    { id: 2, name: "hiking", title: "Hiking" },
+    { id: 3, name: "utensils", title: "Restaurants" },
+    { id: 4, name: "landmark", title: "Ruins" },
+];
   const handleCategorySelect = (categoryId) => {
     setSelectedCategory(categoryId);
     dispatch(fetchTripsByCategory(categoryId));
@@ -24,8 +24,9 @@ const Categories = () => {
             {categories.map((category, index) => (
                 <View key={index} style={styles.wrapper}>
                     <TouchableOpacity
+                    key={category.id} 
                         style={selectedCategory === index ? styles.boxSpecial : styles.box}
-                        onPress={() => handleCategorySelect(index)}
+                        onPress={() => handleCategorySelect(category.id)}
                     >
                         <Icon name={category.name} size={30} color={selectedCategory === index ? 'white' : 'black'} />
                     </TouchableOpacity>

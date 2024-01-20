@@ -108,13 +108,12 @@ class TripsController extends Controller
 
     public function getTripsByCategory($category_id)
     {
-        // Inside your TripsController method
         $trips = Trip::whereHas('categories', function ($query) use ($category_id) {
             $query->where('categories.id', '=', $category_id);
-        })->get();
-
-
+        })->with(['room', 'locations'])->get(); 
+    
         return response()->json($trips);
     }
+    
 
 }

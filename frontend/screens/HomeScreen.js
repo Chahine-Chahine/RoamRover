@@ -31,7 +31,7 @@ const HomeScreen = () => {
             <Header />
             <ScrollView style={styles.scrollView}>
                 <Categories />
-                {trips.map((trip) => (
+                {trips && trips.map((trip) => (
                     <Card
                         key={trip.id.toString()}
                         onPress={() => navigateTripPage(trip)} 

@@ -46,13 +46,15 @@ export const resetTripCreationState = () => {
     return { type: RESET_TRIP_CREATION_STATE };
 };
 
-export const fetchTripsByCategory = (categoryId) => async dispatch => {
+export const fetchTripsByCategory = (categoryId) => {
+return async (dispatch) => {
     dispatch({ type: FETCH_TRIPS_BY_CATEGORY_REQUEST });
-
     try {
         const response = await axios.get(`${baseUrl}:8000/api/trips/category/${categoryId}`);
+        console.log('The response is:' ,response.data);
         dispatch({ type: FETCH_TRIPS_BY_CATEGORY_SUCCESS, payload: response.data });
     } catch (error) {
-        dispatch({ type: FETCH_TRIPS_BY_CATEGORY_FAILURE, payload: error.message  || 'An unknown error occurred'});
+        dispatch({ type: FETCH_TRIPS_BY_CATEGORY_FAILURE, payload: error.message || 'An unknown error occurred'});
     }
+};
 };
