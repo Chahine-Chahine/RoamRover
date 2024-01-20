@@ -122,16 +122,15 @@ const styles = StyleSheet.create({
   },
   emptyStateContainer: {
     flex: 1,
+    height: 500,
     justifyContent: 'center',
     alignItems: 'center'
   },
   emptyStateImage: {
     width: 200, 
-    height: 200, 
-    resizeMode: 'contain'
+    height: 180, 
   },
   emptyStateText: {
-    marginTop: 20,
     fontSize: 18,
     color: 'gray'
   }
