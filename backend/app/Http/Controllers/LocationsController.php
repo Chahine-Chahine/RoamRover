@@ -16,7 +16,7 @@ class LocationsController extends Controller
     // POST /locations
     public function createLocation(Request $request)
     {
-        $validatedData = $request->validate([   
+        $validatedData = $request->validate([
             'image' => 'required|string',
             'description' => 'required|string',
             'estimated_price' => 'required|numeric',
@@ -29,6 +29,8 @@ class LocationsController extends Controller
             'coordinates.longitude' => 'required|numeric|between:-180,180',
             'est_time_spend' => 'required|numeric',
             'tags' => 'required|array',
+            'category_ids' => 'required|array',
+            'category_ids.*' => 'exists:categories,id'
         ]);
 
         // Convert coordinates to JSON
@@ -38,6 +40,9 @@ class LocationsController extends Controller
         $validatedData['tags'] = json_encode($request->tags);
 
         $location = Location::create($validatedData);
+        
+        $location = Location::create($validatedData);
+        $location->categories()->attach($request->category_ids);
         return response()->json(['location' => $location, 'message' => 'Location created successfully'], 201);
     }
 
@@ -58,6 +63,8 @@ class LocationsController extends Controller
             'coordinates.longitude' => 'numeric|between:-180,180',
             'est_time_spend' => 'required|numeric',
             'tags' => 'required|array',
+            'category_ids' => 'sometimes|array',  
+            'category_ids.*' => 'exists:categories,id' 
         ]);
 
         if (isset($validatedData['coordinates'])) {
@@ -68,6 +75,10 @@ class LocationsController extends Controller
         }
 
         $location->fill($validatedData)->save();
+        if ($request->has('category_ids')) {
+            $location->categories()->sync($request->category_ids);
+        }
+    
         return response()->json(['location' => $location, 'message' => 'Location updated successfully']);
     }
 
@@ -84,7 +95,7 @@ class LocationsController extends Controller
         $location->delete();
         return response()->json(['message' => 'Location deleted successfully']);
     }
-    
+
     public function search(Request $request)
     {
         $query = $request->get('query');
