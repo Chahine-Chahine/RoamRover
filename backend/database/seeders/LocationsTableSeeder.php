@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Location;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -90,12 +91,34 @@ class LocationsTableSeeder extends Seeder
             'image'=> "http://192.168.0.116:8000/storage/images/Baalbeck.webp",
             'coordinates' => json_encode(['latitude' => 34.005434973434745 , 'longitude' => 36.21091110212627]),
             "est_time_spend" => 210,
-            "tags" => json_encode(["cultural", "histor
-            
-            ic", "exploration"])
+            "tags" => json_encode(["cultural", "historic", "exploration"])
             ]
             ]);
+            $categoryIds = [
+                'Beach' => 1,
+                'Hiking' => 2,
+                'Restaurants' => 3,
+                'Ruins' => 4
+            ];
+    
+            // Manually assign categories to each location.
+            $locations = [
+                '3azme Caffe' => ['Restaurants'],
+                'China City' => ['Restaurants', 'Hiking'],
+                'Jeita Grotto' => ['Hiking'],
+                'Byblos Old Port' => ['Beach'],
+                'Qadisha Valley' => ['Hiking'],
+                'Baalbeck Castle' => ['Ruins'],
+                'Sidon Sea Castle' => ['Beach'],
+                
+            ];
+    
+            foreach ($locations as $title => $cats) {
+                $location = Location::where('title', $title)->first();
+                $locationCategories = array_map(fn($cat) => $categoryIds[$cat], $cats);
+                $location->categories()->attach($locationCategories);
             }
-            }
-            
+        }
+    }
+         
             

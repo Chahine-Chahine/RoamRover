@@ -23,7 +23,9 @@ class Trip extends Model
     {
         return $this->belongsTo(Room::class, 'room_id');
     }
-    public function categories() {
-        return $this->belongsToMany(Category::class);
-    }
+    public function categories()
+{
+    return $this->belongsToMany(Category::class, 'category_trip');
+}
+
 }

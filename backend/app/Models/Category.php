@@ -17,7 +17,12 @@ class Category extends Model
      */
     public function locations()
     {
-        return $this->belongsToMany(Location::class);
+        return $this->belongsToMany(Location::class, 'locations_categories');
     }
+    public function trips()
+{
+    return $this->belongsToMany(Trip::class, 'category_trip');
+}
+
 }
 
