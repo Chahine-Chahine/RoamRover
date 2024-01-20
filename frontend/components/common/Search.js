@@ -20,7 +20,7 @@ const Search = ({ onSearch }) => {
     const handleSearchSubmit = () => {
         if (onSearch) {
             onSearch(searchQuery);
-            Keyboard.dismiss(); // Optionally dismiss the keyboard
+            Keyboard.dismiss(); 
         }
     };
 
@@ -40,7 +40,7 @@ const Search = ({ onSearch }) => {
                         style={styles.placeholder}
                         onChangeText={setSearchQuery}
                         value={searchQuery}
-                        onSubmitEditing={handleSearchSubmit} // Trigger search on submission
+                        onSubmitEditing={handleSearchSubmit} 
                         returnKeyType="done"
                     />
                 )}
@@ -63,7 +63,6 @@ const styles = {
     alignItems: 'center',
     width: '100%',
     height: '100%',
-    borderRadius: 30,
     backgroundColor: '#ffff',
     borderWidth: 2,
     borderRadius: 30,
@@ -72,6 +71,7 @@ const styles = {
   placeholder: {
     color: '#969696',
     flex: 1,  
+    marginLeft: 5
   },
 };
 
