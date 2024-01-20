@@ -22,16 +22,6 @@ const ChatRoomScreen = () => {
   }, [roomNameFromResponse]);
 
   useEffect(() => {
-    try {
-      dispatch(fetchAIResponse());
-    } catch (error) {
-      console.error('Error fetching AI response:', error);
-      dispatch(fetchAIResponse());
-    }
-  }, [dispatch]);
-  
-
-  useEffect(() => {
     if (aiResponse && aiResponse.result && Array.isArray(aiResponse.result)) {
       const fullMessage = aiResponse.result.map(item => `${item.title}: ${item.description}`).join('\n');
       setDisplayedMessage('');
