@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
-const Categories = () => {
+const Categories = ({ onCategorySelect }) => {
     const [selectedCategory, setSelectedCategory] = useState(0);
 
     // Categories data
@@ -15,13 +15,19 @@ const Categories = () => {
         { name: 'landmark', title: 'Ruins' },
     ];
 
+    const handleCategorySelect = (index) => {
+        setSelectedCategory(index);
+        const selectedCategory = categories[index].title;
+        onCategorySelect(selectedCategory); 
+    };
+
     return (
         <View style={styles.container}>
             {categories.map((category, index) => (
                 <View key={index} style={styles.wrapper}>
                     <TouchableOpacity
                         style={selectedCategory === index ? styles.boxSpecial : styles.box}
-                        onPress={() => setSelectedCategory(index)}
+                        onPress={() => handleCategorySelect(index)} 
                     >
                         <Icon name={category.name} size={30} color={selectedCategory === index ? 'white' : 'black'} />
                     </TouchableOpacity>
