@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnnouncementsController;
 use App\Http\Controllers\BookmarksController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GeneratetripController;
 use App\Http\Controllers\QuestionnairesController;
 use App\Http\Controllers\TripsController;
@@ -83,4 +84,11 @@ Route::controller(QuestionnairesController::class)->group(function(){
 
 Route::controller(GeneratetripController::class)->group(function(){
     Route::get('/generateTripAi' , 'generateTripAi');
+});
+
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('/categories', 'displayAllCategories');
+    Route::post('/categories', 'createCategory');
+    Route::put('/categories/{id}', 'updateCategory');
+    Route::delete('/categories/{id}', 'deleteCategory');
 });
