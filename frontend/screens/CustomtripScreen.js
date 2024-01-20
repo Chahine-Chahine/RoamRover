@@ -69,6 +69,10 @@ const CustomtripScreen = () => {
     setIsModalVisible(true);
   };
 
+  const handleSearch = (query) => {
+    dispatch(fetchLocations(query));
+  };
+
   const handleBookmarkToggle = (location) => {
     const existingBookmark = bookmarks.find(
       (bookmark) => bookmark.location_id === location.id
@@ -195,9 +199,9 @@ const CustomtripScreen = () => {
       </Modal>
       <View style={styles.container}>
         <ScrollView style={styles.scrollView}>
-          <View style={styles.Search}>
-            <Search />
-          </View>
+        <View style={styles.Search}>
+        <Search onSearch={handleSearch} />
+      </View>
           <Text style={styles.searchText}>
             Search for your favorite place in town
           </Text>

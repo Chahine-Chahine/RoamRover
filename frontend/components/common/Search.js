@@ -1,43 +1,54 @@
-import React, { useRef, useState } from 'react';
-import { View, TextInput, TouchableOpacity, Animated, Text } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, TextInput, TouchableOpacity, Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-
-const Search = () => {
+const Search = ({ onSearch }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const animationWidth = useRef(new Animated.Value(55)).current;  
+  const [searchQuery, setSearchQuery] = useState('');
+  const animationWidth = useRef(new Animated.Value(55)).current;
 
   const handlePress = () => {
-    if (isExpanded) {
-      Animated.timing(animationWidth, {
-        toValue: 55,  
-        duration: 300,
-        useNativeDriver: false  
-      }).start();
-    } else {
-      Animated.timing(animationWidth, {
-        toValue: 322,  
-        duration: 300,
-        useNativeDriver: false  
-      }).start();
-    }
+    Animated.timing(animationWidth, {
+      toValue: isExpanded ? 55 : 322,  
+      duration: 300,
+      useNativeDriver: false  
+    }).start();
     setIsExpanded(!isExpanded);
+
+    // If collapsing the search bar, clear the search
+    if (isExpanded) {
+      handleSearch('');
+    }
   };
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    if (onSearch) {
+      onSearch(query);
+    }
+  };
+
   return (
     <View style={styles.search}>
-    <Animated.View style={[
-      styles.searchBar, 
-      { width: animationWidth, borderColor: isExpanded ? '#A78BFA' : '#D9D9D9' } 
-    ]}>
-      <TouchableOpacity onPress={handlePress}>
-        <Icon name="search" size={18} color="#969696" style={{ marginRight: isExpanded ? 10 : 0 }} />
-      </TouchableOpacity>
-      {isExpanded && (
-        <TextInput placeholder='Search' placeholderTextColor={'#969696'} style={styles.placeholder} />
-      )}
-    </Animated.View>
-  </View>
-);
+      <Animated.View style={[
+        styles.searchBar, 
+        { width: animationWidth, borderColor: isExpanded ? '#A78BFA' : '#D9D9D9' }
+      ]}>
+        <TouchableOpacity onPress={handlePress}>
+          <Icon name="search" size={18} color="#969696" style={{ marginRight: isExpanded ? 10 : 0 }} />
+        </TouchableOpacity>
+        {isExpanded && (
+          <TextInput 
+            placeholder='Search' 
+            placeholderTextColor={'#969696'} 
+            style={styles.placeholder} 
+            onChangeText={handleSearch} 
+            value={searchQuery}
+          />
+        )}
+      </Animated.View>
+    </View>
+  );
 };
 
 const styles = {
@@ -61,7 +72,8 @@ const styles = {
     borderColor: '#A78BFA'
   },
   placeholder: {
-    color: '#969696'
+    color: '#969696',
+    flex: 1,  
   },
 };
 

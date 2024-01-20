@@ -88,7 +88,7 @@ class LocationsController extends Controller
     public function search(Request $request)
     {
         $query = $request->get('query');
-        $locations = Location::where('name', 'LIKE', "%$query%")->get();
+        $locations = Location::where('title', 'LIKE', "%$query%")->get();
         return response()->json($locations);
     }
 }
