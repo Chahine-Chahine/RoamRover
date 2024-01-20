@@ -91,4 +91,13 @@ class TripsController extends Controller
         return response()->json(['message' => 'Trip deleted successfully']);
     }
     
+public function getTripsByCategory($category_id)
+{
+    $trips = Trip::whereHas('categories', function ($query) use ($category_id) {
+        $query->where('id', $category_id);
+    })->get();
+
+    return response()->json($trips);
+}
+
 }

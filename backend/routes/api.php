@@ -57,6 +57,8 @@ Route::controller(TripsController::class)->group(function () {
     Route::get('/trips/{id}', 'displayById' );
     Route::put('/trips/{id}', 'updateTrip');
     Route::delete('trips/{id}', 'deleteTrip');
+    Route::get('/trips/category/{category_id}', 'getTripsByCategory');
+
 });
 
 Route::controller(BookmarksController::class)->group(function (){
