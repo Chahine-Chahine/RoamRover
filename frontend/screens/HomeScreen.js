@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
@@ -12,6 +12,7 @@ import { fetchTrips } from '../core/Redux/Actions/tripActions';
 const HomeScreen = () => {
     const dispatch = useDispatch();
     const { trips, loading} = useSelector(state => state.trips);
+    const [selectedCategory, setSelectedCategory] = useState(null);
     const navigation = useNavigation();
 
     useFocusEffect(
@@ -30,7 +31,10 @@ const HomeScreen = () => {
         <View style={styles.container}>
             <Header />
             <ScrollView style={styles.scrollView}>
-                <Categories />
+            <Categories 
+    selectedCategory={selectedCategory} 
+    onSelectCategory={setSelectedCategory} 
+/>
                 {trips && trips.map((trip) => (
                     <Card
                         key={trip.id.toString()}

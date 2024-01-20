@@ -1,34 +1,38 @@
-import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { useDispatch } from "react-redux";
 import { fetchTripsByCategory } from "../../core/Redux/Actions/tripActions";
 
-const Categories = () => {
-  const [selectedCategory, setSelectedCategory] = useState(0);
-  const dispatch = useDispatch();
+const Categories = ({ selectedCategory, onSelectCategory }) => {
+    const dispatch = useDispatch();
 
-  const categories = [
-    { id: 1, name: "umbrella-beach", title: "Beach" },
-    { id: 2, name: "hiking", title: "Hiking" },
-    { id: 3, name: "utensils", title: "Restaurants" },
-    { id: 4, name: "landmark", title: "Ruins" },
-];
-  const handleCategorySelect = (categoryId) => {
-    setSelectedCategory(categoryId);
-    dispatch(fetchTripsByCategory(categoryId));
-  };
+    const categories = [
+        { id: 1, name: "umbrella-beach", title: "Beach" },
+        { id: 2, name: "hiking", title: "Hiking" },
+        { id: 3, name: "utensils", title: "Restaurants" },
+        { id: 4, name: "landmark", title: "Ruins" },
+    ];
+
+    const handleCategorySelect = (index) => {
+        onSelectCategory(index);
+        const categoryId = categories[index].id;
+        dispatch(fetchTripsByCategory(categoryId));
+    };
 
     return (
         <View style={styles.container}>
             {categories.map((category, index) => (
-                <View key={index} style={styles.wrapper}>
+                <View key={category.id} style={styles.wrapper}>
                     <TouchableOpacity
-                    key={category.id} 
                         style={selectedCategory === index ? styles.boxSpecial : styles.box}
-                        onPress={() => handleCategorySelect(category.id)}
+                        onPress={() => handleCategorySelect(index)}
                     >
-                        <Icon name={category.name} size={30} color={selectedCategory === index ? 'white' : 'black'} />
+                        <Icon 
+                            name={category.name} 
+                            size={30} 
+                            color={selectedCategory === index ? 'white' : 'black'} 
+                        />
                     </TouchableOpacity>
                     <Text style={styles.categoryTitle}>{category.title}</Text>
                 </View>
