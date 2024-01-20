@@ -1,17 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTrips } from '../core/Redux/Actions/tripActions';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import Header from '../components/common/Header';
 import Card from '../components/common/Card';
 import NavigationBar from '../components/common/NavigationBar';
 import Categories from '../components/common/Categories';
 import LoadingScreen from './LoadingScreen';
+import { fetchTrips } from '../core/Redux/Actions/tripActions';
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
-    const { trips, loading, error } = useSelector(state => state.trips);
+    const { trips, loading} = useSelector(state => state.trips);
     const navigation = useNavigation();
 
     useFocusEffect(
@@ -25,7 +25,6 @@ const HomeScreen = () => {
     };
 
     if (loading) return <LoadingScreen />; 
-    if (error) return <Text>Error: {error.message}</Text>;
 
     return (
         <View style={styles.container}>

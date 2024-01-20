@@ -44,7 +44,7 @@ class TripsController extends Controller
     
             // Retrieve unique categories from these locations
             $categoryIds = Location::whereIn('id', $validatedData['stops'])
-                                ->with('categories') // ensure Location model has 'categories' relationship
+                                ->with('categories') 
                                 ->get()
                                 ->pluck('categories.*.id')
                                 ->unique()

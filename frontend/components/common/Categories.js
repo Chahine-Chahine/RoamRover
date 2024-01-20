@@ -1,19 +1,23 @@
-import { useState } from "react";
-import { View, Text ,Image, TouchableOpacity } from "react-native";
-import { StyleSheet } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome5';
-
+import React, { useState } from "react";
+import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome5";
+import { useDispatch } from "react-redux";
+import { fetchTripsByCategory } from "../../core/Redux/Actions/tripActions";
 
 const Categories = () => {
-    const [selectedCategory, setSelectedCategory] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState(0);
+  const dispatch = useDispatch();
 
-    // Categories data
-    const categories = [
-        { name: 'umbrella-beach', title: 'Beach' },
-        { name: 'hiking', title: 'Hiking' },
-        { name: 'utensils', title: 'Restaurants' },
-        { name: 'landmark', title: 'Ruins' },
-    ];
+  const categories = [
+    { name: "umbrella-beach", title: "Beach" },
+    { name: "hiking", title: "Hiking" },
+    { name: "utensils", title: "Restaurants" },
+    { name: "landmark", title: "Ruins" },
+  ];
+  const handleCategorySelect = (categoryId) => {
+    setSelectedCategory(categoryId);
+    dispatch(fetchTripsByCategory(categoryId));
+  };
 
     return (
         <View style={styles.container}>
@@ -21,7 +25,7 @@ const Categories = () => {
                 <View key={index} style={styles.wrapper}>
                     <TouchableOpacity
                         style={selectedCategory === index ? styles.boxSpecial : styles.box}
-                        onPress={() => setSelectedCategory(index)}
+                        onPress={() => handleCategorySelect(index)}
                     >
                         <Icon name={category.name} size={30} color={selectedCategory === index ? 'white' : 'black'} />
                     </TouchableOpacity>
