@@ -50,11 +50,9 @@ export const fetchTripsByCategory = (categoryId) => async dispatch => {
     dispatch({ type: FETCH_TRIPS_BY_CATEGORY_REQUEST });
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/api/trips/category/${categoryId}`);
-        const data = await response.json();
-
-        dispatch({ type: FETCH_TRIPS_BY_CATEGORY_SUCCESS, payload: data });
+        const response = await axios.get(`${baseUrl}:8000/api/trips/category/${categoryId}`);
+        dispatch({ type: FETCH_TRIPS_BY_CATEGORY_SUCCESS, payload: response.data });
     } catch (error) {
-        dispatch({ type: FETCH_TRIPS_BY_CATEGORY_FAILURE, payload: error });
+        dispatch({ type: FETCH_TRIPS_BY_CATEGORY_FAILURE, payload: error.message  || 'An unknown error occurred'});
     }
 };
