@@ -5,14 +5,18 @@ import {
 } from './actionTypes';
 import { baseUrl } from '../../helpers/baseUrl';
 
-export const fetchLocations = (searchQuery = '') => {
+export const fetchLocations = (searchQuery = '', category = '') => {
     return async (dispatch) => {
         try {
             dispatch({ type: FETCH_LOCATIONS_REQUEST });
 
-            const endpoint = searchQuery ? 
-                `${baseUrl}:8000/api/search?query=${encodeURIComponent(searchQuery)}` : 
-                `${baseUrl}:8000/api/locations`;
+            let endpoint = `${baseUrl}:8000/api/locations`;
+            if (searchQuery) {
+                endpoint += `?query=${encodeURIComponent(searchQuery)}`;
+            }
+            if (category) {
+                endpoint += searchQuery ? `&category=${encodeURIComponent(category)}` : `?category=${encodeURIComponent(category)}`;
+            }
 
             const response = await fetch(endpoint);
             const data = await response.json();
