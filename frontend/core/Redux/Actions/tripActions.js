@@ -7,6 +7,9 @@ import {
     CREATE_TRIP_SUCCESS,
     CREATE_TRIP_FAILURE,
     RESET_TRIP_CREATION_STATE,
+    FETCH_TRIPS_BY_CATEGORY_REQUEST,
+    FETCH_TRIPS_BY_CATEGORY_SUCCESS,
+    FETCH_TRIPS_BY_CATEGORY_FAILURE,
 } from './actionTypes';
 import { baseUrl } from '../../helpers/baseUrl';
 
@@ -41,4 +44,17 @@ export const createTrip = (tripData, token) => {
 
 export const resetTripCreationState = () => {
     return { type: RESET_TRIP_CREATION_STATE };
+};
+
+export const fetchTripsByCategory = (categoryId) => async dispatch => {
+    dispatch({ type: FETCH_TRIPS_BY_CATEGORY_REQUEST });
+
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/api/trips/category/${categoryId}`);
+        const data = await response.json();
+
+        dispatch({ type: FETCH_TRIPS_BY_CATEGORY_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({ type: FETCH_TRIPS_BY_CATEGORY_FAILURE, payload: error });
+    }
 };
