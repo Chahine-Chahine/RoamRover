@@ -5,14 +5,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: black;
 }
 
 .dashboard-wrapper{
     display: flex;
     width: 90%;
     height: 90%;
-    background-color: antiquewhite;
 }
 
 
@@ -23,7 +21,6 @@
     align-items: flex-start;
     width: 70%;
     height: 100%;
-    background-color: aquamarine;
 }
 
 .right-dashboard{
@@ -33,13 +30,23 @@
 }
 
 .left-upper-card{
+    display: flex;
     width: 75%;
     height: 40%;
-    background-color: #f45667;
+    background-color: #DAE7FF;
 }
 
 .left-buttom-card{
     width: 85%;
     height: 55%;
     background-color: #A38490;
+}
+
+.dashboard-image{
+    margin-top: 53px
+}
+
+.greeting-admin{
+    font-size: 38px;
+    font-weight: bold;
 }
