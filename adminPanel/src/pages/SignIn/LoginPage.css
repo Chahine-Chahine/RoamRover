@@ -35,6 +35,10 @@ html, body {
 
 .right-side{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 55px;
     width: 50%;
     height: 100%;
     border-top-right-radius: 20px;
@@ -45,3 +49,16 @@ html, body {
     width: 40%;
     height: 60%;
 }
+
+.form-field input {
+    width: 500px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #d6c9fd;
+    border-radius: 4px;
+  }
+
+  .login-title{
+    font-size: 32px;
+    color: #6B46D9;
+  }
