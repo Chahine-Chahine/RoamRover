@@ -6,7 +6,7 @@ import Button from '../../components/common/Button';
 const LoginPage = () =>{
   
   return(
-    <div className="login-page">
+    <div className="page">
       <div className="wrapper">
         <div className="left-side">
           <img className='image-signin' src={signInImage}/>
