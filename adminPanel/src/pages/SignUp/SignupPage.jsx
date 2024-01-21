@@ -2,6 +2,7 @@ import '../SignIn/LoginPage.css';
 import signInImage from '../../assets/Signin.png';
 import Form from '../../components/common/Form';
 import Button from '../../components/common/Button';
+import { Link } from 'react-router-dom';
 
 const SignupPage = () => {
   
@@ -18,7 +19,7 @@ const SignupPage = () => {
           <Form label="Last Name" type="text" name="lastName" placeholder="Last Name" />
           <Form label="Email" type="email" name="email" placeholder="Email" />
           <Form label="Password" type="password" name="password" placeholder="Password" />
-          <h4>Already have an account? <a href='/signin'>SignIn</a></h4>
+          <h4>Already have an account? <Link to="/">SignIn</Link></h4>
           <Button text="SignUp"/>
         </div>
       </div>
