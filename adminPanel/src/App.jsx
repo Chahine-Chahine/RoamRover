@@ -1,19 +1,12 @@
 import {BrowserRouter , Routes , Route} from 'react-router-dom';
-import './App.css'
-import Home from './pages/Home';
-import AddPlace from './components/SidebarRender/AddPlace.jsx';
-import DeleteUser from './components/SidebarRender/DeleteUser.jsx';
-import SignIn from './pages/signin';
+import LoginPage from './pages/SignIn/LoginPage';
 
 function App() {
 
   return   (
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={<SignIn/>}/>
-      <Route path="/Home" element={<Home />}/>
-      <Route path='/addtrip' element={<AddPlace/>}/>
-      <Route path='/deleteuser' element={<DeleteUser/>}/>
+      <Route path='/' element={<LoginPage/>}/>
     </Routes>
     </BrowserRouter>
   )
