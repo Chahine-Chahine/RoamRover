@@ -130,3 +130,24 @@
     height: 35px;
     background-color: white;
   }
+    /* Switch css */
+    .switch-container {
+        display: flex;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        overflow: hidden;
+      }
+      
+      .tab {
+        flex: 1;
+        text-align: center;
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      .tab.active {
+        background-color: #000;
+        color: #fff;
+      }
+      
