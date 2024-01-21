@@ -1,6 +1,7 @@
 import './DashboardPage.css';
 import peopleImage from '../../assets/people.png';
 import QuickActions from '../../components/common/QuickActions';
+import Preview from '../../components/common/Preview';
 
 
 const DashboardPage = () => {
@@ -15,7 +16,9 @@ const DashboardPage = () => {
                     </div>
                         <QuickActions />
                 </div>
-                <div className="right-dashboard"></div>
+                <div className="right-dashboard">
+                    <Preview/>
+                </div>
             </div>
         </div>
     )
