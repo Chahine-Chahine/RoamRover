@@ -1,6 +1,7 @@
 import './LoginPage.css';
 import signInImage from '../../assets/Signin.png';
 import Form from '../../components/common/Form';
+import Button from '../../components/common/Button';
 
 const LoginPage = () =>{
   
@@ -12,9 +13,10 @@ const LoginPage = () =>{
         </div>
         <div className="right-side">
           <h2 className='login-title'>Login</h2>
-          <Form label="Email" type="email" name="email" placeholder="Email" className="form-field input"/>
-          <Form label="Password" type="password" name="password" placeholder="Password"  className="form-field input"/>
+          <Form label="Email" type="email" name="email" placeholder="Email" />
+          <Form label="Password" type="password" name="password" placeholder="Password" />
           <h4>Don`t have an account? <a href=''>SignUp</a></h4>
+          <Button text="SignIn"/>
         </div>
       </div>
     </div>
