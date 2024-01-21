@@ -1,4 +1,5 @@
 import '../../pages/Dashboard/DashboardPage.css'; 
+import Switch from './Switch';
 
 const Preview = () => {
   return (
@@ -6,6 +7,7 @@ const Preview = () => {
       <div className="preview-title">
       <h2>preview</h2>
       </div>
+      <Switch/>
     </div>
   );
 }
