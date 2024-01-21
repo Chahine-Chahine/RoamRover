@@ -1,9 +1,11 @@
 import axios from 'axios';
+import { baseUrl } from './baseUrl'; 
 
-// eslint-disable-next-line no-unused-vars
-const api = axios.create({
-  baseURL: 'http://192.168.43.29:8000/api', 
+const axiosInstance = axios.create({
+  baseURL: baseUrl,
   headers: {
     'Content-Type': 'application/json',
   }
 });
+
+export default axiosInstance;
