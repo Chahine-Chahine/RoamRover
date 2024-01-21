@@ -4,7 +4,7 @@ import { LOGIN_SUCCESS, LOGIN_FAILURE } from '../../helpers/actionTypes';
 export const loginUser = ({email , password}) => {
   return async (dispatch) => {
     try {
-      console.log('Login request data:', { email, password });  // Log data being sent
+      console.log('Login request data:', { email, password });  
       const response = await axios.post('http://127.0.0.1:8000/api/login', { email, password });
       if (response.data.status === 'success') {
         dispatch({

@@ -31,9 +31,8 @@ const LoginPage = () => {
         return;
     }
 
-    // Ensure correct structure of credentials
     const credentials = { email, password };
-    console.log('Login request data:', credentials); // Debug log
+    console.log('Login request data:', credentials); 
 
     dispatch(loginUser(credentials));
 };
