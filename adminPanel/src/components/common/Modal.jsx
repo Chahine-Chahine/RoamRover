@@ -5,9 +5,9 @@ const Modal = ({ isOpen, onClose, title, children }) => {
     return (
         <div className="modal-backdrop">
             <div className="modal-content">
+                <button className="modal-close-button" onClick={onClose}>×</button>
                 <h2>{title}</h2>
                 {children}
-                <button onClick={onClose}>Close</button>
             </div>
         </div>
     );

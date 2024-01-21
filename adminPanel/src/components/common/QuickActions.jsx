@@ -23,20 +23,26 @@ const QuickActions = () => {
       setIsModalOpen(false);
   };
 
-    return (
-        <>
-            <button onClick={() => setIsModalOpen(true)}>Create Announcement</button>
+
+            return (
+    <div className="quick-actions">
+      <h2>Quick Actions</h2>
+      <div className="section">
+        <h3>Announcements</h3>
+        <div className="actions">
+        <button className="action-button green" onClick={() => setIsModalOpen(true)}>Create Announcement</button>
             <button className="action-button red">Delete Announcement</button>
             <button className="action-button yellow">Edit Announcement</button>
-
-            <div className="section">
-                <h3>Places</h3>
-                <div className="actions">
-                    <button className="action-button green">Add a Place</button>
-                    <button className="action-button red">Delete a Place</button>
-                    <button className="action-button yellow">Edit a Place</button>
-                </div>
-            </div>
+        </div>
+      </div>
+      <div className="section">
+        <h3>Places</h3>
+        <div className="actions">
+          <button className="action-button green">Add a Place</button>
+          <button className="action-button red">Delete a Place</button>
+          <button className="action-button yellow">Edit a Place</button>
+        </div>
+      </div>
 
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Create Announcement">
                 <form onSubmit={handleCreateAnnouncement}>
@@ -50,8 +56,9 @@ const QuickActions = () => {
                     <button type="submit">Submit</button>
                 </form>
             </Modal>
-        </>
-    );
+    </div>
+  );
 }
+   
 
 export default QuickActions;

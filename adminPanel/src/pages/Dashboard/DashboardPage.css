@@ -178,3 +178,67 @@
       }
 
       /* Modal Css */
+      .modal-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1040;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        z-index: 1050;
+    }
+    
+    .modal-content h2 {
+        margin-top: 0;
+    }
+    
+    .modal-content form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .modal-content form input,
+    .modal-content form button {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    .modal-content form button {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+    .modal-content {
+      /* Existing styles */
+      position: relative; /* Needed for absolute positioning of the close button */
+  }
+  
+  .modal-close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: none;
+      background: none;
+      font-size: 1.5em; /* Adjust size as needed */
+      cursor: pointer;
+  }
+  
+  .modal-close-button:hover {
+      color: #ff0000; /* Or any hover color */
+  }
+      
