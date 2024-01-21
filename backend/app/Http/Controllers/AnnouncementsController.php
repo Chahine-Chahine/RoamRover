@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Announcement;
+use Illuminate\Support\Facades\Auth;
 
 class AnnouncementsController extends Controller
 {
@@ -11,15 +12,16 @@ class AnnouncementsController extends Controller
     {
         $validatedData = $request->validate([
             'announcement_body' => 'required|string',
-            'admin_id' => 'required|integer|exists:users,id',
-            'receiver_id' => 'required|array', 
-            'receiver_id.*' => 'integer|exists:users,id' 
         ]);
-
-        $announcement = Announcement::create($validatedData);
+    
+        $announcement = Announcement::create([
+            'announcement_body' => $validatedData['announcement_body'],
+            'admin_id' => Auth::id() 
+        ]);
+    
         return response()->json(['announcement' => $announcement, 'message' => 'Announcement created successfully'], 201);
     }
-
+    
     public function updateAnnouncement(Request $request, $id)
     {
         $announcement = Announcement::findOrFail($id);
@@ -31,7 +33,11 @@ class AnnouncementsController extends Controller
         $announcement->update($validatedData);
         return response()->json(['announcement' => $announcement, 'message' => 'Announcement updated successfully']);
     }
-
+    public function readAnnouncements()
+    {
+        $announcements = Announcement::all(); 
+        return response()->json(['announcements' => $announcements], 200);
+    }
 
     public function deleteAnnouncement($id)
     {
