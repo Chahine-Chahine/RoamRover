@@ -3,7 +3,9 @@ import '../../pages/Dashboard/DashboardPage.css';
 const QuickActions = () => {
   return (
     <div className="quick-actions">
+      <div className="quick-action-title">
       <h2>Quick Actions</h2>
+      </div>
       <div className="section">
         <h3>Announcements</h3>
         <div className="actions">
