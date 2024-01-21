@@ -1,0 +1,45 @@
+.dashboard-page{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.dashboard-wrapper{
+    display: flex;
+    width: 90%;
+    height: 90%;
+    background-color: antiquewhite;
+}
+
+
+.left-dashboard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 70%;
+    height: 100%;
+    background-color: aquamarine;
+}
+
+.right-dashboard{
+    width: 30%;
+    height: 100%;
+    background-color: blueviolet;
+}
+
+.left-upper-card{
+    width: 75%;
+    height: 40%;
+    background-color: #f45667;
+}
+
+.left-buttom-card{
+    width: 85%;
+    height: 55%;
+    background-color: #A38490;
+}
