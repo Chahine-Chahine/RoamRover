@@ -13,7 +13,7 @@ import {
     DELETE_ANNOUNCEMENT_REQUEST,
     DELETE_ANNOUNCEMENT_SUCCESS,
     DELETE_ANNOUNCEMENT_FAILURE
-} from './actionTypes';
+} from '../../helpers/actionTypes';
 
 // Fetch Announcements
 export const fetchAnnouncements = (token) => {
@@ -33,6 +33,7 @@ export const fetchAnnouncements = (token) => {
 // Create Announcement
 export const createAnnouncement = (announcementData, token) => {
     return async (dispatch) => {
+        console.log('Announcement data being sent:', announcementData , token);
         dispatch({ type: CREATE_ANNOUNCEMENT_REQUEST });
         try {
             const response = await axios.post(`${baseUrl}/announcements`, announcementData, {
