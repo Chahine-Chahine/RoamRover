@@ -1,21 +1,15 @@
-import axiosInstance from '../../helpers/axiosHelper';
-import { setToken, removeToken } from '../../helpers/storageHelper';
-import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../../helpers/actionTypes';
+import axios from 'axios';
+import { LOGIN_SUCCESS, LOGIN_FAILURE } from '../../helpers/actionTypes'; 
 
-// Login Action
-export const loginUser = (email, password) => {
+export const loginUser = (email , password) => {
   return async (dispatch) => {
     try {
-      const response = await axiosInstance.post('/login', { email, password });
-      const data = response.data;
-      if (data.status === 'success' && data.authorisation && data.authorisation.token) {
-        setToken(data.authorisation.token);
+      console.log('Login request data:', { email, password });  // Log data being sent
+      const response = await axios.post('http://127.0.0.1:8000/api/login', { email, password });
+      if (response.data.status === 'success') {
         dispatch({
           type: LOGIN_SUCCESS,
-          payload: {
-            token: data.authorisation.token, 
-            user: data.user, 
-          }
+          payload: response.data,
         });
       } else {
         dispatch({
@@ -24,24 +18,10 @@ export const loginUser = (email, password) => {
         });
       }
     } catch (error) {
-      let errorMessage = 'Network Error';
-      if (error.response && error.response.data.message) {
-        errorMessage = error.response.data.message;
-      }
       dispatch({
         type: LOGIN_FAILURE,
-        payload: errorMessage,
+        payload: error.response ? error.response.data.message : 'Login failed. Please try again later.',
       });
     }
   };
 };
-
-// Logout Action
-export const logoutUser = () => {
-  return (dispatch) => {
-    removeToken();
-    dispatch({ type: LOGOUT });
-  };
-};
-
-

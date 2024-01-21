@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../../core/helpers/actionTypes';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../../helpers/actionTypes'; // Update the path as needed
 
 const initialState = {
   isAuthenticated: false,
@@ -14,7 +14,8 @@ const authReducer = (state = initialState, action) => {
         ...state,
         isAuthenticated: true,
         user: action.payload.user,
-        token: action.payload.token,
+        token: action.payload.authorisation.token,
+        errorMessage: '',
       };
     case LOGIN_FAILURE:
       return {
@@ -24,10 +25,7 @@ const authReducer = (state = initialState, action) => {
       };
     case LOGOUT:
       return {
-        ...state,
-        isAuthenticated: false,
-        user: null,
-        token: null,
+        ...initialState,
       };
     default:
       return state;
