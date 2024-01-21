@@ -36,11 +36,6 @@
     background-color: #DAE7FF;
 }
 
-.left-buttom-card{
-    width: 85%;
-    height: 55%;
-    background-color: #A38490;
-}
 
 .dashboard-image{
     margin-top: 53px
@@ -50,3 +45,58 @@
     font-size: 38px;
     font-weight: bold;
 }
+.quick-actions {
+    border: 2px solid black;
+    width: 80%;
+    height: 80%;
+    padding: 20px;
+    margin-left: 3px;
+    margin-top: 20px;
+  }
+  
+  .quick-actions h2 {
+    border-bottom: 2px solid black;
+  }
+  
+  .section {
+    margin-top: 20px;
+  }
+  
+  .section h3 {
+    border-bottom: 1px dashed grey;
+    margin-bottom: 10px;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .action-button {
+    width: 180px;
+    height: 80px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .action-button:hover {
+    background-color: #DAE7FF;
+  }
+  
+  .green {
+    border: 2px solid #90ee90; 
+    background-color: #fff;
+  }
+  
+  .red {
+    border: 2px solid #f08080; 
+    background-color: #fff;
+  }
+  
+  .yellow {
+    border: 2px solid #d4d42d;
+    background-color: #fff; 
+  }
+  

@@ -1,5 +1,6 @@
 import './DashboardPage.css';
 import peopleImage from '../../assets/people.png';
+import QuickActions from '../../components/common/QuickActions';
 
 
 const DashboardPage = () => {
@@ -12,7 +13,7 @@ const DashboardPage = () => {
                         <img src={peopleImage} className='dashboard-image'/>
                         <h2 className='greeting-admin'>Hello, Chahine</h2>
                     </div>
-                    <div className="left-buttom-card"></div>
+                        <QuickActions />
                 </div>
                 <div className="right-dashboard"></div>
             </div>
