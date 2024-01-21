@@ -1,5 +1,6 @@
-import { useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../core/redux/actions/authActions"; 
 import "./LoginPage.css";
 import signInImage from "../../assets/Signin.png";
 import Form from "../../components/common/Form";
@@ -9,52 +10,47 @@ import { Link, useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const authState = useSelector(state => state.auth); 
+  const [message, setMessage] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    console.log("Email updated:", e.target.value); 
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    console.log("Password updated:", e.target.value);
   };
-  const handleSubmit = async (e) => {
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitting:", { email, password }); 
 
     if (!email.trim() || !password.trim()) {
-      setMessage("Please fill in both email and password.");
-      return;
+        setMessage("Please fill in both email and password.");
+        return;
     }
 
-    try {
-      const response = await axios.post("http://127.0.0.1:8000/api/login", {
-        email,
-        password,
-      });
-      const { status, user, authorisation } = response.data;
+    // Ensure correct structure of credentials
+    const credentials = { email, password };
+    console.log('Login request data:', credentials); // Debug log
 
-      if (status === "success" && authorisation && authorisation.token) {
-        localStorage.setItem("userToken", authorisation.token);
-        if (user.role_id === 1) {
-          navigate("/dashboard");
-        } else {
-          setMessage("Unauthorized user"); 
-        }
+    dispatch(loginUser(credentials));
+};
+
+
+  // Redirect or show message based on auth state
+  useEffect(() => {
+    if (authState.isAuthenticated) {
+      if (authState.user?.role_id === 1) {
+        navigate("/dashboard");
       } else {
-        setMessage("Login failed. Please try again.");
+        setMessage("Unauthorized user");
       }
-    } catch (error) {
-      if (error.response && error.response.data.message) {
-        setMessage(error.response.data.message);
-      } else {
-        setMessage("Login failed. Please try again later.");
-      }
+    } else if (authState.errorMessage) {
+      setMessage(authState.errorMessage);
     }
-  };
+  }, [authState, navigate]);
 
   return (
     <div className="page">
@@ -81,7 +77,6 @@ const LoginPage = () => {
               value={password}
               onChange={handlePasswordChange}
             />
-
             <Button type="submit" text="SignIn" />
           </form>
           {message && <p className="login-message">{message}</p>}

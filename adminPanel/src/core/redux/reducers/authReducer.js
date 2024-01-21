@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../../helpers/actionTypes'; // Update the path as needed
+import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../../helpers/actionTypes';
 
 const initialState = {
   isAuthenticated: false,

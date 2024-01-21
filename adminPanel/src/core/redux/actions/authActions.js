@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { LOGIN_SUCCESS, LOGIN_FAILURE } from '../../helpers/actionTypes'; 
 
-export const loginUser = (email , password) => {
+export const loginUser = ({email , password}) => {
   return async (dispatch) => {
     try {
       console.log('Login request data:', { email, password });  // Log data being sent
