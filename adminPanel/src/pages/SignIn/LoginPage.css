@@ -12,26 +12,36 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background-color: #F8F8F8;
 }
 
 .wrapper{
     display: flex;
-    width: 60%;
-    height: 60%;
-    background-color: aquamarine;
+    width: 70%;
+    height: 70%;
 }
 
 .left-side{
     display: flex;
+    justify-content: center;
+    align-items: center;
     width: 50%;
     height: 100%;
-    background-color: aliceblue;
+    background-color: #d6c9fd;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    
 }
 
 .right-side{
     display: flex;
     width: 50%;
     height: 100%;
-    background-color: bisque;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: #fff;
+}
+.image-signin{
+    width: 40%;
+    height: 60%;
 }
