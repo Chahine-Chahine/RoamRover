@@ -7,8 +7,6 @@ import { fetchAIResponse } from '../core/Redux/Actions/generateaiActions';
 import ChatHeader from '../components/common/ChatHeader';
 
 const ChatRoomScreen = () => {
-  const route = useRoute();
-  const roomId = route.params?.roomId;
   const dispatch = useDispatch();
   const [message, setMessage] = useState('');
   const [displayedMessage, setDisplayedMessage] = useState('');
