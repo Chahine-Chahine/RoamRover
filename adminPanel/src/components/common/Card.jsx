@@ -1,12 +1,12 @@
 import '../../pages/Dashboard/DashboardPage.css';
 
 // eslint-disable-next-line react/prop-types
-const Card = ({ id, body }) => {
+const Card = ({ title_id,body_title,  id, body }) => {
   console.log('Card props:', { id, body });
   return (
     <div className="card">
-      <div className="id">Announcement Id: {id}</div>
-      <div className="body">Announcement body:<br/>{body}</div>
+      <div className="id"> {title_id} {id}</div>
+      <div className="body"> {body_title}:<br/>{body}</div>
     </div>
   );
 };

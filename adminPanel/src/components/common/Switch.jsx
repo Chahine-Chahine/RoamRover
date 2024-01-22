@@ -12,10 +12,10 @@ const Switch = ({ activeTab, setActiveTab }) => {
         Announcements
       </div>
       <div
-        className={`tab ${activeTab === 'places' ? 'active' : ''}`}
-        onClick={() => setActiveTab('places')}
+        className={`tab ${activeTab === 'locations' ? 'active' : ''}`}
+        onClick={() => setActiveTab('locations')}
       >
-        Places
+        locations
       </div>
     </div>
   );

@@ -129,16 +129,16 @@ const QuickActions = () => {
         </div>
       </div>
       <div className="section">
-        <h3>Places</h3>
+        <h3>Locations</h3>
         <div className="actions">
           <button
             className="action-button green"
             onClick={() => setIsCreateLocationModalOpen(true)}
           >
-            Add a Place
+            Add a location
           </button>
-          <button className="action-button red">Delete a Place</button>
-          <button className="action-button yellow">Edit a Place</button>
+          <button className="action-button red">Delete a location</button>
+          <button className="action-button yellow">Edit a location</button>
         </div>
       </div>
 

@@ -13,7 +13,8 @@ import { baseUrl } from "../../helpers/baseUrl";
 
 export const fetchLocations = () => async (dispatch) => {
   try {
-    const response = await axios.get("/api/locations");
+    const response = await axios.get(`${baseUrl}/locations`);
+    console.log(response.data.location)
     dispatch({ type: FETCH_LOCATIONS_SUCCESS, payload: response.data });
   } catch (error) {
     dispatch({
