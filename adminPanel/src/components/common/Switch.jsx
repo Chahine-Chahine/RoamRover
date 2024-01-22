@@ -1,29 +1,25 @@
-import { useState } from 'react';
+
 import '../../pages/Dashboard/DashboardPage.css'; 
 
-const Switch = () => {
-  const [activeTab, setActiveTab] = useState('announcements');
-
-  const onTabChange = (tab) => {
-    setActiveTab(tab);
-  };
-
+// eslint-disable-next-line react/prop-types
+const Switch = ({ activeTab, setActiveTab }) => {
   return (
     <div className="switch-container">
       <div
         className={`tab ${activeTab === 'announcements' ? 'active' : ''}`}
-        onClick={() => onTabChange('announcements')}
+        onClick={() => setActiveTab('announcements')}
       >
         Announcements
       </div>
       <div
         className={`tab ${activeTab === 'places' ? 'active' : ''}`}
-        onClick={() => onTabChange('places')}
+        onClick={() => setActiveTab('places')}
       >
         Places
       </div>
     </div>
   );
 };
+
 
 export default Switch;
