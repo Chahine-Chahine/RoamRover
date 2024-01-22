@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Image, Modal, ImageBackground } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+  Image,
+  Modal,
+  ImageBackground,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllUsers } from '../core/Redux/Actions/authActions'; 
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllUsers } from "../core/Redux/Actions/authActions";
 
 const ChatRoomScreen = ({ route }) => {
   const dispatch = useDispatch();
-  const usersList = useSelector(state => state.auth.users);
+  const usersList = useSelector((state) => state.auth.users);
   console.log("usersList:", usersList);
-  const token = useSelector((state) => state.auth.token); 
+  const token = useSelector((state) => state.auth.token);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [message, setMessage] = useState("");
   const [displayedMessage, setDisplayedMessage] = useState("");
@@ -16,8 +26,7 @@ const ChatRoomScreen = ({ route }) => {
 
   useEffect(() => {
     dispatch(fetchAllUsers(token));
-  }, [dispatch , token]);
-
+  }, [dispatch, token]);
 
   const aiResponse = useSelector((state) => state.Questionnaire.Questionnaire);
   const roomNameFromResponse = aiResponse.room
@@ -74,6 +83,14 @@ const ChatRoomScreen = ({ route }) => {
     return null; // Return null if not an AI-generated room
   };
 
+  const handleSelectUser = (userId) => {
+    if (selectedUsers.includes(userId)) {
+      setSelectedUsers(selectedUsers.filter((id) => id !== userId));
+    } else {
+      setSelectedUsers([...selectedUsers, userId]);
+    }
+  };
+
   return (
     <>
       <ImageBackground
@@ -122,10 +139,22 @@ const ChatRoomScreen = ({ route }) => {
         <View style={styles.modalView}>
           <ScrollView>
             {usersList.map((user, index) => (
-              <View key={index} style={styles.userItem}>
-                <Image source={{ uri: user.imageUrl }} style={styles.userImage} />
+              <TouchableOpacity
+                key={index}
+                style={[
+                  styles.userItem,
+                  selectedUsers.includes(user.id)
+                    ? styles.userItemSelected
+                    : null,
+                ]}
+                onPress={() => handleSelectUser(user.id)}
+              >
+                <Image
+                  source={{ uri: user.image_url }}
+                  style={styles.userImage}
+                />
                 <Text style={styles.userName}>{user.username}</Text>
-              </View>
+              </TouchableOpacity>
             ))}
           </ScrollView>
           <TouchableOpacity
@@ -216,38 +245,48 @@ const styles = StyleSheet.create({
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
-        width: 0,
-        height: 2
+      width: 0,
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
   },
   userItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    paddingHorizontal: 60,
+    paddingVertical: 10,
+    borderRadius: 8,
+    backgroundColor: "white",
   },
+
   userImage: {
     width: 50,
     height: 50,
     borderRadius: 25,
-    marginRight: 10
+    marginRight: 10,
   },
   userName: {
-    fontSize: 16
+    fontSize: 16,
   },
   closeButton: {
     marginTop: 20,
     backgroundColor: "#2196F3",
     borderRadius: 10,
-    padding: 10
+    padding: 10,
   },
   closeButtonText: {
     color: "white",
     textAlign: "center",
-    fontSize: 16
-  }
+    fontSize: 16,
+  },
+  userItemSelected: {
+    backgroundColor: "#E8EAF6", // Or any other color you prefer
+  },
 });
 
 export default ChatRoomScreen;
