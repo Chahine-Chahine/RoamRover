@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ScrollView,
   ImageBackground,
+  Modal,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
@@ -14,6 +15,19 @@ import { useSelector } from "react-redux";
 const ChatRoomScreen = ({ route }) => {
   const [message, setMessage] = useState("");
   const [displayedMessage, setDisplayedMessage] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedUsers, setSelectedUsers] = useState([]);
+
+  const [usersList, setUsersList] = useState([]);
+  // Assume fetchUsers is an async function that gets users from the API
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const users = await getUsersAPI(); 
+      setUsersList(users);
+    };
+    fetchUsers();
+  }, []);
+
   const aiResponse = useSelector((state) => state.Questionnaire.Questionnaire);
   const roomNameFromResponse = aiResponse.room
     ? aiResponse.room.room_name
@@ -66,7 +80,7 @@ const ChatRoomScreen = ({ route }) => {
         return <Text style={styles.message}>{displayedMessage}</Text>;
       }
     }
-    return null; // Return null if not an AI-generated room
+    return null; 
   };
 
   return (
@@ -79,7 +93,10 @@ const ChatRoomScreen = ({ route }) => {
         <View style={styles.header}>
           <Ionicons name="chevron-back-outline" size={24} color="#6B46D9" />
           <Text style={styles.chatRoomName}>{roomName}</Text>
-          <TouchableOpacity style={styles.inviteButton}>
+          <TouchableOpacity
+            style={styles.inviteButton}
+            onPress={() => setIsModalVisible(true)}
+          >
             <Text style={styles.inviteText}>Invite</Text>
           </TouchableOpacity>
           <Ionicons name="camera-outline" size={30} color="#6B46D9" />
@@ -105,6 +122,32 @@ const ChatRoomScreen = ({ route }) => {
           </TouchableOpacity>
         </View>
       </ImageBackground>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={() => setIsModalVisible(false)}
+      >
+        <View style={styles.modalView}>
+          <ScrollView>
+            {usersList.map((user, index) => (
+              <View key={index} style={styles.userItem}>
+                <Image
+                  source={{ uri: user.imageUrl }}
+                  style={styles.userImage}
+                />
+                <Text style={styles.userName}>{user.username}</Text>
+              </View>
+            ))}
+          </ScrollView>
+          <TouchableOpacity
+            style={styles.closeButton}
+            onPress={() => setIsModalVisible(false)}
+          >
+            <Text style={styles.closeButtonText}>Close</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </>
   );
 };
@@ -177,6 +220,46 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     padding: 10,
   },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+        width: 0,
+        height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+},
+userItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10
+},
+userImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginRight: 10
+},
+userName: {
+    fontSize: 16
+},
+closeButton: {
+    marginTop: 20,
+    backgroundColor: "#2196F3",
+    borderRadius: 10,
+    padding: 10
+},
+closeButtonText: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 16
+}
 });
 
 export default ChatRoomScreen;
