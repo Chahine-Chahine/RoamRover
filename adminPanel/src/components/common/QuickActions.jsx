@@ -33,7 +33,7 @@ const QuickActions = () => {
     coordinates: { latitude: "", longitude: "" },
     est_time_spend: "",
     tags: "",
-    category_ids: [],
+    category: [],
   });
   const [isDeletePlaceModalOpen, setIsDeletePlaceModalOpen] = useState(false);
   const [isEditPlaceModalOpen, setIsEditPlaceModalOpen] = useState(false);
@@ -72,7 +72,7 @@ const QuickActions = () => {
         { announcement_body: updatedAnnouncementBody },
         token
       )
-    );
+     );
     setIsUpdateModalOpen(false);
   };
   const handleLocationInputChange = (e) => {
@@ -115,8 +115,17 @@ const QuickActions = () => {
   };
 
   const handleEditLocation = (e) => {
+    const payload = {
+      ...locationData,
+      id: Number(locationData.id),
+      estimated_price: Number(locationData.estimated_price),
+      category_ids: locationData.category_ids.map(Number),
+      tags: locationData.tags.split(",").map((tag) => tag.trim()),
+      latitude: Number(locationData.coordinates.latitude),
+      longitude: Number(locationData.coordinates.longitude),
+    };
     e.preventDefault();
-    dispatch(updateLocation(placeIdToEdit, locationData, token));
+    dispatch(updateLocation(placeIdToEdit, payload, token));
     setIsEditPlaceModalOpen(false);
   };
 
@@ -302,7 +311,7 @@ const QuickActions = () => {
           />
           <select
             name="category_ids"
-            value={locationData.category_ids}
+            value={locationData.category}
             onChange={handleLocationInputChange}
             multiple
           >
@@ -349,7 +358,7 @@ const QuickActions = () => {
       >
         <form onSubmit={handleEditLocation}>
           <input
-            type="number"
+            type="text"
             value={placeIdToEdit}
             onChange={(e) => setPlaceIdToEdit(e.target.value)}
             placeholder="Place ID to edit"
@@ -419,16 +428,9 @@ const QuickActions = () => {
             onChange={handleLocationInputChange}
             placeholder="Estimated Time to Spend"
           />
-          <input
-            type="text"
-            name="tags"
-            value={locationData.tags}
-            onChange={handleLocationInputChange}
-            placeholder="Tags (comma-separated)"
-          />
           <select
             name="category_ids"
-            value={locationData.category_ids}
+            value={locationData.category}
             onChange={handleLocationInputChange}
             multiple
           >
@@ -438,9 +440,17 @@ const QuickActions = () => {
             <option value="4">Ruins</option>
           </select>
 
-          <button type="submit">Update Place</button>
+          {/* Input for tags */}
+          <input
+            type="text"
+            name="tags"
+            value={locationData.tags}
+            onChange={handleLocationInputChange}
+            placeholder="Tags (comma-separated)"
+          />
+            <button type="submit">Update</button>
         </form>
-      </Modal>
+        </Modal>
     </div>
   );
 };

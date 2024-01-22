@@ -39,7 +39,7 @@ export const createLocation = (locationData) => async (dispatch) => {
 };
 
 export const updateLocation = (id, locationData) => async (dispatch) => {
-  try {
+  try { 
     const response = await axios.put(`${baseUrl}/locations/${id}`, locationData);
     dispatch({ type: UPDATE_LOCATION_SUCCESS, payload: response.data });
     dispatch(fetchLocations());
