@@ -32,6 +32,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
     Route::put('update/{id}', 'update');
+    Route::get('/getAllUsers', 'getAllUsers');
 });
 
 
