@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createAnnouncement, deleteAnnouncement } from '../../core/redux/actions/announcementActions';
+import { createAnnouncement, deleteAnnouncement, updateAnnouncement } from '../../core/redux/actions/announcementActions';
 import '../../pages/Dashboard/DashboardPage.css';
 import Modal from './Modal';
 
 const QuickActions = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [announcementData, setAnnouncementData] = useState({ body: '' });
   const [announcementIdToDelete, setAnnouncementIdToDelete] = useState('');
+  const [announcementIdToUpdate, setAnnouncementIdToUpdate] = useState('');
+  const [updatedAnnouncementBody, setUpdatedAnnouncementBody] = useState('');
   const token = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
 
@@ -31,6 +34,13 @@ const QuickActions = () => {
     setIsDeleteModalOpen(false);
   };
 
+  
+const handleUpdateAnnouncement = (e) => {
+  e.preventDefault();
+  dispatch(updateAnnouncement(announcementIdToUpdate, { announcement_body: updatedAnnouncementBody }, token));
+  setIsUpdateModalOpen(false);
+};
+
   return (
     <div className="quick-actions">
       <h2>Quick Actions</h2>
@@ -39,7 +49,7 @@ const QuickActions = () => {
         <div className="actions">
           <button className="action-button green" onClick={() => setIsCreateModalOpen(true)}>Create Announcement</button>
           <button  className="action-button red" onClick={() => setIsDeleteModalOpen(true)}>Delete Announcement</button>
-          <button className="action-button yellow">Edit Announcement</button>
+          <button className="action-button yellow" onClick={() => setIsUpdateModalOpen(true)}>Edit Announcement</button>
         </div>
       </div>
       <div className="section">
@@ -76,6 +86,25 @@ const QuickActions = () => {
           <button type="submit">Delete</button>
         </form>
       </Modal>
+
+     {/* Update Announcement Modal */}
+<Modal isOpen={isUpdateModalOpen} onClose={() => setIsUpdateModalOpen(false)} title="Edit Announcement">
+  <form onSubmit={handleUpdateAnnouncement}>
+    <input
+      type="text"
+      value={announcementIdToUpdate}
+      onChange={(e) => setAnnouncementIdToUpdate(e.target.value)}
+      placeholder="Announcement ID to update"
+    />
+    <input
+      type="text"
+      value={updatedAnnouncementBody}
+      onChange={(e) => setUpdatedAnnouncementBody(e.target.value)}
+      placeholder="New Announcement Body"
+    />
+    <button type="submit">Update</button>
+  </form>
+</Modal>
     </div>
   );
 };
