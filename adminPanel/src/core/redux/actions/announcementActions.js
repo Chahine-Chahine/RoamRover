@@ -15,6 +15,8 @@ import {
     DELETE_ANNOUNCEMENT_FAILURE
 } from '../../helpers/actionTypes';
 
+
+
 // Fetch Announcements
 export const fetchAnnouncements = (token) => {
     return async (dispatch) => {
@@ -23,6 +25,7 @@ export const fetchAnnouncements = (token) => {
             const response = await axios.get(`${baseUrl}/announcements`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
+            console.log(response.data.announcements)
             dispatch({ type: FETCH_ANNOUNCEMENTS_SUCCESS, payload: response.data });
         } catch (error) {
             dispatch({ type: FETCH_ANNOUNCEMENTS_FAILURE, payload: error.message });

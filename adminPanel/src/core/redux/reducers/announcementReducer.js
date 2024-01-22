@@ -14,11 +14,10 @@ import {
 } from "../../helpers/actionTypes";
 
 const initialState = {
-  loading: false,
-  announcements: [],
-  error: null,
+    announcements: [], 
+    loading: false,
+    error: null
 };
-
 const announcementReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ANNOUNCEMENTS_REQUEST:
@@ -31,7 +30,7 @@ const announcementReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        announcements: action.payload,
+        announcements: action.payload.announcements,
         error: null,
       };
 

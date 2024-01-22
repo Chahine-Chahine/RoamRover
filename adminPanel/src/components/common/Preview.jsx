@@ -1,8 +1,23 @@
-import '../../pages/Dashboard/DashboardPage.css'; 
-import Card from './Card';
-import Switch from './Switch';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAnnouncements } from "../../core/redux/actions/announcementActions";
+import "../../pages/Dashboard/DashboardPage.css";
+import Card from "./Card";
+import Switch from "./Switch";
 
 const Preview = () => {
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
+  const announcements = useSelector((state) => state.announcement.announcements);
+  console.log("Announcements from Redux:", announcements);
+
+  useEffect(() => {
+    dispatch(fetchAnnouncements(token));
+  }, [dispatch, token]);
+
+   
+
+    console.log(announcements , "to be rendered")
   return (
     <div className="preview">
       <div className="preview-title">
@@ -10,15 +25,19 @@ const Preview = () => {
       </div>
       <Switch />
       <div className="cards-container">
-        <Card id={1} body="Hello all, this is the first announcement in the app" />
-        <Card id={2} body="Hello all, this is the second announcement in the app" />
-        <Card id={3} body="Hello all, this is the third announcement in the app" />
-        <Card id={4} body="Hello all, this is the fourth announcement in the app" />
-        <Card id={5} body="Hello all, this is the fifth announcement in the app" />
-        <Card id={6} body="Hello all, this is the sixth announcement in the app" />
+        {announcements.map((announcement) => {
+          console.log(announcement);
+          return (
+            <Card
+              key={announcement.id}
+              id={announcement.id}
+              body={announcement.announcement_body}
+            />
+          );
+        })}
       </div>
     </div>
   );
-}
+};
 
 export default Preview;
