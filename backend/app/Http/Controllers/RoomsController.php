@@ -13,7 +13,12 @@ class RoomsController extends Controller
     {
         if ($user = $request->user()) {
             $userId = $user->id;
-            return Room::where('creator_id', $userId)->with('users')->get();
+            // Fetch rooms where the user is either the creator or a participant
+            $rooms = Room::where('creator_id', $userId)
+                ->orWhereHas('users', function ($query) use ($userId) {
+                    $query->where('users.id', $userId);
+                })->with('users')->get();
+            return $rooms;
         } else {
             // Return an error response if no user is authenticated
             return response()->json(['error' => 'Unauthorized'], 401);
@@ -36,7 +41,7 @@ class RoomsController extends Controller
             'room_description' => 'required|string|max:255',
         ]);
 
-        $user = $request->user(); 
+        $user = $request->user();
         if (!$user) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
@@ -49,7 +54,7 @@ class RoomsController extends Controller
                 'creator_id' => $user->id,
                 'room_description' => $validatedData['room_description']
             ]);
-    
+
             if (isset($validatedData['participants'])) {
                 $room->users()->attach(array_diff($validatedData['participants'], [$user->id]));
             }
