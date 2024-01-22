@@ -7,7 +7,7 @@ const initialState = {
 
 function authReducer(state = initialState, action) {
   switch (action.type) {
-    case 'LOGIN_SUCCESS':
+    case "LOGIN_SUCCESS":
       return {
         ...state,
         isLoggedIn: true,
@@ -15,7 +15,7 @@ function authReducer(state = initialState, action) {
         token: action.payload.token,
         error: null,
       };
-    case 'LOGIN_FAILURE':
+    case "LOGIN_FAILURE":
       return {
         ...state,
         isLoggedIn: false,
@@ -23,15 +23,15 @@ function authReducer(state = initialState, action) {
         token: null,
         error: action.payload,
       };
-    case 'REGISTER_SUCCESS':
+    case "REGISTER_SUCCESS":
       return {
         ...state,
-        isLoggedIn: true, 
+        isLoggedIn: true,
         user: action.payload,
-        token: null, 
+        token: null,
         error: null,
       };
-    case 'REGISTER_FAILURE':
+    case "REGISTER_FAILURE":
       return {
         ...state,
         isLoggedIn: false,
@@ -39,17 +39,32 @@ function authReducer(state = initialState, action) {
         token: null,
         error: action.payload,
       };
-    case 'LOGOUT':
+    case "LOGOUT":
       return {
         ...initialState,
       };
-    case 'UPDATE_SUCCESS':
+    case "UPDATE_SUCCESS":
       return {
         ...state,
-        user: action.payload, 
+        user: action.payload,
         error: null,
       };
-    case 'UPDATE_FAILURE':
+    case "UPDATE_FAILURE":
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case "FETCH_USERS_REQUEST":
+      return {
+        ...initialState,
+      };
+    case "FETCH_USERS_SUCCESS":
+      return {
+        ...state,
+        user: action.payload,
+        error: null,
+      };
+    case "FETCH_USERS_FAILURE":
       return {
         ...state,
         error: action.payload,
