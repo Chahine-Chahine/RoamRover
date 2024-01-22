@@ -86,7 +86,7 @@ const QuickActions = () => {
     }
   };
   // Handle creating a location
-  const handleCreateLocation = (e) => {
+  const handleCreateLocation = async(e) => {
     e.preventDefault();
   
     const payload = {
@@ -94,12 +94,12 @@ const QuickActions = () => {
       estimated_price: Number(locationData.estimated_price),
       category_ids: [locationData.category_ids].filter(Boolean),
       tags: locationData.tags.split(',').map(tag => tag.trim()),
-      // Ensure coordinates are formatted as required by your API
       latitude: Number(locationData.coordinates.latitude),
       longitude: Number(locationData.coordinates.longitude)
     };
   
-    dispatch(createLocation(payload, token));
+  await  dispatch(createLocation(payload, token));
+    setIsCreateLocationModalOpen(false);
   };  
 
   return (

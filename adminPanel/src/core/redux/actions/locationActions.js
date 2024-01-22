@@ -39,7 +39,7 @@ export const createLocation = (locationData) => async (dispatch) => {
 
 export const updateLocation = (id, locationData) => async (dispatch) => {
   try {
-    const response = await axios.put(`/api/locations/${id}`, locationData);
+    const response = await axios.put(`${baseUrl}/locations/${id}`, locationData);
     dispatch({ type: UPDATE_LOCATION_SUCCESS, payload: response.data });
     dispatch(fetchLocations());
   } catch (error) {
@@ -52,7 +52,7 @@ export const updateLocation = (id, locationData) => async (dispatch) => {
 
 export const deleteLocation = (id) => async (dispatch) => {
   try {
-    await axios.delete(`/api/locations/${id}`);
+    await axios.delete(`${baseUrl}/locations/${id}`);
     dispatch({ type: DELETE_LOCATION_SUCCESS, payload: id });
     dispatch(fetchLocations());
   } catch (error) {
