@@ -7,7 +7,7 @@ import {
     UPDATE_LOCATION_FAILURE,
     DELETE_LOCATION_SUCCESS,
     DELETE_LOCATION_FAILURE,
-} from "./actionTypes";
+} from "../../helpers/actionTypes";
 
 const initialState = {
   locations: [],
