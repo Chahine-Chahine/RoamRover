@@ -3,6 +3,7 @@ const initialState = {
   user: null,
   token: null,
   error: null,
+  users : []
 };
 
 function authReducer(state = initialState, action) {
@@ -61,7 +62,7 @@ function authReducer(state = initialState, action) {
     case "FETCH_USERS_SUCCESS":
       return {
         ...state,
-        user: action.payload,
+        users: action.payload.users,
         error: null,
       };
     case "FETCH_USERS_FAILURE":

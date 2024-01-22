@@ -1,32 +1,23 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-  ImageBackground,
-  Modal,
-} from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Image, Modal, ImageBackground } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAllUsers } from '../core/Redux/Actions/authActions'; 
 
 const ChatRoomScreen = ({ route }) => {
+  const dispatch = useDispatch();
+  const usersList = useSelector(state => state.auth.users);
+  console.log("usersList:", usersList);
+  const token = useSelector((state) => state.auth.token); 
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [message, setMessage] = useState("");
   const [displayedMessage, setDisplayedMessage] = useState("");
-  const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedUsers, setSelectedUsers] = useState([]);
 
-  const [usersList, setUsersList] = useState([]);
-  // Assume fetchUsers is an async function that gets users from the API
   useEffect(() => {
-    const fetchUsers = async () => {
-      const users = await getUsersAPI(); 
-      setUsersList(users);
-    };
-    fetchUsers();
-  }, []);
+    dispatch(fetchAllUsers(token));
+  }, [dispatch , token]);
+
 
   const aiResponse = useSelector((state) => state.Questionnaire.Questionnaire);
   const roomNameFromResponse = aiResponse.room
@@ -80,7 +71,7 @@ const ChatRoomScreen = ({ route }) => {
         return <Text style={styles.message}>{displayedMessage}</Text>;
       }
     }
-    return null; 
+    return null; // Return null if not an AI-generated room
   };
 
   return (
@@ -132,10 +123,7 @@ const ChatRoomScreen = ({ route }) => {
           <ScrollView>
             {usersList.map((user, index) => (
               <View key={index} style={styles.userItem}>
-                <Image
-                  source={{ uri: user.imageUrl }}
-                  style={styles.userImage}
-                />
+                <Image source={{ uri: user.imageUrl }} style={styles.userImage} />
                 <Text style={styles.userName}>{user.username}</Text>
               </View>
             ))}
@@ -234,32 +222,32 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5
-},
-userItem: {
+  },
+  userItem: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10
-},
-userImage: {
+  },
+  userImage: {
     width: 50,
     height: 50,
     borderRadius: 25,
     marginRight: 10
-},
-userName: {
+  },
+  userName: {
     fontSize: 16
-},
-closeButton: {
+  },
+  closeButton: {
     marginTop: 20,
     backgroundColor: "#2196F3",
     borderRadius: 10,
     padding: 10
-},
-closeButtonText: {
+  },
+  closeButtonText: {
     color: "white",
     textAlign: "center",
     fontSize: 16
-}
+  }
 });
 
 export default ChatRoomScreen;
