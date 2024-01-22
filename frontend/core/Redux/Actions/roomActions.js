@@ -6,6 +6,9 @@ import {
     CREATE_CHATROOMS_REQUEST,
     CREATE_CHATROOMS_SUCCESS,
     CREATE_CHATROOMS_FAILURE,
+    UPDATE_CHATROOM_REQUEST,
+    UPDATE_CHATROOM_SUCCESS,
+    UPDATE_CHATROOM_FAILURE
 } from './actionTypes';
 
 import { baseUrl } from '../../helpers/baseUrl';

@@ -5,6 +5,9 @@ import {
     CREATE_CHATROOMS_REQUEST,
     CREATE_CHATROOMS_SUCCESS,
     CREATE_CHATROOMS_FAILURE,
+    UPDATE_CHATROOM_REQUEST,
+    UPDATE_CHATROOM_SUCCESS,
+    UPDATE_CHATROOM_FAILURE
 } from '../Actions/actionTypes';
 
 const initialState = {
@@ -53,6 +56,25 @@ const roomReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             };
+            case UPDATE_CHATROOM_REQUEST:
+                return {
+                    ...state,
+                    updating: true,
+                };
+            case UPDATE_CHATROOM_SUCCESS:
+                return {
+                    ...state,
+                    updating: false,
+                    rooms: state.rooms.map(room =>
+                        room.id === action.payload.id ? action.payload : room
+                    ),
+                };
+            case UPDATE_CHATROOM_FAILURE:
+                return {
+                    ...state,
+                    updating: false,
+                    error: action.payload,
+                };
         default:
             return state;
     }
