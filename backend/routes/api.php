@@ -49,7 +49,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/rooms',[RoomsController::class, 'displayAllRooms'] ); 
     Route::get('/rooms/{id}', [RoomsController::class, 'displayById']);
     Route::post('/rooms', [RoomsController::class,'createRoom']); 
-    Route::post('/updateRoom/{id}', [RoomsController::class , 'updateRoom']);
+    Route::put('/updateRoom/{id}', [RoomsController::class , 'updateRoom']);
 });
 
 Route::controller(TripsController::class)->group(function () {
