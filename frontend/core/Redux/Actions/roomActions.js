@@ -43,3 +43,23 @@ export const createChatroom = (roomDetails, token) => {
         }
     };
 };
+
+export const updateChatRoom = (roomId, updatedData) => {
+    return (dispatch) => {
+        dispatch({ type: UPDATE_CHATROOM_REQUEST });
+        fetch(`${baseUrl}/updateRoom/${roomId}`, {
+            method: 'PUT', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            dispatch({ type: UPDATE_CHATROOM_SUCCESS, payload: data });
+        })
+        .catch(error => {
+            dispatch({ type: UPDATE_CHATROOM_FAILURE, payload: error });
+        });
+    };
+};
