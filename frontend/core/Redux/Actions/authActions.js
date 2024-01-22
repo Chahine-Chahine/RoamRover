@@ -3,6 +3,7 @@ import { LOGIN_SUCCESS, LOGIN_FAILURE } from './actionTypes';
 import { REGISTER_SUCCESS, REGISTER_FAILURE } from './actionTypes';
 import  {LOGOUT, UPDATE_SUCCESS, UPDATE_FAILURE } from './actionTypes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FETCH_USERS_FAILURE, FETCH_USERS_REQUEST , FETCH_USERS_SUCCESS } from './actionTypes';
 import { baseUrl } from '../../helpers/baseUrl';
 
 // Signup action
@@ -130,3 +131,19 @@ export const updateUser = (userId, userData) => {
     }
   };
 };
+
+export const fetchAllUsers = () => {
+return async (dispatch) => {
+  try {
+    dispatch({ type: FETCH_USERS_REQUEST});
+    const response = await axios.get(`${baseUrl}/getAllUsers`, { 
+      headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+  },});
+  dispatch({ type: FETCH_USERS_SUCCESS, payload: response.data });
+} catch (error) {
+  dispatch({ type: FETCH_USERS_FAILURE, payload: error.message || 'An unknown error occurred'});
+}
+};
+}
