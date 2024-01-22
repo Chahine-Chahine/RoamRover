@@ -45,7 +45,7 @@
 
 .form-field input {
     width: 500px;
-    padding: 15px;
+    padding: 20px;
     margin-top: 15px;
     border: 1px solid #d6c9fd;
     border-radius: 4px;
@@ -57,8 +57,8 @@
   }
 
   .login-button {
-    width: 540px;
-    padding: 15px;
+    width: 535px;
+    padding: 20px;
     background-color: #6B46D9; 
     color: white;
     font-size: 20px;
@@ -66,4 +66,5 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px;
   }
