@@ -2,90 +2,76 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchAIResponse } from '../core/Redux/Actions/generateaiActions';
-import ChatHeader from '../components/common/ChatHeader';
+import { useSelector } from 'react-redux';
+import { app } from '../firebaseConfig'; 
+import { getDatabase, ref, onValue, off, push, serverTimestamp, query, orderByChild , equalTo } from '@firebase/database';
 
 const ChatRoomScreen = () => {
-  const dispatch = useDispatch();
+  const route = useRoute();
+  const roomId = route.params?.roomId; 
+  const user = useSelector(state => state.auth.user); 
   const [message, setMessage] = useState('');
-  const [displayedMessage, setDisplayedMessage] = useState('');
-  const aiResponse = useSelector(state => state.Questionnaire.Questionnaire);
-  const roomNameFromResponse = aiResponse.room ? aiResponse.room.room_name : null;
-  const [roomName, setRoomName] = useState(roomNameFromResponse || "Chat Room");
-
+  const [messages, setMessages] = useState([]);
   useEffect(() => {
-    if (roomNameFromResponse) {
-      setRoomName(roomNameFromResponse);
-    }
-  }, [roomNameFromResponse]);
+    const database = getDatabase(app);
+    const messagesRef = ref(database, 'messages');
+    const messagesQuery = query(messagesRef, orderByChild('room_id'), equalTo(roomId));
+    
+    onValue(messagesQuery, snapshot => {
+      const fetchedMessages = snapshot.val() || {};
+      const parsedMessages = Object.keys(fetchedMessages).map(key => ({
+        ...fetchedMessages[key],
+        id: key
+      }));
+      setMessages(parsedMessages);
+    });
 
-  // useEffect(() => {
-  //   try {
-  //     dispatch(fetchAIResponse());
-  //   } catch (error) {
-  //     console.error('Error fetching AI response:', error);
-  //     dispatch(fetchAIResponse());
-  //   }
-  // }, [dispatch]);
-  
+    return () => {
+      off(messagesQuery, 'value');
+    };
+  }, [roomId]);
 
-  useEffect(() => {
-    if (aiResponse && aiResponse.result && Array.isArray(aiResponse.result)) {
-      const fullMessage = aiResponse.result.map(item => `${item.title}: ${item.description}`).join('\n');
-      setDisplayedMessage('');
-      let currentIndex = 0;
-
-      const typingInterval = setInterval(() => {
-        if (currentIndex < fullMessage.length) {
-          setDisplayedMessage((prev) => prev + fullMessage[currentIndex]);
-          currentIndex++; 
-        } else {
-          clearInterval(typingInterval);
-        }
-      }, 50);
-
-      return () => clearInterval(typingInterval);
-    }
-  }, [aiResponse]);
-
-  const processAIResponse = () => {
-    if (aiResponse && aiResponse.error) {
-      return <Text style={styles.message}>Error fetching AI response: {aiResponse.error}</Text>;
-    } else {
-      return <Text style={styles.message}>{displayedMessage}</Text>;
+  const sendMessage = () => {
+    if (message.trim().length > 0) {
+      const database = getDatabase(app);
+      push(ref(database, 'messages'), {
+        message_body: message,
+        room_id: roomId,
+        sender_id: user.id, // Replace with actual user ID
+        username: user.username, // Replace with actual username
+        timestamp: serverTimestamp()
+      });
+      setMessage('');
     }
   };
 
+  const renderMessages = () => {
+    return messages.sort((a, b) => a.timestamp - b.timestamp).map((msg, index) => (
+      <View key={msg.id || index} style={styles.messageContainer}>
+        <Text style={styles.username}>{msg.username}</Text>
+        <Text style={styles.message}>{msg.message_body}</Text>
+      </View>
+    ));
+  };
 
   return (
-    <>
-    <ImageBackground 
-      source={require('../assets/chat-bg.jpg')}
-      style={styles.backgroundImage}
-      imageStyle={styles.backgroundImageStyle}
-    >
-      <ChatHeader roomName={roomName} roomId={1} />
-        <ScrollView>
-          <View style={styles.messagesContainer}>
-            <Text style={styles.username}>AI</Text>
-            {processAIResponse()}
-          </View>
-        </ScrollView>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Message"
-            value={message}
-            onChangeText={setMessage}
-            placeholderTextColor="#6B46D9"
-          />
-          <TouchableOpacity style={styles.sendButton}>
-            <Ionicons name="send" size={24} color="#fff" />
-          </TouchableOpacity>
-        </View>
-      </ImageBackground>
-    </>
+    <ImageBackground source={require('../assets/chat-bg.jpg')} style={styles.backgroundImage}>
+      <ScrollView contentContainerStyle={styles.messagesContainer}>
+        {renderMessages()}
+      </ScrollView>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Type a message..."
+          value={message}
+          onChangeText={setMessage}
+          placeholderTextColor="#6B46D9"
+        />
+        <TouchableOpacity onPress={sendMessage} style={styles.sendButton}>
+          <Ionicons name="send" size={24} color="#fff" />
+        </TouchableOpacity>
+      </View>
+    </ImageBackground>
   );
 };
 

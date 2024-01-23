@@ -12,9 +12,9 @@ const ChatHeader = ({ roomName, roomId }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedUsers, setSelectedUsers] = useState([]);
 
-  useEffect(() => {
-    dispatch(fetchAllUsers(token));
-  }, [token]);
+  // useEffect(() => {
+  //   dispatch(fetchAllUsers(token));
+  // }, [token]);
 
   const handleSelectUser = (userId) => {
     const isSelected = selectedUsers.includes(userId);
