@@ -12,7 +12,6 @@ import {
 } from "../../core/redux/actions/locationActions";
 import "../../pages/Dashboard/DashboardPage.css";
 import Modal from "./Modal";
-
 const QuickActions = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -140,7 +139,7 @@ const QuickActions = () => {
             className="action-button"
             onClick={() => setIsCreateModalOpen(true)}
           >
-            Create Announcement
+           Create Announcement
           </button>
           <button
             className="action-button"

@@ -10,7 +10,6 @@ const DashboardPage = () => {
         <div className="left-dashboard">
           <div className="left-upper-card">
             <img src={peopleImage} className="dashboard-image" />
-            {/* <h2 className="greeting-admin">Hello, Chahine</h2> */}
           </div>
           <QuickActions />
         </div>
