@@ -298,10 +298,11 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#A78BFA",
-    padding: 12,
+    paddingVertical: 12,
     borderRadius: 10,
     alignItems: "center",
-    margin: 20,
+    margin: 8,
+    marginTop: 20
   },
   buttonText: {
     color: "white",
