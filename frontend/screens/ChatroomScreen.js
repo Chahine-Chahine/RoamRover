@@ -20,14 +20,14 @@ const ChatRoomScreen = () => {
     }
   }, [roomNameFromResponse]);
 
-  useEffect(() => {
-    try {
-      dispatch(fetchAIResponse());
-    } catch (error) {
-      console.error('Error fetching AI response:', error);
-      dispatch(fetchAIResponse());
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   try {
+  //     dispatch(fetchAIResponse());
+  //   } catch (error) {
+  //     console.error('Error fetching AI response:', error);
+  //     dispatch(fetchAIResponse());
+  //   }
+  // }, [dispatch]);
   
 
   useEffect(() => {
