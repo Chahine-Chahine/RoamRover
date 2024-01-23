@@ -76,7 +76,7 @@ const LoginPage = () => {
               value={password}
               onChange={handlePasswordChange}
             />
-            <Button type="submit" text="SignIn" />
+            <Button type="submit" text="Login" />
           </form>
           {message && <p className="login-message">{message}</p>}
           <h4>

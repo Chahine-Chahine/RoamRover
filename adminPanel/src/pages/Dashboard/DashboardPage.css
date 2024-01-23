@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 
 .dashboard-wrapper{
@@ -30,7 +31,7 @@
 
 .left-upper-card{
     display: flex;
-    width: 75%;
+    width: 82%;
     height: 40%;
     background-color: #DAE7FF;
     margin-bottom: 40px;
@@ -38,7 +39,7 @@
 
 
 .dashboard-image{
-    margin-top: 53px
+    margin-top: 55px
 }
 
 .greeting-admin{
