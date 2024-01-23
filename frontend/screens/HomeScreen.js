@@ -9,6 +9,7 @@ import Categories from '../components/common/Categories';
 import LoadingScreen from './LoadingScreen';
 import { fetchTrips } from '../core/Redux/Actions/tripActions';
 import { updateRoom } from '../core/Redux/Actions/roomActions'; 
+import { getRoomIdFromTrip } from '../core/helpers/getRoomId';
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
@@ -16,25 +17,27 @@ const HomeScreen = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const navigation = useNavigation();
     const { user } = useSelector(state => state.auth); 
+    const token = useSelector(state => state.auth.token);
 
-    const handleJoinRoom = (roomId) => {
-        // Assuming you have a function to get the current room details
-        // This should ideally be an API call to fetch the latest room data
-        // Example: const currentRoom = await getRoomDetails(roomId);
+    const handleJoinRoom = async (tripId) => {
+        const roomId = await getRoomIdFromTrip(tripId, token); 
     
-        // For demonstration, let's assume the currentRoom has a participants property
-        // which is an array of user IDs
-        const currentParticipants = currentRoom.participants || [];
+        if (roomId) {
+            // Fetch current room details including participants
+            const currentRoom = await getRoomDetails(roomId); 
     
-        // Check if the user is already a participant
-        if (!currentParticipants.includes(user.id)) {
-            const updatedParticipants = [...currentParticipants, user.id];
+            const currentParticipants = currentRoom.participants || [];
     
-            const updatedData = { participants: updatedParticipants };
-            dispatch(updateRoom(roomId, updatedData));
+            if (!currentParticipants.includes(user.id)) {
+                const updatedParticipants = [...currentParticipants, user.id];
+    
+                const updatedData = { participants: updatedParticipants };
+                dispatch(updateRoom(roomId, updatedData));
+            } else {
+                console.log('User is already a participant of this room');
+            }
         } else {
-            // Handle the case where the user is already a participant
-            console.log('User is already a participant of this room');
+            console.log('Room ID not found for the given trip ID');
         }
     };
     
