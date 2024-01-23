@@ -278,12 +278,13 @@ const styles = StyleSheet.create({
   modalView: {
     flex: 1,
     justifyContent: "center",
-    marginTop: 120,
+    marginTop: 130,
     marginHorizontal: 10,
     width: "95%",
     height: "40%",
     backgroundColor: "white",
-    borderRadius: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     elevation: 5,
   },
   input: {
