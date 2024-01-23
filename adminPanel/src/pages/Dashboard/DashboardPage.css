@@ -48,7 +48,6 @@
 
 /* Quick Actions css */
 .quick-actions {
-    border: 2px solid black;
     width: 80%;
     height: 80%;
     padding: 20px;
@@ -86,31 +85,26 @@
   }
   
   .action-button {
-    width: 180px;
-    height: 80px;
+    width: 250px;
+    height: 120px;
     border-radius: 5px;
+    border: none;
     font-weight: bold;
     cursor: pointer;
+    background-color: #b5a6e2;
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
   }
 
   .action-button:hover {
-    background-color: #DAE7FF;
+    background-color: #bcaceb;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
   }
   
-  .green {
-    border: 2px solid #90ee90; 
-    background-color: #fff;
-  }
-  
-  .red {
-    border: 2px solid #f08080; 
-    background-color: #fff;
-  }
-  
-  .yellow {
-    border: 2px solid #d4d42d;
-    background-color: #fff; 
-  }
+
 
   
   /* preview css */
@@ -120,6 +114,7 @@
     height: 95%;
     padding: 20px;
     margin-left: 3px;
+    border-radius: 20px;
   }
 
   .preview-title{

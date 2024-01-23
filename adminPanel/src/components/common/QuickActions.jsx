@@ -137,19 +137,19 @@ const QuickActions = () => {
         <h3>Announcements</h3>
         <div className="actions">
           <button
-            className="action-button green"
+            className="action-button"
             onClick={() => setIsCreateModalOpen(true)}
           >
             Create Announcement
           </button>
           <button
-            className="action-button red"
+            className="action-button"
             onClick={() => setIsDeleteModalOpen(true)}
           >
             Delete Announcement
           </button>
           <button
-            className="action-button yellow"
+            className="action-button"
             onClick={() => setIsUpdateModalOpen(true)}
           >
             Edit Announcement
@@ -161,19 +161,19 @@ const QuickActions = () => {
         <h3>Locations</h3>
         <div className="actions">
           <button
-            className="action-button green"
+            className="action-button"
             onClick={() => setIsCreateLocationModalOpen(true)}
           >
             Add a Location
           </button>
           <button
-            className="action-button red"
+            className="action-button"
             onClick={() => setIsDeletePlaceModalOpen(true)}
           >
             Delete a Location
           </button>
           <button
-            className="action-button yellow"
+            className="action-button"
             onClick={() => setIsEditPlaceModalOpen(true)}
           >
             Edit a Location
