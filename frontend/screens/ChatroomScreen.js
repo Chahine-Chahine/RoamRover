@@ -65,7 +65,7 @@ const ChatRoomScreen = () => {
       style={styles.backgroundImage}
       imageStyle={styles.backgroundImageStyle}
     >
-      <ChatHeader roomName={roomName} />
+      <ChatHeader roomName={roomName} roomId={1} />
         <ScrollView>
           <View style={styles.messagesContainer}>
             <Text style={styles.username}>AI</Text>

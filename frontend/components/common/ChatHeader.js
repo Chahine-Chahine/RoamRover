@@ -3,8 +3,9 @@ import { View, Text, TouchableOpacity, StyleSheet, Modal, ScrollView, Image } fr
 import { Ionicons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllUsers } from '../../core/Redux/Actions/authActions';
+import { updateChatRoom } from '../../core/Redux/Actions/roomActions';
 
-const ChatHeader = ({ roomName }) => {
+const ChatHeader = ({ roomName, roomId }) => {
   const dispatch = useDispatch();
   const usersList = useSelector(state => state.auth.users);
   const token = useSelector(state => state.auth.token);
@@ -19,12 +20,12 @@ const ChatHeader = ({ roomName }) => {
     const isSelected = selectedUsers.includes(userId);
     setSelectedUsers(isSelected ? selectedUsers.filter(id => id !== userId) : [...selectedUsers, userId]);
   };
-
   const handleInvitePress = () => {
+    const participants = selectedUsers;
+    dispatch(updateChatRoom(roomId, participants, token));
     console.log("Invited Users:", selectedUsers);
     setIsModalVisible(false);
   };
-
   return (
     <View style={styles.header}>
       <Ionicons name="chevron-back-outline" size={24} color="#6B46D9" />
