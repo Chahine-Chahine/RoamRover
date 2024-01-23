@@ -8,12 +8,36 @@ import NavigationBar from '../components/common/NavigationBar';
 import Categories from '../components/common/Categories';
 import LoadingScreen from './LoadingScreen';
 import { fetchTrips } from '../core/Redux/Actions/tripActions';
+import { updateRoom } from '../core/Redux/Actions/roomActions'; 
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
     const { trips, loading} = useSelector(state => state.trips);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const navigation = useNavigation();
+    const { user } = useSelector(state => state.auth); 
+
+    const handleJoinRoom = (roomId) => {
+        // Assuming you have a function to get the current room details
+        // This should ideally be an API call to fetch the latest room data
+        // Example: const currentRoom = await getRoomDetails(roomId);
+    
+        // For demonstration, let's assume the currentRoom has a participants property
+        // which is an array of user IDs
+        const currentParticipants = currentRoom.participants || [];
+    
+        // Check if the user is already a participant
+        if (!currentParticipants.includes(user.id)) {
+            const updatedParticipants = [...currentParticipants, user.id];
+    
+            const updatedData = { participants: updatedParticipants };
+            dispatch(updateRoom(roomId, updatedData));
+        } else {
+            // Handle the case where the user is already a participant
+            console.log('User is already a participant of this room');
+        }
+    };
+    
 
     useFocusEffect(
         React.useCallback(() => {
@@ -44,7 +68,7 @@ const HomeScreen = () => {
                         price={`$${trip.total_budget ?? ''} total`}
                         url={trip.locations[0].image}
                         label={'Join'}
-                        onAddPress={() => {console.log('pressed')}}
+                        onAddPress={() => handleJoinRoom(trip.room?.id)}
                         showBookmark={false}
                         onBookmarkPress={() => {}} 
                     />

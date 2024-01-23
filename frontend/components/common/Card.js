@@ -71,11 +71,11 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
-    elevation: 5, 
+    elevation: 6, 
     shadowColor: '#A78BFA', 
     shadowOffset: { width: 0, height: 2 }, 
     shadowOpacity: 0.25, 
-    shadowRadius: 0.84, 
+    shadowRadius: 0.94, 
   },
 
   cardImage: {
