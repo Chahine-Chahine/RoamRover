@@ -38,7 +38,9 @@ const ProfileScreen = ({ user }) => {
       </ScrollView>
       <View style={styles.actionNavigationWrapper}>
         <View style={styles.actionContainer}>
-          <ActionButton title="Update Profile" onPress={navigateprofileUpdate} />
+        <TouchableOpacity style={styles.updateButton} onPress={navigateprofileUpdate}>
+         <Text style={styles.logoutText}>Update Profile</Text>
+      </TouchableOpacity>
       <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout}>
          <Icon name="sign-out-alt" size={18} color="#fff" />
          <Text style={styles.logoutText}>Logout</Text>
@@ -70,7 +72,6 @@ const styles = StyleSheet.create({
     marginLeft: 5
   },
   logoutBtn: {
-    backgroundColor: '#A78BFA',
       borderRadius: 25,
       flexDirection: 'row',
       justifyContent: 'center',
@@ -81,6 +82,16 @@ const styles = StyleSheet.create({
       paddingHorizontal: 40,
     backgroundColor: '#e63946', 
     
+  },
+  updateButton:{
+    backgroundColor: '#A78BFA',
+    borderRadius: 25,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 25,
+    paddingVertical: 12,
+    paddingHorizontal: 40,
   }
 
 });
