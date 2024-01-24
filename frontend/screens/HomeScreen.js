@@ -10,6 +10,7 @@ import LoadingScreen from './LoadingScreen';
 import { fetchTrips } from '../core/Redux/Actions/tripActions';
 import { updateRoom } from '../core/Redux/Actions/roomActions'; 
 import { getRoomIdFromTrip } from '../core/helpers/getRoomId';
+import { fetchAllUsers } from '../core/Redux/Actions/authActions';
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
@@ -45,6 +46,7 @@ const HomeScreen = () => {
     useFocusEffect(
         React.useCallback(() => {
             dispatch(fetchTrips());
+            dispatch(fetchAllUsers(token));
         }, [dispatch])
     );
 

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAIResponse } from '../core/Redux/Actions/generateaiActions';
 import app from '../firebaseConfig'; 
 import { getDatabase, ref, onValue, off, push, serverTimestamp, query, orderByChild, equalTo ,set} from '@firebase/database';
+import ChatHeader from '../components/common/ChatHeader';
 
 const ChatRoomScreen = () => {
   const dispatch = useDispatch();
@@ -14,9 +15,17 @@ const ChatRoomScreen = () => {
   const user = useSelector(state => state.auth.user);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const [displayedMessage, setDisplayedMessage] = useState('');
   const aiResponse = useSelector(state => state.Questionnaire.Questionnaire);
+  const roomNameFromResponse = aiResponse.room ? aiResponse.room.room_name : null;
+  const [roomName, setRoomName] = useState(roomNameFromResponse || "Chat Room");
+  const [displayedMessage, setDisplayedMessage] = useState('');
 
+
+  useEffect(() => {
+    if (roomNameFromResponse) {
+      setRoomName(roomNameFromResponse);
+    }
+  }, [roomNameFromResponse]);
 
   useEffect(() => {
     if (roomId) {
@@ -105,6 +114,7 @@ const ChatRoomScreen = () => {
 
   return (
     <ImageBackground source={require('../assets/chat-bg.jpg')} style={styles.backgroundImage}>
+      <ChatHeader roomName={roomName} roomId={1}/>
       <ScrollView contentContainerStyle={styles.messagesContainer}>
         {renderAIResponse()}
         {renderMessages()}

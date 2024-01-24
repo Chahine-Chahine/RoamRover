@@ -135,7 +135,6 @@ export const updateUser = (userId, userData) => {
 export const fetchAllUsers = (token) => {
 return async (dispatch) => {
   try {
-    dispatch({ type: FETCH_USERS_REQUEST});
     const response = await axios.get(`${baseUrl}:8000/api/getAllUsers`, { 
       headers: {
       'Content-Type': 'application/json',

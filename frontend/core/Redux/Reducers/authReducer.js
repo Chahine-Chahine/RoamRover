@@ -55,10 +55,6 @@ function authReducer(state = initialState, action) {
         ...state,
         error: action.payload,
       };
-    case "FETCH_USERS_REQUEST":
-      return {
-        ...initialState,
-      };
     case "FETCH_USERS_SUCCESS":
       return {
         ...state,
