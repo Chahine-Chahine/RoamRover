@@ -22,6 +22,7 @@ return new class extends Migration
             $table->json('coordinates'); 
             $table->integer('est_time_spend');
             $table->json('tags');
+            $table->softDeletes();
         });
     }
 
