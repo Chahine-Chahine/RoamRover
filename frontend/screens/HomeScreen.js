@@ -11,6 +11,7 @@ import { fetchTrips } from '../core/Redux/Actions/tripActions';
 import { updateRoom } from '../core/Redux/Actions/roomActions'; 
 import { getRoomIdFromTrip } from '../core/helpers/getRoomId';
 import { fetchAllUsers } from '../core/Redux/Actions/authActions';
+import getRoomDetails from '../core/helpers/getRoomDetails';
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
@@ -22,25 +23,24 @@ const HomeScreen = () => {
 
     const handleJoinRoom = async (tripId) => {
         const roomId = await getRoomIdFromTrip(tripId, token); 
-    
+        
         if (roomId) {
-            // Fetch current room details including participants
-            const currentRoom = await getRoomDetails(roomId); 
-    
-            const currentParticipants = currentRoom.participants || [];
-    
-            if (!currentParticipants.includes(user.id)) {
-                const updatedParticipants = [...currentParticipants, user.id];
-    
-                const updatedData = { participants: updatedParticipants };
-                dispatch(updateRoom(roomId, updatedData));
-            } else {
-                console.log('User is already a participant of this room');
-            }
+          const currentRoom = await getRoomDetails(roomId); 
+          console.log(currentRoom)
+          const currentParticipants = currentRoom.participants || [];
+          
+          if (!currentParticipants.includes(user.id)) {
+            const updatedParticipants = [...currentParticipants, user.id];
+            const updatedData = { participants: updatedParticipants };
+            dispatch(updateRoom(roomId, updatedData));
+          } else {
+            // Alert the user that they are already a participant
+            Alert.alert("Join Trip", "You are already a participant in this trip.");
+          }
         } else {
-            console.log('Room ID not found for the given trip ID');
+          console.log('Room ID not found for the given trip ID');
         }
-    };
+      };
     
 
     useFocusEffect(
