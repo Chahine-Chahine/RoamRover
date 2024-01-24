@@ -62,7 +62,6 @@ export const updateChatRoom = (roomId, participants, token) => {
   return async (dispatch) => {
     dispatch({ type: UPDATE_CHATROOM_REQUEST });
     try {
-      console.log('updateChatRoom payload:', participants); 
       const response = await axios.put(
         `${baseUrl}:8000/api/updateRoom/${roomId}`,
         {participants},
@@ -73,9 +72,6 @@ export const updateChatRoom = (roomId, participants, token) => {
           },
         }
       );
-      console.log(`from updateChatRoom action roomId: ${roomId}`);
-      console.log(`from updateChatRoom action participants: ${participants}`);
-      console.log(`from updateChatRoom action token: ${token}`);
       dispatch({ type: UPDATE_CHATROOM_SUCCESS, payload: response.data });
     } catch (error) {
       console.error('updateChatRoom error:', error);
