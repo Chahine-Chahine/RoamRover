@@ -58,22 +58,22 @@ const roomReducer = (state = initialState, action) => {
             };
             case UPDATE_CHATROOM_REQUEST:
                 return {
-                    ...state,
-                    updating: true,
+                  ...state,
+                  updating: true,
                 };
-            case UPDATE_CHATROOM_SUCCESS:
+              case UPDATE_CHATROOM_SUCCESS:
                 return {
-                    ...state,
-                    updating: false,
-                    rooms: state.rooms.map(room =>
-                        room.id === action.payload.id ? action.payload : room
-                    ),
+                  ...state,
+                  updating: false,
+                  rooms: Array.isArray(state.rooms) ? state.rooms.map(room =>
+                    room.id === action.payload.id ? action.payload : room
+                  ) : [action.payload],
                 };
-            case UPDATE_CHATROOM_FAILURE:
+              case UPDATE_CHATROOM_FAILURE:
                 return {
-                    ...state,
-                    updating: false,
-                    error: action.payload,
+                  ...state,
+                  updating: false,
+                  error: action.payload,
                 };
         default:
             return state;

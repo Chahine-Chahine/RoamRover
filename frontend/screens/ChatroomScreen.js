@@ -9,7 +9,6 @@ import { getDatabase, ref, onValue, off, push, serverTimestamp, query, orderByCh
 import ChatHeader from '../components/common/ChatHeader';
 
 const ChatRoomScreen = () => {
-  const dispatch = useDispatch();
   const route = useRoute();
   const roomId = route.params?.roomId;
   const user = useSelector(state => state.auth.user);
@@ -114,7 +113,7 @@ const ChatRoomScreen = () => {
 
   return (
     <ImageBackground source={require('../assets/chat-bg.jpg')} style={styles.backgroundImage}>
-      <ChatHeader roomName={roomName} roomId={1}/>
+      <ChatHeader roomName={roomName} roomId={roomId}/>
       <ScrollView contentContainerStyle={styles.messagesContainer}>
         {renderAIResponse()}
         {renderMessages()}

@@ -7,7 +7,7 @@ import { updateChatRoom } from '../../core/Redux/Actions/roomActions';
 
 const ChatHeader = ({ roomName, roomId }) => {
   const dispatch = useDispatch();
-  const usersList = useSelector(state => state.auth.users);
+  const usersList = useSelector(state => state.auth.users || []);
   const token = useSelector(state => state.auth.token);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedUsers, setSelectedUsers] = useState([]);
@@ -22,6 +22,9 @@ const ChatHeader = ({ roomName, roomId }) => {
   };
   const handleInvitePress = () => {
     const participants = selectedUsers;
+    console.log(`the roomId before dispatch ${roomId}`);
+    console.log(`the participants before dispatch is ${participants}`);
+    console.log(`the token before dispatch is ${token}`);
     dispatch(updateChatRoom(roomId, participants, token));
     console.log("Invited Users:", selectedUsers);
     setIsModalVisible(false);
@@ -38,7 +41,7 @@ const ChatHeader = ({ roomName, roomId }) => {
       <Modal animationType="slide" transparent={true} visible={isModalVisible} onRequestClose={() => setIsModalVisible(false)}>
         <View style={styles.modalView}>
           <ScrollView>
-            {usersList.map((user, index) => (
+          {usersList.map((user, index) => ( 
               <TouchableOpacity key={index} style={[styles.userItem, selectedUsers.includes(user.id) ? styles.userItemSelected : null]}
                 onPress={() => handleSelectUser(user.id)}>
                 <Image source={{ uri: user.image_url }} style={styles.userImage} />
