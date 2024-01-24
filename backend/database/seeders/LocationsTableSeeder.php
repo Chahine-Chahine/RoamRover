@@ -21,7 +21,7 @@ class LocationsTableSeeder extends Seeder
                 'estimated_price' => 20,
                 'area' => 'Beirut Lebanon',
                 'rating' => 5, 
-                'image' => "http://192.168.0.116:8000/storage/images/3azme.png", 
+                'image' => "http://192.168.43.29:8000/storage/images/3azme.png", 
                 'coordinates' => json_encode(['latitude' => 33.88762080695294, 'longitude' => 35.5076221965429]),
                 "est_time_spend" => 120,
                 "tags" => json_encode(["coffee", "snacks", "relaxation"])
@@ -32,7 +32,7 @@ class LocationsTableSeeder extends Seeder
                 'estimated_price' => 20,
                 'area' => 'Ashrafieh Lebanon',
                 'rating' => 4, 
-                'image' => "http://192.168.0.116:8000/storage/images/chinacity.png", 
+                'image' => "http://192.168.43.29:8000/storage/images/chinacity.png", 
                 'coordinates' => json_encode(['latitude' => 33.89550476190117, 'longitude' => 35.52042455421304]),
                 "est_time_spend" => 180,
                 "tags" => json_encode(["study", "nature", "calm"])
@@ -43,7 +43,7 @@ class LocationsTableSeeder extends Seeder
                 'estimated_price' => 18,
                 'area' => 'Jeita Lebanon',
                 'rating' => 5,
-                'image' => "http://192.168.0.116:8000/storage/images/jeita-grotto.jpg",
+                'image' => "http://192.168.43.29:8000/storage/images/jeita-grotto.jpg",
                 'coordinates' => json_encode(['latitude' => 33.976480, 'longitude' => 35.621355]),
                 "est_time_spend" => 240,
                 "tags" => json_encode(["adventure", "nature
@@ -55,7 +55,7 @@ class LocationsTableSeeder extends Seeder
             'estimated_price' => 5,
             'area' => 'Sidon Lebanon',
             'rating' => 4,
-            'image' => "http://192.168.0.116:8000/storage/images/sidon-castle.jpg",
+            'image' => "http://192.168.43.29:8000/storage/images/sidon-castle.jpg",
             'coordinates' => json_encode(['latitude' => 33.563056, 'longitude' => 35.368889]),
             "est_time_spend" => 90,
             "tags" => json_encode(["history", "sightseeing", "photography"])
@@ -66,7 +66,7 @@ class LocationsTableSeeder extends Seeder
             'estimated_price' => 0,
             'area' => 'Byblos Lebanon',
             'rating' => 5,
-            'image' => "http://192.168.0.116:8000/storage/images/byblos-old-port.webp",
+            'image' => "http://192.168.43.29:8000/storage/images/byblos-old-port.webp",
             'coordinates' => json_encode(['latitude' => 34.123002, 'longitude' => 35.651928]),
             "est_time_spend" => 60,
             "tags" => json_encode(["historic", "maritime", "relaxation"])
@@ -77,7 +77,7 @@ class LocationsTableSeeder extends Seeder
             'estimated_price' => 0,
             'area' => 'Qadisha Lebanon',
             'rating' => 5,
-            'image' => "http://192.168.0.116:8000/storage/images/qadisha-valley.jpg",
+            'image' => "http://192.168.43.29:8000/storage/images/qadisha-valley.jpg",
             'coordinates' => json_encode(['latitude' => 34.284825239254246, 'longitude' => 35.9527412329511]),
             "est_time_spend" => 300,
             "tags" => json_encode(["hiking", "nature", "scenery"])
@@ -88,7 +88,7 @@ class LocationsTableSeeder extends Seeder
             'description'=> 'Discover your history - who you really are',
             'estimated_price'=> 10,
             'rating' => 4,
-            'image'=> "http://192.168.0.116:8000/storage/images/Baalbeck.webp",
+            'image'=> "http://192.168.43.29:8000/storage/images/Baalbeck.webp",
             'coordinates' => json_encode(['latitude' => 34.005434973434745 , 'longitude' => 36.21091110212627]),
             "est_time_spend" => 210,
             "tags" => json_encode(["cultural", "historic", "exploration"])

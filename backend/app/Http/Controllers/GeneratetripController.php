@@ -35,14 +35,14 @@ class GeneratetripController extends Controller {
                 "title" => "Jeita Grotto",
                 "estimated_price" => 18,
                 "est_time_spend" => 240,
-                "tags" => ["Camp Fire and Camp"]
+                "tags" => ["Outdoor Exercising", "Team Building"]
             ],
             [
                 "id" => 4,
                 "title" => "Sidon Sea Castle",
                 "estimated_price" => 5,
                 "est_time_spend" => 90,
-                "tags" => ["Beach and Chill"]
+                "tags" => ["Beach and Chill", "outdoor Exercising"]
             ],
             [
                 "id" => 5,
@@ -63,15 +63,14 @@ class GeneratetripController extends Controller {
                 "title" => "Baalbeck Castle",
                 "estimated_price" => 10,
                 "est_time_spend" => 210,
-                "tags" => ["Camp Fire and Camp"]
+                "tags" => ["Team Building"]
             ],
-            // Adding more locations
             [
                 "id" => 8,
                 "title" => "Harissa",
                 "estimated_price" => 15,
                 "est_time_spend" => 120,
-                "tags" => ["Beach and Chill"]
+                "tags" => ["Team Building"]
             ],
             [
                 "id" => 9,
@@ -92,7 +91,14 @@ class GeneratetripController extends Controller {
                 "title" => "Al Shouf Cedar Nature Reserve",
                 "estimated_price" => 5,
                 "est_time_spend" => 200,
-                "tags" => ["Outdoor Exercising", "Team Building"]
+                "tags" => ["Camp Fire and Camp", "Team Building"]
+            ],
+            [
+                "id" => 12,
+                "title" => "Cedars Ground Campsite",
+                "estimated_price" => 25,
+                "est_time_spend" => 400,
+                "tags" => ["Outdoor Exercising", "Camp Fire and Camp"]
             ]
         ];
         
