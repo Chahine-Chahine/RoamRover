@@ -2,37 +2,67 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
-import { app } from '../firebaseConfig'; 
-import { getDatabase, ref, onValue, off, push, serverTimestamp, query, orderByChild , equalTo } from '@firebase/database';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAIResponse } from '../core/Redux/Actions/generateaiActions';
+import app from '../firebaseConfig'; 
+import { getDatabase, ref, onValue, off, push, serverTimestamp, query, orderByChild, equalTo } from '@firebase/database';
 
 const ChatRoomScreen = () => {
+  const dispatch = useDispatch();
   const route = useRoute();
-  const roomId = route.params?.roomId; 
-  const user = useSelector(state => state.auth.user); 
+  const roomId = route.params?.roomId;
+  const user = useSelector(state => state.auth.user);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  const [displayedMessage, setDisplayedMessage] = useState('');
+  const aiResponse = useSelector(state => state.Questionnaire.Questionnaire);
+
   useEffect(() => {
-    console.log("Room ID:", roomId); 
+    dispatch(fetchAIResponse(roomId)).catch(() => {
+      dispatch(fetchAIResponse(roomId)); 
+    });
+  }, [dispatch, roomId]);
+
+  useEffect(() => {
     if (roomId) {
       const database = getDatabase(app);
       const messagesRef = ref(database, 'messages');
       const messagesQuery = query(messagesRef, orderByChild('room_id'), equalTo(roomId));
-  
-      onValue(messagesQuery, snapshot => {
-      const fetchedMessages = snapshot.val() || {};
-      const parsedMessages = Object.keys(fetchedMessages).map(key => ({
-        ...fetchedMessages[key],
-        id: key
-      }));
-      setMessages(parsedMessages);
-    });
 
-    return () => {
-      off(messagesQuery, 'value');
-    };
-  }
-}, [roomId]);
+      onValue(messagesQuery, snapshot => {
+        const fetchedMessages = snapshot.val() || {};
+        const parsedMessages = Object.keys(fetchedMessages).map(key => ({
+          ...fetchedMessages[key],
+          id: key
+        }));
+        setMessages(parsedMessages);
+      });
+
+      return () => {
+        off(messagesQuery, 'value');
+      };
+    }
+  }, [roomId]);
+
+  useEffect(() => {
+    if (aiResponse && aiResponse.result && Array.isArray(aiResponse.result)) {
+      const fullMessage = aiResponse.result.map(item => `${item.title}: ${item.description}`).join('\n');
+      setDisplayedMessage('');
+      let currentIndex = 0;
+
+      const typingInterval = setInterval(() => {
+        if (currentIndex < fullMessage.length) {
+          setDisplayedMessage(prev => prev + fullMessage[currentIndex]);
+          currentIndex++;
+        } else {
+          clearInterval(typingInterval);
+        }
+      }, 50);
+
+      return () => clearInterval(typingInterval);
+    }
+  }, [aiResponse]);
+
 
   const sendMessage = () => {
     if (message.trim().length > 0) {
@@ -40,8 +70,8 @@ const ChatRoomScreen = () => {
       push(ref(database, 'messages'), {
         message_body: message,
         room_id: roomId,
-        sender_id: user.id, // Replace with actual user ID
-        username: user.username, // Replace with actual username
+        sender_id: user.id, 
+        username: user.username, 
         timestamp: serverTimestamp()
       });
       setMessage('');
@@ -57,9 +87,18 @@ const ChatRoomScreen = () => {
     ));
   };
 
+  const renderAIResponse = () => {
+    if (aiResponse && aiResponse.error) {
+      return <Text style={styles.message}>Error fetching AI response: {aiResponse.error}</Text>;
+    } else {
+      return <Text style={styles.message}>{displayedMessage}</Text>;
+    }
+  };
+
   return (
     <ImageBackground source={require('../assets/chat-bg.jpg')} style={styles.backgroundImage}>
       <ScrollView contentContainerStyle={styles.messagesContainer}>
+        {renderAIResponse()}
         {renderMessages()}
       </ScrollView>
       <View style={styles.inputContainer}>
@@ -77,6 +116,7 @@ const ChatRoomScreen = () => {
     </ImageBackground>
   );
 };
+
 
 const styles = StyleSheet.create({
   backgroundImage: {
