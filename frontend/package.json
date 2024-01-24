@@ -43,7 +43,10 @@
     "redux": "^5.0.1",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^3.1.0"
+    "redux-thunk": "^3.1.0",
+    "expo-notifications": "~0.20.1",
+    "expo-device": "~5.4.0",
+    "expo-constants": "~14.4.2"
   },
   "private": true
 }
