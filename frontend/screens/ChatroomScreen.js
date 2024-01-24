@@ -13,11 +13,13 @@ const ChatRoomScreen = () => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   useEffect(() => {
-    const database = getDatabase(app);
-    const messagesRef = ref(database, 'messages');
-    const messagesQuery = query(messagesRef, orderByChild('room_id'), equalTo(roomId));
-    
-    onValue(messagesQuery, snapshot => {
+    console.log("Room ID:", roomId); 
+    if (roomId) {
+      const database = getDatabase(app);
+      const messagesRef = ref(database, 'messages');
+      const messagesQuery = query(messagesRef, orderByChild('room_id'), equalTo(roomId));
+  
+      onValue(messagesQuery, snapshot => {
       const fetchedMessages = snapshot.val() || {};
       const parsedMessages = Object.keys(fetchedMessages).map(key => ({
         ...fetchedMessages[key],
@@ -29,7 +31,8 @@ const ChatRoomScreen = () => {
     return () => {
       off(messagesQuery, 'value');
     };
-  }, [roomId]);
+  }
+}, [roomId]);
 
   const sendMessage = () => {
     if (message.trim().length > 0) {
