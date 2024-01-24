@@ -28,7 +28,8 @@ const Questionnaire = () => {
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const token = useSelector((state) => state.auth.token); 
+  const token = useSelector((state) => state.auth.token);
+  const questionnaireState = useSelector(state => state.Questionnaire);
 
   const handleSelectAnswer = (answer) => {
     if (currentQuestionIndex === 0) {
@@ -39,7 +40,13 @@ const Questionnaire = () => {
     }
   };
 
-  const questionnaireState = useSelector(state => state.Questionnaire);
+  const fetchAIResponseWithErrorHandling = () => {
+    dispatch(fetchAIResponse())
+      .catch(() => {
+        // Re-dispatch on error
+        dispatch(fetchAIResponse());
+      });
+  };
 
   const handleSubmit = async () => {
     const questionnaireData = {
@@ -52,7 +59,6 @@ const Questionnaire = () => {
   
     try {
       await dispatch(createQuestionnaire({ QuestionnaireData: questionnaireData, token }));
-      // Use a flag to determine if the room ID check should occur
       let checkForRoomId = true;
       // Define a function to check for the room ID in the updated state
       const checkRoomIdAndUpdate = () => {
@@ -60,9 +66,8 @@ const Questionnaire = () => {
         const roomId = latestState.questionnaire?.room_id;
   
         if (roomId && checkForRoomId) {
-          // Set flag to false to prevent further checks
           checkForRoomId = false;  
-          dispatch(fetchAIResponse());
+          fetchAIResponseWithErrorHandling();
           navigation.navigate('ChatRoomScreen', { roomId });
         }
       };

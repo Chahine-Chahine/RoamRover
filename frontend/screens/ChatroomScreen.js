@@ -17,11 +17,6 @@ const ChatRoomScreen = () => {
   const [displayedMessage, setDisplayedMessage] = useState('');
   const aiResponse = useSelector(state => state.Questionnaire.Questionnaire);
 
-  useEffect(() => {
-    dispatch(fetchAIResponse(roomId)).catch(() => {
-      dispatch(fetchAIResponse(roomId)); 
-    });
-  }, [dispatch, roomId]);
 
   useEffect(() => {
     if (roomId) {
