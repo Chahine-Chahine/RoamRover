@@ -5,7 +5,7 @@ import { useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAIResponse } from '../core/Redux/Actions/generateaiActions';
 import app from '../firebaseConfig'; 
-import { getDatabase, ref, onValue, off, push, serverTimestamp, query, orderByChild, equalTo } from '@firebase/database';
+import { getDatabase, ref, onValue, off, push, serverTimestamp, query, orderByChild, equalTo ,set} from '@firebase/database';
 
 const ChatRoomScreen = () => {
   const dispatch = useDispatch();
@@ -62,16 +62,29 @@ const ChatRoomScreen = () => {
   const sendMessage = () => {
     if (message.trim().length > 0) {
       const database = getDatabase(app);
-      push(ref(database, 'messages'), {
+      const messageRef = ref(database, 'messages');
+      const newMessageRef = push(messageRef);
+  
+      set(newMessageRef, {
         message_body: message,
         room_id: roomId,
-        sender_id: user.id, 
-        username: user.username, 
+        sender_id: user.id,
+        username: user.username,
         timestamp: serverTimestamp()
       });
+  
+      const notificationRef = ref(database, 'notifications');
+      push(notificationRef, {
+        senderUsername: user.username,
+        messageBody: message,
+        roomId: roomId,
+      });
+  
       setMessage('');
     }
   };
+  
+  
 
   const renderMessages = () => {
     return messages.sort((a, b) => a.timestamp - b.timestamp).map((msg, index) => (
