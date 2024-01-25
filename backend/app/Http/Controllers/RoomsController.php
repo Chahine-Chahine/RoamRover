@@ -28,7 +28,9 @@ class RoomsController extends Controller
     // GET /rooms/{id}
     public function displayById($id)
     {
-        return Room::with('users')->findOrFail($id);
+        $room = Room::findOrFail($id);
+        $userIds = $room->users()->pluck('users.id');
+        return response()->json($userIds);
     }
 
     // POST /rooms
