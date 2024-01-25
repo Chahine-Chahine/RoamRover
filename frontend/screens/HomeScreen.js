@@ -8,10 +8,7 @@ import NavigationBar from '../components/common/NavigationBar';
 import Categories from '../components/common/Categories';
 import LoadingScreen from './LoadingScreen';
 import { fetchTrips } from '../core/Redux/Actions/tripActions';
-import { updateRoom } from '../core/Redux/Actions/roomActions'; 
-import { getRoomIdFromTrip } from '../core/helpers/getRoomId';
 import { fetchAllUsers } from '../core/Redux/Actions/authActions';
-import getRoomDetails from '../core/helpers/getRoomDetails';
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
@@ -21,27 +18,6 @@ const HomeScreen = () => {
     const { user } = useSelector(state => state.auth); 
     const token = useSelector(state => state.auth.token);
 
-    const handleJoinRoom = async (tripId) => {
-        const roomId = await getRoomIdFromTrip(tripId, token); 
-        
-        if (roomId) {
-          const currentRoom = await getRoomDetails(roomId); 
-          console.log(`the currentRoom in HomeScreen is : ${currentRoom}`)
-          const currentParticipants = currentRoom.participants || [];
-          console.log(`the currentRoom in HomeScreen is : ${currentParticipants}`)
-          
-          if (!currentParticipants.includes(user.id)) {
-            const updatedParticipants = [...currentParticipants, user.id];
-            const updatedData = { participants: updatedParticipants };
-            dispatch(updateRoom(roomId, updatedData));
-          } else {
-            // Alert the user that they are already a participant
-            Alert.alert("Join Trip", "You are already a participant in this trip.");
-          }
-        } else {
-          console.log('Room ID not found for the given trip ID');
-        }
-      };
     
 
     useFocusEffect(
@@ -74,7 +50,7 @@ const HomeScreen = () => {
                         price={`$${trip.total_budget ?? ''} total`}
                         url={trip.locations[0].image}
                         label={'Join'}
-                        onAddPress={() => handleJoinRoom(trip.room?.id)}
+                        onAddPress={() => console.log('pressed')}
                         showBookmark={false}
                         onBookmarkPress={() => {}} 
                     />
