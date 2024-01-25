@@ -11,7 +11,7 @@ export const registerUser = (userData) => {
   return async (dispatch) => {
     try {
       console.log('entered the try')
-      const response = await axios.post(`${baseUrl}:8000/api/register`, userData);
+      const response = await axios.post(`${baseUrl}/api/register`, userData);
       console.log('after the response')
       console.log('the response: ' , response)
       const data = response.data;
@@ -41,7 +41,7 @@ export const registerUser = (userData) => {
 export const loginUser = ({ email, password }) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${baseUrl}:8000/api/login`, { email, password });
+      const response = await axios.post(`${baseUrl}/api/login`, { email, password });
       const data = response.data;
       if (data.status === 'success' && data.authorisation && data.authorisation.token) {
         await AsyncStorage.setItem('userToken', data.authorisation.token);
@@ -105,7 +105,7 @@ export const updateUser = (userId, userData) => {
       if (!token) {
         throw new Error('No token found');
       }
-      const response = await axios.put(`${baseUrl}:8000/api/update/${userId}`, userData, {
+      const response = await axios.put(`${baseUrl}/api/update/${userId}`, userData, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -135,7 +135,7 @@ export const updateUser = (userId, userData) => {
 export const fetchAllUsers = (token) => {
 return async (dispatch) => {
   try {
-    const response = await axios.get(`${baseUrl}:8000/api/getAllUsers`, { 
+    const response = await axios.get(`${baseUrl}/api/getAllUsers`, { 
       headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`

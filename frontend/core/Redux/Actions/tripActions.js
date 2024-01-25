@@ -17,7 +17,7 @@ export const fetchTrips = () => {
     return async (dispatch) => {
         dispatch({ type: FETCH_TRIPS_REQUEST });
         try {
-            const response = await axios.get(`${baseUrl}:8000/api/trips`);
+            const response = await axios.get(`${baseUrl}/api/trips`);
             dispatch({ type: FETCH_TRIPS_SUCCESS, payload: response.data });
         } catch (error) {
             dispatch({ type: FETCH_TRIPS_FAILURE, payload: error.message || 'An unknown error occurred'});
@@ -29,7 +29,7 @@ export const createTrip = (tripData, token) => {
     return async (dispatch) => {
         dispatch({ type: CREATE_TRIP_REQUEST });
         try {
-            const response = await axios.post(`${baseUrl}:8000/api/trips`, tripData, {
+            const response = await axios.post(`${baseUrl}/api/trips`, tripData, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
@@ -50,7 +50,7 @@ export const fetchTripsByCategory = (categoryId) => {
 return async (dispatch) => {
     dispatch({ type: FETCH_TRIPS_BY_CATEGORY_REQUEST });
     try {
-        const response = await axios.get(`${baseUrl}:8000/api/trips/category/${categoryId}`);
+        const response = await axios.get(`${baseUrl}/api/trips/category/${categoryId}`);
         console.log('The response is:' ,response.data);
         dispatch({ type: FETCH_TRIPS_BY_CATEGORY_SUCCESS, payload: response.data });
     } catch (error) {

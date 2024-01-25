@@ -17,7 +17,7 @@ export const fetchChatrooms = (token) => {
   return async (dispatch) => {
     dispatch({ type: FETCH_CHATROOMS_REQUEST });
     try {
-      const response = await axios.get(`${baseUrl}:8000/api/rooms`, {
+      const response = await axios.get(`${baseUrl}/api/rooms`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -38,7 +38,7 @@ export const createChatroom = (roomDetails, token) => {
     dispatch({ type: CREATE_CHATROOMS_REQUEST });
     try {
       const response = await axios.post(
-        `${baseUrl}:8000/api/rooms`,
+        `${baseUrl}/api/rooms`,
         roomDetails,
         {
           headers: {
@@ -63,7 +63,7 @@ export const updateChatRoom = (roomId, participants, token) => {
     dispatch({ type: UPDATE_CHATROOM_REQUEST });
     try {
       const response = await axios.put(
-        `${baseUrl}:8000/api/updateRoom/${roomId}`,
+        `${baseUrl}/api/updateRoom/${roomId}`,
         {participants},
         {
           headers: {

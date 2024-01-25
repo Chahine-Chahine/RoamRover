@@ -16,7 +16,7 @@ export const fetchBookmarks = (token) => {
     return async (dispatch) => {
         dispatch({ type: FETCH_BOOKMARKS_REQUEST });
         try {
-            const response = await axios.get(`${baseUrl}:8000/api/displayUserBookmarks` , { 
+            const response = await axios.get(`${baseUrl}/api/displayUserBookmarks` , { 
                 headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`
@@ -32,7 +32,7 @@ export const createBookmark = ({ userId, locationId , token }) => {
     return async (dispatch) => {
         dispatch({ type: CREATE_BOOKMARK_REQUEST });
         try {
-            const response = await axios.post(`${baseUrl}:8000/api/bookmarks`,
+            const response = await axios.post(`${baseUrl}/api/bookmarks`,
                 { user_id: userId, location_id: locationId },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -49,7 +49,7 @@ export const deleteBookmark = (bookmarkId, token) => {
     return async (dispatch) => {
         dispatch({ type: DELETE_BOOKMARK_REQUEST });
         try {
-            const response = await axios.delete(`${baseUrl}:8000/api/bookmarks/${bookmarkId}`);
+            const response = await axios.delete(`${baseUrl}/api/bookmarks/${bookmarkId}`);
             dispatch({ type: DELETE_BOOKMARK_SUCCESS, payload: response.data });
             dispatch(fetchBookmarks(token));
         } catch (error) {

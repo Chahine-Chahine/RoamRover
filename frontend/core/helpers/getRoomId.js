@@ -3,7 +3,7 @@ import { baseUrl } from './baseUrl';
 
 export const getRoomIdFromTrip = async (tripId, token) => {
     try {
-        const response = await axios.get(`${baseUrl}:8000/api/trips/${tripId}`, {
+        const response = await axios.get(`${baseUrl}/api/trips/${tripId}`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,

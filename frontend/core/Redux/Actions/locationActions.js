@@ -11,8 +11,8 @@ export const fetchLocations = (searchQuery = '') => {
             dispatch({ type: FETCH_LOCATIONS_REQUEST });
 
             const endpoint = searchQuery ? 
-                `${baseUrl}:8000/api/search?query=${encodeURIComponent(searchQuery)}` : 
-                `${baseUrl}:8000/api/locations`;
+                `${baseUrl}/api/search?query=${encodeURIComponent(searchQuery)}` : 
+                `${baseUrl}/api/locations`;
 
             const response = await fetch(endpoint);
             const data = await response.json();

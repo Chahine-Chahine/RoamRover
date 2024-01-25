@@ -14,7 +14,7 @@ export const createQuestionnaire = ({ QuestionnaireData, token }) => {
     dispatch({ type: CREATE_QUESTIONNAIRE_REQUEST });
     try {
       const response = await axios.post(
-        `${baseUrl}:8000/api/postQuestionnaire`,
+        `${baseUrl}/api/postQuestionnaire`,
         QuestionnaireData,
         {
           headers: {
@@ -35,7 +35,7 @@ export const fetchAIResponse = () => {
   return async (dispatch) => {
     dispatch({ type: FETCH_AIRESPONSE_REQUEST });
     try {
-      const response = await axios.get(`${baseUrl}:8000/api/generateTripAi`);
+      const response = await axios.get(`${baseUrl}/api/generateTripAi`);
       dispatch({ type: FETCH_AIRESPONSE_SUCCESS, payload: response.data });
     } catch (error) {
         dispatch({ type: FETCH_AIRESPONSE_FAILURE, payload: error.message });

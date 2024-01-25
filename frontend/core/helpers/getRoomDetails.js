@@ -3,7 +3,7 @@ import { baseUrl } from './baseUrl';
 
 const getRoomDetails = async (roomId, token) => {
     try {
-        const response = await axios.get(`${baseUrl}:8000/api/rooms/${roomId}`, {
+        const response = await axios.get(`${baseUrl}/api/rooms/${roomId}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
