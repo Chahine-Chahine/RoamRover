@@ -79,3 +79,27 @@ export const updateChatRoom = (roomId, participants, token) => {
     }
   };
 };
+
+export const joinRoom = (roomId, token) => {
+  return async (dispatch) => {
+    dispatch({ type: JOIN_CHATROOM_REQUEST });
+    try {
+      const response = await axios.post(
+        `${baseUrl}/api/rooms/${roomId}/join`, 
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch({ type: JOIN_CHATROOM_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({
+        type: JOIN_CHATROOM_FAILURE,
+        payload: error.response.data.message || "An unknown error occurred",
+      });
+    }
+  };
+};
