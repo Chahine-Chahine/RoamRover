@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
     transform: [{ scale: 1 }], 
   },
   messagesContainer: {
-    flex: 1,
     paddingVertical: 15,
     paddingHorizontal: 20,
   },
