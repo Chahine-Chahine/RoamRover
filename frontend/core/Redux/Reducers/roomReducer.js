@@ -7,7 +7,10 @@ import {
     CREATE_CHATROOMS_FAILURE,
     UPDATE_CHATROOM_REQUEST,
     UPDATE_CHATROOM_SUCCESS,
-    UPDATE_CHATROOM_FAILURE
+    UPDATE_CHATROOM_FAILURE,
+    JOIN_CHATROOM_REQUEST,
+    JOIN_CHATROOM_FAILURE,
+    JOIN_CHATROOM_SUCCESS
 } from '../Actions/actionTypes';
 
 const initialState = {
@@ -75,6 +78,22 @@ const roomReducer = (state = initialState, action) => {
                   updating: false,
                   error: action.payload,
                 };
+                case JOIN_CHATROOM_REQUEST:
+                    return {
+                      ...state,
+                      loading: true,
+                    };
+                  case JOIN_CHATROOM_SUCCESS:
+                    return {
+                      ...state,
+                      loading: false,
+                    };
+                  case JOIN_CHATROOM_FAILURE:
+                    return {
+                      ...state,
+                      loading: false,
+                      error: action.payload,
+                    };
         default:
             return state;
     }

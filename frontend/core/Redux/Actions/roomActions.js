@@ -9,6 +9,9 @@ import {
   UPDATE_CHATROOM_REQUEST,
   UPDATE_CHATROOM_SUCCESS,
   UPDATE_CHATROOM_FAILURE,
+  JOIN_CHATROOM_FAILURE,
+  JOIN_CHATROOM_REQUEST,
+  JOIN_CHATROOM_SUCCESS
 } from "./actionTypes";
 
 import { baseUrl } from "../../helpers/baseUrl";
