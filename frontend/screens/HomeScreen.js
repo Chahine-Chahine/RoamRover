@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
@@ -9,7 +9,7 @@ import Categories from '../components/common/Categories';
 import LoadingScreen from './LoadingScreen';
 import { fetchTrips } from '../core/Redux/Actions/tripActions';
 import { fetchAllUsers } from '../core/Redux/Actions/authActions';
-import { joinRoom } from '../core/Redux/Actions/roomActions';
+import { joinRoom, checkParticipant } from '../core/Redux/Actions/roomActions';
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
@@ -18,12 +18,17 @@ const HomeScreen = () => {
     const navigation = useNavigation();
     const { user } = useSelector(state => state.auth); 
     const token = useSelector(state => state.auth.token);
-
+    const { participants, loading: participantLoading, error } = useSelector(state => state.chatroom);
     
-    const handleJoinRoom = (roomId) => {
-        dispatch(joinRoom(roomId, token));
+      const handleJoinRoom = (roomId) => {
+        dispatch(checkParticipant(roomId, token));
+        if (!participants.includes(user.id)) {
+          dispatch(joinRoom(roomId, token));
+          alert('You have successfully joined the room.');
+        }else if (participants.includes(user.id)) {
+            alert('You are already a participant in this room.');
       };
-
+    };
     useFocusEffect(
         React.useCallback(() => {
             dispatch(fetchTrips());
