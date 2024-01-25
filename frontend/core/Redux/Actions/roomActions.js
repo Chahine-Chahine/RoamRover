@@ -106,3 +106,26 @@ export const joinRoom = (roomId, token) => {
     }
   };
 };
+
+export const checkParticipant = (roomId, token) => {
+  return async (dispatch) => {
+    dispatch({ type: CHECK_PARTICIPANT_REQUEST });
+    try {
+      const response = await axios.get(
+        `${baseUrl}/api/rooms/${roomId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch({ type: CHECK_PARTICIPANT_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({
+        type: CHECK_PARTICIPANT_FAILURE,
+        payload: error.response.data.message || "An unknown error occurred",
+      });
+    }
+  };
+};
