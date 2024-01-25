@@ -16,14 +16,6 @@ const TripDetailScreen = ({ route }) => {
               <Text style={styles.title}>{trip.room?.room_name ?? 'Best Trip To Destination'}</Text>
               <Text style={styles.location}>{trip.starting_location ?? 'Location'}</Text>
               <View style={styles.ratingContainer}>
-                {Array(5).fill().map((_, index) => (
-                  <FontAwesome
-                    key={index}
-                    name={index < trip.rating ? "star" : "star-o"}
-                    size={25}
-                    color="white"
-                  />
-                ))}
               </View>
             </View>
           </ImageBackground>
