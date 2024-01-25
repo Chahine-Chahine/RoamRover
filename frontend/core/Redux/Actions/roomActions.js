@@ -53,12 +53,23 @@ export const createChatroom = (roomDetails, token) => {
           },
         }
       );
+
       dispatch({ type: CREATE_CHATROOMS_SUCCESS, payload: response.data });
+
+      // Assuming the response data contains the roomId
+      const roomId = response.data.roomId;
+
+      // Return the roomId for further processing
+      return roomId;
+
     } catch (error) {
       dispatch({
         type: CREATE_CHATROOMS_FAILURE,
         payload: error.message || "An unknown error occurred",
       });
+
+      // Throw the error to allow the calling function to catch it
+      throw error;
     }
   };
 };

@@ -1,20 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, FlatList, Modal, ScrollView, TextInput } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; 
-import { useNavigation } from '@react-navigation/native';
-import { connect, useDispatch, useSelector } from 'react-redux';
-import { fetchChatrooms, createChatroom } from '../core/Redux/Actions/roomActions'; 
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  SafeAreaView,
+  FlatList,
+  Modal,
+  ScrollView,
+  TextInput,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { connect, useDispatch, useSelector } from "react-redux";
+import {
+  fetchChatrooms,
+  createChatroom,
+} from "../core/Redux/Actions/roomActions";
 
-const RoomListScreen = ({chatrooms}) => {
+const RoomListScreen = ({ chatrooms }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [room_name, setRoomName] = useState('');
-  const [room_description, setRoomDescription] = useState('');
+  const [room_name, setRoomName] = useState("");
+  const [room_description, setRoomDescription] = useState("");
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
     if (token) {
-      dispatch(fetchChatrooms(token)); 
+      dispatch(fetchChatrooms(token));
     }
   }, [dispatch, token]);
 
@@ -22,31 +35,40 @@ const RoomListScreen = ({chatrooms}) => {
 
   const navigateChat = (roomId) => {
     console.log("Navigating to ChatRoomScreen with room_id:", roomId);
-    navigation.navigate('ChatRoomScreen', { roomId });
+    navigation.navigate("ChatRoomScreen", { roomId });
   };
-  
 
   const handleSubmit = () => {
-    dispatch(createChatroom({
-      room_name,
-      room_description
-    }, token))
-    .then(() => {
-      setIsModalVisible(false);
-      setRoomName('');
-      setRoomDescription('');
-      navigation.navigate('ChatRoomScreen'); 
-      dispatch(fetchChatrooms(token)); 
-    })
-    .catch(error => {
-      console.log(error);
-    });
-};
-const renderRoom = ({ item }) => (
-  <TouchableOpacity style={styles.roomButton} onPress={() => navigateChat(item.id)}>
-    <Text style={styles.roomText}>{item.room_name}</Text> 
-  </TouchableOpacity>
-);
+    dispatch(
+      createChatroom(
+        {
+          room_name,
+          room_description,
+        },
+        token
+      )
+    )
+      .then((roomId) => {
+        // Receiving roomId from the resolved promise
+        setIsModalVisible(false);
+        setRoomName("");
+        setRoomDescription("");
+        navigation.navigate("ChatRoomScreen", { roomId }); // Using roomId to navigate
+        dispatch(fetchChatrooms(token));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const renderRoom = ({ item }) => (
+    <TouchableOpacity
+      style={styles.roomButton}
+      onPress={() => navigateChat(item.id)}
+    >
+      <Text style={styles.roomText}>{item.room_name}</Text>
+    </TouchableOpacity>
+  );
 
   return (
     <>
@@ -71,10 +93,7 @@ const renderRoom = ({ item }) => (
               value={room_description}
               style={styles.input}
             />
-            <TouchableOpacity
-              style={styles.button}
-              onPress={handleSubmit}
-            >
+            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
               <Text style={styles.buttonText}>Create Trip</Text>
             </TouchableOpacity>
           </ScrollView>
@@ -88,7 +107,10 @@ const renderRoom = ({ item }) => (
           keyExtractor={(item, index) => index.toString()}
           contentContainerStyle={styles.roomList}
         />
-        <TouchableOpacity style={styles.addButton} onPress={() => setIsModalVisible(true)}>
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={() => setIsModalVisible(true)}
+        >
           <Ionicons name="add" size={30} color="white" />
         </TouchableOpacity>
       </SafeAreaView>
@@ -109,46 +131,46 @@ const mapDispatchToProps = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingVertical: 20,
     paddingHorizontal: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#CCCCCC',
+    borderBottomColor: "#CCCCCC",
   },
   headerTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   roomList: {
     padding: 20,
   },
   roomButton: {
-    backgroundColor: '#A78BFA',
+    backgroundColor: "#A78BFA",
     padding: 35,
     borderRadius: 10,
     marginBottom: 10,
   },
   roomText: {
-    color: 'white',
+    color: "white",
     fontSize: 20,
   },
   addButton: {
-    position: 'absolute',
+    position: "absolute",
     right: 25,
     bottom: 25,
-    backgroundColor: '#FF5733',
+    backgroundColor: "#FF5733",
     width: 50,
     height: 50,
     borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 5, 
-    shadowColor: '#000000',
+    justifyContent: "center",
+    alignItems: "center",
+    elevation: 5,
+    shadowColor: "#000000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
