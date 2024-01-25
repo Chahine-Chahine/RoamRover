@@ -9,6 +9,7 @@ import Categories from '../components/common/Categories';
 import LoadingScreen from './LoadingScreen';
 import { fetchTrips } from '../core/Redux/Actions/tripActions';
 import { fetchAllUsers } from '../core/Redux/Actions/authActions';
+import { joinRoom } from '../core/Redux/Actions/roomActions';
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
@@ -19,6 +20,9 @@ const HomeScreen = () => {
     const token = useSelector(state => state.auth.token);
 
     
+    const handleJoinRoom = (roomId) => {
+        dispatch(joinRoom(roomId, token));
+      };
 
     useFocusEffect(
         React.useCallback(() => {
@@ -50,7 +54,7 @@ const HomeScreen = () => {
                         price={`$${trip.total_budget ?? ''} total`}
                         url={trip.locations[0].image}
                         label={'Join'}
-                        onAddPress={() => console.log('pressed')}
+                        onAddPress={() => handleJoinRoom(trip.room?.id)}
                         showBookmark={false}
                         onBookmarkPress={() => {}} 
                     />
