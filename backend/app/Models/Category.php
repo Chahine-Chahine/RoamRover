@@ -23,7 +23,7 @@ class Category extends Model
     }
     public function trips()
 {
-    return $this->belongsToMany(Trip::class, 'category_trip');
+    return $this->belongsToMany(Trip::class, 'categories_trips');
 }
 
 }
