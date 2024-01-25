@@ -71,7 +71,7 @@ const QuickActions = () => {
         { announcement_body: updatedAnnouncementBody },
         token
       )
-     );
+    );
     setIsUpdateModalOpen(false);
   };
   const handleLocationInputChange = (e) => {
@@ -93,7 +93,10 @@ const QuickActions = () => {
   };
 
   const handleCreateLocation = (e) => {
+    console.log("handleCreateLocation called"); // Log when function is called
+
     e.preventDefault();
+
     const payload = {
       ...locationData,
       id: Number(locationData.id),
@@ -103,9 +106,12 @@ const QuickActions = () => {
       latitude: Number(locationData.coordinates.latitude),
       longitude: Number(locationData.coordinates.longitude),
     };
+
+    console.log("Dispatching createLocation action with payload:", payload); // Log payload being dispatched
+
     dispatch(createLocation(payload, token));
     setIsCreateLocationModalOpen(false);
-  };
+};
 
   const handleDeleteLocation = (e) => {
     e.preventDefault();
@@ -119,9 +125,7 @@ const QuickActions = () => {
       id: Number(locationData.id),
       estimated_price: Number(locationData.estimated_price),
       category_ids: locationData.category_ids.map(Number),
-      tags: locationData.tags.split(",").map((tag) => tag.trim()),
-      latitude: Number(locationData.coordinates.latitude),
-      longitude: Number(locationData.coordinates.longitude),
+      tags: locationData.tags.split(",").map((tag) => tag.trim())
     };
     e.preventDefault();
     dispatch(updateLocation(placeIdToEdit, payload, token));
@@ -139,7 +143,7 @@ const QuickActions = () => {
             className="action-button"
             onClick={() => setIsCreateModalOpen(true)}
           >
-           Create Announcement
+            Create Announcement
           </button>
           <button
             className="action-button"
@@ -447,9 +451,9 @@ const QuickActions = () => {
             onChange={handleLocationInputChange}
             placeholder="Tags (comma-separated)"
           />
-            <button type="submit">Update</button>
+          <button type="submit">Update</button>
         </form>
-        </Modal>
+      </Modal>
     </div>
   );
 };

@@ -14,7 +14,6 @@ import { baseUrl } from "../../helpers/baseUrl";
 export const fetchLocations = () => async (dispatch) => {
   try {
     const response = await axios.get(`${baseUrl}/locations`);
-    console.log(response.data.location)
     dispatch({ type: FETCH_LOCATIONS_SUCCESS, payload: response.data });
   } catch (error) {
     dispatch({
@@ -28,8 +27,10 @@ export const createLocation = (locationData) => async (dispatch) => {
     console.log(locationData)
   try {
     const response = await axios.post(`${baseUrl}/locations`, locationData);
+    console.log(response.data)
     dispatch({ type: CREATE_LOCATION_SUCCESS, payload: response.data });
     dispatch(fetchLocations());
+    console.log(dispatch((fetchLocations())));
   } catch (error) {
     dispatch({
       type: CREATE_LOCATION_FAILURE,

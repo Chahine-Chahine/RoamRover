@@ -40,8 +40,7 @@ class LocationsController extends Controller
         $validatedData['tags'] = json_encode($request->tags);
 
         $location = Location::create($validatedData);
-        
-        $location = Location::create($validatedData);
+
         $location->categories()->attach($request->category_ids);
         return response()->json(['location' => $location, 'message' => 'Location created successfully'], 201);
     }
