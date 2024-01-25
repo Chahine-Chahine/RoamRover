@@ -26,8 +26,9 @@ const HomeScreen = () => {
         
         if (roomId) {
           const currentRoom = await getRoomDetails(roomId); 
-          console.log(currentRoom)
+          console.log(`the currentRoom in HomeScreen is : ${currentRoom}`)
           const currentParticipants = currentRoom.participants || [];
+          console.log(`the currentRoom in HomeScreen is : ${currentParticipants}`)
           
           if (!currentParticipants.includes(user.id)) {
             const updatedParticipants = [...currentParticipants, user.id];

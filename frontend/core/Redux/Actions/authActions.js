@@ -3,7 +3,7 @@ import { LOGIN_SUCCESS, LOGIN_FAILURE } from './actionTypes';
 import { REGISTER_SUCCESS, REGISTER_FAILURE } from './actionTypes';
 import  {LOGOUT, UPDATE_SUCCESS, UPDATE_FAILURE } from './actionTypes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { FETCH_USERS_FAILURE, FETCH_USERS_REQUEST , FETCH_USERS_SUCCESS } from './actionTypes';
+import { FETCH_USERS_FAILURE, FETCH_USERS_SUCCESS } from './actionTypes';
 import { baseUrl } from '../../helpers/baseUrl';
 
 // Signup action
