@@ -51,6 +51,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/rooms/{id}', [RoomsController::class, 'displayById']);
     Route::post('/rooms', [RoomsController::class,'createRoom']); 
     Route::put('/updateRoom/{id}', [RoomsController::class , 'updateRoom']);
+    Route::post('/rooms/{room}/join', [RoomsController::class, 'joinRoom']);
+
 });
 
 Route::controller(TripsController::class)->group(function () {

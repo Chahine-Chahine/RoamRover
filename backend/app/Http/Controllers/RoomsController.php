@@ -104,4 +104,26 @@ class RoomsController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    
+    public function joinRoom(Request $request, $roomId)
+    {
+        $user = auth()->user();
+        $room = Room::find($roomId);
+    
+        if (!$room) {
+            return response()->json(['message' => 'Room not found'], 404);
+        }
+    
+        // Check if the user is already a participant
+        if ($room->users()->where('user_id', $user->id)->exists()) {
+            return response()->json(['message' => 'User already a participant'], 409);
+        }
+    
+        // Add user to the room
+        $room->users()->attach($user->id);
+    
+        return response()->json(['message' => 'Joined room successfully'], 200);
+    }
+    
 }
