@@ -38,10 +38,11 @@ class User extends Authenticatable implements JWTSubject
         'remember_token',
     ];
 
-    public function rooms()
-{
-    return $this->belongsToMany(Room::class);
-}
+    public function rooms(): BelongsToMany
+    {
+        return $this->belongsToMany(Room::class, 'rooms_users');
+    }
+    
     /**
      * The attributes that should be cast.
      *

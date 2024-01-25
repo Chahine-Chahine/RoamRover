@@ -24,9 +24,9 @@ class Room extends Model
         return $this->belongsTo(User::class, 'creator_id');
     }
 
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'rooms_users');
-    }
-    
+public function users(): BelongsToMany
+{
+    return $this->belongsToMany(User::class, 'rooms_users');
+}
+
 }
