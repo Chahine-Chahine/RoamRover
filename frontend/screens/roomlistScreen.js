@@ -183,7 +183,8 @@ const styles = StyleSheet.create({
     width: "95%",
     height: "40%",
     backgroundColor: "white",
-    borderRadius: 20,
+    borderTopLeftRadius: 20, 
+    borderTopLeftRadius: 20,
     elevation: 5,
   },
   input: {
