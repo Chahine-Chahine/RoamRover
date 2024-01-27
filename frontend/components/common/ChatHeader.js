@@ -28,7 +28,7 @@ const ChatHeader = ({ roomName, roomId }) => {
       <TouchableOpacity style={styles.inviteButton} onPress={() => setIsModalVisible(true)}>
         <Text style={styles.inviteText}>Invite</Text>
       </TouchableOpacity>
-      <Ionicons name="camera-outline" size={30} color="#6B46D9" />
+      {/* <Ionicons name="camera-outline" size={30} color="#6B46D9" /> */}
 
       <Modal animationType="slide" transparent={true} visible={isModalVisible} onRequestClose={() => setIsModalVisible(false)}>
         <View style={styles.modalView}>
@@ -41,7 +41,7 @@ const ChatHeader = ({ roomName, roomId }) => {
               </TouchableOpacity>
             ))}
           </ScrollView>
-          <TouchableOpacity style={styles.inviteButton} onPress={handleInvitePress}>
+          <TouchableOpacity style={styles.ModalinviteButton} onPress={handleInvitePress}>
             <Text style={styles.inviteButtonText}>Invite</Text>
           </TouchableOpacity>
         </View>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         padding: 10,
         borderBottomColor: '#6B46D9',
         borderBottomWidth: 1,
@@ -62,19 +62,29 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 20,
         color: '#6B46D9',
+        marginLeft: 8,  
       },
       inviteButton: {
         backgroundColor: '#6B46D9',
         borderRadius: 20,
         padding: 5,
         paddingHorizontal: 15,
+        marginLeft: 125,
+      },
+      ModalinviteButton:{
+        backgroundColor: '#6B46D9',
+        borderRadius: 20,
+        padding: 5,
+        paddingHorizontal: 15,
+        marginTop: 15
       },
       inviteText: {
         color: '#FFFFFF',
         fontWeight: 'bold',
       },
       modalView: {
-        margin: 20,
+        marginTop: 100,
+        marginHorizontal: 20,
         backgroundColor: "white",
         borderRadius: 20,
         padding: 35,
