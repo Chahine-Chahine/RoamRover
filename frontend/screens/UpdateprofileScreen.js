@@ -1,27 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TextInput, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { useNavigation } from '@react-navigation/native';
 import { connect, useDispatch } from 'react-redux'; 
 import { updateUser } from '../core/Redux/Actions/authActions'; 
 
-const ProfileUpdateScreen = ({user}) => {
-  const [first_name, setFirstName] = useState('');
-  const [last_name, setLastName] = useState('');
-  const [username, setUsername] = useState('');
-  const [bio, setbio] = useState('');
+const ProfileUpdateScreen = ({ user }) => {
+  const [first_name, setFirstName] = useState(user?.first_name || '');
+  const [last_name, setLastName] = useState(user?.last_name || '');
+  const [username, setUsername] = useState(user?.username || '');
+  const [bio, setbio] = useState(user?.bio || '');
   const [password, setPassword] = useState('');
-  const [image_url, setImageUri] = useState(null);
+  const [image_url, setImageUri] = useState(user?.image_url || null);
   const dispatch = useDispatch(); 
   const navigation = useNavigation();
 
+  useEffect(() => {
+    setFirstName(user?.first_name || '');
+    setLastName(user?.last_name || '');
+    setUsername(user?.username || '');
+    setbio(user?.bio || '');
+    setImageUri(user?.image_url || null);
+  }, [user]);
+
   const handleUpdateProfile = () => {
     if (user && user.id) {
-    dispatch(updateUser(user.id,{first_name, last_name, username, bio, password, image_url }));
-    navigation.navigate('profileScreen'); 
-  }else {
-    console.error("User ID is not available for update.");
-  }
+      dispatch(updateUser(user.id, { first_name, last_name, username, bio, password, image_url }));
+      navigation.navigate('profileScreen'); 
+    } else {
+      console.error("User ID is not available for update.");
+    }
   };
 
   const handleSelectImage = async () => {
