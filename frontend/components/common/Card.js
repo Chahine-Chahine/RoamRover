@@ -2,52 +2,52 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image, BackHandler } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import OutlinedButton from "./OutlinedButton";
+const Card = ({ location_id , onPress, title, description, price, url, label, location, showBookmark = false, onBookmarkPress, isBookmarkedInitially, onAddPress, buttonColor }) => {
+  const [isBookmarked, setIsBookmarked] = useState(isBookmarkedInitially);
 
-const Card = ({ location_id , onPress, title, description, price, url, label ,location, showBookmark = false, onBookmarkPress, isBookmarkedInitially, onAddPress  }) => {
-    const [isBookmarked, setIsBookmarked] = useState(isBookmarkedInitially);
+  useEffect(() => {
+      setIsBookmarked(isBookmarkedInitially);
+  }, [isBookmarkedInitially]);
 
-    useEffect(() => {
-        setIsBookmarked(isBookmarkedInitially);
-    }, [isBookmarkedInitially]);
+  const handleBookmarkToggle = () => {
+      setIsBookmarked(!isBookmarked);
+      if (onBookmarkPress) {
+          onBookmarkPress();
+      }
+  };
 
-    const handleBookmarkToggle = () => {
-        setIsBookmarked(!isBookmarked);
-        if (onBookmarkPress) {
-            onBookmarkPress();
-        }
-    };
-
-    return (
-        <TouchableOpacity onPress={() => onPress(location)} style={styles.fullScreen} activeOpacity={0.8}>
-            <View style={styles.containerStyle}>
-                <View style={styles.cardWrapper}>
-                    <View>
-                        <Image source={{ uri: url }} style={styles.cardImage} />
-                    </View>
-                    <View style={styles.contentWrapper}>
-                        <View style={styles.leftCard}>
-                            <Text style={styles.title}>{title}</Text>
-                            <Text>{description}</Text>
-                            <Text style={styles.price}>{price}</Text>
-                        </View>
-                        <View style={styles.rightCard}>
-                            {showBookmark && (
-                                <Icon
-                                    name='bookmark'
-                                    onPress={handleBookmarkToggle}
-                                    solid={isBookmarked}
-                                    size={22}
-                                    style={styles.bookmark}
-                                />
-                            )}
-                            <OutlinedButton label={label} style={styles.OutlinedButton} onPress={() => onAddPress(location_id)}  />
-                        </View>
-                    </View>
-                </View>
-            </View>
-        </TouchableOpacity>
-    );
+  return (
+      <TouchableOpacity onPress={() => onPress(location)} style={styles.fullScreen} activeOpacity={0.8}>
+          <View style={styles.containerStyle}>
+              <View style={styles.cardWrapper}>
+                  <View>
+                      <Image source={{ uri: url }} style={styles.cardImage} />
+                  </View>
+                  <View style={styles.contentWrapper}>
+                      <View style={styles.leftCard}>
+                          <Text style={styles.title}>{title}</Text>
+                          <Text>{description}</Text>
+                          <Text style={styles.price}>{price}</Text>
+                      </View>
+                      <View style={styles.rightCard}>
+                          {showBookmark && (
+                              <Icon
+                                  name='bookmark'
+                                  onPress={handleBookmarkToggle}
+                                  solid={isBookmarked}
+                                  size={22}
+                                  style={styles.bookmark}
+                              />
+                          )}
+                          <OutlinedButton label={label} style={{ ...styles.OutlinedButton, backgroundColor: buttonColor }} onPress={() => onAddPress(location_id)} />
+                      </View>
+                  </View>
+              </View>
+          </View>
+      </TouchableOpacity>
+  );
 };
+
 
 const styles = {
   fullScreen: {
