@@ -1,24 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground } from 'react-native';
-import NavigationBar from '../components/common/NavigationBar';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkParticipant, joinRoom } from '../core/Redux/Actions/roomActions';
+import NavigationBar from '../components/common/NavigationBar';
+import { checkParticipant, updateChatRoom } from '../core/Redux/Actions/roomActions';
 
 const TripDetailScreen = ({ route }) => {
   const dispatch = useDispatch();
   const { trip } = route.params;
   const coverImageUrl = trip.locations[0]?.image ? { uri: trip.locations[0].image } : require('../assets/Baalbeck.webp');
   const token = useSelector(state => state.auth.token);
+  const user = useSelector(state => state.auth.user);
   const { participants } = useSelector(state => state.chatroom);
-  const { user } = useSelector(state => state.auth); 
-  
-  const handleJoinRoom = (roomId) => {
+  const [isJoined, setIsJoined] = useState(false);
+
+  useEffect(() => {
+    setIsJoined(participants.includes(user?.id));
+  }, [participants, user]);
+
+  const handleJoinRoom = async (roomId) => {
     dispatch(checkParticipant(roomId, token));
-    if (!participants.includes(user.id)) {
-      dispatch(joinRoom(roomId, token));
-      alert('You have successfully joined the room.');
-    } else if (participants.includes(user.id)) {
-      alert('You are already a participant in this room.');
+
+    try {
+      if (isJoined) {
+        const updatedParticipants = participants.filter(participantId => participantId !== user?.id);
+        dispatch({ type: 'UPDATE_PARTICIPANTS', payload: updatedParticipants }); 
+        await dispatch(updateChatRoom(roomId, updatedParticipants, token));
+        setIsJoined(false);
+        alert('You have successfully left the room.');
+      } else {
+        const updatedParticipants = [...participants, user?.id];
+        dispatch({ type: 'UPDATE_PARTICIPANTS', payload: updatedParticipants }); 
+        await dispatch(updateChatRoom(roomId, updatedParticipants, token));
+        setIsJoined(true);
+        alert('You have successfully joined the room.');
+      }
+    } catch (error) {
+      console.error('handleJoinRoom error:', error);
+      // Handle the error as needed
     }
   };
 
@@ -34,23 +52,29 @@ const TripDetailScreen = ({ route }) => {
         </ImageBackground>
       </View>
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-        <Text style={styles.sectionTitle}>About</Text>
-        <Text style={styles.description}>{trip.room?.room_description ?? 'No description available.'}</Text>
-        <Text style={styles.sectionTitle}>Gallery</Text>
-        <View style={styles.galleryContainer}>
-          {trip.locations.map((location, index) => (
-            <ImageBackground key={index} source={{ uri: location.image }} style={styles.imagePlaceholder} />
-          ))}
-        </View>
-        <TouchableOpacity style={styles.joinButton} onPress={() => handleJoinRoom(trip.room?.id)}>
-          <Text style={styles.joinButtonText}>Join now</Text>
+      <Text style={styles.sectionTitle}>About</Text>
+          <Text style={styles.description}>{trip.room?.room_description ?? 'No description available.'}</Text>
+          <Text style={styles.sectionTitle}>Gallery</Text>
+          <View style={styles.galleryContainer}>
+            {trip.locations.map((location, index) => (
+              <ImageBackground
+                key={index}
+                source={{ uri: location.image }}
+                style={styles.imagePlaceholder}
+              />
+            ))}
+          </View>
+        <TouchableOpacity
+          style={[styles.joinButton, { backgroundColor: isJoined ? 'gray' : '#A78BFA' }]}
+          onPress={() => handleJoinRoom(trip.room?.id)}
+        >
+          <Text style={styles.joinButtonText}>{isJoined ? 'Leave Room' : 'Join now'}</Text>
         </TouchableOpacity>
       </ScrollView>
       <NavigationBar />
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
