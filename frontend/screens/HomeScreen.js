@@ -37,8 +37,11 @@ const HomeScreen = () => {
     );
 
     const navigateTripPage = (trip) => {
-        navigation.navigate('TripDetailsScreen', { trip });
-    };
+        navigation.navigate('TripDetailsScreen', {
+          trip,
+          onJoinPress: () => handleJoinRoom(trip.room?.id),
+        });
+      };
 
     if (loading) return <LoadingScreen />; 
 

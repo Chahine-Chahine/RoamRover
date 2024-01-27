@@ -1,46 +1,55 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground } from 'react-native';
-import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import NavigationBar from '../components/common/NavigationBar';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { checkParticipant, joinRoom } from '../core/Redux/Actions/roomActions';
 
 const TripDetailScreen = ({ route }) => {
-    const { trip } = route.params; 
-    const coverImageUrl = trip.locations[0]?.image ? { uri: trip.locations[0].image } : require('../assets/Baalbeck.webp');
+  const dispatch = useDispatch();
+  const { trip } = route.params;
+  const coverImageUrl = trip.locations[0]?.image ? { uri: trip.locations[0].image } : require('../assets/Baalbeck.webp');
+  const token = useSelector(state => state.auth.token);
+  const { participants } = useSelector(state => state.chatroom);
+  const { user } = useSelector(state => state.auth); 
   
-    return (
-      <View style={styles.container}>
-        <View style={styles.coverImageContainer}>
-          <ImageBackground source={coverImageUrl} style={styles.coverImage}>
-            <View style={styles.contentContainer}>
-              <Text style={styles.title}>{trip.room?.room_name ?? 'Best Trip To Destination'}</Text>
-              <Text style={styles.location}>{trip.starting_location ?? 'Location'}</Text>
-              <View style={styles.ratingContainer}>
-              </View>
-            </View>
-          </ImageBackground>
-        </View>
-        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-          <Text style={styles.sectionTitle}>About</Text>
-          <Text style={styles.description}>{trip.room?.room_description ?? 'No description available.'}</Text>
-          <Text style={styles.sectionTitle}>Gallery</Text>
-          <View style={styles.galleryContainer}>
-            {trip.locations.map((location, index) => (
-              <ImageBackground
-                key={index}
-                source={{ uri: location.image }}
-                style={styles.imagePlaceholder}
-              />
-            ))}
-          </View>
-          <TouchableOpacity style={styles.joinButton} onPress={() => {/* Add join logic here */}}>
-            <Text style={styles.joinButtonText}>Join now</Text>
-          </TouchableOpacity>
-        </ScrollView>
-        <NavigationBar />
-      </View>
-    );
+  const handleJoinRoom = (roomId) => {
+    dispatch(checkParticipant(roomId, token));
+    if (!participants.includes(user.id)) {
+      dispatch(joinRoom(roomId, token));
+      alert('You have successfully joined the room.');
+    } else if (participants.includes(user.id)) {
+      alert('You are already a participant in this room.');
+    }
   };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.coverImageContainer}>
+        <ImageBackground source={coverImageUrl} style={styles.coverImage}>
+          <View style={styles.contentContainer}>
+            <Text style={styles.title}>{trip.room?.room_name ?? 'Best Trip To Destination'}</Text>
+            <Text style={styles.location}>{trip.starting_location ?? 'Location'}</Text>
+            <View style={styles.ratingContainer}></View>
+          </View>
+        </ImageBackground>
+      </View>
+      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+        <Text style={styles.sectionTitle}>About</Text>
+        <Text style={styles.description}>{trip.room?.room_description ?? 'No description available.'}</Text>
+        <Text style={styles.sectionTitle}>Gallery</Text>
+        <View style={styles.galleryContainer}>
+          {trip.locations.map((location, index) => (
+            <ImageBackground key={index} source={{ uri: location.image }} style={styles.imagePlaceholder} />
+          ))}
+        </View>
+        <TouchableOpacity style={styles.joinButton} onPress={() => handleJoinRoom(trip.room?.id)}>
+          <Text style={styles.joinButtonText}>Join now</Text>
+        </TouchableOpacity>
+      </ScrollView>
+      <NavigationBar />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
