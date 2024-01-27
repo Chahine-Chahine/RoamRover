@@ -1,8 +1,8 @@
-import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from "react-native";
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { createQuestionnaire, fetchAIResponse } from '../core/Redux/Actions/generateaiActions';
+import { useNavigation } from "@react-navigation/native";
 
 const Questionnaire = () => {
   const questions = [
@@ -24,7 +24,6 @@ const Questionnaire = () => {
   const [budget_question_response, setBudget] = useState('');
   const [room_name, setRoomName] = useState('');
   const [room_description, setRoomDescription] = useState('');  
-  
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -34,7 +33,6 @@ const Questionnaire = () => {
   const handleSelectAnswer = (answer) => {
     if (currentQuestionIndex === 0) {
       setTripType(answer);
-
     } else if (currentQuestionIndex === 1) {
       setTripTime(answer);
     }
@@ -48,53 +46,33 @@ const Questionnaire = () => {
       });
   };
 
-  const handleSubmit = async () => {
-    const questionnaireData = {
-      type_question_response,
-      time_question_response,
-      budget_question_response,
-      room_name,
-      room_description
-    };
-  
-    try {
-      await dispatch(createQuestionnaire({ QuestionnaireData: questionnaireData, token }));
-      let checkForRoomId = true;
-      // Define a function to check for the room ID in the updated state
-      const checkRoomIdAndUpdate = () => {
-        const latestState = questionnaireState.Questionnaire;
-        const roomId = latestState.questionnaire?.room_id;
-  
-        if (roomId && checkForRoomId) {
-          checkForRoomId = false;  
-          fetchAIResponseWithErrorHandling();
-          navigation.navigate('ChatRoomScreen', { roomId });
-        }
-      };
-      // Set up an interval to repeatedly check for the room ID
-      const intervalId = setInterval(checkRoomIdAndUpdate, 500); 
-  
-      // Clear the interval when the component unmounts or when roomId is found
-      return () => {
-        checkForRoomId = false;
-        clearInterval(intervalId);
-      };
-    } catch (error) {
-      console.error('Error submitting questionnaire:', error);
-    }
-  };
-  
-  
-  
-
-  const handleNextQuestion = () => {
+  const handleNextQuestion = async () => {
     if (currentQuestionIndex < questions.length) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      handleSubmit();
+      const questionnaireData = {
+        type_question_response,
+        time_question_response,
+        budget_question_response,
+        room_name,
+        room_description
+      };
+
+      try {
+        await dispatch(createQuestionnaire({ QuestionnaireData: questionnaireData, token }));
+
+        // Fetch AI response only after successfully submitting the questionnaire
+        await fetchAIResponseWithErrorHandling();
+
+        const latestState = questionnaireState.Questionnaire;
+        const roomId = latestState.questionnaire?.room_id;
+
+        navigation.navigate('ChatRoomScreen', { roomId });
+      } catch (error) {
+        console.error('Error submitting questionnaire:', error);
+      }
     }
   };
-
   const currentQuestion = questions[currentQuestionIndex];
   const isLastQuestion = currentQuestionIndex === questions.length;
 
