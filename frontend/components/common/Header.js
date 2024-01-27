@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const Header = ({ user }) => {
   const navigation = useNavigation();
@@ -22,7 +23,7 @@ const Header = ({ user }) => {
         <Text>Beirut, Lebanon</Text> 
       </View>
       <View style={styles.messageIcon}>
-        <Icon name="comment-dots"  size={25}  onPress= {chatNavigate}/>
+        <Icon name="facebook-messenger"  size={25}  onPress= {chatNavigate}/>
       </View>
     </View>
   );
