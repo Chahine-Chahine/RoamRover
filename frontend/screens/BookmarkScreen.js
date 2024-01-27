@@ -43,7 +43,7 @@ const BookmarkScreen = () => {
           <View style={styles.cardContent}>
             <Text style={styles.title}>{item.location.title}</Text>
             <Text style={styles.subtitle}>{item.location.description}</Text>
-            <Text style={styles.price}>{`${item.location.estimated_price}$`}</Text>
+            <Text style={styles.price}>{`$${item.location.estimated_price}`}</Text>
           </View>
         </View>
     </Swipeable>
@@ -113,7 +113,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-    top: 15,
+    top: 12,
+    right:20
   },
   actionText: {
     color: 'white',
