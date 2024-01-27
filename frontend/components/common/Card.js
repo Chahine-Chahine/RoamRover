@@ -28,7 +28,7 @@ const Card = ({ location_id , onPress, title, description, price, url, label ,lo
                         <View style={styles.leftCard}>
                             <Text style={styles.title}>{title}</Text>
                             <Text>{description}</Text>
-                            <Text>{price}</Text>
+                            <Text style={styles.price}>{price}</Text>
                         </View>
                         <View style={styles.rightCard}>
                             {showBookmark && (
@@ -114,6 +114,10 @@ const styles = {
     top: 9,
     backgroundColor: '#A78BFA',
     borderWidth: 0
+   },
+   price: {
+    marginVertical: 2,
+    color: '#6f6f6f',
    }
 };
 
