@@ -64,50 +64,25 @@
 
 ### User Screens (Mobile)
 
-1. **Onboarding Screens**
-   ![Onboarding](link_to_image)
+| Onboarding Screens | Signin Screen | Sign Up Screen |
+| --- | --- | --- |
+| ![Onboarding](link_to_image) | ![Signin](link_to_image) | ![Sign Up](link_to_image) |
 
-2. **Signin Screen**
-   ![Signin](link_to_image)
+| Home Screen | Trip Details Screen | Room List Screen |
+| --- | --- | --- |
+| ![Home](link_to_image) | ![Trip Details](link_to_image) | ![Room List](link_to_image) |
 
-3. **Sign Up Screen**
-   ![Sign Up](link_to_image)
+| Chatroom Screen | AI Questionnaire Screen | Custom Trip Screen |
+| --- | --- | --- |
+| ![Chatroom](link_to_image) | ![AI Questionnaire](link_to_image) | ![Custom Trip](link_to_image) |
 
-4. **Home Screen**
-   ![Home](link_to_image)
+| Bookmark Screen | Location Details Screen | Map Screen |
+| --- | --- | --- |
+| ![Bookmark](link_to_image) | ![Location Details](link_to_image) | ![Map](link_to_image) |
 
-5. **Trip Details Screen**
-   ![Trip Details](link_to_image)
-
-6. **Room List Screen**
-   ![Room List](link_to_image)
-
-7. **Chatroom Screen**
-   ![Chatroom](link_to_image)
-
-8. **AI Questionnaire Screen**
-   ![AI Questionnaire](link_to_image)
-
-9. **Custom Trip Screen**
-   ![Custom Trip](link_to_image)
-
-10. **Bookmark Screen**
-    ![Bookmark](link_to_image)
-
-11. **Location Details Screen**
-    ![Location Details](link_to_image)
-
-12. **Map Screen**
-    ![Map](link_to_image)
-
-13. **Profile Screen**
-    ![Profile](link_to_image)
-
-14. **Update Profile Screen**
-    ![Update Profile](link_to_image)
-
-15. **Loading Screen**
-    ![Loading](link_to_image)
+| Profile Screen | Update Profile Screen | Loading Screen |
+| --- | --- | --- |
+| ![Profile](link_to_image) | ![Update Profile](link_to_image) | ![Loading](link_to_image) |
 
 
 ### Admin Screens (Web)
