@@ -66,7 +66,7 @@
 
 | Onboarding Screens | Signin Screen | Sign Up Screen |
 | --- | --- | --- |
-| ![Onboarding](link_to_image) | ![Signin](link_to_image) | ![Sign Up](link_to_image) |
+| ![Onboarding](./readme/onboarding.mp4) | ![Signin](link_to_image) | ![Sign Up](link_to_image) |
 
 | Home Screen | Trip Details Screen | Room List Screen |
 | --- | --- | --- |
