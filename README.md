@@ -120,22 +120,27 @@ This is an example of how to list things you need to use the software and how to
   npm install npm@latest -g
   ```
 
-### Installation
+## Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+```sh
+# Frontend (React Native)
+git clone https://github.com/Chahine-Chahine/RoamRover.git
+cd RoamRover/frontend
+npm install
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/Chahine-Chahine/RoamRover.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+# Enter your API key in config.js
+# const API_KEY = 'ENTER YOUR API';
 
-Now, you should be able to run Roam Rover locally and explore its features.
+# Backend (Laravel)
+cd ../../backend
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+
+# Admin Panel (React)
+cd ../adminPanel
+npm install
+
+Now, the frontend, backend, and adminPanel of Roam Rover are set up. You can run them locally and explore their features.
+Feel free to explore and enjoy using Roam Rover!
