@@ -12,33 +12,34 @@
 - As a user, I want to generate a trip based on my budget without the need to search for places and compare budgets.
 - As a user, I want to check the locations of recommended or chosen places to make informed decisions.
 - As a user, I want to inform my friends about the plan and discuss trip details within the app.
-- As a user, I want to initiate a vote for trip details such as dates and specific activities.
-- As a user, I want to modify the trip and receive an updated plan.
 - As a user, I want a list of good recommendations to choose from manually.
-- As a user, I want the app to calculate trip expenses and provide a separate bill for each participant.
-- As a user, I want the option to send a split-check bill to all participants or manage it in my expenses.
-- As a user, I want to upload and store trip pictures and videos in a designated folder within the app.
-- As a user, I want the option to make trip media public for others interested in the same destination.
-- As a user, I want the ability to video call all participants to discuss changes or the trip.
-- As a user, I want to receive reminder notifications when the trip date is near.
+- As a user, I want the app to calculate trip expenses and provide a trip estimated total.
 ### Admin Stories
 - As an admin, I want to have comprehensive access to all user operations for efficient monitoring and assistance.
 - As an admin, I want to enhance the app's content by adding new places that users might find interesting.
-- As an admin, I want to effectively communicate with users by adding announcements and sending push notifications.
-- As an admin, I want to have the flexibility to initiate conversations with users when necessary.
-- As an admin, I want to monitor and moderate user-generated content, ensuring it aligns with community guidelines
+- As an admin, I want to effectively communicate with users by adding announcements.
 <br><br>
 
-
-<!-- Prototyping -->
+<!-- Tech stack -->
 <img src="./readme/title3.svg"/>
+
+###  Roam Rover is built using the following technologies:
+
+- This project uses the [ReactNative app development framework](https://reactnative.dev/). ReactNative is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
+- For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package which allows the app to create a custom storage schema and save it to a local database.
+- To send local push notifications, the app uses the [notifee](https://notifee.app/) package which supports Android, iOS, and macOS.
+  - 🚨 Currently, notifications aren't working on macOS. This is a known issue that we are working to resolve!
+- The app uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
+
+<br><br>
+<!-- UI UX -->
+<img src="./readme/title4.svg"/>
+
 
 > We designed Roam Rover using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
-### Wireframes
-| Login screen  | Register screen |  Landing screen |
-| ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+- Project Figma design [figma](https://www.figma.com/file/5CgT0dwIKPiVcGiMI2XmpA/Final-Project?type=design&node-id=8%3A17&mode=design&t=DQpFoX6qTc7XoAGm-1)
+
 
 ### Mockups
 | Home screen  | Menu Screen | Order Screen |
@@ -47,10 +48,20 @@
 
 <br><br>
 
-<!-- Implementation -->
-<img src="./readme/title4.svg"/>
+<!-- Database Design -->
+<img src="./readme/title5.svg"/>
 
-> Using the wireframes and mockups as a guide, we implemented the Roam Rover app with the following features:
+###  Architecting Data Excellence: Innovative Database Design Strategies:
+
+- Insert ER Diagram here
+
+
+<br><br>
+
+
+<!-- Implementation -->
+<img src="./readme/title6.svg"/>
+
 
 ### User Screens (Mobile)
 | Login screen  | Register screen | Landing screen | Loading screen |
@@ -68,21 +79,37 @@
 
 <br><br>
 
-<!-- Tech stack -->
-<img src="./readme/title5.svg"/>
 
-###  Roam Rover is built using the following technologies:
+<!-- Prompt Engineering -->
+<img src="./readme/title7.svg"/>
 
-- This project uses the [ReactNative app development framework](https://reactnative.dev/). ReactNative is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
-- For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package which allows the app to create a custom storage schema and save it to a local database.
-- To send local push notifications, the app uses the [notifee](https://notifee.app/) package which supports Android, iOS, and macOS.
-  - 🚨 Currently, notifications aren't working on macOS. This is a known issue that we are working to resolve!
-- The app uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
+###  Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
+
+- This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
 
 <br><br>
 
+<!-- AWS Deployment -->
+<img src="./readme/title8.svg"/>
+
+###  Efficient AI Deployment: Unleashing the Potential with AWS Integration:
+
+- This project leverages AWS deployment strategies to seamlessly integrate and deploy natural language processing models. With a focus on scalability, reliability, and performance, we ensure that AI applications powered by these models deliver robust and responsive solutions for diverse use cases.
+
+<br><br>
+
+<!-- Unit Testing -->
+<img src="./readme/title9.svg"/>
+
+###  Precision in Development: Harnessing the Power of Unit Testing:
+
+- This project employs rigorous unit testing methodologies to ensure the reliability and accuracy of code components. By systematically evaluating individual units of the software, we guarantee a robust foundation, identifying and addressing potential issues early in the development process.
+
+<br><br>
+
+
 <!-- How to run -->
-<img src="./readme/title6.svg"/>
+<img src="./readme/title10.svg"/>
 
 > To set up Roam Rover locally, follow these steps:
 
