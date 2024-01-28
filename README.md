@@ -116,55 +116,55 @@
 
 
 ## Installation
-# Frontend (React Native)
+## Frontend (React Native)
 ```sh
 git clone https://github.com/Chahine-Chahine/RoamRover.git
 ```
-# Navigate to the frontend directory
+### Navigate to the frontend directory
 ```sh
 cd frontend
 ```
-# Install NPM packages
+### Install NPM packages
  ```sh
   npm install npm@latest -g
   ```
 
-# Enter your API key in config.js
-# const API_KEY = 'ENTER YOUR API';
+## Enter your API key in config.js
+### const API_KEY = 'ENTER YOUR API';
 
-# Backend (Laravel)
-# Navigate to the backend directory
+## Backend (Laravel)
+### Navigate to the backend directory
 ```sh
 cd backend
 ```
 
-# Install Composer dependencies
+## Install Composer dependencies
 ```sh
 composer install
 ```
 
-# Install Composer dependencies
+## Install Composer dependencies
 ```sh
 composer install
 ```
 
-# Generate the application key
+## Generate the application key
 ```sh
 php artisan key:generate
 ```
 
-# Download Laravel dependencies
+## Download Laravel dependencies
 ```sh
 php artisan migrate
 ```
 
-# Admin Panel (React)
-# Navigate to the adminPanel directory
+## Admin Panel (React)
+### Navigate to the adminPanel directory
 ```sh
 cd adminPanel
 ```
 
-# Install NPM packages
+## Install NPM packages
 ```sh
 npm install
 ```
