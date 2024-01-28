@@ -42,9 +42,9 @@
 
 
 ### Mockups
-| Home screen  | Menu Screen | Order Screen |
+| Home screen  | Location Details Screen | AI Questionnaire Screen |
 | ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](./readme/homeScreen.png) | ![fsdaf](./readme/LocationDescription.png) | ![fsdaf](./readme/AIQuestionnaire.png) |
 
 <br><br>
 
