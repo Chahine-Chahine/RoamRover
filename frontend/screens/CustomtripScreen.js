@@ -220,6 +220,7 @@ const CustomtripScreen = () => {
                 price={`$${location.estimated_price} per individual`}
                 url={location.image}
                 label={"add"}
+                buttonColor={'#A78BFA'}
                 onAddPress={handleAddLocation}
                 showBookmark={true}
                 isBookmarkedInitially={isBookmarkedInitially}
