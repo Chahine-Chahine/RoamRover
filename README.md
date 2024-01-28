@@ -66,23 +66,23 @@
 
 | Onboarding Screens | Signin Screen | Sign Up Screen |
 | --- | --- | --- |
-| ![Onboarding](./readme/onboarding.gif) | ![Signin](link_to_image) | ![Sign Up](link_to_image) |
+| ![Onboarding](./readme/onboarding.gif) | ![Signin](./readme/signin.gif) | ![Sign Up](./readme/signup.gif) |
 
 | Home Screen | Trip Details Screen | Room List Screen |
 | --- | --- | --- |
-| ![Home](link_to_image) | ![Trip Details](link_to_image) | ![Room List](link_to_image) |
+| ![Home](./readme/homeScreen.gif) | ![Trip Details](./readme/trip-details.gif) | ![Room List](./readme/room-list.gif) |
 
 | Chatroom Screen | AI Questionnaire Screen | Custom Trip Screen |
 | --- | --- | --- |
-| ![Chatroom](link_to_image) | ![AI Questionnaire](link_to_image) | ![Custom Trip](link_to_image) |
+| ![Chatroom](./readme/chatroom.gif) | ![AI Questionnaire](./readme/AI%20generate.gif) | ![Custom Trip](./readme/customTrip.gif) |
 
 | Bookmark Screen | Location Details Screen | Map Screen |
 | --- | --- | --- |
-| ![Bookmark](link_to_image) | ![Location Details](link_to_image) | ![Map](link_to_image) |
+| ![Bookmark](./readme/bookmarks.gif) | ![Location Details](./readme/locationScreen.gif) | ![Map](./readme/map.gif) |
 
 | Profile Screen | Update Profile Screen | Loading Screen |
 | --- | --- | --- |
-| ![Profile](link_to_image) | ![Update Profile](link_to_image) | ![Loading](link_to_image) |
+| ![Profile](./readme/profile.gif) | ![Update Profile](./readme/update-profile.gif) | ![Loading](./readme/loading.gif) |
 
 
 ### Admin Screens (Web)

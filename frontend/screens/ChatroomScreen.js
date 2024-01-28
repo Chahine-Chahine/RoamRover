@@ -15,7 +15,7 @@ const ChatRoomScreen = () => {
   const [messages, setMessages] = useState([]);
   const aiResponse = useSelector(state => state.Questionnaire.Questionnaire);
   const roomNameFromResponse = aiResponse.room ? aiResponse.room.room_name : null;
-  const [roomName, setRoomName] = useState(roomNameFromResponse || "Chat Room");
+  const [roomName, setRoomName] = useState(roomNameFromResponse || "Sunday Trip");
   const [displayedMessage, setDisplayedMessage] = useState('');
 
 
