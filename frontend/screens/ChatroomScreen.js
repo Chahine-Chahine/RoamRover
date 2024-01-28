@@ -94,7 +94,13 @@ const ChatRoomScreen = () => {
   
 
   const renderMessages = () => {
-    return messages.sort((a, b) => a.timestamp - b.timestamp).map((msg, index) => (
+    const sortedMessages = messages.sort((a, b) => a.timestamp - b.timestamp);
+
+    if (sortedMessages.length === 0) {
+      return null; 
+    }
+
+    return sortedMessages.map((msg, index) => (
       <View key={msg.id || index} style={styles.messageContainer}>
         <Text style={styles.username}>{msg.username}</Text>
         <Text style={styles.message}>{msg.message_body}</Text>
@@ -105,11 +111,12 @@ const ChatRoomScreen = () => {
   const renderAIResponse = () => {
     if (aiResponse && aiResponse.error) {
       return <Text style={styles.message}>Error fetching AI response: {aiResponse.error}</Text>;
-    } else {
+    } else if (displayedMessage.trim().length > 0) {
       return <Text style={styles.message}>{displayedMessage}</Text>;
+    } else {
+      return null; 
     }
   };
-
   return (
     <ImageBackground source={require('../assets/chat-bg.jpg')} style={styles.backgroundImage}>
       <ChatHeader roomName={roomName} roomId={roomId}/>
