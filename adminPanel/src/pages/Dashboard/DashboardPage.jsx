@@ -1,7 +1,7 @@
 import "./DashboardPage.css";
 import peopleImage from "../../assets/people.png";
 import QuickActions from "../../components/common/QuickActions";
-import Preview from "../../components/common/Preview";
+import Preview from "../../components/common/Preview";  
 
 const DashboardPage = () => {
   return (

@@ -4,6 +4,7 @@ use App\Http\Controllers\AnnouncementsController;
 use App\Http\Controllers\BookmarksController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GeneratetripController;
+use App\Http\Controllers\HealthCheckController;
 use App\Http\Controllers\QuestionnairesController;
 use App\Http\Controllers\TripsController;
 use Illuminate\Http\Request;
@@ -22,9 +23,8 @@ use App\Http\Controllers\LocationsController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::get('/health', [HealthCheckController::class ,'check']);
+
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
