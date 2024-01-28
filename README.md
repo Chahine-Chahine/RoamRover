@@ -15,7 +15,7 @@
 - As a user, I want a list of good recommendations to choose from manually.
 - As a user, I want the app to calculate trip expenses and provide a trip estimated total.
 ### Admin Stories
-- As an admin, I want to have comprehensive access to all user operations for efficient monitoring and assistance.
+- As an admin, I want to have comprehensive access to all announcements and places creation's history.
 - As an admin, I want to enhance the app's content by adding new places that users might find interesting.
 - As an admin, I want to effectively communicate with users by adding announcements.
 <br><br>
@@ -63,11 +63,52 @@
 
 
 ### User Screens (Mobile)
-| Login screen  | Register screen | Landing screen | Loading screen |
-| ---| ---| ---| ---|
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen  | Menu Screen | Order Screen | Checkout Screen |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+
+1. **Onboarding Screens**
+   ![Onboarding](link_to_image)
+
+2. **Signin Screen**
+   ![Signin](link_to_image)
+
+3. **Sign Up Screen**
+   ![Sign Up](link_to_image)
+
+4. **Home Screen**
+   ![Home](link_to_image)
+
+5. **Trip Details Screen**
+   ![Trip Details](link_to_image)
+
+6. **Room List Screen**
+   ![Room List](link_to_image)
+
+7. **Chatroom Screen**
+   ![Chatroom](link_to_image)
+
+8. **AI Questionnaire Screen**
+   ![AI Questionnaire](link_to_image)
+
+9. **Custom Trip Screen**
+   ![Custom Trip](link_to_image)
+
+10. **Bookmark Screen**
+    ![Bookmark](link_to_image)
+
+11. **Location Details Screen**
+    ![Location Details](link_to_image)
+
+12. **Map Screen**
+    ![Map](link_to_image)
+
+13. **Profile Screen**
+    ![Profile](link_to_image)
+
+14. **Update Profile Screen**
+    ![Update Profile](link_to_image)
+
+15. **Loading Screen**
+    ![Loading](link_to_image)
+
 
 ### Admin Screens (Web)
 | Login screen  | Register screen |  Landing screen |
