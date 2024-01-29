@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\LocationsController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,7 +24,7 @@ use App\Http\Controllers\LocationsController;
 |
 */
 
-Route::get('/health', [HealthCheckController::class ,'check']);
+Route::get('/health', [HealthCheckController::class, 'check']);
 
 
 Route::controller(AuthController::class)->group(function () {
@@ -37,20 +38,20 @@ Route::controller(AuthController::class)->group(function () {
 
 
 Route::controller(LocationsController::class)->group(function () {
-    Route::get('/locations', 'displayAll'); 
-    Route::post('/locations', 'createLocation'); 
+    Route::get('/locations', 'displayAll');
+    Route::post('/locations', 'createLocation');
     Route::put('/locations/{id}', 'updateLocation');
-    Route::get('/locations/{id}', 'displayById'); 
-    Route::delete('/locations/{id}', 'deleteLocation'); 
+    Route::get('/locations/{id}', 'displayById');
+    Route::delete('/locations/{id}', 'deleteLocation');
     Route::get('/search', 'search');
 
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/rooms',[RoomsController::class, 'displayAllRooms'] ); 
+    Route::get('/rooms', [RoomsController::class, 'displayAllRooms']);
     Route::get('/rooms/{id}', [RoomsController::class, 'displayById']);
-    Route::post('/rooms', [RoomsController::class,'createRoom']); 
-    Route::put('/updateRoom/{id}', [RoomsController::class , 'updateRoom']);
+    Route::post('/rooms', [RoomsController::class, 'createRoom']);
+    Route::put('/updateRoom/{id}', [RoomsController::class, 'updateRoom']);
     Route::post('/rooms/{room}/join', [RoomsController::class, 'joinRoom']);
 
 });
@@ -58,36 +59,36 @@ Route::middleware(['auth'])->group(function () {
 Route::controller(TripsController::class)->group(function () {
     Route::post('/trips', 'createTrip');
     Route::get('/trips', 'displayAllTrips');
-    Route::get('/trips/{id}', 'displayById' );
+    Route::get('/trips/{id}', 'displayById');
     Route::put('/trips/{id}', 'updateTrip');
     Route::delete('trips/{id}', 'deleteTrip');
     Route::get('/trips/category/{category_id}', 'getTripsByCategory');
 
 });
 
-Route::controller(BookmarksController::class)->group(function (){
-    Route::post('/bookmarks' , 'createBookmark');
-    Route::get('/bookmarks' , 'displayAllBookmarks');
-    Route::get('/bookmarks/{id}' , 'displayById');
+Route::controller(BookmarksController::class)->group(function () {
+    Route::post('/bookmarks', 'createBookmark');
+    Route::get('/bookmarks', 'displayAllBookmarks');
+    Route::get('/bookmarks/{id}', 'displayById');
     Route::get('displayUserBookmarks', 'displayUserBookmarks');
     Route::delete('/bookmarks/{id}', 'deleteBookmark');
 });
 
 
-Route::controller(AnnouncementsController::class)->group(function(){
+Route::controller(AnnouncementsController::class)->group(function () {
     Route::post('/announcements', 'createAnnouncement');
     Route::put('announcements/{id}', 'updateAnnouncement');
     Route::get('/announcements', 'readAnnouncements');
-    Route::delete('announcements/{id}','deleteAnnouncement');
+    Route::delete('announcements/{id}', 'deleteAnnouncement');
 });
 
-Route::controller(QuestionnairesController::class)->group(function(){
+Route::controller(QuestionnairesController::class)->group(function () {
     Route::post('/postQuestionnaire', 'createQuestionnaires');
     Route::get('/readQuestionnaire/{id}', 'readQuestionnaire');
 });
 
-Route::controller(GeneratetripController::class)->group(function(){
-    Route::get('/generateTripAi' , 'generateTripAi');
+Route::controller(GeneratetripController::class)->group(function () {
+    Route::get('/generateTripAi', 'generateTripAi');
 });
 
 Route::controller(CategoryController::class)->group(function () {

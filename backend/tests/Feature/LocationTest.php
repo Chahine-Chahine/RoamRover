@@ -34,8 +34,8 @@ class LocationTest extends TestCase
             'area' => $this->faker->word,
             'rating' => $this->faker->numberBetween(1, 5),
             'coordinates' => ['latitude' => $this->faker->latitude, 'longitude' => $this->faker->longitude],
+        'tags' => $this->faker->words(3),
             'est_time_spend' => $this->faker->numberBetween(1, 10),
-            'tags' => $this->faker->words(3),
             'category_ids' => $this->getCategoryIds(),
         ];
     }
@@ -78,4 +78,48 @@ class LocationTest extends TestCase
         $response->assertStatus(401);
     }
 
+    private function createTestLocation()
+    {
+        return Location::create($this->locationData());
+    }
+
+    public function testAdminCanUpdateLocation()
+    {
+        $admin = $this->createAdminUser();
+        $location = $this->createTestLocation();
+        $updateData = [
+            'title' => 'Updated Title',
+            'est_time_spend' => 5, 
+            'tags' => ['tag1', 'tag2'], 
+        ];
+        $response = $this->actingAs($admin)->putJson("/api/locations/{$location->id}", $updateData);
+        $response->assertStatus(200);
+    }
+
+    public function testNonAdminCannotUpdateLocation()
+    {
+        $user = $this->createUser();
+        $location = $this->createTestLocation();
+        $response = $this->actingAs($user)->putJson("/api/locations/{$location->id}", [
+            'title' => 'Updated Title'
+        ]);
+        $response->assertStatus(401);
+    }
+
+    public function testAdminCanDeleteLocation()
+    {
+        $admin = $this->createAdminUser();
+        $location = $this->createTestLocation();
+        $response = $this->actingAs($admin)->deleteJson("/api/locations/{$location->id}");
+        $response->assertStatus(200);
+    }
+
+    public function testNonAdminCannotDeleteLocation()
+    {
+        $user = $this->createUser();
+        $location = $this->createTestLocation();
+        $response = $this->actingAs($user)->deleteJson("/api/locations/{$location->id}");
+        $response->assertStatus(401);
+    }
 }
+

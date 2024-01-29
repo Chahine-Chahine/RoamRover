@@ -38,5 +38,10 @@ class Location extends Model
         return $this->belongsToMany(Category::class, 'locations_categories');
     }
     
+    protected $casts = [
+        'coordinates' => 'array',
+        'tags' => 'array',
+    ];
+
 }
 
