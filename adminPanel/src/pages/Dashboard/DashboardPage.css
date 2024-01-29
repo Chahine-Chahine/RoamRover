@@ -33,7 +33,7 @@
     display: flex;
     width: 82%;
     height: 40%;
-    background-color: #DAE7FF;
+    background-color: #E1D8F9;
     margin-bottom: 40px;
 }
 
@@ -92,7 +92,7 @@
     border: none;
     font-weight: bold;
     cursor: pointer;
-    background-color: #b5a6e2;
+    background-color: #524077;
     color: white;
     font-size: 18px;
     font-weight: 400;
@@ -149,7 +149,7 @@
       
       /* Card styles */
       .card {
-        background-color: #DAE7FF;
+        background-color: #E1D8F9;
         border-radius: 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         padding: 30px;

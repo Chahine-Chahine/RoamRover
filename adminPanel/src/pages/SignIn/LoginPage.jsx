@@ -79,9 +79,9 @@ const LoginPage = () => {
             <Button type="submit" text="Login" />
           </form>
           {message && <p className="login-message">{message}</p>}
-          <h4>
+          {/* <h4>
             Don’t have an account? <Link to="/signup">SignUp</Link>
-          </h4>
+          </h4> */}
         </div>
       </div>
     </div>
