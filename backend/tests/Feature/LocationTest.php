@@ -78,5 +78,4 @@ class LocationTest extends TestCase
         $response->assertStatus(401);
     }
 
-
 }
