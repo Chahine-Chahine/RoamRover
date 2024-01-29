@@ -16,6 +16,9 @@ class LocationsController extends Controller
     // POST /locations
     public function createLocation(Request $request)
     {
+        if ($request->user()->role_id != 1) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
         $validatedData = $request->validate([
             'image' => 'required|string',
             'description' => 'required|string',
@@ -48,6 +51,10 @@ class LocationsController extends Controller
     // PUT /locations/{id}
     public function updateLocation(Request $request, $id)
     {
+        if ($request->user()->role_id != 1) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         $location = Location::findOrFail($id);
 
         $validatedData = $request->validate([
@@ -90,6 +97,10 @@ class LocationsController extends Controller
     // DELETE /locations/{id}
     public function deleteLocation($id)
     {
+        if (auth()->user()->role_id != 1) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+        
         $location = Location::findOrFail($id);
         $location->delete();
         return response()->json(['message' => 'Location deleted successfully']);

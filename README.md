@@ -7,14 +7,12 @@
 
 >  Roam Rover is a mobile app designed for group adventures and trip planning. It simplifies the decision-making process by leveraging AI for top recommendations.
 > Roam Rover aims to facilitate real-time discussions within groups, allowing users to plan outings effortlessly. It provides access to a comprehensive list of places and recommendations, with the added feature of AI-generated trip suggestions.
-
 ### User Stories
+### User 
 - As a user, I want to generate a trip based on my budget without the need to search for places and compare budgets.
 - As a user, I want to check the locations of recommended or chosen places to make informed decisions.
 - As a user, I want to inform my friends about the plan and discuss trip details within the app.
-- As a user, I want a list of good recommendations to choose from manually.
-- As a user, I want the app to calculate trip expenses and provide a trip estimated total.
-### Admin Stories
+### Admin
 - As an admin, I want to have comprehensive access to all announcements and places creation's history.
 - As an admin, I want to enhance the app's content by adding new places that users might find interesting.
 - As an admin, I want to effectively communicate with users by adding announcements.
@@ -28,7 +26,6 @@
 - This project uses the [ReactNative app development framework](https://reactnative.dev/). ReactNative is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
 - The app leverages [Redux](https://redux.js.org/) for state management, providing a predictable state container. This ensures efficient data flow throughout the application.
 - For persistent storage, the app uses [Async Storage](https://react-native-async-storage.github.io/async-storage/), allowing data to be stored locally on the device.
-- The app uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
 
 <br><br>
 <!-- UI UX -->
@@ -131,56 +128,60 @@
 ### Prerequisites
 
 
-## Installation
-## Frontend (React Native)
+### Installation
+### Frontend (React Native)
 ```sh
 git clone https://github.com/Chahine-Chahine/RoamRover.git
 ```
-### Navigate to the frontend directory
+1. Navigate to the frontend directory
 ```sh
 cd frontend
 ```
-### Install NPM packages
+2. Install NPM packages
  ```sh
   npm install npm@latest -g
   ```
 
-## Enter your API key in config.js
-### const API_KEY = 'ENTER YOUR API';
+3. Enter your API key in config.js
 
-## Backend (Laravel)
-### Navigate to the backend directory
+```sh
+ const API_KEY = 'ENTER YOUR API';
+```
+
+### Backend (Laravel)
+1. Navigate to the backend directory
 ```sh
 cd backend
 ```
 
-## Install Composer dependencies
+2. Install Composer dependencies
 ```sh
 composer install
 ```
 
-## Install Composer dependencies
+3. Install Composer dependencies
 ```sh
 composer install
 ```
 
-## Generate the application key
+4. Generate the application key
 ```sh
 php artisan key:generate
 ```
 
-## Download Laravel dependencies
+5. Download Laravel dependencies
 ```sh
 php artisan migrate
 ```
 
-## Admin Panel (React)
-### Navigate to the adminPanel directory
+### Admin Panel (React)
+
+1. Navigate to the adminPanel directory
 ```sh
 cd adminPanel
 ```
 
-## Install NPM packages
+2. Install NPM packages
 ```sh
 npm install
 ```
