@@ -108,6 +108,23 @@
 
 - This project leverages AWS deployment strategies to seamlessly integrate and deploy natural language processing models. With a focus on scalability, reliability, and performance, we ensure that AI applications powered by these models deliver robust and responsive solutions for diverse use cases.
 
+#### By following these steps, we deployed the backend to Amazon Linux 2023.
+
+  1. Update Amazon Linux 2023 Packages
+  2. Install LAMP Stack
+  3. Start and enable the Apache and MariaDB services
+  4. Create Database
+  5. Install PHP Composer for Laravel on on.Linux 2023
+  6. Download the Laravel framework project
+  7. Install Laravel on Amazon Linux 2023
+  8. Create the Laravel environment configuration file
+  9. Apache Configuration for PHP Laravel App
+  10. Get the Laravel demo page
+  11. clone the repository 
+  12. Download the dependancies 
+  13. Migrate and seed the database
+  14. php artisan serve
+
 <br><br>
 
 <!-- Unit Testing -->
