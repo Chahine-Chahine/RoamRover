@@ -44,9 +44,9 @@
 
 ### Mockups
 
-| Home Screen                           | Location Details Screen                      | AI Questionnaire Screen                  |
-| ------------------------------------- | -------------------------------------------- | ---------------------------------------- |
-| <img src="./readme/homeScreen.png" width="300" height="600"/> | <img src="./readme/LocationDescription.png" width="300" height="600" /> | <img src="./readme/AIQuestionnaire.png" width="300" height="600"/> |
+| Home Screen                                       | Location Details Screen                                     | AI Questionnaire Screen                                |
+| ------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------ |
+| <img src="./readme/homeScreen.png" height="600"/> | <img src="./readme/LocationDescription.png" height="600" /> | <img src="./readme/AIQuestionnaire.png" height="600"/> |
 
 <br><br>
 
@@ -55,7 +55,8 @@
 
 ### Architecting Data Excellence: Innovative Database Design Strategies:
 
-![Screenshot](./readme/SQL-DATABASE.jpeg)
+<img src="./readme/SQL-DATABASE.jpeg" height="1000" />
+
 
 <br><br>
 
@@ -86,14 +87,9 @@
 
 ### Admin Screens (Web)
 
-## Login Screen
-
-![Login Screen](./readme/sigin-admin.png)
-
-## Home Screen
-
-![Home Screen](./readme/admin-dash.png)
-
+| Login Screen                                      | Home Screen                                     
+| ------------------------------------------------- | ----------------------------------------------------------- |
+| <img src="./readme/sigin-admin.png"/> | <img src="./readme/admin-dash.png"  /> | 
 <br><br>
 
 <!-- Prompt Engineering -->
@@ -102,8 +98,11 @@
 ### Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
 
 - This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
-
-<br><br>
+  <br/>
+  | OpenAi prompt screen |
+  | ---------------------------------- |
+  | ![Home](./readme/AI-Prompt.png) |
+  <br><br>
 
 <!-- AWS Deployment -->
 <img src="./readme/title8.svg"/>
@@ -146,6 +145,12 @@
 > To set up Roam Rover locally, follow these steps:
 
 ### Prerequisites
+
+1. Install [Node & NPM](https://nodejs.org/en/download).
+
+2. Install [Composer](https://getcomposer.org/download/)
+
+3. Database server: Any Apache HTTP Server, MariaDB database server, recommended [XAMPP](https://www.apachefriends.org/download.html).
 
 ### Installation
 

@@ -246,7 +246,7 @@ const QuickActions = () => {
       <Modal
         isOpen={isCreateLocationModalOpen}
         onClose={() => setIsCreateLocationModalOpen(false)}
-        title="Add a Place"
+        title="Add a location"
       >
         <form onSubmit={handleCreateLocation}>
           <input
