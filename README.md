@@ -85,23 +85,16 @@
 
 ### Videos
 
-<div style="display: flex; justify-content: space-around;">
-  <video width="30%" controls>
-    <source src="https://github.com/Chahine-Chahine/RoamRover/assets/138026169/34dec564-adf3-40dd-8122-7215cf149764" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
 
-  <video width="30%" controls>
-    <source src="https://github.com/Chahine-Chahine/RoamRover/assets/138026169/c9133cb9-7654-4e1f-a1f5-d835213527c4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
-  <video width="30%" controls>
-    <source src="https://github.com/Chahine-Chahine/RoamRover/assets/138026169/cb540278-620d-4b04-ac11-a20bb3ef504b" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <div width="100%">
+ <video  src="https://github.com/Chahine-Chahine/RoamRover/assets/138026169/34dec564-adf3-40dd-8122-7215cf149764">
 </div>
-
+<div width="100%">
+ <video  src="https://github.com/Chahine-Chahine/RoamRover/assets/138026169/c9133cb9-7654-4e1f-a1f5-d835213527c4">
+</div>
+<div width="100%">
+ <video  src="https://github.com/Chahine-Chahine/RoamRover/assets/138026169/cb540278-620d-4b04-ac11-a20bb3ef504b">
+</div>
 
 ### Admin Screens (Web)
 
