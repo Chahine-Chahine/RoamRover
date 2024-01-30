@@ -87,13 +87,13 @@
 
 
   <div width="100%">
- <video  src="https://github.com/Chahine-Chahine/RoamRover/assets/138026169/34dec564-adf3-40dd-8122-7215cf149764">
+ <video  src="https://github.com/Chahine-Chahine/RoamRover/assets/138026169/89951657-b387-412f-a428-831865e7237d">
 </div>
 <div width="100%">
- <video  src="https://github.com/Chahine-Chahine/RoamRover/assets/138026169/c9133cb9-7654-4e1f-a1f5-d835213527c4">
+ <video  src="https://github.com/Chahine-Chahine/RoamRover/assets/138026169/5dd31960-6d5f-4f0f-8971-c8b85b3cd384">
 </div>
 <div width="100%">
- <video  src="https://github.com/Chahine-Chahine/RoamRover/assets/138026169/cb540278-620d-4b04-ac11-a20bb3ef504b">
+ <video  src="https://github.com/Chahine-Chahine/RoamRover/assets/138026169/6d9e0cf9-2d80-45d8-84ed-f97122a823d4">
 </div>
 
 ### Admin Screens (Web)
