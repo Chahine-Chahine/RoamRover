@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { View, Dimensions, Text, ActivityIndicator, StyleSheet } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from 'react-native-maps';
-import * as Location from 'expo-location';
-import { fetchRoute } from '../core/Redux/Actions/mapActions';
-import CustomMarker from '../components/common/CustomMarker';
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Dimensions,
+  Text,
+  ActivityIndicator,
+  StyleSheet,
+} from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from "react-native-maps";
+import * as Location from "expo-location";
+import { fetchRoute } from "../core/Redux/Actions/mapActions";
+import CustomMarker from "../components/common/CustomMarker";
 
 // Function to decode polyline points
 const decodePolyline = (encoded) => {
@@ -50,14 +56,20 @@ const MapScreen = ({ route }) => {
   const [isMarkerPressed, setIsMarkerPressed] = useState(false);
 
   const locationDetails = route.params.location;
-  const coordinates = JSON.parse(locationDetails.coordinates);
-  const destination = { latitude: coordinates.latitude, longitude: coordinates.longitude };
+  console.log("locationDetails : ".locationDetails);
+  console.log("locationDetails.coordinates : ", locationDetails.coordinates);
+  const coordinates = locationDetails.coordinates;
+
+  const destination = {
+    latitude: coordinates.latitude,
+    longitude: coordinates.longitude,
+  };
 
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        console.error('Permission to access location was denied');
+      if (status !== "granted") {
+        console.error("Permission to access location was denied");
         return;
       }
 
@@ -72,15 +84,17 @@ const MapScreen = ({ route }) => {
     }
   }, [location, dispatch]);
 
-  const routeCoordinates = data ? decodePolyline(data.routes[0].overview_polyline.points) : [];
+  const routeCoordinates = data
+    ? decodePolyline(data.routes[0].overview_polyline.points)
+    : [];
 
   return (
     <View style={{ flex: 1 }}>
       <MapView
         provider={PROVIDER_GOOGLE}
         style={{
-          width: Dimensions.get('window').width,
-          height: Dimensions.get('window').height,
+          width: Dimensions.get("window").width,
+          height: Dimensions.get("window").height,
         }}
         region={{
           latitude: location ? location.latitude : destination.latitude,
@@ -92,8 +106,8 @@ const MapScreen = ({ route }) => {
         {location && (
           <Marker
             coordinate={location}
-            title='Starting Location'
-            description='You are here'
+            title="Starting Location"
+            description="You are here"
           />
         )}
         <Marker
@@ -112,7 +126,7 @@ const MapScreen = ({ route }) => {
           <Polyline
             coordinates={routeCoordinates}
             strokeWidth={4}
-            strokeColor='#6B46D9'
+            strokeColor="#6B46D9"
           />
         )}
       </MapView>
@@ -127,14 +141,14 @@ const MapScreen = ({ route }) => {
 
       {isLoading && (
         <ActivityIndicator
-          size='large'
-          color='#6B46D9'
-          style={{ position: 'absolute', alignSelf: 'center', top: '50%' }}
+          size="large"
+          color="#6B46D9"
+          style={{ position: "absolute", alignSelf: "center", top: "50%" }}
         />
       )}
 
       {error && (
-        <Text style={{ textAlign: 'center', color: 'red', marginTop: 10 }}>
+        <Text style={{ textAlign: "center", color: "red", marginTop: 10 }}>
           {error.message}
         </Text>
       )}
@@ -144,21 +158,21 @@ const MapScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
   estimatedTimeContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 10,
     left: 10,
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
     padding: 8,
     borderRadius: 5,
     elevation: 5, // for Android shadow
-    shadowColor: '#000', // for iOS shadow
+    shadowColor: "#000", // for iOS shadow
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
   },
   estimatedTimeText: {
     fontSize: 16,
-    color: '#000',
+    color: "#000",
   },
 });
 

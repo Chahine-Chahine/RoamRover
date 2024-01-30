@@ -13,64 +13,69 @@ import { joinRoom, checkParticipant } from '../core/Redux/Actions/roomActions';
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
-    const { trips, loading} = useSelector(state => state.trips);
+    const { trips, loading } = useSelector(state => state.trips);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const navigation = useNavigation();
-    const { user } = useSelector(state => state.auth); 
+    const { user } = useSelector(state => state.auth);
     const token = useSelector(state => state.auth.token);
     const { participants, loading: participantLoading, error } = useSelector(state => state.chatroom);
-    
-      const handleJoinRoom = (roomId) => {
+    const [joinedRooms, setJoinedRooms] = useState({}); // State to track join status of each room
+
+    const handleJoinRoom = (roomId) => {
         dispatch(checkParticipant(roomId, token));
         if (!participants.includes(user.id)) {
-          dispatch(joinRoom(roomId, token));
-          alert('You have successfully joined the room.');
-        }else if (participants.includes(user.id)) {
+            dispatch(joinRoom(roomId, token));
+            setJoinedRooms(prevState => ({ ...prevState, [roomId]: true })); // Update join status for this room
+            alert('You have successfully joined the room.');
+        } else {
             alert('You are already a participant in this room.');
-      };
+        }
     };
+
     useFocusEffect(
         React.useCallback(() => {
             dispatch(fetchTrips());
             dispatch(fetchAllUsers(token));
-        }, [dispatch])
+        }, [dispatch, token])
     );
 
     const navigateTripPage = (trip) => {
         navigation.navigate('TripDetailsScreen', { trip });
     };
 
-    if (loading) return <LoadingScreen />; 
+    if (loading) return <LoadingScreen />;
 
     return (
         <View style={styles.container}>
             <Header />
             <ScrollView style={styles.scrollView}>
-                <Categories 
-                    selectedCategory={selectedCategory} 
-                    onSelectCategory={setSelectedCategory} 
+                <Categories
+                    selectedCategory={selectedCategory}
+                    onSelectCategory={setSelectedCategory}
                 />
-                {trips && trips.map((trip) => (
-                    <Card
-                        key={trip.id.toString()}
-                        onPress={() => navigateTripPage(trip)} 
-                        title={trip.room?.room_name ?? 'Trip Room'}
-                        description={`${trip.room?.room_description ?? 'Description'}`}
-                        price={`$${trip.total_budget ?? ''} total`}
-                        url={trip.locations[0].image}
-                        label={participants.includes(user?.id) ? 'Joined' : 'Join'}
-                        buttonColor={participants.includes(user?.id) ? '#FF8566' : '#A78BFA'} 
-                        onAddPress={() => handleJoinRoom(trip.room?.id)}
-                        showBookmark={false}
-                        onBookmarkPress={() => {}} 
-                    />
-                ))}
+                {trips && trips.map((trip) => {
+                    const isJoined = joinedRooms[trip.room?.id] || participants.includes(user?.id);
+                    return (
+                        <Card
+                            key={trip.id.toString()}
+                            onPress={() => navigateTripPage(trip)}
+                            title={trip.room?.room_name ?? 'Trip Room'}
+                            description={`${trip.room?.room_description ?? 'Description'}`}
+                            price={`$${trip.total_budget ?? ''} total`}
+                            url={trip.locations[0].image}
+                            label={isJoined ? 'Joined' : 'Join'}
+                            buttonColor={isJoined ? '#FF8566' : '#A78BFA'}
+                            onAddPress={() => handleJoinRoom(trip.room?.id)}
+                            showBookmark={false}
+                            onBookmarkPress={() => {}}
+                        />
+                    );
+                })}
             </ScrollView>
             <NavigationBar />
         </View>
     );
 };
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
