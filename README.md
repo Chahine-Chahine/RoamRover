@@ -42,21 +42,19 @@
 
 - Project Figma design [figma](https://www.figma.com/file/5CgT0dwIKPiVcGiMI2XmpA/Final-Project?type=design&node-id=8%3A17&mode=design&t=DQpFoX6qTc7XoAGm-1)
 
-### Mockups
+### Mockups Examples
 
 | Home Screen                                       | Location Details Screen                                     | AI Questionnaire Screen                                |
 | ------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------ |
 | <img src="./readme/homeScreen.png" height="600"/> | <img src="./readme/LocationDescription.png" height="600" /> | <img src="./readme/AIQuestionnaire.png" height="600"/> |
 
-<br><br>
+- Check more Mockups on [figma](https://www.figma.com/file/5CgT0dwIKPiVcGiMI2XmpA/Final-Project?type=design&node-id=8%3A17&mode=design&t=DQpFoX6qTc7XoAGm-1)
+  <br><br>
 
 <!-- Database Design -->
 <img src="./readme/title5.svg"/>
 
-### Architecting Data Excellence: Innovative Database Design Strategies:
-
 <img src="./readme/SQL-DATABASE.jpeg" height="1000" />
-
 
 <br><br>
 
@@ -87,46 +85,124 @@
 
 ### Admin Screens (Web)
 
-| Login Screen                                      | Home Screen                                     
-| ------------------------------------------------- | ----------------------------------------------------------- |
-| <img src="./readme/sigin-admin.png"/> | <img src="./readme/admin-dash.png"  /> | 
+| Login Screen                          | Home Screen                            |
+| ------------------------------------- | -------------------------------------- |
+| <img src="./readme/sigin-admin.png"/> | <img src="./readme/admin-dash.png"  /> |
+
 <br><br>
 
 <!-- Prompt Engineering -->
 <img src="./readme/title7.svg"/>
 
-### Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
+### Prompt Engineering
 
-- This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
+- Intelligent Prompt Engineering with OpenAI
+  In our cutting-edge application, we leverage the power of OpenAI's advanced natural language processing technology through strategic Prompt Engineering. This approach is at the heart of creating dynamic and contextually relevant interactions with our users.
+
+1. User-Driven Keyword Extraction: The journey begins with a tailored questionnaire presented to our users. As they interact with these questions, their responses are analyzed to extract key phrases and words.
+
+2. Seamless Prompt Formulation: The extracted keywords are then skillfully integrated into a carefully crafted prompt.
+
+3. Context-Aware Responses from AI: Once the prompt, enriched with the user's keywords, is fed into OpenAI's GPT model, the magic happens. The model, renowned for its ability to understand and generate human-like text, processes the input. Drawing from its vast knowledge base and the specific context provided, it generates responses that are not just accurate but also tailored to the user's query.
+
+4. Location and Data Integration: What sets our application apart is how these AI-generated responses are seamlessly integrated with the location-specific data and other relevant information from our app's database.
   <br/>
+
   | OpenAi prompt screen |
   | ---------------------------------- |
-  | ![Home](./readme/AI-Prompt.png) |
+  | ![OpenAI](./readme/AI-Prompt.png) |
   <br><br>
 
 <!-- AWS Deployment -->
 <img src="./readme/title8.svg"/>
 
-### Efficient AI Deployment: Unleashing the Potential with AWS Integration:
-
-- This project leverages AWS deployment strategies to seamlessly integrate and deploy natural language processing models. With a focus on scalability, reliability, and performance, we ensure that AI applications powered by these models deliver robust and responsive solutions for diverse use cases.
-
 #### By following these steps, we deployed the backend to Amazon Linux 2023.
 
-1. Update Amazon Linux 2023 Packages
-2. Install LAMP Stack
-3. Start and enable the Apache and MariaDB services
-4. Create Database
-5. Install PHP Composer for Laravel on on.Linux 2023
-6. Download the Laravel framework project
-7. Install Laravel on Amazon Linux 2023
-8. Create the Laravel environment configuration file
-9. Apache Configuration for PHP Laravel App
-10. Get the Laravel demo page
-11. clone the repository
-12. Download the dependancies
-13. Migrate and seed the database
-14. php artisan serve
+Step 1: Update Amazon Linux 2023 Packages
+
+```sh
+sudo yum update -y
+```
+
+Step 2: Install LAMP Stack
+
+```sh
+sudo yum install -y lamp-mariadb10.5-server mariadb php8.0 php8.0-mysqlnd
+```
+
+Step 3: Start and Enable Apache and MariaDB Services
+
+```sh
+sudo systemctl start httpd
+sudo systemctl enable httpd
+sudo systemctl start mariadb
+sudo systemctl enable mariadb
+```
+
+Step 4: Create Database
+
+```sh
+mysql -u root -p
+CREATE DATABASE laravel;
+```
+
+Step 5: Install PHP Composer for Laravel
+
+```sh
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+```
+
+Step 6: Download Laravel Project
+
+```sh
+composer create-project --prefer-dist laravel/laravel laravelApp
+```
+
+Step 7: Install Laravel
+Navigate to the Laravel directory and install dependencies.
+
+```sh
+cd laravelApp
+composer install
+```
+
+Step 8: Create Laravel Environment Configuration
+
+```sh
+cp .env.example .env
+php artisan key:generate
+```
+
+Step 9: Apache Configuration for Laravel App
+Configure your Apache settings to serve the Laravel application
+
+Step 10: Access Laravel Demo Page
+Visit your server's public IP address in a web browser.
+
+Step 11: Clone the Repository
+
+```sh
+git clone [your-repository-link]
+```
+
+Step 12: Download Dependencies
+
+```sh
+composer install
+```
+
+Step 13: Migrate and Seed the Database
+
+```sh
+php artisan migrate --seed
+```
+
+Step 14: Serve the Application
+
+```sh
+php artisan serve
+```
 
 <br><br>
 
