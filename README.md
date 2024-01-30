@@ -85,17 +85,23 @@
 
 ### Videos
 
+<table>
+  <tr>
+    <td align="center">
+      
+https://github.com/Chahine-Chahine/RoamRover/assets/138026169/89951657-b387-412f-a428-831865e7237d
 
-  <div width="100%">
- <video  src="https://github.com/Chahine-Chahine/RoamRover/assets/138026169/89951657-b387-412f-a428-831865e7237d">
-</div>
-<div width="100%">
- <video  src="https://github.com/Chahine-Chahine/RoamRover/assets/138026169/5dd31960-6d5f-4f0f-8971-c8b85b3cd384">
-</div>
-<div width="100%">
- <video  src="https://github.com/Chahine-Chahine/RoamRover/assets/138026169/6d9e0cf9-2d80-45d8-84ed-f97122a823d4">
-</div>
+</td>
+    <td align="center">
+      
+https://github.com/Chahine-Chahine/RoamRover/assets/138026169/5dd31960-6d5f-4f0f-8971-c8b85b3cd384
+</td>
+    <td align="center">
 
+https://github.com/Chahine-Chahine/RoamRover/assets/138026169/6d9e0cf9-2d80-45d8-84ed-f97122a823d4
+
+</td>
+</table>
 ### Admin Screens (Web)
 
 | Login Screen                          | Home Screen                            |
@@ -119,12 +125,13 @@
 3. Context-Aware Responses from AI: Once the prompt, enriched with the user's keywords, is fed into OpenAI's GPT model, the magic happens. The model, renowned for its ability to understand and generate human-like text, processes the input. Drawing from its vast knowledge base and the specific context provided, it generates responses that are not just accurate but also tailored to the user's query.
 
 4. Location and Data Integration: What sets our application apart is how these AI-generated responses are seamlessly integrated with the location-specific data and other relevant information from our app's database.
-  <br/>
+   <br/>
 
-  | OpenAi prompt screen |
-  | ---------------------------------- |
-  | ![OpenAI](./readme/AI-Prompt.png) |
-  <br><br>
+| OpenAi prompt screen              |
+| --------------------------------- |
+| ![OpenAI](./readme/AI-Prompt.png) |
+
+<br><br>
 
 <!-- AWS Deployment -->
 <img src="./readme/title8.svg"/>
