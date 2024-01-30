@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthControllerLoginTest extends TestCase
 {
-    use RefreshDatabase; // Use the RefreshDatabase trait
+    use RefreshDatabase;
 
     public function setUp(): void
     {
